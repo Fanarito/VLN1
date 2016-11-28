@@ -9,4 +9,14 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    consoleui.cpp \
+    dataaccess.cpp \
+    person.cpp \
+    personservice.cpp
+
+HEADERS += \
+    consoleui.h \
+    dataaccess.h \
+    person.h \
+    personservice.h
