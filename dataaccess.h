@@ -17,7 +17,9 @@ private:
     std::vector<person> people;
 public:
     dataaccess();
+
     void read();
+    void save();
     std::vector<person> *getPeople();
 };
 

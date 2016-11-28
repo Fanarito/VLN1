@@ -30,8 +30,22 @@ void dataaccess::read() {
 }
 
 /*
+ * Saves the vector to a file
+ */
+void dataaccess::save() {
+    std::ofstream file(FILENAME);
+
+    std::string line;
+
+    for (size_t i = 0; i < people.size(); i++) {
+        line = people[i].getName() + "|" + people[i].getSex() + "|" + std::to_string(people[i].getBirthYear()) + "|" + std::to_string(people[i].getDeathYear());
+        file << line << std::endl;
+    }
+}
+
+/*
  * Returns a pointer to the people vector
  */
-std::vector<person> dataaccess::getPeople() {
-    return *people;
+std::vector<person> *dataaccess::getPeople() {
+    return &people;
 }
