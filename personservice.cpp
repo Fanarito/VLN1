@@ -22,7 +22,4 @@ vector<person> personservice::alphabetical(string name)
 {
     peopleSorted = sort(_persons->begin(), _persons->end(), person::compareName);
     return peopleSorted;
-
-
-
 }
