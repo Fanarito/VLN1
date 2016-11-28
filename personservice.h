@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "person.h"
+#include "dataaccess.h"
 
 using namespace std;
 
@@ -12,15 +13,21 @@ class personservice
 public:
     personservice();
     void addPerson(std::string name, std::string gender, int birthyear, int deathyear);
+    void reset();
     vector<person> getPersons();
     vector<person> alphabetical();
     vector<person> reverseAlphabetical();
     vector<person> ageDescending();
-    vector<person> ageAscending();;
+    vector<person> ageAscending();
     vector<person> deathDescending();
     vector<person> deathAscending();
     vector<person> genderMale();
     vector<person> genderFemale();
+
+    vector<person> filterByName();
+    vector<person> filterBySex();
+    vector<person> filterByBirth();
+    vector<person> filterByDeath();
 private:
     vector<person> *_persons;
     vector<person> peopleSorted;

@@ -36,37 +36,37 @@ int person::getDeathYear() const {
 void person::setDeathYear(int deathyear) {
     m_deathyear = deathyear;
 }
-int person::compareName(person a, person b) const
+int person::compareName(person a, person b)
 {
     return a.m_name < b.m_name;
 }
-int person::compareNameReverse(person a, person b) const
+int person::compareNameReverse(person a, person b)
 {
     return a.m_name > b.m_name;
 }
 
-int person::compareYear(person a, person b) const
+int person::compareYear(person a, person b)
 {
     return a.m_birthyear < b.m_birthyear;
 }
-int person::compareYearReverse(person a, person b) const
+int person::compareYearReverse(person a, person b)
 {
     return a.m_birthyear > b.m_birthyear;
 }
-int person::compareDeath(person a, person b) const
+int person::compareDeath(person a, person b)
 {
     return a.m_deathyear < b.m_deathyear;
 }
-int person::compareDeathReverse(person a, person b) const
+int person::compareDeathReverse(person a, person b)
 {
     return a.m_deathyear > b.m_deathyear;
 }
 
-int person::compareGender(person a, person b) const
+int person::compareGender(person a, person b)
 {
     return a.m_sex < b.m_sex;
 }
-int person::compareGenderReverse(person a, person b) const
+int person::compareGenderReverse(person a, person b)
 {
     return a.m_sex > b.m_sex;
 }

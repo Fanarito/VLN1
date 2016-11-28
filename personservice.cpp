@@ -3,7 +3,8 @@
 
 personservice::personservice()
 {
-
+  dataaccess().read();
+  _persons = dataaccess().getPeople();
 }
 
 vector<person> personservice::getPersons()
@@ -20,44 +21,44 @@ void personservice::addPerson(std::string name, std::string gender, int birthyea
 //this is where we sort the names in alphabetical order
 vector<person> personservice::alphabetical()
 {
-    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareName);
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareName);
     return peopleSorted;
 }
 vector<person> personservice::reverseAlphabetical()
 {
-    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareNameReverse());
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareNameReverse);
     return peopleSorted;
 }
 vector<person> personservice::ageDescending()
 {
-    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareYear());
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareYear);
     return peopleSorted;
 }
 vector<person> personservice::ageAscending()
 {
-    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareYearReverse());
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareYearReverse);
     return peopleSorted;
 }
 
 vector<person> personservice::deathDescending()
 {
-    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareDeath());
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareDeath);
     return peopleSorted;
 }
 vector<person> personservice::deathAscending()
 {
-    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareDeathReverse());
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareDeathReverse);
     return peopleSorted;
 }
 
 vector<person> personservice::genderMale()
 {
-    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareGender());
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareGender);
     return peopleSorted;
 }
 vector<person> personservice::genderFemale()
 {
-    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareGenderReverse());
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareGenderReverse);
     return peopleSorted;
 }
 

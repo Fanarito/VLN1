@@ -27,14 +27,14 @@ public:
     int getDeathYear() const;
     void setDeathYear(int deathyear);
 
-    int compareName(person a, person b) const;
-    int compareNameReverse(person a, person b) const;
-    int compareYear(person a, person b) const;
-    int compareYearReverse(person a, person b) const;
-    int compareDeath(person a, person b) const;
-    int compareDeathReverse(person a, person b) const;
-    int compareGender(person a, person b) const;
-    int compareGenderReverse(person a, person b) const;
+    static int compareName(person a, person b);
+    static int compareNameReverse(person a, person b);
+    static int compareYear(person a, person b);
+    static int compareYearReverse(person a, person b);
+    static int compareDeath(person a, person b);
+    static int compareDeathReverse(person a, person b);
+    static int compareGender(person a, person b);
+    static int compareGenderReverse(person a, person b);
 
 };
 
