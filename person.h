@@ -1,6 +1,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 
+
 #include <string>
 
 class person
@@ -25,6 +26,16 @@ public:
 
     int getDeathYear() const;
     void setDeathYear(int deathyear);
+
+    int compareName(person a, person b) const;
+    int compareNameReverse(person a, person b) const;
+    int compareYear(person a, person b) const;
+    int compareYearReverse(person a, person b) const;
+    int compareDeath(person a, person b) const;
+    int compareDeathReverse(person a, person b) const;
+    int compareGender(person a, person b) const;
+    int compareGenderReverse(person a, person b) const;
+
 };
 
 #endif // PERSON_H

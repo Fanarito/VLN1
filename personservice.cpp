@@ -1,4 +1,5 @@
 #include "personservice.h"
+#include <algorithm>
 
 personservice::personservice()
 {
@@ -15,4 +16,10 @@ void personservice::addPerson(std::string name, std::string gender, int birthyea
     person p(name, gender, birthyear, deathyear);
     //Add the person to a vector for later use
     _persons.push_back(p);
+}
+//this is where we sort the names in alphabetical order
+vector<person> personservice::alphabetical(string name)
+{
+    peopleSorted = sort(_persons->begin(), _persons->end(), person::compareName);
+    return peopleSorted;
 }

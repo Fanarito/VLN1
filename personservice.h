@@ -22,7 +22,7 @@ public:
     vector<person> genderMale();
     vector<person> genderFemale();
 private:
-    vector<person> _persons;
+    vector<person> *_persons;
     vector<person> peopleSorted;
 };
 
