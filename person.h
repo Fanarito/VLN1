@@ -11,6 +11,7 @@ private:
     int m_birthyear;
     int m_deathyear;
 public:
+    person();
     person(std::string name, std::string sex, int birthyear, int deathyear);
 
     std::string getName() const;

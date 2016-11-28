@@ -19,7 +19,15 @@ void consoleui::run()
 
     if(command == "list")
     {
-
+        personservice ps;
+        vector<person> p = ps.getPersons();
+        for(unsigned int i = 0; i < p.size(); i++)
+        {
+            cout << "Name: " << p[i].getName() << endl;
+            cout << "Sex: " << p[i].getSex() << endl;
+            cout << "Birthyear: " << p[i].getBirthYear() << endl;
+            cout << "Year of death: " << p[i].getDeathYear() << endl;
+        }
     }
     else if(command == "add")
     {
