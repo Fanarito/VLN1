@@ -36,3 +36,12 @@ int person::getDeathYear() const {
 void person::setDeathYear(int deathyear) {
     m_deathyear = deathyear;
 }
+int person::compareName(person a, person b) const
+{
+    return a.m_name < b.m_name;
+}
+
+int compareName(person a, person b) const;
+int compareYear(person a, person b) const;
+int compareDeath(person a, person b) const;
+int compareGender(person a, person b) const;
