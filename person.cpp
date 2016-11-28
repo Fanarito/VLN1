@@ -1,6 +1,6 @@
 #include "person.h"
 
-person::person(std::string name = "", std::string sex = "", int birthyear = 0, int deathyear = 0)
+person::person(std::string name, std::string sex, int birthyear, int deathyear)
 {
     m_name = name;
     m_sex = sex;

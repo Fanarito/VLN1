@@ -1,6 +1,28 @@
+#include <iostream>
+#include <string>
 #include "consoleui.h"
 
+using namespace std;
 consoleui::consoleui()
 {
 
+}
+
+void consoleui::run()
+{
+    cout << "Please enter one of the following commands:" << endl;
+    cout << "list - This will list all famous programmers in the system" << endl;
+    cout << "add - This will add a new famous programmer to the system" << endl;
+
+    string command;
+    cin >> command;
+
+    if(command == "list")
+    {
+
+    }
+    else if(command == "add")
+    {
+
+    }
 }

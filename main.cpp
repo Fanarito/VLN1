@@ -1,8 +1,9 @@
 #include <QCoreApplication>
+#include "consoleui.h"
 
-int main(int argc, char *argv[])
+int main()
 {
-    QCoreApplication a(argc, argv);
-
-    return a.exec();
+    consoleui ui;
+    ui.run();
+    return 0;
 }
