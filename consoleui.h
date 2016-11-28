@@ -1,6 +1,7 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 
+#include "personservice.h"
 
 class consoleui
 {
