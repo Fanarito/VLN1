@@ -1,0 +1,11 @@
+Ada Lovelece|f|1815|1852
+Charles Babbage|m|1791|1871
+Alan Turing|m|1912|1954
+Grace Hopper|f|1906|1992
+Margeret Hamilton|f|1936|n/a
+Edsger W. Dijkstra|m|1930|2002
+Donald Knuth|m|1938|n/a
+Douglas Engelbart|m|1925|2013
+Kenneth E. Iverson|m|1920|2004
+Maurice Wilkes|m|1913|2010
+
