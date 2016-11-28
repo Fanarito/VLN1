@@ -1,35 +1,38 @@
 #include "person.h"
 
-person::person()
+person::person(std::string name = "", std::string sex = "", int birthyear = 0, int deathyear = 0)
 {
-
+    m_name = name;
+    m_sex = sex;
+    m_birthyear = birthyear;
+    m_deathyear = deathyear;
 }
 
-std::string getName() {
+std::string person::getName() {
     return m_name;
 }
-void setName(std::string name) {
+void person::setName(std::string name) {
     m_name = name;
 }
 
 
-std::string getSex() {
+std::string person::getSex() {
     return m_sex;
 }
-void setSex(std::string sex) {
+void person::setSex(std::string sex) {
     m_sex = sex;
 }
 
-int getBirthYear() {
+int person::getBirthYear() {
     return m_birthyear;
 }
-void setBirthYear(int birthyear) {
+void person::setBirthYear(int birthyear) {
     m_birthyear = birthyear;
 }
 
-int getDeathYear() {
+int person::getDeathYear() {
     return m_deathyear;
 }
-void setDeathYear(int deathyear) {
+void person::setDeathYear(int deathyear) {
     m_deathyear = deathyear;
 }
