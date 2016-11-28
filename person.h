@@ -13,16 +13,16 @@ private:
 public:
     person(std::string name, std::string sex, int birthyear, int deathyear);
 
-    std::string getName();
+    std::string getName() const;
     void setName(std::string name);
 
-    std::string getSex();
+    std::string getSex() const;
     void setSex(std::string sex);
 
-    int getBirthYear();
+    int getBirthYear() const;
     void setBirthYear(int birthyear);
 
-    int getDeathYear();
+    int getDeathYear() const;
     void setDeathYear(int deathyear);
 };
 

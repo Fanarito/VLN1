@@ -8,7 +8,7 @@ person::person(std::string name, std::string sex, int birthyear, int deathyear)
     m_deathyear = deathyear;
 }
 
-std::string person::getName() {
+std::string person::getName() const {
     return m_name;
 }
 void person::setName(std::string name) {
@@ -16,21 +16,21 @@ void person::setName(std::string name) {
 }
 
 
-std::string person::getSex() {
+std::string person::getSex() const {
     return m_sex;
 }
 void person::setSex(std::string sex) {
     m_sex = sex;
 }
 
-int person::getBirthYear() {
+int person::getBirthYear() const {
     return m_birthyear;
 }
 void person::setBirthYear(int birthyear) {
     m_birthyear = birthyear;
 }
 
-int person::getDeathYear() {
+int person::getDeathYear() const {
     return m_deathyear;
 }
 void person::setDeathYear(int deathyear) {
