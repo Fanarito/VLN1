@@ -18,8 +18,10 @@ std::vector<std::string> split(const std::string &s, char delim) {
 /*
  * Reads the file and saves it to a vector
  */
-void dataaccess::read() {
+std::vector<person> dataaccess::read() {
     std::fstream file(FILENAME);
+
+    std::vector<person> people;
 
     std::vector<std::string> p;
     std::string line;
@@ -27,12 +29,14 @@ void dataaccess::read() {
         p = split(line, DELIMITER);
         people.push_back(person(p[0], p[1], std::stoi(p[2]), std::stoi(p[3])));
     }
+
+    return people;
 }
 
 /*
  * Saves the vector to a file
  */
-void dataaccess::save() {
+void dataaccess::save(std::vector<person> people) {
     std::ofstream file(FILENAME);
 
     std::string line;
@@ -45,7 +49,8 @@ void dataaccess::save() {
 
 /*
  * Returns a pointer to the people vector
- */
+ *
 std::vector<person> *dataaccess::getPeople() {
     return &people;
 }
+*/

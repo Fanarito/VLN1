@@ -29,8 +29,9 @@ public:
     vector<person> filterByBirth();
     vector<person> filterByDeath();
 private:
-    vector<person> *_persons;
-    vector<person> peopleSorted;
+    dataaccess data;
+    vector<person> persons;
+    //vector<person> peopleSorted;
 };
 
 #endif // PERSONSERVICE_H
