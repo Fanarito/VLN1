@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include <iostream>
 
 #include "person.h"
 
@@ -19,6 +18,7 @@ private:
 public:
     dataaccess();
     void read();
+    std::vector<person> *getPeople();
 };
 
 #endif // DATAACCESS_H
