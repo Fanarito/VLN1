@@ -28,3 +28,10 @@ void dataaccess::read() {
         people.push_back(person(p[0], p[1], std::stoi(p[2]), std::stoi(p[3])));
     }
 }
+
+/*
+ * Returns a pointer to the people vector
+ */
+std::vector<person> dataaccess::getPeople() {
+    return *people;
+}
