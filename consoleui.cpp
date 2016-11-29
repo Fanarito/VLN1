@@ -86,6 +86,7 @@ void consoleui::add()
     string sex;
     int year_of_birth;
     int year_of_death;
+    string nationality;
 
     cout << "Name: " << endl;
     cin.ignore(1000, '\n');
@@ -100,9 +101,12 @@ void consoleui::add()
     cout << "Year of death: " << endl;
     cin >> year_of_death;
 
+    cout << "Nationality: " << endl;
+    cin >> nationality;
+
     cout << endl;
 
-    ps.addPerson(name, sex, year_of_birth, year_of_death);
+    ps.addPerson(name, sex, year_of_birth, year_of_death, nationality);
 
 }
 

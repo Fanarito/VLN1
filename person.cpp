@@ -1,12 +1,13 @@
 #include "person.h"
 #include <iostream>
 
-person::person(std::string name, std::string sex, int birthyear, int deathyear)
+person::person(std::string name, std::string sex, int birthyear, int deathyear, std::string nationality)
 {
     m_name = name;
     m_sex = sex;
     m_birthyear = birthyear;
     m_deathyear = deathyear;
+    m_nationality = nationality;
 }
 
 std::string person::getName() const
@@ -46,6 +47,16 @@ int person::getDeathYear() const
 void person::setDeathYear(int deathyear)
 {
     m_deathyear = deathyear;
+}
+
+std::string person::getNationality() const
+{
+    return m_nationality;
+}
+
+void person::setNationality(std::string nationality)
+{
+    m_nationality = nationality;
 }
 
 /*
@@ -100,4 +111,14 @@ int person::compareGender(person a, person b)
 int person::compareGenderReverse(person a, person b)
 {
     return a.m_sex > b.m_sex;
+}
+
+int person::compareNationality(person a, person b)
+{
+    return a.m_nationality < b.m_nationality;
+}
+
+int person::compareNationalityReverse(person a, person b)
+{
+    return a.m_nationality > b.m_nationality;
 }

@@ -12,7 +12,7 @@ class personservice
 {
 public:
     personservice();
-    void addPerson(std::string name, std::string gender, int birthyear, int deathyear);
+    void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality);
     void reset();
     void save();
     vector<person> getPersons();
@@ -24,11 +24,9 @@ public:
     vector<person> deathAscending();
     vector<person> genderMale();
     vector<person> genderFemale();
+    vector<person> nationalityOrder();
+    vector<person> nationalityReverse();
 
-    vector<person> filterByName();
-    vector<person> filterBySex();
-    vector<person> filterByBirth();
-    vector<person> filterByDeath();
 private:
     dataaccess data;
     vector<person> persons;

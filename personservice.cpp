@@ -20,9 +20,9 @@ void personservice::save() {
     dataaccess::save(persons);
 }
 
-void personservice::addPerson(std::string name, std::string gender, int birthyear, int deathyear)
+void personservice::addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality)
 {
-    person p(name, gender, birthyear, deathyear);
+    person p(name, gender, birthyear, deathyear, nationality);
     //Add the person to a vector for later use
     persons.push_back(p);
 }
@@ -75,6 +75,20 @@ vector<person> personservice::genderFemale()
 {
     vector<person> peopleSorted = persons;
     sort(peopleSorted.begin(), peopleSorted.end(), person::compareGenderReverse);
+    return peopleSorted;
+}
+
+vector<person> personservice::nationalityOrder()
+{
+    vector<person> peopleSorted = persons;
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareNationality);
+    return peopleSorted;
+}
+
+vector<person> personservice::nationalityReverse()
+{
+    vector<person> peopleSorted = persons;
+    sort(peopleSorted.begin(), peopleSorted.end(), person::compareNationalityReverse);
     return peopleSorted;
 }
 

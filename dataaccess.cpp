@@ -27,7 +27,7 @@ std::vector<person> dataaccess::read() {
     std::string line;
     while(std::getline(file, line)) {
         p = split(line, DELIMITER);
-        people.push_back(person(p[0], p[1], std::stoi(p[2]), std::stoi(p[3])));
+        people.push_back(person(p[0], p[1], std::stoi(p[2]), std::stoi(p[3]), p[4]));
     }
 
     return people;
@@ -42,7 +42,7 @@ void dataaccess::save(std::vector<person> people) {
     std::string line;
 
     for (size_t i = 0; i < people.size(); i++) {
-        line = people[i].getName() + DELIMITER + people[i].getSex() + DELIMITER + std::to_string(people[i].getBirthYear()) + DELIMITER + std::to_string(people[i].getDeathYear());
+        line = people[i].getName() + DELIMITER + people[i].getSex() + DELIMITER + std::to_string(people[i].getBirthYear()) + DELIMITER + std::to_string(people[i].getDeathYear()) + DELIMITER + people[i].getNationality();
         file << line << std::endl;
     }
 }
