@@ -115,10 +115,22 @@ void consoleui::add()
     cin >> sex;
 
     cout << "Year of birth: " << endl;
-    cin >> year_of_birth;
+
+    while(!(cin >> year_of_birth))
+    {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input it must be a number" << endl << "Try again:";
+    }
 
     cout << "Year of death: " << endl;
-    cin >> year_of_death;
+
+    while(!(cin >> year_of_death))
+    {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input it must be a number" << endl << "Try again:";
+    }
 
     cout << "Nationality: " << endl;
     cin >> nationality;
