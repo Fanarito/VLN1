@@ -14,8 +14,11 @@ class personservice
 public:
     personservice();
     void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info);
+
     void reset();
     void save();
+
+    //Functions to sort the data according to the user's preferences.
     vector<person> getPersons();
     vector<person> alphabetical();
     vector<person> reverseAlphabetical();
