@@ -130,12 +130,12 @@ void consoleui::sort()
 
         if(alph_command == "az")
         {
-            sortedList = alphabetical();
+            sortedList = personservice().alphabetical();
             print_persons(sortedList);
         }
         else if(alph_command == "za")
         {
-             sortedList = reverseAlphabetical();
+             sortedList = personservice().reverseAlphabetical();
              print_persons(sortedList);
         }
     }
@@ -150,12 +150,12 @@ void consoleui::sort()
 
         if(sex_command == "male")
         {
-            sortedList = genderMale();
+            sortedList = personservice().genderMale();
             print_persons(sortedList);
         }
         else if(sex_command == "female")
         {
-            sortedList = genderFemale();
+            sortedList = personservice().genderFemale();
             print_persons(sortedList);
         }
     }
@@ -172,10 +172,10 @@ void consoleui::sort()
         {
             if(sort_command == "birth")
             {
-                sortedList = ageAscending();
+                sortedList = personservice().ageAscending();
                 print_persons(sortedList);
             } else {
-                sortedList = deathAscending();
+                sortedList = personservice().deathAscending();
                 print_persons(sortedList);
             }
         }
@@ -183,10 +183,10 @@ void consoleui::sort()
         {
             if(sort_command == "birth")
             {
-                sortedList = ageDescending();
+                sortedList = personservice().ageDescending();
                 print_persons(sortedList);
             } else {
-                sortedList = deathDescending();
+                sortedList = personservice().deathDescending();
                 print_persons(sortedList);
             }
         }
