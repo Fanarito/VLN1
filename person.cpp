@@ -81,6 +81,8 @@ std::ostream& operator<<(std::ostream& lhs, const person rhs)
     lhs << "Sex: " << rhs.getSex() << std::endl;
     lhs << "Year of birth: " << rhs.getBirthYear() << std::endl;
     lhs << "Year of death: " << rhs.getDeathYear() << std::endl;
+    lhs << "Nationality: " << rhs.getNationality() << std::endl;
+    lhs << "Info: " << rhs.getInfo() << std::endl;
 
     return lhs;
 }
@@ -116,12 +118,12 @@ int person::compareDeathReverse(person a, person b)
 
 int person::compareGender(person a, person b)
 {
-    return a.m_sex < b.m_sex;
+    return a.m_sex > b.m_sex;
 }
 
 int person::compareGenderReverse(person a, person b)
 {
-    return a.m_sex > b.m_sex;
+    return a.m_sex < b.m_sex;
 }
 
 int person::compareNationality(person a, person b)
