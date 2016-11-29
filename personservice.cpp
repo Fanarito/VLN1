@@ -132,6 +132,8 @@ vector<person> personservice::filterNameByRegex(std::string _regex) {
       peopleSorted.push_back(persons[i]);
     else if (std::regex_match(std::to_string(persons.at(i).getDeathYear()), regex))
       peopleSorted.push_back(persons[i]);
+    else if (std::regex_match(persons.at(i).getNationality(), regex))
+      peopleSorted.push_back(persons[i]);
   }
   return peopleSorted;
 }
