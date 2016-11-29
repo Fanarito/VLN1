@@ -34,6 +34,12 @@ public:
     vector<person> nationalityOrder();
     vector<person> nationalityReverse();
 
+	vector<person> matchByName(string);
+	vector<person> matchBySex(string);
+	vector<person> matchByBirth(int);
+	vector<person> matchByDeath(int);
+	vector<person> matchByNationality(string);
+
     vector<person> filterNameByRegex(std::string _regex);
 
 private:

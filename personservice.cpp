@@ -112,6 +112,94 @@ vector<person> personservice::nationalityReverse()
     return current_list;
 }
 
+vector<person> personservice::matchByName(string name)
+{
+	transform(name.begin(), name.end(), name.begin(), ::tolower);
+	vector<person> match;
+
+	for(size_t i = 0; i < persons.size(); i++)
+	{
+		string thename = persons[i].getName();
+		transform(thename.begin(), thename.end(), thename.begin(), ::tolower);
+
+		if(thename.find(name) != string::npos)
+		{
+			match.push_back(persons[i]);
+		}
+	}
+
+	return match;
+}
+
+vector<person> personservice::matchBySex(string sex)
+{
+	transform(sex.begin(), sex.end(), sex.begin(), ::tolower);
+	vector<person> match;	
+
+	for(size_t i = 0; i < persons.size(); i++)
+	{
+		string thesex = persons[i].getSex();
+        transform(thesex.begin(), thesex.end(), thesex.begin(), ::tolower);
+
+		if(thesex == sex)
+		{
+			match.push_back(persons[i]);
+		}
+	}
+
+	return match;
+}
+
+vector<person> personservice::matchByBirth(int year)
+{
+	vector<person> match;
+
+	for(size_t i = 0; i < persons.size(); i++)
+	{
+		if(persons[i].getBirthYear() == year)
+		{
+			match.push_back(persons[i]);
+		}
+	}
+
+	return match;
+}
+
+vector<person> personservice::matchByDeath(int year)
+{	
+	vector<person> match;
+
+	for(size_t i = 0; i < persons.size(); i++)
+	{
+		if(persons[i].getDeathYear()  == year)
+		{
+			match.push_back(persons[i]);
+		}
+	}
+
+	return match;
+}
+
+vector<person> personservice::matchByNationality(string nationality)
+{
+    transform(nationality.begin(), nationality.end(), nationality.begin(), ::tolower);
+	vector<person> match;
+
+	for(size_t i = 0; i < persons.size(); i++)
+	{
+		string thenationality = persons[i].getNationality();
+		transform(thenationality.begin(), thenationality.end(), thenationality.begin(), ::tolower);
+
+		if(thenationality.find(nationality) != string::npos)
+		{
+			match.push_back(persons[i]);
+		}
+	}
+
+	return match;
+}
+
+
 // COMMENT HERE
 vector<person> personservice::filterNameByRegex(std::string _regex) {
   try {

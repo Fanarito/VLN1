@@ -115,10 +115,22 @@ void consoleui::add()
     cin >> sex;
 
     cout << "Year of birth: " << endl;
-    cin >> year_of_birth;
+
+    while(!(cin >> year_of_birth))
+    {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input it must be a number" << endl << "Try again:";
+    }
 
     cout << "Year of death: " << endl;
-    cin >> year_of_death;
+
+    while(!(cin >> year_of_death))
+    {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input it must be a number" << endl << "Try again:";
+    }
 
     cout << "Nationality: " << endl;
     cin >> nationality;
@@ -172,7 +184,7 @@ void consoleui::change()
 
             cout << "-1 Means no change" << endl;
 			cout << "Name: " << endl;
-			cin.ignore(1000, '\n');
+			//cin.ignore(1000, '\n');
 			getline(cin, name);
 			cout << "Sex: " << endl;
 			cin >> sex;
@@ -184,7 +196,7 @@ void consoleui::change()
             cin.ignore(1000, '\n');
             getline(cin, nationality);
 			cout << "Info: " << endl;
-			cin.ignore(1000, '\n');
+			//cin.ignore(1000, '\n');
 			getline(cin, info);
 
             name = (name != "-1")?(name):(the_person.getName());
@@ -232,7 +244,7 @@ void consoleui::sort()
     cout << "Please enter one of the following commands:" << endl;
     cout << "alphabetical \t" << "- Sorts by alphabetical order" << endl;
     cout << "sex \t\t"          << "- Sort by sex" << endl;
-    cout << "birth \t\t"        << "-Sorts by year of birth" << endl;
+    cout << "birth \t\t"        << "- Sorts by year of birth" << endl;
     cout << "death \t\t"        << "- Sorts by year of death" << endl;
     cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
@@ -357,46 +369,32 @@ void consoleui::search()
 
     if(searchCommand == "name")
     {
-        getline(cin, search_string);
-        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
-
-        for(size_t i = 0; i < temp.size(); i++)
-        {
-            string thename = temp[i].getName();
-            std::transform(thename.begin(), thename.end(), thename.begin(), ::tolower);
-            if(thename.find(search_string) != string::npos)
-            {
-                match.push_back(temp[i]);
-            }
-        }
+		getline(cin, search_string);
+ 		match = ps.matchByName(search_string);		
     }
     else if(searchCommand == "sex")
     {
-        getline(cin, search_string);
-        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
-
-        for(size_t i = 0; i < temp.size(); i++)
-        {
-            string thesex = temp[i].getSex();
-            std::transform(thesex.begin(), thesex.end(), thesex.begin(), ::tolower);
-            if(thesex.find(search_string) != string::npos)
-            {
-                match.push_back(temp[i]);
-            }
-        }
+		getline(cin, search_string);
+		match = ps.matchBySex(search_string);
     }
     else if(searchCommand == "birth")
     {
         int search_int;
-        cin >> search_int;
-
-        for(size_t i = 0; i < temp.size(); i++)
+        while(!(cin >> search_int))
         {
-            if(temp[i].getBirthYear() == search_int)
-            {
-                match.push_back(temp[i]);
-            }
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
         }
+
+        while(!(cin >> search_int))
+        {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+        }
+
+		match = ps.matchByBirth(search_int);
     }
     else if(searchCommand == "death")
     {
@@ -408,29 +406,14 @@ void consoleui::search()
                 cout << "Invalid input it must be a number" << endl << "Try again:";
         }
 
-        for(size_t i = 0; i < temp.size(); i++)
-        {
-            if(temp[i].getDeathYear() == search_int)
-            {
-                match.push_back(temp[i]);
-            }
-        }
+		match = ps.matchByDeath(search_int);
     }
     else if(searchCommand == "nationality")
     {
         getline(cin, search_string);
-        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
 
-        for(size_t i = 0; i < temp.size(); i++)
-        {
-            string thenationality = temp[i].getNationality();
-            std::transform(thenationality.begin(), thenationality.end(), thenationality.begin(), ::tolower);
-            if(thenationality.find(search_string) != string::npos)
-            {
-                match.push_back(temp[i]);
-            }
-        }
-    }
+		match = ps.matchByNationality(search_string);
+	}
     else
     {
         cout << "error: invalid search command" << endl;
