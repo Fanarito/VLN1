@@ -64,11 +64,7 @@ void consoleui::print_persons(vector<person> p)
     for(size_t i = 0; i < p.size(); i++)
     {
         cout << "----" << endl;
-        cout << "Name: " << p[i].getName() << endl;
-        cout << "-" << endl;
-        cout << "Sex: " << p[i].getSex() << endl;
-        cout << "Year of birth: " << p[i].getBirthYear() << endl;
-        cout << "Year of death: " << p[i].getDeathYear() << endl;
+		cout << p.at(i);
     }
 
     cout << "----" << endl;
