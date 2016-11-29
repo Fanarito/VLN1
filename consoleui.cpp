@@ -10,6 +10,8 @@ consoleui::consoleui()
 
 }
 
+//This function keeps the program running until the user quits. It also displays the
+//text commands and lists results.
 void consoleui::run()
 {
     bool running = true;
@@ -76,6 +78,8 @@ void consoleui::run()
     } while(running);
 }
 
+//This function runs through the vector of person and prints out each instance of person. We are
+//using an overloaded operator << to print out each field.
 void consoleui::print_persons(vector<person> p)
 {
     for(size_t i = 0; i < p.size(); i++)
@@ -86,13 +90,14 @@ void consoleui::print_persons(vector<person> p)
 
     cout << "----" << endl;
 }
-
+//Lists out information from the text file.
 void consoleui::list()
 {
     vector<person> p = ps.getPersons();
     print_persons(p);
 }
 
+//this function allows you to add a scientist. The user can add value to each instance of the new scientist.
 void consoleui::add()
 {
     string name;
@@ -217,6 +222,8 @@ void consoleui::remove()
 {
 }
 
+//This is the function where you can choose how you want to sort the list. After you have made your
+//choice the new list will be printed.
 void consoleui::sort()
 {
     vector<person> sortedList;
@@ -326,7 +333,8 @@ void consoleui::sort()
 
 	print_persons(sortedList);
 }
-
+//This function allows you to search for a specific scientist in the list. You can search the system by
+//his name, sex, birth year, death year or nationality.
 void consoleui::search()
 {
     cout << endl;
@@ -439,6 +447,7 @@ void consoleui::search()
 void consoleui::regex()
 {
     std::string rx;
-    cin >> rx;
+    cin.ignore(1000, '\n');
+    getline(cin, rx);
     print_persons(ps.filterNameByRegex(rx));
 }
