@@ -20,7 +20,6 @@ private:
     void search();
     void save();
     void regex();
-    void nameRegex();
 };
 
 #endif // CONSOLEUI_H
