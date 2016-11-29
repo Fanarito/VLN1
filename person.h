@@ -12,10 +12,11 @@ private:
     int m_birthyear;
     int m_deathyear;
     std::string m_nationality;
+    std::string m_info;
 
 public:
     person();
-    person(std::string name, std::string sex, int birthyear, int deathyear, std::string nationality);
+    person(std::string name, std::string sex, int birthyear, int deathyear, std::string nationality, std::string info);
 
     std::string getName() const;
     void setName(std::string name);
@@ -31,6 +32,9 @@ public:
 
     std::string getNationality() const;
     void setNationality(std::string nationality);
+
+    std::string getInfo() const;
+    void setInfo(std::string info);
 
     friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
 

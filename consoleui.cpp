@@ -83,6 +83,7 @@ void consoleui::add()
     int year_of_birth;
     int year_of_death;
     string nationality;
+    string info;
 
     cout << "Name: " << endl;
     cin.ignore(1000, '\n');
@@ -100,9 +101,13 @@ void consoleui::add()
     cout << "Nationality: " << endl;
     cin >> nationality;
 
+    cout << "Information: " << endl;
+    cin.ignore(1000, '\n');
+    getline(cin, info);
+
     cout << endl;
 
-    ps.addPerson(name, sex, year_of_birth, year_of_death, nationality);
+    ps.addPerson(name, sex, year_of_birth, year_of_death, nationality, info);
 
 }
 
@@ -115,6 +120,7 @@ void consoleui::sort()
     cout << "sex - Sort by sex" << endl;
     cout << "birth - Sorts by year of birth" << endl;
     cout << "death - Sorts by year of death" << endl;
+    cout << "nationality - Sorts nationalities alphabetically" << endl;
 
     string sort_command;
     cin >> sort_command;
@@ -189,6 +195,26 @@ void consoleui::sort()
                 sortedList = personservice().deathDescending();
                 print_persons(sortedList);
             }
+        }
+    }
+    else if(sort_command == "nationality")
+    {
+        cout << "Please enter one of the following commands:" << endl;
+        cout << "az - Sorts nationalities by alphabetical order" << endl;
+        cout << "za - Sorts nationalities by reverse alphabetical order" << endl;
+
+        string nat_command;
+        cin >> nat_command;
+
+        if(nat_command == "az")
+        {
+            sortedList = personservice().nationalityOrder();
+            print_persons(sortedList);
+        }
+        else if(nat_command == "za")
+        {
+             sortedList = personservice().nationalityReverse();
+             print_persons(sortedList);
         }
     }
 }
