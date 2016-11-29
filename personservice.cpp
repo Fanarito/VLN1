@@ -26,6 +26,16 @@ void personservice::addPerson(std::string name, std::string gender, int birthyea
     //Add the person to a vector for later use
     persons.push_back(p);
 }
+
+void personservice::addPerson(person p)
+{
+	persons.push_back(p);
+}
+
+void personservice::removePerson(person p)
+{
+	persons.erase(std::remove(persons.begin(), persons.end(), p), persons.end());
+}
 //this is where we sort the names in alphabetical order
 vector<person> personservice::alphabetical()
 {
@@ -33,6 +43,7 @@ vector<person> personservice::alphabetical()
     sort(peopleSorted.begin(), peopleSorted.end(), person::compareName);
     return peopleSorted;
 }
+
 vector<person> personservice::reverseAlphabetical()
 {
     vector<person> peopleSorted = persons;

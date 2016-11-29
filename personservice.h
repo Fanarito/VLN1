@@ -14,6 +14,10 @@ class personservice
 public:
     personservice();
     void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info);
+    void addPerson(person p);
+
+	void removePerson(person p);
+
     void reset();
     void save();
     vector<person> getPersons();
