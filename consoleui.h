@@ -16,8 +16,8 @@ private:
 
     void list();
     void add();
-	  void change();
-	  void remove();
+    void change();
+    void remove();
     void sort();
     void search();
     void save();
