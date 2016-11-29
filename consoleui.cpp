@@ -117,11 +117,11 @@ void consoleui::sort()
     vector<person> sortedList;
 
     cout << "Please enter one of the following commands:" << endl;
-    cout << "alphabetical - Sorts by alphabetical order" << endl;
-    cout << "sex - Sort by sex" << endl;
-    cout << "birth - Sorts by year of birth" << endl;
-    cout << "death - Sorts by year of death" << endl;
-    cout << "nationality - Sorts nationalities alphabetically" << endl;
+    cout << "alphabetical \t\t" << "- Sorts by alphabetical order" << endl;
+    cout << "sex \t\t"          << "- Sort by sex" << endl;
+    cout << "birth \t\t"        << "-Sorts by year of birth" << endl;
+    cout << "death \t\t"        << "- Sorts by year of death" << endl;
+    cout << "nationality \t\t"  << "- Sorts nationalities alphabetically" << endl;
 
     string sort_command;
     cin >> sort_command;
@@ -145,6 +145,7 @@ void consoleui::sort()
              sortedList = personservice().reverseAlphabetical();
              print_persons(sortedList);
         }
+
     }
     else if(sort_command == "sex")
     {
