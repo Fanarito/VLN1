@@ -121,11 +121,11 @@ void consoleui::sort()
     vector<person> sortedList;
 
     cout << "Please enter one of the following commands:" << endl;
-    cout << "alphabetical \t\t" << "- Sorts by alphabetical order" << endl;
+    cout << "alphabetical \t" << "- Sorts by alphabetical order" << endl;
     cout << "sex \t\t"          << "- Sort by sex" << endl;
     cout << "birth \t\t"        << "-Sorts by year of birth" << endl;
     cout << "death \t\t"        << "- Sorts by year of death" << endl;
-    cout << "nationality \t\t"  << "- Sorts nationalities alphabetically" << endl;
+    cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
     string sort_command;
     cin >> sort_command;
@@ -134,7 +134,7 @@ void consoleui::sort()
     {
         cout << "Please enter one of the following commands:" << endl;
         cout << "az - Sorts by alphabetical order" << endl;
-        cout << "za - Sorts by reverse alphabetical order" << endl;
+        cout << "za - Sorts by reverse alphabetical order" << endl << endl;
 
         string alph_command;
         cin >> alph_command;
@@ -155,7 +155,7 @@ void consoleui::sort()
     {
         cout << "Please enter one of the following commands:" << endl;
         cout << "male - Lists men first" << endl;
-        cout << "female - Lists women first" << endl;
+        cout << "female - Lists women first" << endl << endl;
 
         string sex_command;
         cin >> sex_command;
@@ -175,7 +175,7 @@ void consoleui::sort()
     {
         cout << "Please enter one of the following commands:" << endl;
         cout << "asc - Sort by " + sort_command + " year (ascending order)" << endl;
-        cout << "desc - Sort by " + sort_command + " year (descending order)" << endl;
+        cout << "desc - Sort by " + sort_command + " year (descending order)" << endl << endl;
 
         string order_command;
         cin >> order_command;
@@ -207,7 +207,7 @@ void consoleui::sort()
     {
         cout << "Please enter one of the following commands:" << endl;
         cout << "az - Sorts nationalities by alphabetical order" << endl;
-        cout << "za - Sorts nationalities by reverse alphabetical order" << endl;
+        cout << "za - Sorts nationalities by reverse alphabetical order" << endl << endl;
 
         string nat_command;
         cin >> nat_command;
