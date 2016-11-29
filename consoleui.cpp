@@ -352,7 +352,7 @@ void consoleui::search()
     string search_string;
 
     cin >> searchCommand;
-    cout << "Search string: " << endl;
+    cout << endl << "Search string: " << endl << endl;
     cin.ignore(1000, '\n');
 
     if(searchCommand == "name")
