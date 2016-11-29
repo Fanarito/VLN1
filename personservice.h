@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <regex>
 #include "person.h"
 #include "dataaccess.h"
 
@@ -26,6 +27,8 @@ public:
     vector<person> genderFemale();
     vector<person> nationalityOrder();
     vector<person> nationalityReverse();
+
+    vector<person> filterNameByRegex(std::string _regex);
 
 private:
     dataaccess data;
