@@ -48,6 +48,10 @@ void consoleui::run()
         {
             ps.save();
         }
+        else if(command == "regex")
+        {
+            nameRegex();
+        }
         else if(command == "quit")
         {
             running = false;
@@ -294,4 +298,11 @@ void consoleui::search()
     }
 
     print_persons(match);
+}
+
+void consoleui::nameRegex()
+{
+    std::string regex;
+    cin >> regex;
+    print_persons(ps.filterNameByRegex(regex));
 }

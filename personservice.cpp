@@ -93,7 +93,7 @@ vector<person> personservice::nationalityReverse()
 }
 
 vector<person> personservice::filterNameByRegex(std::string _regex) {
-  vector<person> peopleSorted = persons;
+  vector<person> peopleSorted;
   std::regex regex(_regex);
 
   for (size_t i = 0; i < persons.size(); i++) {
@@ -102,4 +102,3 @@ vector<person> personservice::filterNameByRegex(std::string _regex) {
   }
   return peopleSorted;
 }
-
