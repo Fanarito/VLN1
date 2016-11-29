@@ -244,7 +244,7 @@ void consoleui::sort()
     cout << "Please enter one of the following commands:" << endl;
     cout << "alphabetical \t" << "- Sorts by alphabetical order" << endl;
     cout << "sex \t\t"          << "- Sort by sex" << endl;
-    cout << "birth \t\t"        << "-Sorts by year of birth" << endl;
+    cout << "birth \t\t"        << "- Sorts by year of birth" << endl;
     cout << "death \t\t"        << "- Sorts by year of death" << endl;
     cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
