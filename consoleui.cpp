@@ -120,6 +120,7 @@ void consoleui::sort()
 {
     vector<person> sortedList;
 
+    cout << endl;
     cout << "Please enter one of the following commands:" << endl;
     cout << "alphabetical \t" << "- Sorts by alphabetical order" << endl;
     cout << "sex \t\t"          << "- Sort by sex" << endl;
@@ -132,6 +133,7 @@ void consoleui::sort()
 
     if(sort_command == "alphabetical")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "az - Sorts by alphabetical order" << endl;
         cout << "za - Sorts by reverse alphabetical order" << endl << endl;
@@ -153,6 +155,7 @@ void consoleui::sort()
     }
     else if(sort_command == "sex")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "male - Lists men first" << endl;
         cout << "female - Lists women first" << endl << endl;
@@ -173,6 +176,7 @@ void consoleui::sort()
     }
     else if(sort_command == "birth" || sort_command == "death")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "asc - Sort by " + sort_command + " year (ascending order)" << endl;
         cout << "desc - Sort by " + sort_command + " year (descending order)" << endl << endl;
@@ -205,6 +209,7 @@ void consoleui::sort()
     }
     else if(sort_command == "nationality")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "az - Sorts nationalities by alphabetical order" << endl;
         cout << "za - Sorts nationalities by reverse alphabetical order" << endl << endl;
@@ -227,11 +232,12 @@ void consoleui::sort()
 
 void consoleui::search()
 {
+    cout << endl;
     cout << "name - Will search the system for a name" << endl;
     cout << "sex - Will search the system for a sex(m/f)" << endl;
     cout << "birth - Will search the system for a birth year" << endl;
     cout << "death - Will search the system for a death year" << endl;
-    cout << "nationality - Will search the system for a nationality" << endl;
+    cout << "nationality - Will search the system for a nationality" << endl << endl;
 
 
     vector<person> match;
