@@ -108,6 +108,8 @@ void consoleui::add()
 
 void consoleui::sort()
 {
+    vector<person> sortedList;
+
     cout << "Please enter one of the following commands:" << endl;
     cout << "alphabetical - Sorts by alphabetical order" << endl;
     cout << "sex - Sort by sex" << endl;
@@ -128,11 +130,13 @@ void consoleui::sort()
 
         if(alph_command == "az")
         {
-            //TODO: Put in function for sorting in normal alphabetical order
+            sortedList = alphabetical();
+            print_persons(sortedList);
         }
         else if(alph_command == "za")
         {
-             //TODO: Put in function for sorting in reverse alphabetical order
+             sortedList = reverseAlphabetical();
+             print_persons(sortedList);
         }
     }
     else if(sort_command == "sex")
@@ -146,11 +150,13 @@ void consoleui::sort()
 
         if(sex_command == "male")
         {
-            //TODO: Put in function for sorting by male first
+            sortedList = genderMale();
+            print_persons(sortedList);
         }
         else if(sex_command == "female")
         {
-            //TODO: Put in function for sorting by female first
+            sortedList = genderFemale();
+            print_persons(sortedList);
         }
     }
     else if(sort_command == "birth" || sort_command == "death")
@@ -164,12 +170,13 @@ void consoleui::sort()
 
         if(order_command == "asc")
         {
-            //TODO: Put in function for sorting by birth or death year (ascending)
             if(sort_command == "birth")
             {
-
+                sortedList = ageAscending();
+                print_persons(sortedList);
             } else {
-
+                sortedList = deathAscending();
+                print_persons(sortedList);
             }
         }
         else if(order_command == "desc")
@@ -177,9 +184,11 @@ void consoleui::sort()
             //TODO: Put in function for sorting by birth or death year (descending)
             if(sort_command == "birth")
             {
-
+                sortedList = ageDescending();
+                print_persons(sortedList);
             } else {
-
+                sortedList = deathDescending();
+                print_persons(sortedList);
             }
         }
     }
