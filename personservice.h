@@ -14,6 +14,7 @@ public:
     personservice();
     void addPerson(std::string name, std::string gender, int birthyear, int deathyear);
     void reset();
+    void save();
     vector<person> getPersons();
     vector<person> alphabetical();
     vector<person> reverseAlphabetical();
