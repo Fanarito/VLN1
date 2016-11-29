@@ -42,25 +42,17 @@ vector<person> personservice::reverseAlphabetical()
     sort(peopleSorted.begin(), peopleSorted.end(), person::compareNameReverse);
     return peopleSorted;
 }
-<<<<<<< HEAD
 
 //Sorts by birth year in descending order
-vector<person> personservice::ageDescending()
-=======
 vector<person> personservice::birthDescending()
->>>>>>> 7b19dbf573ae442bfb23164e7a8ef23b32c45bd3
 {
     vector<person> peopleSorted = persons;
     sort(peopleSorted.begin(), peopleSorted.end(), person::compareYear);
     return peopleSorted;
 }
-<<<<<<< HEAD
 
 //Sorts by birth year in ascending order
-vector<person> personservice::ageAscending()
-=======
 vector<person> personservice::birthAscending()
->>>>>>> 7b19dbf573ae442bfb23164e7a8ef23b32c45bd3
 {
     vector<person> peopleSorted = persons;
     sort(peopleSorted.begin(), peopleSorted.end(), person::compareYearReverse);
