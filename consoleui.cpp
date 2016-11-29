@@ -231,6 +231,8 @@ void consoleui::search()
     cout << "sex - Will search the system for a sex" << endl;
     cout << "birth - Will search the system for a birth year" << endl;
     cout << "death - Will search the system for a death year" << endl;
+    cout << "nationality - Will search the system for a nationality" << endl;
+
 
     vector<person> match;
     vector<person> temp = ps.getPersons();
@@ -287,6 +289,18 @@ void consoleui::search()
         for(size_t i = 0; i < temp.size(); i++)
         {
             if(temp[i].getDeathYear() == search_int)
+            {
+                match.push_back(temp[i]);
+            }
+        }
+    }
+    else if(searchCommand == "nationality")
+    {
+        getline(cin, search_string);
+
+        for(size_t i = 0; i < temp.size(); i++)
+        {
+            if(temp[i].getNationality().find(search_string) != string::npos)
             {
                 match.push_back(temp[i]);
             }

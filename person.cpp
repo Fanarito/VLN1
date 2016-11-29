@@ -118,12 +118,12 @@ int person::compareDeathReverse(person a, person b)
 
 int person::compareGender(person a, person b)
 {
-    return a.m_sex < b.m_sex;
+    return a.m_sex > b.m_sex;
 }
 
 int person::compareGenderReverse(person a, person b)
 {
-    return a.m_sex > b.m_sex;
+    return a.m_sex < b.m_sex;
 }
 
 int person::compareNationality(person a, person b)
