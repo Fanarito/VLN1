@@ -11,6 +11,7 @@ private:
     std::string m_sex;
     int m_birthyear;
     int m_deathyear;
+
 public:
     person();
     person(std::string name, std::string sex, int birthyear, int deathyear);
@@ -26,6 +27,8 @@ public:
 
     int getDeathYear() const;
     void setDeathYear(int deathyear);
+
+    friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
 
     static int compareName(person a, person b);
     static int compareNameReverse(person a, person b);
