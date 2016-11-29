@@ -115,10 +115,22 @@ void consoleui::add()
     cin >> sex;
 
     cout << "Year of birth: " << endl;
-    cin >> year_of_birth;
+
+    while(!(cin >> year_of_birth))
+    {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input it must be a number" << endl << "Try again:";
+    }
 
     cout << "Year of death: " << endl;
-    cin >> year_of_death;
+
+    while(!(cin >> year_of_death))
+    {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input it must be a number" << endl << "Try again:";
+    }
 
     cout << "Nationality: " << endl;
     cin >> nationality;
@@ -232,7 +244,7 @@ void consoleui::sort()
     cout << "Please enter one of the following commands:" << endl;
     cout << "alphabetical \t" << "- Sorts by alphabetical order" << endl;
     cout << "sex \t\t"          << "- Sort by sex" << endl;
-    cout << "birth \t\t"        << "-Sorts by year of birth" << endl;
+    cout << "birth \t\t"        << "- Sorts by year of birth" << endl;
     cout << "death \t\t"        << "- Sorts by year of death" << endl;
     cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
@@ -368,7 +380,12 @@ void consoleui::search()
     else if(searchCommand == "birth")
     {
         int search_int;
-        cin >> search_int;
+        while(!(cin >> search_int))
+        {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+        }
 
         while(!(cin >> search_int))
         {
