@@ -39,13 +39,13 @@ vector<person> personservice::reverseAlphabetical()
     sort(peopleSorted.begin(), peopleSorted.end(), person::compareNameReverse);
     return peopleSorted;
 }
-vector<person> personservice::ageDescending()
+vector<person> personservice::birthDescending()
 {
     vector<person> peopleSorted = persons;
     sort(peopleSorted.begin(), peopleSorted.end(), person::compareYear);
     return peopleSorted;
 }
-vector<person> personservice::ageAscending()
+vector<person> personservice::birthAscending()
 {
     vector<person> peopleSorted = persons;
     sort(peopleSorted.begin(), peopleSorted.end(), person::compareYearReverse);

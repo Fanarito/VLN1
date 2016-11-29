@@ -65,7 +65,7 @@ void consoleui::print_persons(vector<person> p)
     for(size_t i = 0; i < p.size(); i++)
     {
         cout << "----" << endl;
-		cout << p.at(i);
+        cout << p.at(i);
     }
 
     cout << "----" << endl;
@@ -173,7 +173,7 @@ void consoleui::sort()
         {
             if(sort_command == "birth")
             {
-                sortedList = personservice().ageAscending();
+                sortedList = personservice().birthAscending();
                 print_persons(sortedList);
             } else {
                 sortedList = personservice().deathAscending();
@@ -184,7 +184,7 @@ void consoleui::sort()
         {
             if(sort_command == "birth")
             {
-                sortedList = personservice().ageDescending();
+                sortedList = personservice().birthDescending();
                 print_persons(sortedList);
             } else {
                 sortedList = personservice().deathDescending();
