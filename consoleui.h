@@ -21,7 +21,7 @@ private:
     void sort();
     void search();
     void save();
-    void nameRegex();
+    void regex();
 };
 
 #endif // CONSOLEUI_H

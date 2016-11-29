@@ -23,6 +23,7 @@ void consoleui::run()
         cout << "remove \t- This will remove a famous programmer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
+        cout << "regex \t- Use regex to match either name, sex, birthyear or deathyear" << endl;
         cout << "save \t- Saves all famous programmers currently in the system to a file" << endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
@@ -54,13 +55,13 @@ void consoleui::run()
         {
             search();
         }
+        else if(command == "regex")
+        {
+            regex();
+        }
         else if(command == "save")
         {
             ps.save();
-        }
-        else if(command == "regex")
-        {
-            nameRegex();
         }
         else if(command == "quit")
         {
@@ -219,21 +220,23 @@ void consoleui::sort()
 {
     vector<person> sortedList;
 
+    cout << endl;
     cout << "Please enter one of the following commands:" << endl;
-    cout << "alphabetical \t\t" << "- Sorts by alphabetical order" << endl;
+    cout << "alphabetical \t" << "- Sorts by alphabetical order" << endl;
     cout << "sex \t\t"          << "- Sort by sex" << endl;
     cout << "birth \t\t"        << "-Sorts by year of birth" << endl;
     cout << "death \t\t"        << "- Sorts by year of death" << endl;
-    cout << "nationality \t\t"  << "- Sorts nationalities alphabetically" << endl;
+    cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
     string sort_command;
     cin >> sort_command;
 
     if(sort_command == "alphabetical")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "az - Sorts by alphabetical order" << endl;
-        cout << "za - Sorts by reverse alphabetical order" << endl;
+        cout << "za - Sorts by reverse alphabetical order" << endl << endl;
 
         string alph_command;
         cin >> alph_command;
@@ -250,9 +253,10 @@ void consoleui::sort()
     }
     else if(sort_command == "sex")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "male - Lists men first" << endl;
-        cout << "female - Lists women first" << endl;
+        cout << "female - Lists women first" << endl << endl;
 
         string sex_command;
         cin >> sex_command;
@@ -268,9 +272,10 @@ void consoleui::sort()
     }
     else if(sort_command == "birth" || sort_command == "death")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "asc - Sort by " + sort_command + " year (ascending order)" << endl;
-        cout << "desc - Sort by " + sort_command + " year (descending order)" << endl;
+        cout << "desc - Sort by " + sort_command + " year (descending order)" << endl << endl;
 
         string order_command;
         cin >> order_command;
@@ -300,9 +305,10 @@ void consoleui::sort()
     }
     else if(sort_command == "nationality")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "az - Sorts nationalities by alphabetical order" << endl;
-        cout << "za - Sorts nationalities by reverse alphabetical order" << endl;
+        cout << "za - Sorts nationalities by reverse alphabetical order" << endl << endl;
 
         string nat_command;
         cin >> nat_command;
@@ -322,10 +328,13 @@ void consoleui::sort()
 
 void consoleui::search()
 {
+    cout << endl;
     cout << "name - Will search the system for a name" << endl;
-    cout << "sex - Will search the system for a sex" << endl;
+    cout << "sex - Will search the system for a sex(m/f)" << endl;
     cout << "birth - Will search the system for a birth year" << endl;
     cout << "death - Will search the system for a death year" << endl;
+    cout << "nationality - Will search the system for a nationality" << endl << endl;
+
 
     vector<person> match;
     vector<person> temp = ps.getPersons();
@@ -387,6 +396,18 @@ void consoleui::search()
             }
         }
     }
+    else if(searchCommand == "nationality")
+    {
+        getline(cin, search_string);
+
+        for(size_t i = 0; i < temp.size(); i++)
+        {
+            if(temp[i].getNationality().find(search_string) != string::npos)
+            {
+                match.push_back(temp[i]);
+            }
+        }
+    }
     else
     {
         cout << "error: invalid search command" << endl;
@@ -395,9 +416,9 @@ void consoleui::search()
     print_persons(match);
 }
 
-void consoleui::nameRegex()
+void consoleui::regex()
 {
-    std::string regex;
-    cin >> regex;
-    print_persons(ps.filterNameByRegex(regex));
+    std::string rx;
+    cin >> rx;
+    print_persons(ps.filterNameByRegex(rx));
 }
