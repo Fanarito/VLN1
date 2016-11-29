@@ -22,8 +22,8 @@ public:
     vector<person> getPersons();
     vector<person> alphabetical();
     vector<person> reverseAlphabetical();
-    vector<person> ageDescending();
-    vector<person> ageAscending();
+    vector<person> birthDescending();
+    vector<person> birthAscending();
     vector<person> deathDescending();
     vector<person> deathAscending();
     vector<person> genderMale();
