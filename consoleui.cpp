@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include "consoleui.h"
 
 using namespace std;
@@ -349,10 +350,13 @@ void consoleui::search()
     if(searchCommand == "name")
     {
         getline(cin, search_string);
+        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
 
         for(size_t i = 0; i < temp.size(); i++)
         {
-            if(temp[i].getName().find(search_string) != string::npos)
+            string thename = temp[i].getName();
+            std::transform(thename.begin(), thename.end(), thename.begin(), ::tolower);
+            if(thename.find(search_string) != string::npos)
             {
                 match.push_back(temp[i]);
             }
@@ -361,10 +365,13 @@ void consoleui::search()
     else if(searchCommand == "sex")
     {
         getline(cin, search_string);
+        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
 
         for(size_t i = 0; i < temp.size(); i++)
         {
-            if(temp[i].getSex().find(search_string) != string::npos)
+            string thesex = temp[i].getSex();
+            std::transform(thesex.begin(), thesex.end(), thesex.begin(), ::tolower);
+            if(thesex.find(search_string) != string::npos)
             {
                 match.push_back(temp[i]);
             }
@@ -399,10 +406,13 @@ void consoleui::search()
     else if(searchCommand == "nationality")
     {
         getline(cin, search_string);
+        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
 
         for(size_t i = 0; i < temp.size(); i++)
         {
-            if(temp[i].getNationality().find(search_string) != string::npos)
+            string thenationality = temp[i].getNationality();
+            std::transform(thenationality.begin(), thenationality.end(), thenationality.begin(), ::tolower);
+            if(thenationality.find(search_string) != string::npos)
             {
                 match.push_back(temp[i]);
             }
