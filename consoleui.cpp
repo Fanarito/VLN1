@@ -393,7 +393,12 @@ void consoleui::search()
     else if(searchCommand == "death")
     {
         int search_int;
-        cin >> search_int;
+        while(!(cin >> search_int))
+        {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+        }
 
         for(size_t i = 0; i < temp.size(); i++)
         {
