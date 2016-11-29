@@ -99,6 +99,12 @@ vector<person> personservice::filterNameByRegex(std::string _regex) {
   for (size_t i = 0; i < persons.size(); i++) {
     if (std::regex_match(persons.at(i).getName(), regex))
       peopleSorted.push_back(persons[i]);
+    else if (std::regex_match(persons.at(i).getSex(), regex))
+      peopleSorted.push_back(persons[i]);
+    else if (std::regex_match(persons.at(i).getBirthYear(), regex))
+      peopleSorted.push_back(persons[i]);
+    else if (std::regex_match(persons.at(i).getDeathYear(), regex))
+      peopleSorted.push_back(persons[i]);
   }
   return peopleSorted;
 }
