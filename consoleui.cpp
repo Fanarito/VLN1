@@ -228,7 +228,7 @@ void consoleui::sort()
 void consoleui::search()
 {
     cout << "name - Will search the system for a name" << endl;
-    cout << "sex - Will search the system for a sex" << endl;
+    cout << "sex - Will search the system for a sex(m/f)" << endl;
     cout << "birth - Will search the system for a birth year" << endl;
     cout << "death - Will search the system for a death year" << endl;
     cout << "nationality - Will search the system for a nationality" << endl;
