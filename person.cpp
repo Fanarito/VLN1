@@ -87,6 +87,17 @@ std::ostream& operator<<(std::ostream& lhs, const person rhs)
     return lhs;
 }
 
+bool operator==(const person lhs, const person rhs)
+{
+	if(lhs.m_name != rhs.m_name) return false;
+	if(lhs.m_sex != rhs.m_sex) return false;
+	if(lhs.m_birthyear != rhs.m_birthyear) return false;
+	if(lhs.m_nationality != rhs.m_nationality) return false;
+	if(lhs.m_info != rhs.m_info) return false;
+
+	return true;
+}
+
 int person::compareName(person a, person b)
 {
     return a.m_name < b.m_name;

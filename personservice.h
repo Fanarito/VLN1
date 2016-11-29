@@ -14,6 +14,12 @@ class personservice
 public:
     personservice();
     void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info);
+<<<<<<< HEAD
+    void addPerson(person p);
+
+	void removePerson(person p);
+=======
+>>>>>>> 6a6fc638abde4fd984b5481f9a6196d596582359
 
     void reset();
     void save();
