@@ -15,13 +15,14 @@ void consoleui::run()
 
     do
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
-        cout << "list - This will list all famous programmers in the system" << endl;
-        cout << "add - This will add a new famous programmer to the system" << endl;
-        cout << "sort - This will sort the list according to your preferences" << endl;
-        cout << "search - This will search the system for a variable" << endl;
-        cout << "save - Saves all famous programmers currently in the system to a file" << endl;
-        cout << "quit - This will quit the program" << endl;
+        cout << "list \t- This will list all famous programmers in the system" << endl;
+        cout << "add \t- This will add a new famous programmer to the system" << endl;
+        cout << "sort \t- This will sort the list according to your preferences" << endl;
+        cout << "search \t- This will search the system for a variable" << endl;
+        cout << "save \t- Saves all famous programmers currently in the system to a file" << endl;
+        cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
         string command;
