@@ -434,6 +434,7 @@ void consoleui::search()
 void consoleui::regex()
 {
     std::string rx;
-    cin >> rx;
+    cin.ignore(1000, '\n');
+    getline(cin, rx);
     print_persons(ps.filterNameByRegex(rx));
 }
