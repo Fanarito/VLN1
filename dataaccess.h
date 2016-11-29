@@ -8,20 +8,16 @@
 
 #include "person.h"
 
-//static std::string FILENAME = "../VNL1/personsNew.txt";
 static std::string FILENAME = "personsNew.txt";
 static char DELIMITER = '|';
 
 class dataaccess
 {
-private:
-    //std::vector<person> people;
 public:
     dataaccess();
 
-    std::vector<person> read();
-    void save(std::vector<person> people);
-    //std::vector<person> *getPeople();
+    static std::vector<person> read();
+    static void save(std::vector<person> people);
 };
 
 #endif // DATAACCESS_H

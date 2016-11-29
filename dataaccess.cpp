@@ -42,7 +42,7 @@ void dataaccess::save(std::vector<person> people) {
     std::string line;
 
     for (size_t i = 0; i < people.size(); i++) {
-        line = people[i].getName() + "|" + people[i].getSex() + "|" + std::to_string(people[i].getBirthYear()) + "|" + std::to_string(people[i].getDeathYear());
+        line = people[i].getName() + DELIMITER + people[i].getSex() + DELIMITER + std::to_string(people[i].getBirthYear()) + DELIMITER + std::to_string(people[i].getDeathYear());
         file << line << std::endl;
     }
 }

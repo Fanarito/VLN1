@@ -45,7 +45,7 @@ void consoleui::run()
         }
         else if(command == "save")
         {
-            //TODO: Put in function to save;
+            ps.save();
         }
         else if(command == "quit")
         {
