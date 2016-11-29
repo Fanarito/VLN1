@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include "consoleui.h"
 
 using namespace std;
@@ -19,6 +20,8 @@ void consoleui::run()
         cout << "Please enter one of the following commands:" << endl;
         cout << "list \t- This will list all famous programmers in the system" << endl;
         cout << "add \t- This will add a new famous programmer to the system" << endl;
+        cout << "change \t- This will change a famous programmer in the system" << endl;
+        cout << "remove \t- This will remove a famous programmer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
         cout << "regex \t- Use regex to match either name, sex, birthyear or deathyear" << endl;
@@ -36,6 +39,14 @@ void consoleui::run()
         else if(command == "add")
         {
             add();
+        }
+        else if(command == "change")
+        {
+            change();
+        }
+        else if(command == "remove")
+        {
+            remove();
         }
         else if(command == "sort")
         {
@@ -117,6 +128,95 @@ void consoleui::add()
 
 }
 
+void consoleui::change()
+{
+	bool success = false;
+
+	do {
+
+		string name;
+
+		cout << "Name of person you want to change: " << endl;
+
+		cin.ignore(1000, '\n');
+		getline(cin, name);
+
+		vector<person> temp = ps.getPersons();
+		vector<person> match;
+
+        for(size_t i = 0; i < temp.size(); i++)
+        {
+            if(temp[i].getName().find(name) != string::npos)
+            {
+                match.push_back(temp[i]);
+            }
+        }
+
+		if(match.size() == 1)
+		{
+			person the_person = match[0];
+
+			ps.removePerson(the_person);
+
+			string name;
+			string sex;
+			int birthyear;
+			int deathyear;
+			string nationality;
+			string info;
+
+            cout << "-1 Means no change" << endl;
+			cout << "Name: " << endl;
+			cin.ignore(1000, '\n');
+			getline(cin, name);
+			cout << "Sex: " << endl;
+			cin >> sex;
+			cout << "Year of birth: " << endl;
+			cin >> birthyear;
+			cout << "Year of death: " << endl;
+			cin >> deathyear;
+			cout << "Nationality: " << endl;
+            cin.ignore(1000, '\n');
+            getline(cin, nationality);
+			cout << "Info: " << endl;
+			cin.ignore(1000, '\n');
+			getline(cin, info);
+
+            name = (name != "-1")?(name):(the_person.getName());
+            sex  = (sex != "-1")?(sex):(the_person.getSex());
+            birthyear = (birthyear != -1)?(birthyear):(the_person.getBirthYear());
+			deathyear = (deathyear != -1)?(deathyear):(the_person.getDeathYear());
+            nationality = (nationality != "-1")?(nationality):(the_person.getNationality());
+            info = (info != "-1")?(info):(the_person.getInfo());
+
+            the_person = person(name, sex, birthyear, deathyear, nationality, info);
+            ps.addPerson(the_person);
+
+			cout << "Changes made" << endl;
+
+			success = true;
+
+		} 
+		else
+		{
+			if(match.size() == 0)
+			{
+				cout << "No people match this name" << endl;
+			}
+			else
+			{
+				cout << "Multiple people match this name: " << endl;
+				print_persons(match);
+			}
+		}
+
+	}while(!success);
+}
+
+void consoleui::remove()
+{
+}
+
 void consoleui::sort()
 {
     vector<person> sortedList;
@@ -145,12 +245,10 @@ void consoleui::sort()
         if(alph_command == "az")
         {
             sortedList = personservice().alphabetical();
-            print_persons(sortedList);
         }
         else if(alph_command == "za")
         {
              sortedList = personservice().reverseAlphabetical();
-             print_persons(sortedList);
         }
 
     }
@@ -167,12 +265,10 @@ void consoleui::sort()
         if(sex_command == "male")
         {
             sortedList = personservice().genderMale();
-            print_persons(sortedList);
         }
         else if(sex_command == "female")
         {
             sortedList = personservice().genderFemale();
-            print_persons(sortedList);
         }
     }
     else if(sort_command == "birth" || sort_command == "death")
@@ -190,10 +286,10 @@ void consoleui::sort()
             if(sort_command == "birth")
             {
                 sortedList = personservice().birthAscending();
-                print_persons(sortedList);
-            } else {
+            } 
+			else 
+			{
                 sortedList = personservice().deathAscending();
-                print_persons(sortedList);
             }
         }
         else if(order_command == "desc")
@@ -201,10 +297,10 @@ void consoleui::sort()
             if(sort_command == "birth")
             {
                 sortedList = personservice().birthDescending();
-                print_persons(sortedList);
-            } else {
+            } 
+			else 
+			{
                 sortedList = personservice().deathDescending();
-                print_persons(sortedList);
             }
         }
     }
@@ -221,14 +317,14 @@ void consoleui::sort()
         if(nat_command == "az")
         {
             sortedList = personservice().nationalityOrder();
-            print_persons(sortedList);
         }
         else if(nat_command == "za")
         {
-             sortedList = personservice().nationalityReverse();
-             print_persons(sortedList);
+            sortedList = personservice().nationalityReverse();
         }
     }
+
+	print_persons(sortedList);
 }
 
 void consoleui::search()
@@ -254,10 +350,13 @@ void consoleui::search()
     if(searchCommand == "name")
     {
         getline(cin, search_string);
+        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
 
         for(size_t i = 0; i < temp.size(); i++)
         {
-            if(temp[i].getName().find(search_string) != string::npos)
+            string thename = temp[i].getName();
+            std::transform(thename.begin(), thename.end(), thename.begin(), ::tolower);
+            if(thename.find(search_string) != string::npos)
             {
                 match.push_back(temp[i]);
             }
@@ -266,10 +365,13 @@ void consoleui::search()
     else if(searchCommand == "sex")
     {
         getline(cin, search_string);
+        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
 
         for(size_t i = 0; i < temp.size(); i++)
         {
-            if(temp[i].getSex().find(search_string) != string::npos)
+            string thesex = temp[i].getSex();
+            std::transform(thesex.begin(), thesex.end(), thesex.begin(), ::tolower);
+            if(thesex.find(search_string) != string::npos)
             {
                 match.push_back(temp[i]);
             }
@@ -309,10 +411,13 @@ void consoleui::search()
     else if(searchCommand == "nationality")
     {
         getline(cin, search_string);
+        std::transform(search_string.begin(), search_string.end(), search_string.begin(), ::tolower);
 
         for(size_t i = 0; i < temp.size(); i++)
         {
-            if(temp[i].getNationality().find(search_string) != string::npos)
+            string thenationality = temp[i].getNationality();
+            std::transform(thenationality.begin(), thenationality.end(), thenationality.begin(), ::tolower);
+            if(thenationality.find(search_string) != string::npos)
             {
                 match.push_back(temp[i]);
             }
