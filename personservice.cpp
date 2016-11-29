@@ -3,7 +3,7 @@
 
 personservice::personservice()
 {
-    persons = data.read();
+    persons = dataaccess::read();
 }
 
 vector<person> personservice::getPersons()
@@ -14,6 +14,10 @@ vector<person> personservice::getPersons()
 void personservice::reset() {
     //peopleSorted = persons;
     persons = data.read();
+}
+
+void personservice::save() {
+    dataaccess::save(persons);
 }
 
 void personservice::addPerson(std::string name, std::string gender, int birthyear, int deathyear)
