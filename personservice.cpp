@@ -20,9 +20,9 @@ void personservice::save() {
     dataaccess::save(persons);
 }
 
-void personservice::addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality)
+void personservice::addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info)
 {
-    person p(name, gender, birthyear, deathyear, nationality);
+    person p(name, gender, birthyear, deathyear, nationality, info);
     //Add the person to a vector for later use
     persons.push_back(p);
 }

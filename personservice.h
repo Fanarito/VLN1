@@ -12,7 +12,7 @@ class personservice
 {
 public:
     personservice();
-    void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality);
+    void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info);
     void reset();
     void save();
     vector<person> getPersons();
