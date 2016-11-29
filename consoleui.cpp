@@ -181,7 +181,6 @@ void consoleui::sort()
         }
         else if(order_command == "desc")
         {
-            //TODO: Put in function for sorting by birth or death year (descending)
             if(sort_command == "birth")
             {
                 sortedList = ageDescending();
