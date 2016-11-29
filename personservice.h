@@ -39,7 +39,7 @@ public:
 private:
     dataaccess data;
     vector<person> persons;
-    //vector<person> peopleSorted;
+    vector<person> current_list;
 };
 
 #endif // PERSONSERVICE_H

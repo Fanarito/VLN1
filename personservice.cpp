@@ -1,18 +1,22 @@
 #include "personservice.h"
 #include <algorithm>
 
+
+#include <iostream>
+
 personservice::personservice()
 {
     persons = dataaccess::read();
+    current_list = persons;
 }
 
 vector<person> personservice::getPersons()
 {
-    return persons;
+    return current_list;
 }
 
 void personservice::reset() {
-    persons = data.read();
+  current_list = persons;
 }
 
 //Saves data to text file
@@ -41,99 +45,98 @@ void personservice::removePerson(person p)
 //Sorts by names in alphabetical order
 vector<person> personservice::alphabetical()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareName);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareName);
+    return current_list;
 }
 
 //Sorts by names in reverse alphabetical order
 vector<person> personservice::reverseAlphabetical()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareNameReverse);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareNameReverse);
+    return current_list;
 }
 
 //Sorts by birth year in descending order
 vector<person> personservice::birthDescending()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareYear);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareYear);
+    return current_list;
 }
 
 //Sorts by birth year in ascending order
 vector<person> personservice::birthAscending()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareYearReverse);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareYearReverse);
+    return current_list;
 }
 
 //Sorts by death year in descending order
 vector<person> personservice::deathDescending()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareDeath);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareDeath);
+    return current_list;
 }
 
 //Sorts by death year in ascending order
 vector<person> personservice::deathAscending()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareDeathReverse);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareDeathReverse);
+    return current_list;
 }
 
 //Lists male scientists first
 vector<person> personservice::genderMale()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareGender);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareGender);
+    return current_list;
 }
 
 //Lists female scientists first
 vector<person> personservice::genderFemale()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareGenderReverse);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareGenderReverse);
+    return current_list;
 }
 
 //Sorts by nationalites in alphabetical order
 vector<person> personservice::nationalityOrder()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareNationality);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareNationality);
+    return current_list;
 }
 
 //Sorts by nationalities in reverse alphabetical order
 vector<person> personservice::nationalityReverse()
 {
-    vector<person> peopleSorted = persons;
-    sort(peopleSorted.begin(), peopleSorted.end(), person::compareNationalityReverse);
-    return peopleSorted;
+    sort(current_list.begin(), current_list.end(), person::compareNationalityReverse);
+    return current_list;
 }
 
 // COMMENT HERE
 vector<person> personservice::filterNameByRegex(std::string _regex) {
-  vector<person> peopleSorted;
-  std::regex regex(_regex);
+  try {
+    std::regex regex(_regex);
+    bool matches = false;
 
-  for (size_t i = 0; i < persons.size(); i++) {
-    if (std::regex_match(persons.at(i).getName(), regex))
-      peopleSorted.push_back(persons[i]);
-    else if (std::regex_match(persons.at(i).getSex(), regex))
-      peopleSorted.push_back(persons[i]);
-    else if (std::regex_match(std::to_string(persons.at(i).getBirthYear()), regex))
-      peopleSorted.push_back(persons[i]);
-    else if (std::regex_match(std::to_string(persons.at(i).getDeathYear()), regex))
-      peopleSorted.push_back(persons[i]);
-    else if (std::regex_match(persons.at(i).getNationality(), regex))
-      peopleSorted.push_back(persons[i]);
+    for (size_t i = 0; i < current_list.size(); i++) {
+      if (std::regex_match(current_list.at(i).getName(), regex))
+        matches = true;
+      else if (std::regex_match(current_list.at(i).getSex(), regex))
+        matches = true;
+      else if (std::regex_match(std::to_string(current_list.at(i).getBirthYear()), regex))
+        matches = true;
+      else if (std::regex_match(std::to_string(current_list.at(i).getDeathYear()), regex))
+        matches = true;
+      else if (std::regex_match(current_list.at(i).getNationality(), regex))
+        matches = true;
+
+      if (!matches) {
+        current_list.erase(current_list.begin() + i);
+        i--;
+      }
+    }
+  } catch (std::regex_error) {
+    current_list.empty();
   }
-  return peopleSorted;
+  return current_list;
 }
