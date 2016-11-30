@@ -124,22 +124,22 @@ int person::compareNameReverse(person a, person b)
 
 int person::compareYear(person a, person b)
 {
-    return a.m_birthyear < b.m_birthyear;
+    return a.m_birthyear > b.m_birthyear;
 }
 
 int person::compareYearReverse(person a, person b)
 {
-    return a.m_birthyear > b.m_birthyear;
+    return a.m_birthyear < b.m_birthyear;
 }
 
 int person::compareDeath(person a, person b)
 {
-    return a.m_deathyear < b.m_deathyear;
+    return a.m_deathyear > b.m_deathyear;
 }
 
 int person::compareDeathReverse(person a, person b)
 {
-    return a.m_deathyear > b.m_deathyear;
+    return a.m_deathyear < b.m_deathyear;
 }
 
 int person::compareGender(person a, person b)
