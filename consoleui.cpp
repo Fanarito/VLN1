@@ -149,84 +149,88 @@ void consoleui::change()
 {
     string name;
 
-    cout << "Name of person you want to change: " << endl;
+    cout << "Name of person you want to change(cancel - To cancel changing): " << endl;
 
     cin.ignore(1000, '\n');
     getline(cin, name);
 
-    vector<person> temp = ps.getPersons();
-    vector<person> match;
-
-    for(size_t i = 0; i < temp.size(); i++)
-    {
-        if(temp[i].getName().find(name) != string::npos)
+    if(name != "cancel")
         {
-            match.push_back(temp[i]);
-        }
-    }
 
-    if(match.size() == 1)
-    {
-        person the_person = match[0];
+        vector<person> temp = ps.getPersons();
+        vector<person> match;
 
-        ps.removePerson(the_person);
-
-        string name;
-        string sex;
-        int birthyear;
-        int deathyear;
-        string nationality;
-        string info;
-        cout << "-1 Means no change" << endl;
-        cout << "Name: " << endl;
-        //cin.ignore(1000, '\n');
-        getline(cin, name);
-        cout << "Sex: " << endl;
-        cin >> sex;
-        cout << "Year of birth: " << endl;
-        while(!(cin >> birthyear))
+        for(size_t i = 0; i < temp.size(); i++)
         {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input it must be a number" << endl << "Try again:";
+            if(temp[i].getName().find(name) != string::npos)
+            {
+                match.push_back(temp[i]);
+            }
         }
-        cout << "Year of death: " << endl;
-        while(!(cin >> deathyear))
+
+        if(match.size() == 1)
         {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
-        cout << "Nationality: " << endl;
-        cin.ignore(1000, '\n');
-        getline(cin, nationality);
-        cout << "Info: " << endl;
-        //cin.ignore(1000, '\n');
-        getline(cin, info);
+            person the_person = match[0];
 
-        name = (name != "-1")?(name):(the_person.getName());
-        sex  = (sex != "-1")?(sex):(the_person.getSex());
-        birthyear = (birthyear != -1)?(birthyear):(the_person.getBirthYear());
-        deathyear = (deathyear != -1)?(deathyear):(the_person.getDeathYear());
-        nationality = (nationality != "-1")?(nationality):(the_person.getNationality());
-        info = (info != "-1")?(info):(the_person.getInfo());
+            ps.removePerson(the_person);
 
-        the_person = person(name, sex, birthyear, deathyear, nationality, info);
-        ps.addPerson(the_person);
+            string name;
+            string sex;
+            int birthyear;
+            int deathyear;
+            string nationality;
+            string info;
+            cout << "-1 Means no change" << endl;
+            cout << "Name: " << endl;
+            //cin.ignore(1000, '\n');
+            getline(cin, name);
+            cout << "Sex: " << endl;
+            cin >> sex;
+            cout << "Year of birth: " << endl;
+            while(!(cin >> birthyear))
+            {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+            }
+            cout << "Year of death: " << endl;
+            while(!(cin >> deathyear))
+            {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+            }
+            cout << "Nationality: " << endl;
+            cin.ignore(1000, '\n');
+            getline(cin, nationality);
+            cout << "Info: " << endl;
+            //cin.ignore(1000, '\n');
+            getline(cin, info);
 
-        cout << "Changes made" << endl;
+            name = (name != "-1")?(name):(the_person.getName());
+            sex  = (sex != "-1")?(sex):(the_person.getSex());
+            birthyear = (birthyear != -1)?(birthyear):(the_person.getBirthYear());
+            deathyear = (deathyear != -1)?(deathyear):(the_person.getDeathYear());
+            nationality = (nationality != "-1")?(nationality):(the_person.getNationality());
+            info = (info != "-1")?(info):(the_person.getInfo());
 
-    }
-    else
-    {
-        if(match.size() == 0)
-        {
-            cout << "No people match this name" << endl;
-        }
+            the_person = person(name, sex, birthyear, deathyear, nationality, info);
+            ps.addPerson(the_person);
+
+            cout << "Changes made" << endl;
+
+            }
         else
         {
-            cout << "Multiple people match this name: " << endl;
-            print_persons(match);
+            if(match.size() == 0)
+            {
+                cout << "No people match this name" << endl;
+            }
+            else
+            {
+                cout << "Multiple people match this name: " << endl;
+                print_persons(match);
+            }
         }
     }
 }
@@ -241,31 +245,33 @@ void consoleui::remove()
     cin.ignore(1000, '\n');
     getline(cin, name);
 
-
-    vector<person> temp = ps.getPersons();
-    vector<person> match;
-    for(size_t i = 0; i < temp.size(); i++)
+    if(name != "cancel")
     {
-        if(temp[i].getName().find(name) != string::npos)
+        vector<person> temp = ps.getPersons();
+        vector<person> match;
+        for(size_t i = 0; i < temp.size(); i++)
         {
-            match.push_back(temp[i]);
+            if(temp[i].getName().find(name) != string::npos)
+            {
+                match.push_back(temp[i]);
+            }
         }
-    }
-    if(match.size() == 1)
-    {
-        person the_person = match[0];
-        ps.removePerson(the_person);
-        cout << "Use the save command if you want to keep the changes" << endl;
-    }
-    else
-    {
-        if(match.size() == 0)
+        if(match.size() == 1)
         {
-            cout << "No people match this name" << endl;
+            person the_person = match[0];
+            ps.removePerson(the_person);
+            cout << "Use the save command if you want to keep the changes" << endl;
         }
         else
         {
-            cout << "Multiple people match this name" << endl;
+            if(match.size() == 0)
+            {
+                cout << "No people match this name" << endl;
+            }
+            else
+            {
+                cout << "Multiple people match this name" << endl;
+            }
         }
     }
 }
