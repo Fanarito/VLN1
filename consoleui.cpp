@@ -310,11 +310,11 @@ void consoleui::sort()
 
         if(alph_command == "az")
         {
-            sortedList = personservice().alphabetical();
+            sortedList = ps.alphabetical();
         }
         else if(alph_command == "za")
         {
-             sortedList = personservice().reverseAlphabetical();
+             sortedList = ps.reverseAlphabetical();
         }
 
     }
@@ -330,11 +330,11 @@ void consoleui::sort()
 
         if(sex_command == "male")
         {
-            sortedList = personservice().genderMale();
+            sortedList = ps.genderMale();
         }
         else if(sex_command == "female")
         {
-            sortedList = personservice().genderFemale();
+            sortedList = ps.genderFemale();
         }
     }
     else if(sort_command == "birth" || sort_command == "death")
@@ -351,22 +351,22 @@ void consoleui::sort()
         {
             if(sort_command == "birth")
             {
-                sortedList = personservice().birthAscending();
+                sortedList = ps.birthAscending();
             } 
 			else 
 			{
-                sortedList = personservice().deathAscending();
+                sortedList = ps.deathAscending();
             }
         }
         else if(order_command == "desc")
         {
             if(sort_command == "birth")
             {
-                sortedList = personservice().birthDescending();
+                sortedList = ps.birthDescending();
             } 
 			else 
 			{
-                sortedList = personservice().deathDescending();
+                sortedList = ps.deathDescending();
             }
         }
     }
@@ -382,11 +382,11 @@ void consoleui::sort()
 
         if(nat_command == "az")
         {
-            sortedList = personservice().nationalityOrder();
+            sortedList = ps.nationalityOrder();
         }
         else if(nat_command == "za")
         {
-            sortedList = personservice().nationalityReverse();
+            sortedList = ps.nationalityReverse();
         }
     }
 
