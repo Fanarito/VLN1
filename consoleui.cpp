@@ -150,6 +150,7 @@ void consoleui::add()
 
 }
 
+//This function allows you to change some, or all properties of a person.
 void consoleui::change()
 {
     cout << endl;
@@ -269,6 +270,7 @@ void consoleui::change()
 
 }
 
+//This function allows you to remove one or more persons from the list.
 void consoleui::remove()
 {
     cout << endl;
@@ -516,7 +518,7 @@ void consoleui::search()
 
     print_persons(match);
 }
-
+//This function allows you to filter the list using the regex method.
 void consoleui::regex()
 {
   cout << "Enter your regex command now: (it searches in everything except the information section)" << endl;
