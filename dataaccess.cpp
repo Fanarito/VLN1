@@ -32,9 +32,15 @@ std::vector<person> dataaccess::read()
 
     std::vector<std::string> p;
     std::string line;
+
     while(std::getline(file, line))
     {
         p = split(line, DELIMITER);
+
+        // if the line lacks some values then just skip it
+        if (p.size() != 6)
+          continue;
+
         people.push_back(person(p[0], p[1], std::stoi(p[2]), std::stoi(p[3]), p[4], p[5]));
     }
 

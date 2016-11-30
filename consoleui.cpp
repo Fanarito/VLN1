@@ -28,7 +28,7 @@ void consoleui::run()
         cout << "search \t- This will search the system for a variable" << endl;
         cout << "regex \t- Use regex to match either name, sex, birthyear or deathyear" << endl;
         cout << "save \t- Saves all famous programmers currently in the system to a file" << endl;
-        cout << "update \t- This will update changes to the list" << endl;
+        cout << "update \t- Moves all persons into viewable list" << endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
@@ -409,8 +409,8 @@ void consoleui::sort()
             if(sort_command == "birth")
             {
                 sortedList = ps.birthAscending();
-            } 
-			else 
+            }
+			else
 			{
                 sortedList = ps.deathAscending();
             }
@@ -420,8 +420,8 @@ void consoleui::sort()
             if(sort_command == "birth")
             {
                 sortedList = ps.birthDescending();
-            } 
-			else 
+            }
+			else
 			{
                 sortedList = ps.deathDescending();
             }
@@ -449,7 +449,7 @@ void consoleui::sort()
 
 	print_persons(sortedList);
 }
-//This function allows you to search for a specific scientist in the list. You can search the system by
+//This function allows you to search for a specific scientist in the entire list. You can search the system by
 //his name, sex, birth year, death year or nationality.
 void consoleui::search()
 {
@@ -474,7 +474,7 @@ void consoleui::search()
     if(searchCommand == "name")
     {
 		getline(cin, search_string);
- 		match = ps.matchByName(search_string);		
+ 		match = ps.matchByName(search_string);
     }
     else if(searchCommand == "sex")
     {
@@ -518,6 +518,7 @@ void consoleui::search()
 
     print_persons(match);
 }
+
 //This function allows you to filter the list using the regex method.
 void consoleui::regex()
 {

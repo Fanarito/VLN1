@@ -71,3 +71,5 @@ Thumbs.db
 *.dll
 *.exe
 
+# Emacs created files
+.dir-locals.el

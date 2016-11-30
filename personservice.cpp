@@ -140,7 +140,7 @@ vector<person> personservice::matchByName(string name)
 vector<person> personservice::matchBySex(string sex)
 {
 	transform(sex.begin(), sex.end(), sex.begin(), ::tolower);
-	vector<person> match;	
+	vector<person> match;
 
 	for(size_t i = 0; i < persons.size(); i++)
 	{
