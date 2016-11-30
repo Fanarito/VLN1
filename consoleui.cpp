@@ -188,10 +188,20 @@ void consoleui::change()
 			getline(cin, name);
 			cout << "Sex: " << endl;
 			cin >> sex;
-			cout << "Year of birth: " << endl;
-			cin >> birthyear;
-			cout << "Year of death: " << endl;
-			cin >> deathyear;
+            cout << "Year of birth: " << endl;
+            while(!(cin >> birthyear))
+            {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input it must be a number" << endl << "Try again:";
+            }
+            cout << "Year of death: " << endl;
+            while(!(cin >> deathyear))
+            {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input it must be a number" << endl << "Try again:";
+            }
 			cout << "Nationality: " << endl;
             cin.ignore(1000, '\n');
             getline(cin, nationality);
@@ -380,13 +390,6 @@ void consoleui::search()
     else if(searchCommand == "birth")
     {
         int search_int;
-        while(!(cin >> search_int))
-        {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
-
         while(!(cin >> search_int))
         {
                 cin.clear();
