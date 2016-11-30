@@ -242,6 +242,47 @@ void consoleui::change()
 
 void consoleui::remove()
 {
+    bool success = false;
+
+    do
+    {
+        string name;
+
+        cout << "Name of person you want to remove: " << endl;
+
+        cin.ignore(1000, '\n');
+        getline(cin, name);
+
+        vector<person> temp = ps.getPersons();
+        vector<person> match;
+
+        for(size_t i = 0; i < temp.size(); i++)
+        {
+            if(temp[i].getName().find(name) != string::npos)
+            {
+                match.push_back(temp[i]);
+            }
+        }
+        if(match.size() == 1)
+        {
+            person the_person = match[0];
+            ps.removePerson(the_person);
+            cout << "Use the save command if you want to keep the changes" << endl;
+            success = true;
+        }
+        else
+        {
+            if(match.size() == 0)
+            {
+                cout << "No people match this name" << endl;
+            }
+            else
+            {
+                cout << "Multiple people match this name: " << endl;
+                print_persons(match);
+            }
+        }
+    }while(!success);
 }
 
 //This is the function where you can choose how you want to sort the list. After you have made your
