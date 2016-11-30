@@ -6,6 +6,8 @@ dataaccess::dataaccess()
 
 }
 
+// Splits a string into a vector of strings with a specified delimiter.
+// Example: split this string becomes [split, this, string]
 std::vector<std::string> split(const std::string &s, char delim)
 {
 
@@ -21,9 +23,7 @@ std::vector<std::string> split(const std::string &s, char delim)
     return tokens;
 }
 
-/*
- * Reads the file and saves it to a vector
- */
+// Reads the file and saves it to a vector
 std::vector<person> dataaccess::read()
 {
     std::fstream file(FILENAME);
@@ -41,9 +41,8 @@ std::vector<person> dataaccess::read()
     return people;
 }
 
-/*
- * Saves the vector to a file
- */
+
+// Saves the vector to a file
 void dataaccess::save(std::vector<person> people)
 {
     std::ofstream file(FILENAME);

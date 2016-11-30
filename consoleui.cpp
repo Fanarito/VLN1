@@ -468,5 +468,5 @@ void consoleui::regex()
     string rx;
     cin.ignore(1000, '\n');
     getline(cin, rx);
-    print_persons(ps.filterNameByRegex(rx));
+    print_persons(ps.filterWithRegex(rx));
 }

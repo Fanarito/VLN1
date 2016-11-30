@@ -170,7 +170,7 @@ vector<person> personservice::matchByBirth(int year)
 
 // COMMENT MISSING
 vector<person> personservice::matchByDeath(int year)
-{	
+{
 	vector<person> match;
 
 	for(size_t i = 0; i < persons.size(); i++)
@@ -205,8 +205,9 @@ vector<person> personservice::matchByNationality(string nationality)
 }
 
 
-// COMMENT MISSING
-vector<person> personservice::filterNameByRegex(std::string _regex) {
+// Goes through the current list and removes all individuals that do not match the regex statement.
+// It tries to match the name, sex, birthyear, deathyear and nationality of the individual to the regex statement.
+vector<person> personservice::filterWithRegex(std::string _regex) {
   try {
     std::regex regex(_regex);
     bool matches = false;

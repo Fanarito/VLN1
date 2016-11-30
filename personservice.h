@@ -40,7 +40,7 @@ public:
 	vector<person> matchByDeath(int);
 	vector<person> matchByNationality(string);
 
-    vector<person> filterNameByRegex(std::string _regex);
+    vector<person> filterWithRegex(std::string _regex);
 
 private:
     dataaccess data;
