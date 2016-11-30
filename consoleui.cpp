@@ -321,7 +321,7 @@ void consoleui::remove()
     {
         person the_person = match[0];
         ps.removePerson(the_person);
-        for(int i = 0; i < match.size(); i++)
+        for(size_t i = 0; i < match.size(); i++)
         {
             ps.removePerson(match[i]);
         }
