@@ -222,6 +222,7 @@ vector<person> personservice::filterNameByRegex(std::string _regex) {
         current_list.erase(current_list.begin() + i);
         i--;
       }
+      matches = false;
     }
   } catch (std::regex_error) {
     current_list.empty();

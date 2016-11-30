@@ -464,7 +464,8 @@ void consoleui::search()
 
 void consoleui::regex()
 {
-    std::string rx;
+  cout << "Enter your regex command now: (it searches in everything except the information section)" << endl;
+    string rx;
     cin.ignore(1000, '\n');
     getline(cin, rx);
     print_persons(ps.filterNameByRegex(rx));
