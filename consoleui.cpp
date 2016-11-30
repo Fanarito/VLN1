@@ -243,39 +243,69 @@ void consoleui::change()
 void consoleui::remove()
 {
     string name;
-
-
-    cout << "Name of person you want to remove(cancel - To cancel removing): " << endl;
-
-    cin.ignore(1000, '\n');
-    getline(cin, name);
-
+    cout << endl;
+    cout << "Please enter one of the following commands:" << endl;
+    cout << "name \t\t"          << "- Remove by name" << endl;
+    cout << "sex \t\t"          << "- Remove by sex" << endl;
+    cout << "birth \t\t"        << "- Remove by year of birth" << endl;
+    cout << "death \t\t"        << "- Remove by year of death" << endl;
+    cout << "nationality \t"  << "- Remove by nationality" << endl << endl;
+    string remove_command;
+    cin >> remove_command;
     if(name != "cancel")
     {
-        vector<person> temp = ps.getPersons();
         vector<person> match;
-        for(size_t i = 0; i < temp.size(); i++)
+        if(remove_command == "name")
         {
-            if(temp[i].getName().find(name) != string::npos)
-            {
-                match.push_back(temp[i]);
-            }
+            cout << "Enter the name" << endl;
+            string name;
+            cin.ignore(1000, '\n');
+            getline(cin, name);
+            match = ps.matchByName(name);
         }
-        if(match.size() == 1)
+        else if(remove_command == "sex")
+        {
+            cout << "Enter the sex (m/f)" << endl;
+            string sex;
+            cin >> sex;
+            match = ps.matchBySex(sex);
+        }
+        else if(remove_command == "birth")
+        {
+            cout << "Enter the birth year" << endl;
+            int birth;
+            cin >> birth;
+            match = ps.matchByBirth(birth);
+        }
+        else if(remove_command == "death")
+        {
+            cout << "Enter the death year" << endl;
+            int death;
+            cin >> death;
+            match = ps.matchByDeath(death);
+        }
+        else if(remove_command == "nationality")
+        {
+            cout << "Enter the nationality" << endl;
+            string nationality;
+            cin >> nationality;
+            match = ps.matchByName(nationality);
+        }
+        if(match.size() >= 1)
         {
             person the_person = match[0];
             ps.removePerson(the_person);
+            for(int i = 0; i < match.size(); i++)
+            {
+                ps.removePerson(match[i]);
+            }
             cout << "Use the save command if you want to keep the changes" << endl;
         }
         else
         {
             if(match.size() == 0)
             {
-                cout << "No people match this name" << endl;
-            }
-            else
-            {
-                cout << "Multiple people match this name" << endl;
+                cout << "Something went wrong" << endl;
             }
         }
     }
