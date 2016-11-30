@@ -120,18 +120,19 @@ vector<person> personservice::matchByName(string name)
 	transform(name.begin(), name.end(), name.begin(), ::tolower);
 	vector<person> match;
 
-	for(size_t i = 0; i < persons.size(); i++)
+	for(size_t i = 0; i < current_list.size(); i++)
 	{
-		string thename = persons[i].getName();
+		string thename = current_list[i].getName();
 		transform(thename.begin(), thename.end(), thename.begin(), ::tolower);
 
 		if(thename.find(name) != string::npos)
 		{
-			match.push_back(persons[i]);
+			match.push_back(current_list[i]);
 		}
 	}
 
-	return match;
+  current_list = match;
+	return current_list;
 }
 
 //Changes string input, sex, to lowercase and runs through vector of person and changes its sex variables to lowercase.
@@ -142,18 +143,19 @@ vector<person> personservice::matchBySex(string sex)
 	transform(sex.begin(), sex.end(), sex.begin(), ::tolower);
 	vector<person> match;
 
-	for(size_t i = 0; i < persons.size(); i++)
+	for(size_t i = 0; i < current_list.size(); i++)
 	{
-		string thesex = persons[i].getSex();
+		string thesex = current_list[i].getSex();
         transform(thesex.begin(), thesex.end(), thesex.begin(), ::tolower);
 
 		if(thesex == sex)
 		{
-			match.push_back(persons[i]);
+			match.push_back(current_list[i]);
 		}
 	}
 
-	return match;
+  current_list = match;
+	return current_list;
 }
 
 //Runs through a vector of person and looks for birth years that match the int input, year.
@@ -162,15 +164,16 @@ vector<person> personservice::matchByBirth(int year)
 {
 	vector<person> match;
 
-	for(size_t i = 0; i < persons.size(); i++)
+	for(size_t i = 0; i < current_list.size(); i++)
 	{
-		if(persons[i].getBirthYear() == year)
+		if(current_list[i].getBirthYear() == year)
 		{
-			match.push_back(persons[i]);
+			match.push_back(current_list[i]);
 		}
 	}
 
-	return match;
+  current_list = match;
+	return current_list;
 }
 
 //Runs through a vector of person and looks for death years that match the int input, year.
@@ -179,15 +182,16 @@ vector<person> personservice::matchByDeath(int year)
 {
 	vector<person> match;
 
-	for(size_t i = 0; i < persons.size(); i++)
+	for(size_t i = 0; i < current_list.size(); i++)
 	{
-		if(persons[i].getDeathYear()  == year)
+		if(current_list[i].getDeathYear()  == year)
 		{
-			match.push_back(persons[i]);
+			match.push_back(current_list[i]);
 		}
 	}
 
-	return match;
+  current_list = match;
+	return current_list;
 }
 
 //Changes string input, nationality, to lowercase and runs through vector of person and changes its nationality variables to lowercase.
@@ -198,18 +202,19 @@ vector<person> personservice::matchByNationality(string nationality)
     transform(nationality.begin(), nationality.end(), nationality.begin(), ::tolower);
 	vector<person> match;
 
-	for(size_t i = 0; i < persons.size(); i++)
+	for(size_t i = 0; i < current_list.size(); i++)
 	{
-		string thenationality = persons[i].getNationality();
+		string thenationality = current_list[i].getNationality();
 		transform(thenationality.begin(), thenationality.end(), thenationality.begin(), ::tolower);
 
 		if(thenationality.find(nationality) != string::npos)
 		{
-			match.push_back(persons[i]);
+			match.push_back(current_list[i]);
 		}
 	}
 
-	return match;
+  current_list = match;
+	return current_list;
 }
 
 
