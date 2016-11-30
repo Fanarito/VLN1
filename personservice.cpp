@@ -15,6 +15,7 @@ vector<person> personservice::getPersons()
     return current_list;
 }
 
+//Updates current working list of data with changes made in-program
 void personservice::reset() {
   current_list = persons;
 }
@@ -41,7 +42,6 @@ void personservice::removePerson(person p)
 	persons.erase(std::remove(persons.begin(), persons.end(), p), persons.end());
 }
 
-//this is where we sort the names in alphabetical order
 //Sorts by names in alphabetical order
 vector<person> personservice::alphabetical()
 {
@@ -112,6 +112,7 @@ vector<person> personservice::nationalityReverse()
     return current_list;
 }
 
+// COMMENT MISSING
 vector<person> personservice::matchByName(string name)
 {
 	transform(name.begin(), name.end(), name.begin(), ::tolower);
@@ -131,6 +132,7 @@ vector<person> personservice::matchByName(string name)
 	return match;
 }
 
+// COMMENT MISSING
 vector<person> personservice::matchBySex(string sex)
 {
 	transform(sex.begin(), sex.end(), sex.begin(), ::tolower);
@@ -150,6 +152,7 @@ vector<person> personservice::matchBySex(string sex)
 	return match;
 }
 
+// COMMENT MISSING
 vector<person> personservice::matchByBirth(int year)
 {
 	vector<person> match;
@@ -165,6 +168,7 @@ vector<person> personservice::matchByBirth(int year)
 	return match;
 }
 
+// COMMENT MISSING
 vector<person> personservice::matchByDeath(int year)
 {	
 	vector<person> match;
@@ -180,6 +184,7 @@ vector<person> personservice::matchByDeath(int year)
 	return match;
 }
 
+// COMMENT MISSING
 vector<person> personservice::matchByNationality(string nationality)
 {
     transform(nationality.begin(), nationality.end(), nationality.begin(), ::tolower);
@@ -200,7 +205,7 @@ vector<person> personservice::matchByNationality(string nationality)
 }
 
 
-// COMMENT HERE
+// COMMENT MISSING
 vector<person> personservice::filterNameByRegex(std::string _regex) {
   try {
     std::regex regex(_regex);
