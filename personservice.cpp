@@ -112,7 +112,9 @@ vector<person> personservice::nationalityReverse()
     return current_list;
 }
 
-// COMMENT MISSING
+//Changes string input, name, to lowercase and runs through vector of person and changes its name variables to lowercase.
+//This function returns a vector of all names that match, without distinguising uppercase and lowercase characters.
+//The change and remove functions in the personservice class use this to make matching case insensitive.
 vector<person> personservice::matchByName(string name)
 {
 	transform(name.begin(), name.end(), name.begin(), ::tolower);
@@ -132,7 +134,9 @@ vector<person> personservice::matchByName(string name)
 	return match;
 }
 
-// COMMENT MISSING
+//Changes string input, sex, to lowercase and runs through vector of person and changes its sex variables to lowercase.
+//This function returns a vector of all sexes that match, without distinguising uppercase and lowercase characters.
+//The change and remove functions in the personservice class use this to make matching case insensitive.
 vector<person> personservice::matchBySex(string sex)
 {
 	transform(sex.begin(), sex.end(), sex.begin(), ::tolower);
@@ -152,7 +156,8 @@ vector<person> personservice::matchBySex(string sex)
 	return match;
 }
 
-// COMMENT MISSING
+//Runs through a vector of person and looks for birth years that match the int input, year.
+//The matches are returned in the vector of person, match.
 vector<person> personservice::matchByBirth(int year)
 {
 	vector<person> match;
@@ -168,7 +173,8 @@ vector<person> personservice::matchByBirth(int year)
 	return match;
 }
 
-// COMMENT MISSING
+//Runs through a vector of person and looks for death years that match the int input, year.
+//The matches are returned in the vector of person, match.
 vector<person> personservice::matchByDeath(int year)
 {
 	vector<person> match;
@@ -184,7 +190,9 @@ vector<person> personservice::matchByDeath(int year)
 	return match;
 }
 
-// COMMENT MISSING
+//Changes string input, nationality, to lowercase and runs through vector of person and changes its nationality variables to lowercase.
+//This function returns a vector of all nationalities that match, without distinguising uppercase and lowercase characters.
+//The change and remove functions in the personservice class use this to make matching case insensitive.
 vector<person> personservice::matchByNationality(string nationality)
 {
     transform(nationality.begin(), nationality.end(), nationality.begin(), ::tolower);
