@@ -17,7 +17,7 @@ vector<person> personservice::getPersons()
 
 //Updates current working list of data with changes made in-program
 void personservice::reset() {
-  current_list = persons;
+    current_list = persons;
 }
 
 //Saves data to text file
@@ -35,14 +35,14 @@ void personservice::addPerson(std::string name, std::string gender, int birthyea
 
 void personservice::addPerson(person p)
 {
-	persons.push_back(p);
-  reset();
+    persons.push_back(p);
+    reset();
 }
 
 void personservice::removePerson(person p)
 {
-	persons.erase(std::remove(persons.begin(), persons.end(), p), persons.end());
-  reset();
+    persons.erase(std::remove(persons.begin(), persons.end(), p), persons.end());
+    reset();
 }
 
 //Sorts by names in alphabetical order
@@ -134,7 +134,7 @@ vector<person> personservice::matchByName(string name)
 		}
 	}
 
-  current_list = match;
+    current_list = match;
 	return current_list;
 }
 
@@ -157,7 +157,7 @@ vector<person> personservice::matchBySex(string sex)
 		}
 	}
 
-  current_list = match;
+    current_list = match;
 	return current_list;
 }
 
@@ -175,7 +175,7 @@ vector<person> personservice::matchByBirth(int year)
 		}
 	}
 
-  current_list = match;
+    current_list = match;
 	return current_list;
 }
 
@@ -193,7 +193,7 @@ vector<person> personservice::matchByDeath(int year)
 		}
 	}
 
-  current_list = match;
+    current_list = match;
 	return current_list;
 }
 
@@ -216,7 +216,7 @@ vector<person> personservice::matchByNationality(string nationality)
 		}
 	}
 
-  current_list = match;
+    current_list = match;
 	return current_list;
 }
 
