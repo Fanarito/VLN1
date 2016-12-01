@@ -30,16 +30,19 @@ void personservice::addPerson(std::string name, std::string gender, int birthyea
 {
     person p(name, gender, birthyear, deathyear, nationality, info);
     persons.push_back(p);
+    reset();
 }
 
 void personservice::addPerson(person p)
 {
 	persons.push_back(p);
+  reset();
 }
 
 void personservice::removePerson(person p)
 {
 	persons.erase(std::remove(persons.begin(), persons.end(), p), persons.end());
+  reset();
 }
 
 //Sorts by names in alphabetical order
