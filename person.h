@@ -21,16 +21,15 @@ public:
     std::string getSex() const;
     void setSex(std::string sex);
 
+    int getBirthYear() const;
+    void setBirthYear(int year);
+
+    int getDeathYear() const;
+    void setDeathYear(int year);
+
     friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
 
     friend bool operator==(const person lhs, const person rhs);
-
-    static int compareGender(person a, person b);
-    static int compareGenderReverse(person a, person b);
-    static int compareYear(person a, person b);
-    static int compareYearReverse(person a, person b);
-    static int compareDeath(person a, person b);
-    static int compareDeathReverse(person a, person b);
 };
 
 #endif // PERSON_H

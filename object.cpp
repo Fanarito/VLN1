@@ -59,12 +59,6 @@ std::ostream& operator<<(std::ostream& lhs, const Object rhs)
     lhs << "-" << std::endl;
 
     lhs.width(stdwidth);
-    lhs << "Year of birth: " << rhs.getBirthYear() << std::endl;
-
-    lhs.width(stdwidth);
-    lhs << "Year of death: " << rhs.getDeathYear() << std::endl;
-
-    lhs.width(stdwidth);
     lhs << "Nationality: " << rhs.getNationality() << std::endl;
 
     lhs.width(stdwidth);
@@ -82,23 +76,4 @@ bool operator==(const Object lhs, const Object rhs)
     if(lhs.m_info != rhs.m_info) return false;
 
     return true;
-}
-
-int Object::compareName(Object a, Object b)
-{
-    return a.m_name < b.m_name;
-}
-int Object::compareNameReverse(Object a, Object b)
-{
-    return a.m_name > b.m_name;
-}
-
-int Object::compareNationality(Object a, Object b)
-{
-    return a.m_nationality < b.m_nationality;
-}
-
-int Object::compareNationalityReverse(Object a, Object b)
-{
-    return a.m_nationality > b.m_nationality;
 }

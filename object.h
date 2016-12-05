@@ -27,11 +27,6 @@ public:
 
     friend std::ostream& operator<<(std::ostream& lhs, const Object rhs);
     friend bool operator==(const Object lsh, const Object rhs);
-
-    static int compareName(Object a, Object b);
-    static int compareNameReverse(Object a, Object b);
-    static int compareNationality(Object a, Object b);
-    static int compareNationalityReverse(Object a, Object b);
 };
 
 #endif // OBJECT_H
