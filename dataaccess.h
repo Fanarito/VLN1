@@ -8,6 +8,7 @@
 #include <QtSql>
 
 #include "person.h"
+#include "computer.h"
 
 static std::string DATABASE = "FamousProgrammers";
 static char DELIMITER = '|';
