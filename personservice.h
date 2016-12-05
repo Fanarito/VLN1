@@ -5,6 +5,7 @@
 #include <string>
 #include <regex>
 #include "person.h"
+#include "computer.h"
 #include "dataaccess.h"
 
 using namespace std;
@@ -24,7 +25,7 @@ public:
     vector<person> getPersons();
 
     vector<person> sortPersons(string column, string order);
-    vector<person> sortComputers(string column, string order);
+    vector<computer> sortComputers(string column, string order);
 
     //TODO: DELETE OLD SORT FUNCTIONS
     /*vector<person> alphabetical();
