@@ -5,19 +5,23 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <QtSql>
 
 #include "person.h"
 
 static std::string FILENAME = "personsNew.txt";
 static char DELIMITER = '|';
 
+
 class dataaccess
 {
+private:
+    QSqlDatabase db;
 public:
     dataaccess();
 
-    static std::vector<person> read();
-    static void save(std::vector<person> people);
+    std::vector<person> getPersonsByQuery(QString q);
+    void addPerson(person p);
 };
 
 #endif // DATAACCESS_H
