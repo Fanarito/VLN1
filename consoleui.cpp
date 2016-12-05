@@ -92,7 +92,7 @@ void consoleui::print_persons(vector<person> p)
 }
 //This function runs through the vector of computers and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
-void consoleui::print_persons(vector<computer> c)
+void consoleui::print_computers(vector<computer> c)
 {
     for(size_t i = 0; i < c.size(); i++)
     {

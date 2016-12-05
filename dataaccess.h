@@ -9,7 +9,7 @@
 
 #include "person.h"
 
-static std::string FILENAME = "personsNew.txt";
+static std::string DATABASE = "FamousProgrammers";
 static char DELIMITER = '|';
 
 

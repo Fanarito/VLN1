@@ -6,7 +6,7 @@
 
 personservice::personservice()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID");
 }
 
 vector<person> personservice::getPersons()
@@ -16,7 +16,7 @@ vector<person> personservice::getPersons()
 
 //Updates current working list of data with changes made in-program
 void personservice::reset() {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID");
 }
 
 //Adds a person to a vector for later use
@@ -40,70 +40,70 @@ void personservice::removePerson(person p)
 //Sorts by names in alphabetical order
 vector<person> personservice::alphabetical()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY name");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY name");
     return curr_persons;
 }
 
 //Sorts by names in reverse alphabetical order
 vector<person> personservice::reverseAlphabetical()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY name DESC");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY name DESC");
     return curr_persons;
 }
 
 //Sorts by birth year in ascending order
 vector<person> personservice::birthAscending()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY birthyear");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY birthyear");
     return curr_persons;
 }
 
 //Sorts by birth year in descending order
 vector<person> personservice::birthDescending()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY birthyear DESC");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY birthyear DESC");
     return curr_persons;
 }
 
 //Sorts by death year in ascending order
 vector<person> personservice::deathAscending()
 {
-   curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY deathyear");
+   curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY deathyear");
    return curr_persons;
 }
 
 //Sorts by death year in descending order
 vector<person> personservice::deathDescending()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY deathyear DESC");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY deathyear DESC");
     return curr_persons;
 }
 
 //Lists male scientists first
 vector<person> personservice::genderMale()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY sex DESC");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY sex DESC");
     return curr_persons;
 }
 
 //Lists female scientists first
 vector<person> personservice::genderFemale()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY sex");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY sex");
     return curr_persons;
 }
 
 //Sorts by nationalites in alphabetical order
 vector<person> personservice::nationalityOrder()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY nationality");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY nationality");
     return curr_persons;
 }
 
 //Sorts by nationalities in reverse alphabetical order
 vector<person> personservice::nationalityReverse()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM persons ORDER BY nationality DESC");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY nationality DESC");
     return curr_persons;
 }
 
