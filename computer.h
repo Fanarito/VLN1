@@ -1,37 +1,31 @@
 #ifndef COMPUTER_H
 #define COMPUTER_H
 #include <string>
+#include <iostream>
 
+#include "object.h"
 
-class computer
+class computer: public Object
 {
 private:
-    std::string c_name;
-    std::string c_buildyear;
-    std::string c_type;
-    bool c_built;
-    std::string c_info;
-    std::string c_nationality;
+    std::string m_type;
+    bool m_built;
 
 public:
-    computer();
-    computer(std::string name, std::string buildyear, std::string type, bool built, std::string info, std::string nationality);
-
-    std::string getName() const;
-    void setName(std::string name);
-
-    int getBuildYear() const;
-    void setBuildYear(int buildyear);
+    computer(std::string name="Undefined", int buildyear=0, std::string type="Undefined",
+             bool built=false, std::string info="", std::string nationality="Undefined");
 
     std::string getType() const;
     void setType(std::string type);
 
-    std::string getInfo() const;
-    void setInfo(std::string info);
+    bool getBuilt() const;
+    void setBuilt(bool built);
 
-    std::string getNationality() const;
-    void setNationality(std::string nationality);
+    friend std::ostream& operator<<(std::ostream& lhs, const computer rhs);
+    friend bool operator==(const computer lsh, const computer rhs);
 
+    static int compareType(computer a, computer b);
+    static int compareTypeReverse(computer a, computer b);
 };
 
 #endif // COMPUTER_H

@@ -11,16 +11,6 @@ person::person(std::string name, std::string sex, int birthyear, int deathyear, 
     m_info = info;
 }
 
-std::string person::getName() const
-{
-    return m_name;
-}
-
-void person::setName(std::string name)
-{
-    m_name = name;
-}
-
 std::string person::getSex() const
 {
     return m_sex;
@@ -29,45 +19,6 @@ std::string person::getSex() const
 void person::setSex(std::string sex)
 {
     m_sex = sex;
-}
-
-int person::getBirthYear() const
-{
-    return m_birthyear;
-}
-void person::setBirthYear(int birthyear)
-{
-    m_birthyear = birthyear;
-}
-
-int person::getDeathYear() const
-{
-    return m_deathyear;
-}
-
-void person::setDeathYear(int deathyear)
-{
-    m_deathyear = deathyear;
-}
-
-std::string person::getNationality() const
-{
-    return m_nationality;
-}
-
-void person::setNationality(std::string nationality)
-{
-    m_nationality = nationality;
-}
-
-std::string person::getInfo() const
-{
-    return m_info;
-}
-
-void person::setInfo(std::string info)
-{
-    m_info = info;
 }
 
 /*
@@ -116,35 +67,6 @@ bool operator==(const person lhs, const person rhs)
 	return true;
 }
 
-int person::compareName(person a, person b)
-{
-    return a.m_name < b.m_name;
-}
-int person::compareNameReverse(person a, person b)
-{
-    return a.m_name > b.m_name;
-}
-
-int person::compareYear(person a, person b)
-{
-    return a.m_birthyear > b.m_birthyear;
-}
-
-int person::compareYearReverse(person a, person b)
-{
-    return a.m_birthyear < b.m_birthyear;
-}
-
-int person::compareDeath(person a, person b)
-{
-    return a.m_deathyear > b.m_deathyear;
-}
-
-int person::compareDeathReverse(person a, person b)
-{
-    return a.m_deathyear < b.m_deathyear;
-}
-
 int person::compareGender(person a, person b)
 {
     return a.m_sex > b.m_sex;
@@ -153,14 +75,4 @@ int person::compareGender(person a, person b)
 int person::compareGenderReverse(person a, person b)
 {
     return a.m_sex < b.m_sex;
-}
-
-int person::compareNationality(person a, person b)
-{
-    return a.m_nationality < b.m_nationality;
-}
-
-int person::compareNationalityReverse(person a, person b)
-{
-    return a.m_nationality > b.m_nationality;
 }

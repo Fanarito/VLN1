@@ -6,7 +6,7 @@
 
 class Object
 {
-private:
+protected:
     std::string m_name;
     int m_birthyear;
     int m_deathyear;
