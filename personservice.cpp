@@ -45,7 +45,7 @@ vector<person> personservice::sortPersons(string column, string order)
     return curr_persons;
 }
 
-vector<person> personservice::sortComputers(string column, string order)
+vector<computers> personservice::sortComputers(string column, string order)
 {
     curr_persons = data.getComputersByQuery("SELECT c.Name, c.Build_Year, c.Computer_Type, c.Built, n.Nationality, c.Info FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID ORDER BY " + column + " " + order);
     return curr_computers;
