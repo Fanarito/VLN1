@@ -15,7 +15,7 @@ private:
     personservice ps;
 
     void print_persons(vector<person> p);
-   // void print_computers(vector<computer> c);
+    void print_computers(vector<computer> c);
 
     void list();
     void add();
