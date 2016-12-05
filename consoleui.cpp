@@ -431,25 +431,27 @@ void consoleui::sort()
     cout << endl;
     cout << "Please enter one of the following commands:" << endl;
     cout << "computers - Sorts computers table " << endl;
-    cout << "persons - Sorts persons table " << endl;
+    cout << "persons - Sorts persons table " << endl << endl;
     string table;
     cin >> table;
 
     if(table == "computers")
     {
+        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "name \t\t" << "- Sorts names alphabetically" << endl;
-        cout << "build_year \t" << "-Sorts by build year" << endl;
-        cout << "computer_type \t" << "-Sorts computer type alphabetically" << endl;
-        cout << "built \t\t" << "-Sorts by whether it has been built" << endl;
-        cout << "nationality \t" << "-Sorts nationalities alphabetically" << endl;
+        cout << "build_year \t" << "- Sorts by build year" << endl;
+        cout << "computer_type \t" << "- Sorts computer type alphabetically" << endl;
+        cout << "built \t\t" << "- Sorts by whether it has been built" << endl;
+        cout << "nationality \t" << "- Sorts nationalities alphabetically" << endl << endl;
         string column;
         cin >> column;
         if(column == "name" || column == "build_year" || column == "computer_type" || column == "built" || column == "nationality")
         {
+            cout << endl;
             cout << "Please enter one of the following commands:" << endl;
-            cout << "asc - Sorts by alphabetical order" << endl;
-            cout << "desc - Sorts by reverse alphabetical order" << endl;
+            cout << "asc \t- Sorts by ascending order" << endl;
+            cout << "desc \t- Sorts by descending order" << endl << endl;
             string order;
             cin >> order;
             if(order == "asc" || order == "desc")
@@ -471,18 +473,21 @@ void consoleui::sort()
     }
     else if(table == "persons")
     {
-        cout << "name \t" << "- Sorts names alphabetically" << endl;
+        cout << endl;
+        cout << "Please enter one of the following commands:" << endl;
+        cout << "name \t\t" << "- Sorts names alphabetically" << endl;
         cout << "sex \t\t"          << "- Sort by sex" << endl;
-        cout << "birth \t\t"        << "- Sorts by year of birth" << endl;
-        cout << "death \t\t"        << "- Sorts by year of death" << endl;
-        cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl;
+        cout << "birth_year \t"        << "- Sorts by year of birth" << endl;
+        cout << "death_year \t"        << "- Sorts by year of death" << endl;
+        cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
         string column;
         cin>>column;
-        if(column == "name" || column == "sex" || column == "birth" || column == "death" || column == "nationality")
+        if(column == "name" || column == "sex" || column == "birth_year" || column == "death_year" || column == "nationality")
         {
+            cout << endl;
             cout << "Please enter one of the following commands:" << endl;
-            cout << "asc - Sorts by alphabetical order" << endl;
-            cout << "desc - Sorts by reverse alphabetical order" << endl;
+            cout << "asc \t- Sorts by ascending order" << endl;
+            cout << "desc \t- Sorts by descending order" << endl << endl;
             string order;
             cin >> order;
             if(order == "asc" || order == "desc")
