@@ -114,8 +114,8 @@ void consoleui::list()
         }
         else if(choice == "computers")
         {
-           // vector<computer> c = ps.getComputer();
-           // print_computers(c);
+           vector<computer> c = ps.getComputers();
+           print_computers(c);
         }
         else
         {

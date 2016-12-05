@@ -14,6 +14,11 @@ vector<person> personservice::getPersons()
     return curr_persons;
 }
 
+vector<computer> personservice::getComputers()
+{
+    return curr_computers;
+}
+
 //Updates current working list of data with changes made in-program
 void personservice::reset() {
     curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID");

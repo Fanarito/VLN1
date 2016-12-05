@@ -24,6 +24,7 @@ public:
 
     //Functions to sort the data according to the user's preferences.
     vector<person> getPersons();
+    vector<computer> getComputers();
 
     vector<person> sortPersons(string column, string order);
     vector<computer> sortComputers(string column, string order);
