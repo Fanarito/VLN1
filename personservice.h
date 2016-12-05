@@ -50,6 +50,7 @@ public:
 private:
     dataaccess data;
     vector<person> curr_persons;
+    vector<computer> curr_computers;
 };
 
 #endif // PERSONSERVICE_H
