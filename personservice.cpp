@@ -6,23 +6,17 @@
 
 personservice::personservice()
 {
-    persons = dataaccess::read();
-    current_list = persons;
+    curr_persons = data.getPersonsByQuery("SELECT * FROM persons");
 }
 
 vector<person> personservice::getPersons()
 {
-    return current_list;
+    return curr_persons;
 }
 
 //Updates current working list of data with changes made in-program
 void personservice::reset() {
-    current_list = persons;
-}
-
-//Saves data to text file
-void personservice::save() {
-    dataaccess::save(persons);
+    curr_persons = data.getPersonsByQuery("SELECT * FROM persons");
 }
 
 //Adds a person to a vector for later use
@@ -48,71 +42,61 @@ void personservice::removePerson(person p)
 //Sorts by names in alphabetical order
 vector<person> personservice::alphabetical()
 {
-    sort(current_list.begin(), current_list.end(), person::compareName);
-    return current_list;
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY name");
 }
 
 //Sorts by names in reverse alphabetical order
 vector<person> personservice::reverseAlphabetical()
 {
-    sort(current_list.begin(), current_list.end(), person::compareNameReverse);
-    return current_list;
-}
-
-//Sorts by birth year in descending order
-vector<person> personservice::birthDescending()
-{
-    sort(current_list.begin(), current_list.end(), person::compareYear);
-    return current_list;
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY name DESC");
 }
 
 //Sorts by birth year in ascending order
 vector<person> personservice::birthAscending()
 {
-    sort(current_list.begin(), current_list.end(), person::compareYearReverse);
-    return current_list;
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY birthyear");
 }
 
-//Sorts by death year in descending order
-vector<person> personservice::deathDescending()
+//Sorts by birth year in descending order
+vector<person> personservice::birthDescending()
 {
-    sort(current_list.begin(), current_list.end(), person::compareDeath);
-    return current_list;
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY birthyear DESC");
 }
 
 //Sorts by death year in ascending order
 vector<person> personservice::deathAscending()
 {
-    sort(current_list.begin(), current_list.end(), person::compareDeathReverse);
-    return current_list;
+   current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY deathyear");
+}
+
+//Sorts by death year in descending order
+vector<person> personservice::deathDescending()
+{
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY deathyear DESC");
 }
 
 //Lists male scientists first
 vector<person> personservice::genderMale()
 {
-    sort(current_list.begin(), current_list.end(), person::compareGender);
-    return current_list;
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY sex DESC");
 }
 
 //Lists female scientists first
 vector<person> personservice::genderFemale()
 {
-    sort(current_list.begin(), current_list.end(), person::compareGenderReverse);
-    return current_list;
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY sex");
 }
 
 //Sorts by nationalites in alphabetical order
 vector<person> personservice::nationalityOrder()
 {
-    sort(current_list.begin(), current_list.end(), person::compareNationality);
-    return current_list;
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY nationality");
 }
 
 //Sorts by nationalities in reverse alphabetical order
-vector<person> personservice::nationalityReverse()
+void personservice::nationalityReverse()
 {
-    sort(current_list.begin(), current_list.end(), person::compareNationalityReverse);
-    return current_list;
+    current_list = data.getPersonsByQuery("SELECT * FROM persons ORDER BY nationality DESC");
 }
 
 //Changes string input, name, to lowercase and runs through vector of person and changes its name variables to lowercase.

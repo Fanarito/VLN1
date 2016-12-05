@@ -37,7 +37,7 @@ public:
     void setInfo(std::string info);
 
     friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
-	friend bool operator==(const person lsh, const person rhs);
+    friend bool operator==(const person lhs, const person rhs);
 
     static int compareName(person a, person b);
     static int compareNameReverse(person a, person b);

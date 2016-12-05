@@ -19,16 +19,15 @@ public:
 	void removePerson(person p);
 
     void reset();
-    void save();
 
     //Functions to sort the data according to the user's preferences.
     vector<person> getPersons();
     vector<person> alphabetical();
     vector<person> reverseAlphabetical();
-    vector<person> birthDescending();
     vector<person> birthAscending();
-    vector<person> deathDescending();
+    vector<person> birthDescending();
     vector<person> deathAscending();
+    vector<person> deathDescending();
     vector<person> genderMale();
     vector<person> genderFemale();
     vector<person> nationalityOrder();
@@ -44,7 +43,6 @@ public:
 
 private:
     dataaccess data;
-    vector<person> persons;
     vector<person> current_list;
 };
 

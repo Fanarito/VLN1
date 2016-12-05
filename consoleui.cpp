@@ -27,7 +27,6 @@ void consoleui::run()
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
         cout << "regex \t- Use regex to match either name, sex, birthyear or deathyear" << endl;
-        cout << "save \t- Saves all famous programmers currently in the system to a file" << endl;
         cout << "update \t- Moves all persons into viewable list" << endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
@@ -62,10 +61,6 @@ void consoleui::run()
         else if(command == "regex")
         {
             regex();
-        }
-        else if(command == "save")
-        {
-            ps.save();
         }
         else if(command == "update")
         {
