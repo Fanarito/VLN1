@@ -4,7 +4,7 @@
 dataaccess::dataaccess()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "FamousProgrammers.sqlite";
+    QString dbName = "CompSci.sqlite";
     db.setDatabaseName(dbName);
 
     if(!db.open()) std::cerr << "Error: SQL did not open properly!" << std::endl;
