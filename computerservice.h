@@ -2,6 +2,7 @@
 #define COMPUTERSERVICE_H
 
 #include <computer.h>
+#include "dataaccess.h"
 
 class computerservice
 {

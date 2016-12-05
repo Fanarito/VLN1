@@ -22,6 +22,7 @@ public:
     dataaccess();
 
     std::vector<person> getPersonsByQuery(QString q);
+    std::vector<computer> getComputersByQuery(QString q);
     void addPerson(person p);
     void addComputer(computer p);
 };

@@ -51,7 +51,7 @@ std::vector<person> dataaccess::getPersonsByQuery(QString q)
        int birthyear = query.value("Birth_Year").toUInt();
        int deathyear = query.value("Death_Year").toUInt();
        std::string nationality = query.value("Nationality").toString().toStdString();
-       std::string info = query.value("Description").toString().toStdString();
+       std::string info = query.value("Info").toString().toStdString();
 
        persons.push_back(person(name, sex, birthyear, deathyear, nationality, info));
    }
@@ -59,6 +59,29 @@ std::vector<person> dataaccess::getPersonsByQuery(QString q)
    return persons;
 }
 
+
+std::vector<computer> dataaccess::getComputersByQuery(QString q)
+{
+   QSqlQuery query(db);
+
+   query.exec(q);
+
+   std::vector<computer> computers;
+
+   while(query.next())
+   {
+       std::string name = query.value("Name").toString().toStdString();
+       int build_year = query.value("Build_Year").toString().toStdString();
+       std::string computer_type = query.value("Computer_Type").toUInt();
+       bool built = query.value("Built").toUInt();
+       std::string nationality = query.value("Nationality").toString().toStdString();
+       std::string info = query.value("Info").toString().toStdString();
+
+       computers.push_back(computer(name, build_year, computer_type, built, nationality, info));
+   }
+
+   return computers;
+}
 void dataaccess::addPerson(person p)
 {
     QSqlQuery query(db);

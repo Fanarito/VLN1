@@ -58,14 +58,7 @@ void consoleui::run()
         {
             search();
         }
-        else if(command == "regex")
-        {
-            regex();
-        }
-        else if(command == "update")
-        {
-            ps.reset();
-        }
+
         else if(command == "quit")
         {
             running = false;
@@ -92,8 +85,7 @@ void consoleui::print_persons(vector<person> p)
 }
 //This function runs through the vector of computers and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
-/*void consoleui::print_computers(vector<computer> c)
->>>>>>> aa33f4a726c55b25c2737a557323e03f9381cf3f
+void consoleui::print_computers(vector<computer> c)
 {
     for(size_t i = 0; i < c.size(); i++)
     {
@@ -102,7 +94,7 @@ void consoleui::print_persons(vector<person> p)
     }
 
     cout << "----" << endl;
-}*/
+}
 
 //Lists out information from the text file.
 void consoleui::list()
@@ -431,112 +423,87 @@ void consoleui::remove()
 //choice the new list will be printed.
 void consoleui::sort()
 {
-    vector<person> sortedList;
+
+    vector<person> sortedPersonsList;
+    vector<computer> sortedComputersList;
 
     cout << endl;
     cout << "Please enter one of the following commands:" << endl;
-    cout << "alphabetical \t" << "- Sorts by alphabetical order" << endl;
-    cout << "sex \t\t"          << "- Sort by sex" << endl;
-    cout << "birth \t\t"        << "- Sorts by year of birth" << endl;
-    cout << "death \t\t"        << "- Sorts by year of death" << endl;
-    cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
+    cout << "computers - Sorts computers table " << endl;
+    cout << "persons - Sorts persons table " << endl;
+    string table;
+    cin >> table;
 
-    string sort_command;
-    cin >> sort_command;
-
-    if(sort_command == "alphabetical")
+    if(table == "computers")
     {
-        cout << endl;
         cout << "Please enter one of the following commands:" << endl;
-        cout << "az - Sorts by alphabetical order" << endl;
-        cout << "za - Sorts by reverse alphabetical order" << endl << endl;
-
-        string alph_command;
-        cin >> alph_command;
-
-        if(alph_command == "az")
+        cout << "name \t\t" << "- Sorts names alphabetically" << endl;
+        cout << "build_year \t" << "-Sorts by build year" << endl;
+        cout << "computer_type \t" << "-Sorts computer type alphabetically" << endl;
+        cout << "built \t\t" << "-Sorts by whether it has been built" << endl;
+        cout << "nationality \t" << "-Sorts nationalities alphabetically" << endl;
+        string column;
+        cin >> column;
+        if(column == "name" || column == "build_year" || column == "computer_type" || column == "built" || column == "nationality")
         {
-            sortedList = ps.alphabetical();
-        }
-        else if(alph_command == "za")
-        {
-             sortedList = ps.reverseAlphabetical();
-        }
-
-    }
-    else if(sort_command == "sex")
-    {
-        cout << endl;
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "male - Lists men first" << endl;
-        cout << "female - Lists women first" << endl << endl;
-
-        string sex_command;
-        cin >> sex_command;
-
-        if(sex_command == "male")
-        {
-            sortedList = ps.genderMale();
-        }
-        else if(sex_command == "female")
-        {
-            sortedList = ps.genderFemale();
-        }
-    }
-    else if(sort_command == "birth" || sort_command == "death")
-    {
-        cout << endl;
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "asc - Sort by " + sort_command + " year (ascending order)" << endl;
-        cout << "desc - Sort by " + sort_command + " year (descending order)" << endl << endl;
-
-        string order_command;
-        cin >> order_command;
-
-        if(order_command == "asc")
-        {
-            if(sort_command == "birth")
+            cout << "Please enter one of the following commands:" << endl;
+            cout << "asc - Sorts by alphabetical order" << endl;
+            cout << "desc - Sorts by reverse alphabetical order" << endl;
+            string order;
+            cin >> order;
+            if(order == "asc" || order == "desc")
             {
-                sortedList = ps.birthAscending();
+                sortedComputersList = ps.sortComputers(column, order);
+                print_computers(sortedComputersList);
             }
-			else
-			{
-                sortedList = ps.deathAscending();
-            }
-        }
-        else if(order_command == "desc")
-        {
-            if(sort_command == "birth")
+            else
             {
-                sortedList = ps.birthDescending();
-            }
-			else
-			{
-                sortedList = ps.deathDescending();
+                cout << "You entered an invalid command" << endl;
             }
         }
+        else
+        {
+            cout << "You entered an invalid command" << endl;
+
+        }
+
     }
-    else if(sort_command == "nationality")
+    else if(table == "persons")
     {
-        cout << endl;
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "az - Sorts nationalities by alphabetical order" << endl;
-        cout << "za - Sorts nationalities by reverse alphabetical order" << endl << endl;
-
-        string nat_command;
-        cin >> nat_command;
-
-        if(nat_command == "az")
+        cout << "name \t" << "- Sorts names alphabetically" << endl;
+        cout << "sex \t\t"          << "- Sort by sex" << endl;
+        cout << "birth \t\t"        << "- Sorts by year of birth" << endl;
+        cout << "death \t\t"        << "- Sorts by year of death" << endl;
+        cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl;
+        string column;
+        cin>>column;
+        if(column == "name" || column == "sex" || column == "birth" || column == "death" || column == "nationality")
         {
-            sortedList = ps.nationalityOrder();
+            cout << "Please enter one of the following commands:" << endl;
+            cout << "asc - Sorts by alphabetical order" << endl;
+            cout << "desc - Sorts by reverse alphabetical order" << endl;
+            string order;
+            cin >> order;
+            if(order == "asc" || order == "desc")
+            {
+                sortedPersonsList = ps.sortPersons(column, order);
+                print_persons(sortedPersonsList);
+            }
+            else
+            {
+                cout << "You entered an invalid command" << endl;
+            }
         }
-        else if(nat_command == "za")
+        else
         {
-            sortedList = ps.nationalityReverse();
+            cout << "You entered an invalid command" << endl;
+
         }
     }
-
-	print_persons(sortedList);
+    else
+    {
+        cout << "You enterd an invalid command" <<endl;
+    }
 }
 //This function allows you to search for a specific scientist in the entire list. You can search the system by
 //his name, sex, birth year, death year or nationality.
@@ -606,14 +573,4 @@ void consoleui::search()
     }
 
     print_persons(match);
-}
-
-//This function allows you to filter the list using the regex method.
-void consoleui::regex()
-{
-  cout << "Enter your regex command now: (it searches in everything except the information section)" << endl;
-    string rx;
-    cin.ignore(1000, '\n');
-    getline(cin, rx);
-    print_persons(ps.filterWithRegex(rx));
 }
