@@ -23,7 +23,11 @@ public:
     //Functions to sort the data according to the user's preferences.
     vector<person> getPersons();
 
-    vector<person> alphabetical();
+    vector<person> sortPersons(string column, string order);
+    vector<person> sortComputers(string column, string order);
+
+    //TODO: DELETE OLD SORT FUNCTIONS
+    /*vector<person> alphabetical();
     vector<person> reverseAlphabetical();
     vector<person> birthAscending();
     vector<person> birthDescending();
@@ -32,7 +36,7 @@ public:
     vector<person> genderMale();
     vector<person> genderFemale();
     vector<person> nationalityOrder();
-    vector<person> nationalityReverse();
+    vector<person> nationalityReverse();*/
 
 	vector<person> matchByName(string);
 	vector<person> matchBySex(string);
