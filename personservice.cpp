@@ -54,28 +54,28 @@ vector<person> personservice::reverseAlphabetical()
 //Sorts by birth year in ascending order
 vector<person> personservice::birthAscending()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY birthyear");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY birth_year");
     return curr_persons;
 }
 
 //Sorts by birth year in descending order
 vector<person> personservice::birthDescending()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY birthyear DESC");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY birth_year DESC");
     return curr_persons;
 }
 
 //Sorts by death year in ascending order
 vector<person> personservice::deathAscending()
 {
-   curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY deathyear");
+   curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY death_year");
    return curr_persons;
 }
 
 //Sorts by death year in descending order
 vector<person> personservice::deathDescending()
 {
-    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY deathyear DESC");
+    curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY death_year DESC");
     return curr_persons;
 }
 
