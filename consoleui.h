@@ -1,7 +1,9 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 
+
 #include "personservice.h"
+#include "computerservice.h"
 
 class consoleui
 {
@@ -13,6 +15,7 @@ private:
     personservice ps;
 
     void print_persons(vector<person> p);
+    void print_computers(vector<computer> c);
 
     void list();
     void add();
