@@ -33,9 +33,11 @@ int dataaccess::getNationalityID(std::string nationality)
 
     query.exec(QString::fromStdString("SELECT * FROM nationality n WHERE n.nationality = \"" + nationality + "\""));
 
-    query.first();
+    //If country is found, return first match
+    if(query.next()) return query.value("ID").toUInt();
 
-    return query.value("ID").toUInt();
+    //If no match, return id for nationality "UNKNOWN"
+    return 0;
 }
 
 std::vector<person> dataaccess::getPersonsByQuery(QString q)
@@ -88,8 +90,11 @@ void dataaccess::addPerson(person p)
 {
     QSqlQuery query(db);
 
-    query.prepare("INSERT INTO Persons(name, sex, birth_year, death_year, built, nationalityID, info) VALUES(:name,:sex,:birth_year,:death_year,:nationalityID,:info");
+    query.prepare("INSERT INTO Persons (name, sex, birth_year, death_year, nationalityID, info) "
+                          "VALUES (:name, :sex, :birth_year, :death_year, :nationalityID, :info)");
+
     query.bindValue(":name", QString::fromStdString(p.getName()));
+    query.bindValue(":sex", QString::fromStdString(p.getSex()));
     query.bindValue(":birth_year", QString::fromStdString(std::to_string(p.getBirthYear())));
     query.bindValue(":death_year", QString::fromStdString(std::to_string(p.getDeathYear())));
     query.bindValue(":nationalityID", QString::fromStdString(std::to_string(getNationalityID(p.getNationality()))));
@@ -102,9 +107,14 @@ void dataaccess::addComputer(computer c)
 {
     QSqlQuery query(db);
 
-    query.prepare("INSERT INTO Computers(name, build_year, computer_type, built, nationalityID, info) VALUES(:name,:build_year,:built,:nationalityID,:info");
+    bool noerr;
+
+    noerr = query.prepare("INSERT INTO Computers(name, build_year, computer_type, built, nationalityID, info) "
+                          "VALUES(:name,:build_year, :computer_type, :built,:nationalityID,:info)");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
     query.bindValue(":name", QString::fromStdString(c.getName()));
     query.bindValue(":build_year", QString::fromStdString(std::to_string(c.getBuildYear())));
+    query.bindValue(":computer_type", QString::fromStdString(c.getType()));
     query.bindValue(":built", QString::fromStdString(c.getBuilt()?"TRUE":"FALSE"));
     query.bindValue(":nationalityID", QString::fromStdString(std::to_string(getNationalityID(c.getNationality()))));
     query.bindValue(":info", QString::fromStdString(c.getInfo()));

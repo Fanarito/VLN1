@@ -17,6 +17,8 @@ public:
     void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info);
     void addPerson(person p);
 
+    void addComputer(std::string name, int build_year, std::string type, int built, std::string nationality, std::string info);
+
     void removePerson(person p);
     void removeComputer(computer c);
 

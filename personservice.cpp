@@ -38,6 +38,11 @@ void personservice::addPerson(person p)
     data.addPerson(p);
 }
 
+void personservice::addComputer(std::string name, int build_year, std::string type, int built, std::string nationality, std::string info)
+{
+    data.addComputer(computer(name, build_year, type, built, nationality, info));
+}
+
 //TODO: REMOVE PERSON LOGIC!
 void personservice::removePerson(person p)
 {

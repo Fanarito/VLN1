@@ -18,6 +18,8 @@ void consoleui::run()
 
     do
     {
+        ps.reset();
+
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
@@ -182,10 +184,11 @@ void consoleui::add()
     }
     else if(choice == "computer")
     {
+
         string name;
         string type;
-        int year_of_birth;
-        int year_of_death;
+        int build_year;
+        string b;       //horrible hack
         bool built;
         string nationality;
         string info;
@@ -197,26 +200,23 @@ void consoleui::add()
         cout << "type: " << endl;
         cin >> type;
 
-        cout << "Year of birth: " << endl;
+        cout << "Build Year: " << endl;
 
-        while(!(cin >> year_of_birth))
+        while(!(cin >> build_year))
         {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Invalid input it must be a number" << endl << "Try again:";
         }
 
-        cout << "Year of death: " << endl;
-
-        while(!(cin >> year_of_death))
-        {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
+        //Begin horrible hack
 
         cout << "Built: " << endl;
-        cin >> built;
+        cin >> b;
+
+        built = (b[0] == 'y');
+
+        //End horrible hack
 
         cout << "Nationality: " << endl;
         cin >> nationality;
@@ -227,7 +227,7 @@ void consoleui::add()
 
         cout << endl;
 
-       // cs.addComputer(name, year_of_birth, type, built, nationality, info);
+        ps.addComputer(name, build_year, type, built, nationality, info);
 
     }
 }
@@ -515,6 +515,10 @@ void consoleui::sort()
 //his name, sex, birth year, death year or nationality.
 void consoleui::search()
 {
+    //TODO: Implement searching functionality
+
+    /*
+
     cout << endl;
     cout << "name - Will search the system for a name" << endl;
     cout << "sex - Will search the system for a sex(m/f)" << endl;
@@ -579,4 +583,5 @@ void consoleui::search()
     }
 
     print_persons(match);
+    */
 }
