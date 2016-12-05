@@ -23,8 +23,6 @@ private:
     void remove();
     void sort();
     void search();
-    void save();
-    void regex();
 };
 
 #endif // CONSOLEUI_H
