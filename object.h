@@ -7,14 +7,14 @@
 class Object
 {
 protected:
-    uint m_id;
+    unsigned int m_id;
     std::string m_name;
     std::string m_nationality;
     std::string m_info;
 public:
     Object(std::string name="Undefined", std::string nationality="Undefined", std::string info="");
 
-    uint getId() const;
+    unsigned int getId() const;
 
     std::string getName() const;
     void setName(std::string name);

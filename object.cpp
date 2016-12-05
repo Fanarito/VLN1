@@ -7,7 +7,7 @@ Object::Object(std::string name, std::string nationality, std::string info)
     m_info = info;
 }
 
-uint Object::getId() const
+unsigned int Object::getId() const
 {
     return m_id;
 }
