@@ -15,7 +15,6 @@ SOURCES += main.cpp \
     person.cpp \
     personservice.cpp \
     computer.cpp \
-    computerservice.cpp \
     object.cpp
 
 HEADERS += \
@@ -24,5 +23,4 @@ HEADERS += \
     person.h \
     personservice.h \
     computer.h \
-    computerservice.h \
     object.h

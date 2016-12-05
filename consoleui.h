@@ -3,7 +3,6 @@
 
 
 #include "personservice.h"
-#include "computerservice.h"
 
 class consoleui
 {
