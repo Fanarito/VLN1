@@ -9,24 +9,15 @@ class Object
 protected:
     uint m_id;
     std::string m_name;
-    int m_birthyear;
-    int m_deathyear;
     std::string m_nationality;
     std::string m_info;
 public:
-    Object(std::string name="Undefined", int birthyear=0, int deathyear=0,
-           std::string nationality="Undefined", std::string info="");
+    Object(std::string name="Undefined", std::string nationality="Undefined", std::string info="");
 
     uint getId() const;
 
     std::string getName() const;
     void setName(std::string name);
-
-    int getBirthYear() const;
-    void setBirthYear(int birthyear);
-
-    int getDeathYear() const;
-    void setDeathYear(int deathyear);
 
     std::string getNationality() const;
     void setNationality(std::string nationality);
@@ -39,10 +30,6 @@ public:
 
     static int compareName(Object a, Object b);
     static int compareNameReverse(Object a, Object b);
-    static int compareYear(Object a, Object b);
-    static int compareYearReverse(Object a, Object b);
-    static int compareDeath(Object a, Object b);
-    static int compareDeathReverse(Object a, Object b);
     static int compareNationality(Object a, Object b);
     static int compareNationalityReverse(Object a, Object b);
 };

@@ -1,7 +1,8 @@
 #include "person.h"
 #include <iostream>
 
-person::person(std::string name, std::string sex, int birthyear, int deathyear, std::string nationality, std::string info)
+person::person(std::string name, std::string sex, int birthyear,
+               int deathyear, std::string nationality, std::string info)
 {
     m_name = name;
     m_sex = sex;
@@ -58,13 +59,14 @@ std::ostream& operator<<(std::ostream& lhs, const person rhs)
 //Overloaded operator to compare person with another person. Returns true if they are the same.
 bool operator==(const person lhs, const person rhs)
 {
-	if(lhs.m_name != rhs.m_name) return false;
-	if(lhs.m_sex != rhs.m_sex) return false;
-	if(lhs.m_birthyear != rhs.m_birthyear) return false;
-	if(lhs.m_nationality != rhs.m_nationality) return false;
-	if(lhs.m_info != rhs.m_info) return false;
+    if(lhs.m_id != rhs.m_id) return false;
+    if(lhs.m_name != rhs.m_name) return false;
+    if(lhs.m_sex != rhs.m_sex) return false;
+    if(lhs.m_birthyear != rhs.m_birthyear) return false;
+    if(lhs.m_nationality != rhs.m_nationality) return false;
+    if(lhs.m_info != rhs.m_info) return false;
 
-	return true;
+    return true;
 }
 
 int person::compareGender(person a, person b)
@@ -75,4 +77,24 @@ int person::compareGender(person a, person b)
 int person::compareGenderReverse(person a, person b)
 {
     return a.m_sex < b.m_sex;
+}
+
+int person::compareYear(person a, person b)
+{
+    return a.m_birthyear > b.m_birthyear;
+}
+
+int person::compareYearReverse(person a, person b)
+{
+    return a.m_birthyear < b.m_birthyear;
+}
+
+int person::compareDeath(person a, person b)
+{
+    return a.m_deathyear > b.m_deathyear;
+}
+
+int person::compareDeathReverse(person a, person b)
+{
+    return a.m_deathyear < b.m_deathyear;
 }
