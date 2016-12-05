@@ -3,7 +3,11 @@
 
 dataaccess::dataaccess()
 {
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    QString dbName = "student_db.sqlite";
+    db.setDatabaseName(dbName);
 
+    if(!db.open()) std::cerr << "Error: SQL did not open properly!" << std::endl;
 }
 
 // Splits a string into a vector of strings with a specified delimiter.
@@ -23,41 +27,36 @@ std::vector<std::string> split(const std::string &s, char delim)
     return tokens;
 }
 
-// Reads the file and saves it to a vector
-std::vector<person> dataaccess::read()
+std::vector<person> dataaccess::getPersonsByQuery(QString q)
 {
-    std::fstream file(FILENAME);
+   QSqlQuery query(db);
 
-    std::vector<person> people;
+   query.exec(q);
 
-    std::vector<std::string> p;
-    std::string line;
+   std::vector<person> persons;
 
-    while(std::getline(file, line))
-    {
-        p = split(line, DELIMITER);
+   while(query.next())
+   {
+       std::string name = query.value("name").toString().toStdString();
+       std::string sex = query.value("sex").toString().toStdString();
+       int birthyear = query.value("birthyear").toUInt();
+       int deathyear = query.value("deathyear").toUInt();
+       std::string nationality = query.value("nationality").toString().toStdString();
+       std::string info = query.value("info").toString().toStdString();
 
-        // if the line lacks some values then just skip it
-        if (p.size() != 6)
-          continue;
+       persons.push_back(person(name, sex, birthyear, deathyear, nationality, info));
+   }
 
-        people.push_back(person(p[0], p[1], std::stoi(p[2]), std::stoi(p[3]), p[4], p[5]));
-    }
-
-    return people;
+   return persons;
 }
 
-
-// Saves the vector to a file
-void dataaccess::save(std::vector<person> people)
+void dataaccess::addPerson(person p)
 {
-    std::ofstream file(FILENAME);
+    QSqlQuery query(db);
 
-    std::string line;
+    QString q = QString::fromStdString("INSERT INTO persons(name, sex, birthyear, deathyear, nationality, info) VALUES("
+                + p.getName() + "," + p.getSex() + "," + std::to_string(p.getBirthYear()) + ","
+                + std::to_string(p.getDeathYear()) + "," + p.getNationality() + "," + p.getInfo() + ")");
 
-    for (size_t i = 0; i < people.size(); i++)
-    {
-        line = people[i].getName() + DELIMITER + people[i].getSex() + DELIMITER + std::to_string(people[i].getBirthYear()) + DELIMITER + std::to_string(people[i].getDeathYear()) + DELIMITER + people[i].getNationality() + DELIMITER + people[i].getInfo();
-        file << line << std::endl;
-    }
+    query.exec(q);
 }
