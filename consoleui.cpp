@@ -97,7 +97,7 @@ void consoleui::print_persons(vector<person> p)
 }
 //This function runs through the vector of computers and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
-void consoleui::print_persons(vector<computer> c)
+/*void consoleui::print_computers(vector<computer> c)
 {
     for(size_t i = 0; i < c.size(); i++)
     {
@@ -106,14 +106,37 @@ void consoleui::print_persons(vector<computer> c)
     }
 
     cout << "----" << endl;
-}
+}*/
 
 //Lists out information from the text file.
 void consoleui::list()
 {
-    vector<person> p = ps.getPersons();
-    print_persons(p);
+
+
+        string choice;
+        cout << "Select one of the following:" << endl;
+        cout << "persons - Prints out a list of persons" << endl;
+        cout << "computers - Prints out a list of computers" << endl;
+        cin >> choice;
+
+        if(choice == "persons")
+        {
+            vector<person> p = ps.getPersons();
+            print_persons(p);
+        }
+        else if(choice == "computers")
+        {
+           // vector<computer> c = ps.getComputer();
+           // print_computers(c);
+        }
+        else
+        {
+            cout<<"This is not a valid command"<<endl;
+        }
+
 }
+
+//
 
 //this function allows you to add a scientist. The user can add value to each instance of the new scientist.
 void consoleui::add()
