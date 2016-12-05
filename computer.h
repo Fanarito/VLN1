@@ -20,13 +20,13 @@ public:
     std::string getName() const;
     void setName(std::string name);
 
-    std::string getBuildYear() const;
+    int getBuildYear() const;
     void setBuildYear(int buildyear);
 
-    int getType() const;
+    std::string getType() const;
     void setType(std::string type);
 
-    int getInfo() const;
+    std::string getInfo() const;
     void setInfo(std::string info);
 
     std::string getNationality() const;

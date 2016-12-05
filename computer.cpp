@@ -1,10 +1,7 @@
 #include "computer.h"
 
-computer::computer()
-{
 
-}
-computer::computer(std::string name, std::string buildyear, std::string type, bool built, std::string info, std::string nationality);
+computer::computer(std::string name, std::string buildyear, std::string type, bool built, std::string info, std::string nationality)
 {
     c_name = name;
     c_buildyear = buildyear;
