@@ -134,7 +134,7 @@ void consoleui::add()
     cout << "person - Adds a person to the list" << endl;
     cout << "computer - Adds a computer to the list" << endl;
     cin >> choice;
-    if(choice == "persons")
+    if(choice == "person")
     {
         string name;
         string sex;
@@ -253,35 +253,35 @@ void consoleui::change()
         string name;
         cin.ignore(1000, '\n');
         getline(cin, name);
-        match = ps.matchByName(name);
+        //match = ps.matchByName(name);
     }
     else if(remove_command == "sex")
     {
         cout << "Enter the sex (m/f)" << endl;
         string sex;
         cin >> sex;
-        match = ps.matchBySex(sex);
+        //match = ps.matchBySex(sex);
     }
     else if(remove_command == "birth")
     {
         cout << "Enter the birth year" << endl;
         int birth;
         cin >> birth;
-        match = ps.matchByBirth(birth);
+        //match = ps.matchByBirth(birth);
     }
     else if(remove_command == "death")
     {
         cout << "Enter the death year" << endl;
         int death;
         cin >> death;
-        match = ps.matchByDeath(death);
+        //match = ps.matchByDeath(death);
     }
     else if(remove_command == "nationality")
     {
         cout << "Enter the nationality" << endl;
         string nationality;
         cin >> nationality;
-        match = ps.matchByName(nationality);
+        //match = ps.matchByName(nationality);
     }
 
     if(match.size() == 1)
@@ -370,35 +370,35 @@ void consoleui::remove()
         string name;
         cin.ignore(1000, '\n');
         getline(cin, name);
-        match = ps.matchByName(name);
+        //match = ps.matchByName(name);
     }
     else if(remove_command == "sex")
     {
         cout << "Enter the sex (m/f)" << endl;
         string sex;
         cin >> sex;
-        match = ps.matchBySex(sex);
+        //match = ps.matchBySex(sex);
     }
     else if(remove_command == "birth")
     {
         cout << "Enter the birth year" << endl;
         int birth;
         cin >> birth;
-        match = ps.matchByBirth(birth);
+        //match = ps.matchByBirth(birth);
     }
     else if(remove_command == "death")
     {
         cout << "Enter the death year" << endl;
         int death;
         cin >> death;
-        match = ps.matchByDeath(death);
+        //match = ps.matchByDeath(death);
     }
     else if(remove_command == "nationality")
     {
         cout << "Enter the nationality" << endl;
         string nationality;
         cin >> nationality;
-        match = ps.matchByName(nationality);
+        //match = ps.matchByName(nationality);
     }
     if(match.size() >= 1)
     {
@@ -530,12 +530,12 @@ void consoleui::search()
     if(searchCommand == "name")
     {
 		getline(cin, search_string);
- 		match = ps.matchByName(search_string);
+        //match = ps.matchByName(search_string);
     }
     else if(searchCommand == "sex")
     {
 		getline(cin, search_string);
-		match = ps.matchBySex(search_string);
+        //match = ps.matchBySex(search_string);
     }
     else if(searchCommand == "birth")
     {
@@ -547,7 +547,7 @@ void consoleui::search()
                 cout << "Invalid input it must be a number" << endl << "Try again:";
         }
 
-		match = ps.matchByBirth(search_int);
+        //match = ps.matchByBirth(search_int);
     }
     else if(searchCommand == "death")
     {
@@ -559,13 +559,13 @@ void consoleui::search()
                 cout << "Invalid input it must be a number" << endl << "Try again:";
         }
 
-		match = ps.matchByDeath(search_int);
+        //match = ps.matchByDeath(search_int);
     }
     else if(searchCommand == "nationality")
     {
         getline(cin, search_string);
 
-		match = ps.matchByNationality(search_string);
+        //match = ps.matchByNationality(search_string);
 	}
     else
     {

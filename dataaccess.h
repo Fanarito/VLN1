@@ -23,6 +23,9 @@ public:
 
     std::vector<person> getPersonsByQuery(QString q);
     std::vector<computer> getComputersByQuery(QString q);
+
+    int getNationalityID(std::string nationality);
+
     void addPerson(person p);
     void addComputer(computer p);
 };
