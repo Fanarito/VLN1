@@ -33,8 +33,7 @@ void personservice::addPerson(person p)
 //TODO: REMOVE PERSON LOGIC!
 void personservice::removePerson(person p)
 {
-    //persons.erase(std::remove(persons.begin(), persons.end(), p), persons.end());
-    reset();
+    data.removePerson(p);
 }
 
 

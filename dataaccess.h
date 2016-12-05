@@ -24,6 +24,7 @@ public:
     std::vector<person> getPersonsByQuery(QString q);
     std::vector<computer> getComputersByQuery(QString q);
     void addPerson(person p);
+    void removePerson(person p);
 };
 
 #endif // DATAACCESS_H
