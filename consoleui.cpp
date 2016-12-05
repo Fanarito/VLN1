@@ -20,10 +20,10 @@ void consoleui::run()
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
-        cout << "list \t- This will list all famous programmers in the system" << endl;
-        cout << "add \t- This will add a new famous programmer to the system" << endl;
-        cout << "change \t- This will change a famous programmer in the system" << endl;
-        cout << "remove \t- This will remove a famous programmer from the system" << endl;
+        cout << "list \t- This will list famous programmers or computers in the system" << endl;
+        cout << "add \t- This will add a new famous programmer or computer to the system" << endl;
+        cout << "change \t- This will change a famous programmer or computer in the system" << endl;
+        cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
         cout << "regex \t- Use regex to match either name, sex, birthyear or deathyear" << endl;
@@ -93,6 +93,7 @@ void consoleui::print_persons(vector<person> p)
 //This function runs through the vector of computers and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
 /*void consoleui::print_computers(vector<computer> c)
+>>>>>>> aa33f4a726c55b25c2737a557323e03f9381cf3f
 {
     for(size_t i = 0; i < c.size(); i++)
     {

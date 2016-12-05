@@ -4,7 +4,7 @@
 dataaccess::dataaccess()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "student_db.sqlite";
+    QString dbName = "FamousProgrammers.sqlite";
     db.setDatabaseName(dbName);
 
     if(!db.open()) std::cerr << "Error: SQL did not open properly!" << std::endl;
@@ -37,12 +37,12 @@ std::vector<person> dataaccess::getPersonsByQuery(QString q)
 
    while(query.next())
    {
-       std::string name = query.value("name").toString().toStdString();
-       std::string sex = query.value("sex").toString().toStdString();
-       int birthyear = query.value("birthyear").toUInt();
-       int deathyear = query.value("deathyear").toUInt();
-       std::string nationality = query.value("nationality").toString().toStdString();
-       std::string info = query.value("info").toString().toStdString();
+       std::string name = query.value("Name").toString().toStdString();
+       std::string sex = query.value("Sex").toString().toStdString();
+       int birthyear = query.value("Birth_Year").toUInt();
+       int deathyear = query.value("Death_Year").toUInt();
+       std::string nationality = query.value("Nationality").toString().toStdString();
+       std::string info = query.value("Description").toString().toStdString();
 
        persons.push_back(person(name, sex, birthyear, deathyear, nationality, info));
    }
