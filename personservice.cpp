@@ -15,7 +15,8 @@ vector<person> personservice::getPersons()
 }
 
 //Updates current working list of data with changes made in-program
-void personservice::reset() {
+void personservice::reset()
+{
     curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID");
 }
 

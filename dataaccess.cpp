@@ -27,6 +27,15 @@ std::vector<std::string> split(const std::string &s, char delim)
     return tokens;
 }
 
+int getNationalityID(std::string nationality)
+{
+    QSqlQuery query(db);
+
+    query.exec("SELECT id FROM nationality n WHERE n.nationality = " + nationality);
+
+    return query.value("id");
+}
+
 std::vector<person> dataaccess::getPersonsByQuery(QString q)
 {
    QSqlQuery query(db);
@@ -56,7 +65,20 @@ void dataaccess::addPerson(person p)
 
     QString q = QString::fromStdString("INSERT INTO persons(name, sex, birthyear, deathyear, nationality, info) VALUES("
                 + p.getName() + "," + p.getSex() + "," + std::to_string(p.getBirthYear()) + ","
-                + std::to_string(p.getDeathYear()) + "," + p.getNationality() + "," + p.getInfo() + ")");
+                + std::to_string(p.getDeathYear()) + "," + std::to_string(getNationalityID(p.getNationality())) + "," + p.getInfo() + ")");
+
+    query.exec(q);
+}
+
+void dataaccess::addComputer(computer c)
+{
+    QSqlQuery query(db);
+
+    QString
+
+    QString q = QString::fromStdString("INSERT INTO Computers(name, build_year, computer_type, built, nationalityID, info) VALUES("
+                + p.getName() + "," + p.getSex() + "," + std::to_string(p.getBirthYear()) + ","
+                + std::to_string(p.getBuilt()) + "," + std::to_string(getNationalityID(p.getNationality())) + "," + p.getInfo() + ")");
 
     query.exec(q);
 }

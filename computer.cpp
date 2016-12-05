@@ -73,8 +73,8 @@ bool operator==(const computer lhs, const computer rhs)
 	if(lhs.m_birthyear != rhs.m_birthyear) return false;
 	if(lhs.m_nationality != rhs.m_nationality) return false;
 	if(lhs.m_info != rhs.m_info) return false;
-  if(lhs.m_type != rhs.m_type) return false;
-  if(lhs.m_built != rhs.m_built) return false;
+    if(lhs.m_type != rhs.m_type) return false;
+    if(lhs.m_built != rhs.m_built) return false;
 
 	return true;
 }
