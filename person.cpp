@@ -22,6 +22,24 @@ void person::setSex(std::string sex)
     m_sex = sex;
 }
 
+int person::getBirthYear() const
+{
+    return m_birthyear;
+}
+void person::setBirthYear(int year)
+{
+    m_birthyear = year;
+}
+
+int person::getDeathYear() const
+{
+    return m_deathyear;
+}
+void person::setDeathYear(int year)
+{
+    m_deathyear = year;
+}
+
 /*
  * Overloaded operator for printing out to console
  *
@@ -67,34 +85,4 @@ bool operator==(const person lhs, const person rhs)
     if(lhs.m_info != rhs.m_info) return false;
 
     return true;
-}
-
-int person::compareGender(person a, person b)
-{
-    return a.m_sex > b.m_sex;
-}
-
-int person::compareGenderReverse(person a, person b)
-{
-    return a.m_sex < b.m_sex;
-}
-
-int person::compareYear(person a, person b)
-{
-    return a.m_birthyear > b.m_birthyear;
-}
-
-int person::compareYearReverse(person a, person b)
-{
-    return a.m_birthyear < b.m_birthyear;
-}
-
-int person::compareDeath(person a, person b)
-{
-    return a.m_deathyear > b.m_deathyear;
-}
-
-int person::compareDeathReverse(person a, person b)
-{
-    return a.m_deathyear < b.m_deathyear;
 }
