@@ -136,49 +136,106 @@ void consoleui::list()
 //this function allows you to add a scientist. The user can add value to each instance of the new scientist.
 void consoleui::add()
 {
-    string name;
-    string sex;
-    int year_of_birth;
-    int year_of_death;
-    string nationality;
-    string info;
-
-    cout << "Name: " << endl;
-    cin.ignore(1000, '\n');
-    getline(cin, name);
-
-    cout << "Sex: " << endl;
-    cin >> sex;
-
-    cout << "Year of birth: " << endl;
-
-    while(!(cin >> year_of_birth))
+    string choice;
+    cout << "Select one of the following:" << endl;
+    cout << "person - Adds a person to the list" << endl;
+    cout << "computer - Adds a computer to the list" << endl;
+    cin >> choice;
+    if(choice == "persons")
     {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input it must be a number" << endl << "Try again:";
+        string name;
+        string sex;
+        int year_of_birth;
+        int year_of_death;
+        string nationality;
+        string info;
+
+        cout << "Name: " << endl;
+        cin.ignore(1000, '\n');
+        getline(cin, name);
+
+        cout << "Sex: " << endl;
+        cin >> sex;
+
+        cout << "Year of birth: " << endl;
+
+        while(!(cin >> year_of_birth))
+        {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+        }
+
+        cout << "Year of death: " << endl;
+
+        while(!(cin >> year_of_death))
+        {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+        }
+
+        cout << "Nationality: " << endl;
+        cin >> nationality;
+
+        cout << "Information: " << endl;
+        cin.ignore(1000, '\n');
+        getline(cin, info);
+
+        cout << endl;
+
+        ps.addPerson(name, sex, year_of_birth, year_of_death, nationality, info);
     }
-
-    cout << "Year of death: " << endl;
-
-    while(!(cin >> year_of_death))
+    else if(choice == "computer")
     {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input it must be a number" << endl << "Try again:";
+        string name;
+        string type;
+        int year_of_birth;
+        int year_of_death;
+        bool built;
+        string nationality;
+        string info;
+
+        cout << "Name: " << endl;
+        cin.ignore(1000, '\n');
+        getline(cin, name);
+
+        cout << "type: " << endl;
+        cin >> type;
+
+        cout << "Year of birth: " << endl;
+
+        while(!(cin >> year_of_birth))
+        {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+        }
+
+        cout << "Year of death: " << endl;
+
+        while(!(cin >> year_of_death))
+        {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input it must be a number" << endl << "Try again:";
+        }
+
+        cout << "Built: " << endl;
+        cin >> built;
+
+        cout << "Nationality: " << endl;
+        cin >> nationality;
+
+        cout << "Information: " << endl;
+        cin.ignore(1000, '\n');
+        getline(cin, info);
+
+        cout << endl;
+
+       // cs.addComputer(name, year_of_birth, type, built, nationality, info);
+
     }
-
-    cout << "Nationality: " << endl;
-    cin >> nationality;
-
-    cout << "Information: " << endl;
-    cin.ignore(1000, '\n');
-    getline(cin, info);
-
-    cout << endl;
-
-    ps.addPerson(name, sex, year_of_birth, year_of_death, nationality, info);
-
 }
 
 //This function allows you to change some, or all properties of a person.
