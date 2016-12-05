@@ -83,3 +83,12 @@ void dataaccess::addPerson(person p)
 
     query.exec(q);
 }
+
+void dataaccess::removePerson(person p)
+{
+    QSqlQuery query(db);
+
+    query.prepare("DELETE FROM persons WHERE id = :id");
+    query.bindValue(":id", p.getId());
+    query.exec();
+}
