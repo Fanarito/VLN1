@@ -27,9 +27,6 @@ public:
 
     friend std::ostream& operator<<(std::ostream& lhs, const computer rhs);
     friend bool operator==(const computer lsh, const computer rhs);
-
-    static int compareType(computer a, computer b);
-    static int compareTypeReverse(computer a, computer b);
 };
 
 #endif // COMPUTER_H
