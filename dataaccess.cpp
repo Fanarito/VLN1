@@ -27,7 +27,7 @@ std::vector<std::string> split(const std::string &s, char delim)
     return tokens;
 }
 
-std::vector<person> dataaccess::getPersonsByQuery(string q)
+std::vector<person> dataaccess::getPersonsByQuery(QString q)
 {
    QSqlQuery query(db);
 
@@ -37,15 +37,26 @@ std::vector<person> dataaccess::getPersonsByQuery(string q)
 
    while(query.next())
    {
-       string name = query.value("name").toString().toStdString();
-       string sex = query.value("sex").toString().toStdString();
+       std::string name = query.value("name").toString().toStdString();
+       std::string sex = query.value("sex").toString().toStdString();
        int birthyear = query.value("birthyear").toUInt();
        int deathyear = query.value("deathyear").toUInt();
-       string nationality = query.value("nationality").toString.toStdString();
-       string info = query.value("info").toString.toStdString();
+       std::string nationality = query.value("nationality").toString().toStdString();
+       std::string info = query.value("info").toString().toStdString();
 
        persons.push_back(person(name, sex, birthyear, deathyear, nationality, info));
    }
 
    return persons;
+}
+
+void dataaccess::addPerson(person p)
+{
+    QSqlQuery query(db);
+
+    QString q = QString::fromStdString("INSERT INTO persons(name, sex, birthyear, deathyear, nationality, info) VALUES("
+                + p.getName() + "," + p.getSex() + "," + std::to_string(p.getBirthYear()) + ","
+                + std::to_string(p.getDeathYear()) + "," + p.getNationality() + "," + p.getInfo() + ")");
+
+    query.exec(q);
 }

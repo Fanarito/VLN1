@@ -20,7 +20,8 @@ private:
 public:
     dataaccess();
 
-    std::vector<person> getPersonsByQuery(std::string q);
+    std::vector<person> getPersonsByQuery(QString q);
+    void addPerson(person p);
 };
 
 #endif // DATAACCESS_H

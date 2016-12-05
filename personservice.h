@@ -22,6 +22,7 @@ public:
 
     //Functions to sort the data according to the user's preferences.
     vector<person> getPersons();
+
     vector<person> alphabetical();
     vector<person> reverseAlphabetical();
     vector<person> birthAscending();
@@ -43,7 +44,7 @@ public:
 
 private:
     dataaccess data;
-    vector<person> current_list;
+    vector<person> curr_persons;
 };
 
 #endif // PERSONSERVICE_H

@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include <iostream>
 
 class person
 {
@@ -37,6 +38,7 @@ public:
     void setInfo(std::string info);
 
     friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
+
     friend bool operator==(const person lhs, const person rhs);
 
     static int compareName(person a, person b);
