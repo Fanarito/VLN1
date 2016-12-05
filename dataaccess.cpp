@@ -62,9 +62,9 @@ std::vector<computer> dataaccess::getComputersByQuery(QString q)
    while(query.next())
    {
        std::string name = query.value("Name").toString().toStdString();
-       int build_year = query.value("Build_Year").toString().toStdString();
-       std::string computer_type = query.value("Computer_Type").toUInt();
-       bool built = query.value("Built").toUInt();
+       int build_year = query.value("Build_Year").toUInt();
+       std::string computer_type = query.value("Computer_Type").toString().toStdString();
+       bool built = query.value("Built").toBool();
        std::string nationality = query.value("Nationality").toString().toStdString();
        std::string info = query.value("Info").toString().toStdString();
 
