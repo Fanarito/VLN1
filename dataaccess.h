@@ -27,7 +27,10 @@ public:
     int getNationalityID(std::string nationality);
 
     void addPerson(person p);
+    void removePerson(person p);
+
     void addComputer(computer p);
+
 };
 
 #endif // DATAACCESS_H

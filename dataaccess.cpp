@@ -75,7 +75,7 @@ std::vector<computer> dataaccess::getComputersByQuery(QString q)
        std::string name = query.value("Name").toString().toStdString();
        int build_year = query.value("Build_Year").toUInt();
        std::string computer_type = query.value("Computer_Type").toString().toStdString();
-       bool built = query.value("Built").toUInt();
+       bool built = query.value("Built").toBool();
        std::string nationality = query.value("Nationality").toString().toStdString();
        std::string info = query.value("Info").toString().toStdString();
 
@@ -88,20 +88,35 @@ void dataaccess::addPerson(person p)
 {
     QSqlQuery query(db);
 
-    QString q = QString::fromStdString("INSERT INTO persons(Name,Sex,Birth_year,Death_year,NationalityID,Info) VALUES(\""
-                + p.getName() + "\"" + "," + "\"" + p.getSex() + "\""+ "," + std::to_string(p.getBirthYear()) + ","
-                + std::to_string(p.getDeathYear()) + "," + std::to_string(getNationalityID(p.getNationality())) + "," + "\"" + p.getInfo() + "\"" + ")");
+    query.prepare("INSERT INTO Persons(name, sex, birth_year, death_year, built, nationalityID, info) VALUES(:name,:sex,:birth_year,:death_year,:nationalityID,:info");
+    query.bindValue(":name", QString::fromStdString(p.getName()));
+    query.bindValue(":birth_year", QString::fromStdString(std::to_string(p.getBirthYear())));
+    query.bindValue(":death_year", QString::fromStdString(std::to_string(p.getDeathYear())));
+    query.bindValue(":nationalityID", QString::fromStdString(std::to_string(getNationalityID(p.getNationality()))));
+    query.bindValue(":info", QString::fromStdString(p.getInfo()));
 
-    query.exec(q);
+    query.exec();
 }
 
 void dataaccess::addComputer(computer c)
 {
     QSqlQuery query(db);
 
-    QString q = QString::fromStdString("INSERT INTO Computers(name, build_year, computer_type, built, nationalityID, info) VALUES("
-                + c.getName() + "," + std::to_string(c.getBuildYear()) + ","
-                + std::to_string(c.getBuilt()) + "," + std::to_string(getNationalityID(c.getNationality())) + "," + c.getInfo() + ")");
+    query.prepare("INSERT INTO Computers(name, build_year, computer_type, built, nationalityID, info) VALUES(:name,:build_year,:built,:nationalityID,:info");
+    query.bindValue(":name", QString::fromStdString(c.getName()));
+    query.bindValue(":build_year", QString::fromStdString(std::to_string(c.getBuildYear())));
+    query.bindValue(":built", QString::fromStdString(c.getBuilt()?"TRUE":"FALSE"));
+    query.bindValue(":nationalityID", QString::fromStdString(std::to_string(getNationalityID(c.getNationality()))));
+    query.bindValue(":info", QString::fromStdString(c.getInfo()));
 
-    query.exec(q);
+    query.exec();
+}
+
+void dataaccess::removePerson(person p)
+{
+    QSqlQuery query(db);
+
+    query.prepare("DELETE FROM persons WHERE id = :id");
+    query.bindValue(":id", p.getId());
+    query.exec();
 }

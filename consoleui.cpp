@@ -114,8 +114,9 @@ void consoleui::list()
         }
         else if(choice == "computers")
         {
-           // vector<computer> c = ps.getComputer();
-           // print_computers(c);
+           vector<computer> c = ps.getComputers();
+           cout << "Number of computers" << c.size() << endl;
+           print_computers(c);
         }
         else
         {
