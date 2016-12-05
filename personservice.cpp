@@ -37,7 +37,23 @@ void personservice::removePerson(person p)
     reset();
 }
 
-//Sorts by names in alphabetical order
+
+vector<person> personservice::sortPersons(string column, string order)
+{
+    curr_persons = data.getPersonsByQuery("SELECT p.Name, p.Sex, p.Birth_Year, p.Death_Year, n.Nationality, p.Info FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY " + column + " " + order);
+    return curr_persons;
+}
+
+vector<person> personservice::sortComputers(string column, string order)
+{
+    curr_persons = data.getComputersByQuery("SELECT c.Name, c.Build_Year, c.Computer_Type, c.Built, n.Nationality, c.Info FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID ORDER BY " + column + " " + order);
+    return curr_computers;
+}
+
+
+//TODO: DELETE OLD SORT FUNCTIONS BELOW
+
+/*//Sorts by names in alphabetical order
 vector<person> personservice::alphabetical()
 {
     curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY name");
@@ -106,25 +122,26 @@ vector<person> personservice::nationalityReverse()
     curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID ORDER BY nationality DESC");
     return curr_persons;
 }
+*/
 
 //Changes string input, name, to lowercase and runs through vector of person and changes its name variables to lowercase.
 //This function returns a vector of all names that match, without distinguising uppercase and lowercase characters.
 //The change and remove functions in the personservice class use this to make matching case insensitive.
 vector<person> personservice::matchByName(string name)
 {
-	transform(name.begin(), name.end(), name.begin(), ::tolower);
-	vector<person> match;
+    transform(name.begin(), name.end(), name.begin(), ::tolower);
+    vector<person> match;
 
     for(size_t i = 0; i < curr_persons.size(); i++)
-	{
+    {
         string thename = curr_persons[i].getName();
-		transform(thename.begin(), thename.end(), thename.begin(), ::tolower);
+        transform(thename.begin(), thename.end(), thename.begin(), ::tolower);
 
-		if(thename.find(name) != string::npos)
-		{
+        if(thename.find(name) != string::npos)
+        {
             match.push_back(curr_persons[i]);
-		}
-	}
+        }
+    }
 
     curr_persons = match;
     return curr_persons;
@@ -135,19 +152,19 @@ vector<person> personservice::matchByName(string name)
 //The change and remove functions in the personservice class use this to make matching case insensitive.
 vector<person> personservice::matchBySex(string sex)
 {
-	transform(sex.begin(), sex.end(), sex.begin(), ::tolower);
-	vector<person> match;
+    transform(sex.begin(), sex.end(), sex.begin(), ::tolower);
+    vector<person> match;
 
     for(size_t i = 0; i < curr_persons.size(); i++)
-	{
+    {
         string thesex = curr_persons[i].getSex();
         transform(thesex.begin(), thesex.end(), thesex.begin(), ::tolower);
 
-		if(thesex == sex)
-		{
+        if(thesex == sex)
+        {
             match.push_back(curr_persons[i]);
-		}
-	}
+        }
+    }
 
     curr_persons = match;
     return curr_persons;
@@ -157,15 +174,15 @@ vector<person> personservice::matchBySex(string sex)
 //The matches are returned in the vector of person, match.
 vector<person> personservice::matchByBirth(int year)
 {
-	vector<person> match;
+    vector<person> match;
 
     for(size_t i = 0; i < curr_persons.size(); i++)
-	{
+    {
         if(curr_persons[i].getBirthYear() == year)
-		{
+        {
             match.push_back(curr_persons[i]);
-		}
-	}
+        }
+    }
 
     curr_persons = match;
     return curr_persons;
@@ -175,15 +192,15 @@ vector<person> personservice::matchByBirth(int year)
 //The matches are returned in the vector of person, match.
 vector<person> personservice::matchByDeath(int year)
 {
-	vector<person> match;
+    vector<person> match;
 
     for(size_t i = 0; i < curr_persons.size(); i++)
-	{
+    {
         if(curr_persons[i].getDeathYear()  == year)
-		{
+        {
             match.push_back(curr_persons[i]);
-		}
-	}
+        }
+    }
 
     curr_persons = match;
     return curr_persons;
@@ -195,18 +212,18 @@ vector<person> personservice::matchByDeath(int year)
 vector<person> personservice::matchByNationality(string nationality)
 {
     transform(nationality.begin(), nationality.end(), nationality.begin(), ::tolower);
-	vector<person> match;
+    vector<person> match;
 
     for(size_t i = 0; i < curr_persons.size(); i++)
-	{
+    {
         string thenationality = curr_persons[i].getNationality();
-		transform(thenationality.begin(), thenationality.end(), thenationality.begin(), ::tolower);
+        transform(thenationality.begin(), thenationality.end(), thenationality.begin(), ::tolower);
 
-		if(thenationality.find(nationality) != string::npos)
-		{
+        if(thenationality.find(nationality) != string::npos)
+        {
             match.push_back(curr_persons[i]);
-		}
-	}
+        }
+    }
 
     curr_persons = match;
     return curr_persons;

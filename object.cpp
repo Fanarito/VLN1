@@ -1,12 +1,15 @@
 #include "object.h"
 
-Object::Object(std::string name, int birthyear, int deathyear, std::string nationality, std::string info)
+Object::Object(std::string name, std::string nationality, std::string info)
 {
     m_name = name;
-    m_birthyear = birthyear;
-    m_deathyear = deathyear;
     m_nationality = nationality;
     m_info = info;
+}
+
+uint Object::getId() const
+{
+    return m_id;
 }
 
 std::string Object::getName() const
@@ -17,25 +20,6 @@ std::string Object::getName() const
 void Object::setName(std::string name)
 {
     m_name = name;
-}
-
-int Object::getBirthYear() const
-{
-    return m_birthyear;
-}
-void Object::setBirthYear(int birthyear)
-{
-    m_birthyear = birthyear;
-}
-
-int Object::getDeathYear() const
-{
-    return m_deathyear;
-}
-
-void Object::setDeathYear(int deathyear)
-{
-    m_deathyear = deathyear;
 }
 
 std::string Object::getNationality() const
@@ -92,13 +76,12 @@ std::ostream& operator<<(std::ostream& lhs, const Object rhs)
 //Overloaded operator to compare Object with another Object. Returns true if they are the same.
 bool operator==(const Object lhs, const Object rhs)
 {
-	if(lhs.m_name != rhs.m_name) return false;
-	if(lhs.m_birthyear != rhs.m_birthyear) return false;
-  if(lhs.m_deathyear != rhs.m_birthyear) return false;
-	if(lhs.m_nationality != rhs.m_nationality) return false;
-	if(lhs.m_info != rhs.m_info) return false;
+    if(lhs.m_id != rhs.m_id) return false;
+    if(lhs.m_name != rhs.m_name) return false;
+    if(lhs.m_nationality != rhs.m_nationality) return false;
+    if(lhs.m_info != rhs.m_info) return false;
 
-	return true;
+    return true;
 }
 
 int Object::compareName(Object a, Object b)
@@ -110,26 +93,6 @@ int Object::compareNameReverse(Object a, Object b)
     return a.m_name > b.m_name;
 }
 
-int Object::compareYear(Object a, Object b)
-{
-    return a.m_birthyear > b.m_birthyear;
-}
-
-int Object::compareYearReverse(Object a, Object b)
-{
-    return a.m_birthyear < b.m_birthyear;
-}
-
-int Object::compareDeath(Object a, Object b)
-{
-    return a.m_deathyear > b.m_deathyear;
-}
-
-int Object::compareDeathReverse(Object a, Object b)
-{
-    return a.m_deathyear < b.m_deathyear;
-}
-
 int Object::compareNationality(Object a, Object b)
 {
     return a.m_nationality < b.m_nationality;
@@ -139,4 +102,3 @@ int Object::compareNationalityReverse(Object a, Object b)
 {
     return a.m_nationality > b.m_nationality;
 }
-
