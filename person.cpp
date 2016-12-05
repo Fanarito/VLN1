@@ -78,25 +78,27 @@ std::ostream& operator<<(std::ostream& lhs, const person rhs)
 {
 	lhs.setf(std::ios::left);
 
-	lhs.width(15);
+    int stdwidth = 15;
+
+    lhs.width(stdwidth);
     lhs << "Name: " << rhs.getName() << std::endl;
 
-	lhs.width(15);
+    lhs.width(stdwidth);
     lhs << "-" << std::endl;
 
-	lhs.width(15);
+    lhs.width(stdwidth);
     lhs << "Sex: " << rhs.getSex() << std::endl;
 
-	lhs.width(15);
+    lhs.width(stdwidth);
     lhs << "Year of birth: " << rhs.getBirthYear() << std::endl;
 
-	lhs.width(15);
+    lhs.width(stdwidth);
     lhs << "Year of death: " << rhs.getDeathYear() << std::endl;
 
-	lhs.width(15);
+    lhs.width(stdwidth);
     lhs << "Nationality: " << rhs.getNationality() << std::endl;
 
-	lhs.width(15);
+    lhs.width(stdwidth);
     lhs << "Info: " << rhs.getInfo() << std::endl;
 
     return lhs;
