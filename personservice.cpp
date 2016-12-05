@@ -7,6 +7,7 @@
 personservice::personservice()
 {
     curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID");
+    curr_computers = data.getComputersByQuery("SELECT * FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID");
 }
 
 vector<person> personservice::getPersons()
@@ -20,8 +21,10 @@ vector<computer> personservice::getComputers()
 }
 
 //Updates current working list of data with changes made in-program
-void personservice::reset() {
+void personservice::reset()
+{
     curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID");
+    curr_computers = data.getComputersByQuery("SELECT * FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID");
 }
 
 //Adds a person to a vector for later use
