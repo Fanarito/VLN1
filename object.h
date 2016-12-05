@@ -7,6 +7,7 @@
 class Object
 {
 protected:
+    uint m_id;
     std::string m_name;
     int m_birthyear;
     int m_deathyear;
@@ -15,6 +16,8 @@ protected:
 public:
     Object(std::string name="Undefined", int birthyear=0, int deathyear=0,
            std::string nationality="Undefined", std::string info="");
+
+    uint getId() const;
 
     std::string getName() const;
     void setName(std::string name);

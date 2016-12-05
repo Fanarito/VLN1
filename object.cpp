@@ -9,6 +9,11 @@ Object::Object(std::string name, int birthyear, int deathyear, std::string natio
     m_info = info;
 }
 
+uint Object::getId() const
+{
+    return m_id;
+}
+
 std::string Object::getName() const
 {
     return m_name;
