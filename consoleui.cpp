@@ -191,7 +191,7 @@ void consoleui::addMenu(string choice)
 //This function allows you to change some, or all properties of a person.
 void consoleui::changeMenu(string choice)
 {
-    searchMenu();
+    searchMenu(choice);
 }
 
 //This function allows you to remove one or more persons from the list.
