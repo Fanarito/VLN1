@@ -46,35 +46,31 @@ void consoleui::run()
 
         if(command == "list")
         {
-            list();
+            listMenu();
         }
         else if(command == "add")
         {
-            add();
+            addMenu();
         }
         else if(command == "change")
         {
-            change();
+            changeMenu();
         }
         else if(command == "remove")
         {
-            remove();
+            removeMenu();
         }
         else if(command == "sort")
         {
-            sort();
+            sortMenu();
         }
         else if(command == "search")
         {
-            search();
+            searchMenu();
         }
         else if(command == "quit")
         {
             running = false;
-        }
-        else
-        {
-            cout << "That is not a valid command" << endl;
         }
 
     } while(running);
@@ -106,7 +102,7 @@ void consoleui::print_computers(vector<computer> c)
 }
 
 //Lists out information from the text file.
-void consoleui::list()
+void consoleui::listMenu()
 {
         cout << "Select one of the following:" << endl;
         cout << "persons - Prints out a list of persons" << endl;
@@ -129,13 +125,14 @@ void consoleui::list()
 //
 
 //this function allows you to add a scientist. The user can add value to each instance of the new scientist.
-void consoleui::add()
+void consoleui::addMenu()
 {
-    string choice;
     cout << endl << "Select one of the following:" << endl;
     cout << "person - Adds a person to the list" << endl;
     cout << "computer - Adds a computer to the list" << endl << endl;
-    cin >> choice;
+
+    string choice = getInputString(nomes, SINGLE, "person|computer");
+
     if(choice == "person")
     {
         string name;
@@ -145,9 +142,7 @@ void consoleui::add()
         string nationality;
         string info;
 
-        cout << endl << "Name: " << endl;
-        cin.ignore(1000, '\n');
-        getline(cin, name);
+        name = getInputString("Name:", MULTI);
 
         if(name.empty())
         {
@@ -256,7 +251,7 @@ void consoleui::add()
 }
 
 //This function allows you to change some, or all properties of a person.
-void consoleui::change()
+void consoleui::changeMenu()
 {
     cout << endl;
     cout << "Please enter one of the following commands:" << endl;
@@ -376,7 +371,7 @@ void consoleui::change()
 }
 
 //This function allows you to remove one or more persons from the list.
-void consoleui::remove()
+void consoleui::removeMenu()
 {
     cout << endl;
     cout << "Please enter one of the following commands:" << endl;
@@ -445,7 +440,7 @@ void consoleui::remove()
 
 //This is the function where you can choose how you want to sort the list. After you have made your
 //choice the new list will be printed.
-void consoleui::sort()
+void consoleui::sortMenu()
 {
 
     vector<person> sortedPersonsList;
@@ -455,8 +450,8 @@ void consoleui::sort()
     cout << "Please enter one of the following commands:" << endl;
     cout << "computers - Sorts computers table " << endl;
     cout << "persons - Sorts persons table " << endl << endl;
-    string table;
-    cin >> table;
+
+    string table = getInputString(nomes, SINGLE, "computers|persons");
 
     if(table == "computers")
     {
@@ -536,7 +531,7 @@ void consoleui::sort()
 }
 //This function allows you to search for a specific scientist in the entire list. You can search the system by
 //his name, sex, birth year, death year or nationality.
-void consoleui::search()
+void consoleui::searchMenu()
 {
     vector<string> arguments;
 
@@ -673,6 +668,8 @@ int consoleui::getInputInt(string message)
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input it must be a number" << endl << "Try again:";
     }
+
+    cin.ignore();
 
     return input;
 }
