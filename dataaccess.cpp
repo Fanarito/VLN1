@@ -154,6 +154,20 @@ void dataaccess::removePerson(int id)
     query.exec();
 }
 
+void dataaccess::removeComputer(int id)
+{
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    noerr = query.prepare("DELETE FROM computers WHERE id = :id");
+
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    query.bindValue(":id", id);
+    query.exec();
+}
+
 std::vector<person> dataaccess::execQueryPerson(QSqlQuery query)
 {
     query.exec();

@@ -41,6 +41,7 @@ public:
     void removePerson(int id);
 
     void addComputer(computer p);
+    void removeComputer(int id);
 
     void updatePerson(person p);
     void updateComputer(computer c);

@@ -55,6 +55,11 @@ void personservice::removePerson(int id)
     data.removePerson(id);
 }
 
+void personservice::removeComputer(int id)
+{
+    data.removeComputer(id);
+}
+
 vector<person> personservice::searchPersons(vector<string> args)
 {
     return data.searchPersons(args);
