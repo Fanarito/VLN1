@@ -68,13 +68,27 @@ void consoleui::run()
     } while(running);
 }
 
+template<typename T> void consoleui::printElement(T t, const int& width)
+{
+    const char separator    = ' ';
+    cout << left << setw(width) << setfill(separator) << t;
+}
+
 //This function runs through the vector of person and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
 void consoleui::print_persons(vector<person> p)
 {
+    cout << endl;
+    const int nameWidth = 25;
+    const int restWidth = 15;
+    printElement("Name", nameWidth);
+    printElement("Sex", restWidth);
+    printElement("Birth Year", restWidth);
+    printElement("Death Year", restWidth);
+    printElement("Nationality", restWidth);
+    cout << endl;
     for(size_t i = 0; i < p.size(); i++)
     {
-        cout << "----" << endl;
         cout << p.at(i);
     }
 
@@ -84,13 +98,20 @@ void consoleui::print_persons(vector<person> p)
 //using an overloaded operator << to print out each field.
 void consoleui::print_computers(vector<computer> c)
 {
+    cout << endl;
+    const int nameWidth = 30;
+    const int typeWidth = 20;
+    const int restWidth = 15;
+    printElement("Name", nameWidth);
+    printElement("Build Year", restWidth);
+    printElement("Computer Type", typeWidth);
+    printElement("Built", restWidth);
+    printElement("Nationality", restWidth);
+    cout << endl;
     for(size_t i = 0; i < c.size(); i++)
     {
-        cout << "----" << endl;
         cout << c.at(i);
     }
-
-    cout << "----" << endl;
 }
 
 //Lists out information from the text file.
@@ -120,12 +141,12 @@ void consoleui::listMenu()
 void consoleui::addMenu()
 {
     cout << endl << "Select one of the following:" << endl;
-    cout << "person - Adds a person to the list" << endl;
-    cout << "computer - Adds a computer to the list" << endl << endl;
+    cout << "persons - Adds to the list of persons" << endl;
+    cout << "computers - Adds to the list of computers" << endl << endl;
 
-    string choice = getInputString(nomes, SINGLE, "person|computer");
+    string choice = getInputString(nomes, "persons|computers");
 
-    if(choice == "person")
+    if(choice == "persons")
     {
         string name;
         string sex;
@@ -136,57 +157,23 @@ void consoleui::addMenu()
 
         name = getInputString("Name:", MULTI);
 
-        if(name.empty())
+        while(name.empty())
         {
             cout << "The name field cannot be empty" << endl;
-            run();
+            name = getInputString("Name:", MULTI);
         }
 
-        cout << "Sex: " << endl;
-        cin >> sex;
-
-        cout << "Year of birth: " << endl;
-
-        while(!(cin >> year_of_birth))
-        {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
-
-        while(1)
-        {
-            cout << "Year of death: " << endl;
-
-            while(!(cin >> year_of_death))
-            {
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Invalid input it must be a number" << endl << "Try again:";
-            }
-
-            if(year_of_death < year_of_birth)
-            {
-                cout << endl << "Year of death cannot be before year of birth!" << endl << endl;
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        cout << "Nationality: " << endl;
-        cin >> nationality;
-
-        cout << "Information: " << endl;
-        cin.ignore(1000, '\n');
-        getline(cin, info);
+        sex = getInputString("Sex: m|f", SINGLE, "m|f");
+        year_of_birth = getInputInt("Year of birth:");
+        year_of_death = getInputInt("Year of death:");
+        nationality = getInputString("Nationality:", MULTI);
+        info = getInputString("Info:", MULTI);
 
         cout << endl;
 
         ps.addPerson(name, sex, year_of_birth, year_of_death, nationality, info);
     }
-    else if(choice == "computer")
+    else if(choice == "computers")
     {
 
         string name;
@@ -197,43 +184,23 @@ void consoleui::addMenu()
         string nationality;
         string info;
 
-        cout << endl << "Name: " << endl;
-        cin.ignore(1000, '\n');
-        getline(cin, name);
+        name = getInputString("Name:", MULTI);
 
-        if(name.empty())
+        while(name.empty())
         {
             cout << "The name field cannot be empty" << endl;
-            run();
+            name = getInputString("Name:", MULTI);
         }
 
-        cout << "type: " << endl;
-        cin >> type;
+        type = getInputString("Type:", MULTI);
 
-        cout << "Build Year: " << endl;
+        build_year = getInputInt("Build year:");
 
-        while(!(cin >> build_year))
-        {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
+        built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
 
-        //Begin horrible hack
+        nationality = getInputString("Nationality: ", MULTI);
 
-        cout << "Built: " << endl;
-        cin >> b;
-
-        built = (b[0] == 'y');
-
-        //End horrible hack
-
-        cout << "Nationality: " << endl;
-        cin >> nationality;
-
-        cout << "Information: " << endl;
-        cin.ignore(1000, '\n');
-        getline(cin, info);
+        info = getInputString("Info: ", MULTI);
 
         cout << endl;
 
@@ -434,7 +401,6 @@ void consoleui::removeMenu()
 //choice the new list will be printed.
 void consoleui::sortMenu()
 {
-
     vector<person> sortedPersonsList;
     vector<computer> sortedComputersList;
 
@@ -454,32 +420,18 @@ void consoleui::sortMenu()
         cout << "computer_type \t" << "- Sorts computer type alphabetically" << endl;
         cout << "built \t\t" << "- Sorts by whether it has been built" << endl;
         cout << "nationality \t" << "- Sorts nationalities alphabetically" << endl << endl;
-        string column;
-        cin >> column;
-        if(column == "name" || column == "build_year" || column == "computer_type" || column == "built" || column == "nationality")
-        {
-            cout << endl;
-            cout << "Please enter one of the following commands:" << endl;
-            cout << "asc \t- Sorts by ascending order" << endl;
-            cout << "desc \t- Sorts by descending order" << endl << endl;
-            string order;
-            cin >> order;
-            if(order == "asc" || order == "desc")
-            {
-                sortedComputersList = ps.sortComputers(column, order);
-                print_computers(sortedComputersList);
-            }
-            else
-            {
-                cout << "You entered an invalid command" << endl;
-            }
-        }
-        else
-        {
-            cout << "You entered an invalid command" << endl;
 
-        }
+        string column = getInputString(nomes, SINGLE, "name|build_year|computer_type|built|nationality");
 
+        cout << endl;
+        cout << "Please enter one of the following commands:" << endl;
+        cout << "asc \t- Sorts by ascending order" << endl;
+        cout << "desc \t- Sorts by descending order" << endl << endl;
+
+        string order = getInputString(nomes, SINGLE, "asc|desc");
+
+        sortedComputersList = ps.sortComputers(column, order);
+        print_computers(sortedComputersList);
     }
     else if(table == "persons")
     {
@@ -490,39 +442,22 @@ void consoleui::sortMenu()
         cout << "birth_year \t"        << "- Sorts by year of birth" << endl;
         cout << "death_year \t"        << "- Sorts by year of death" << endl;
         cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
-        string column;
-        cin>>column;
-        if(column == "name" || column == "sex" || column == "birth_year" || column == "death_year" || column == "nationality")
-        {
-            cout << endl;
-            cout << "Please enter one of the following commands:" << endl;
-            cout << "asc \t- Sorts by ascending order" << endl;
-            cout << "desc \t- Sorts by descending order" << endl << endl;
-            string order;
-            cin >> order;
-            if(order == "asc" || order == "desc")
-            {
-                sortedPersonsList = ps.sortPersons(column, order);
-                print_persons(sortedPersonsList);
-            }
-            else
-            {
-                cout << "You entered an invalid command" << endl;
-            }
-        }
-        else
-        {
-            cout << "You entered an invalid command" << endl;
 
-        }
-    }
-    else
-    {
-        cout << "You entered an invalid command" <<endl;
+        string column = getInputString(nomes, SINGLE, "name|sex|birth_year|death_year|nationality");
+
+        cout << endl;
+        cout << "Please enter one of the following commands:" << endl;
+        cout << "asc \t- Sorts by ascending order" << endl;
+        cout << "desc \t- Sorts by descending order" << endl << endl;
+
+        string order = getInputString(nomes, SINGLE, "asc|desc");
+
+        sortedPersonsList = ps.sortPersons(column, order);
+        print_persons(sortedPersonsList);
     }
 }
 //This function allows you to search for a specific scientist in the entire list. You can search the system by
-//his name, sex, birth year, death year or nationality.
+//This name, sex, birth year, death year or nationality.
 void consoleui::searchMenu()
 {
     vector<string> arguments;
@@ -660,6 +595,13 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 
     string input;
     getline(cin, input);
+
+    auto first = input.find_first_not_of(" \t");
+    if(first == string::npos) return "";
+    auto last = input.find_last_not_of(" \t");
+    auto range = last - first + 1;
+
+    input = input.substr(first,range);
 
     if(!multiToken && utils::split(input, ' ').size() > 1)
     {

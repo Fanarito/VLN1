@@ -7,6 +7,7 @@
 #include <string>
 #include <algorithm>
 #include <iterator>
+#include <iomanip>
 #include <array>
 
 const string VALID_TABLE_NAMES = "persons|computers";
@@ -38,6 +39,7 @@ private:
     void removeMenu();
     void sortMenu();
     void searchMenu();
+    template<typename T> void printElement(T t, const int& width);
 
     std::string getInputString(std::string message, bool multiToken, string expected);
     std::string getInputString(std::string message, bool multiToken);
