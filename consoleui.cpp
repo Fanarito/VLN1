@@ -40,6 +40,7 @@ void consoleui::run()
 
         if(command != "quit")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
         }
 
@@ -311,12 +312,12 @@ void consoleui::searchMenu(string choice)
 
     arguments.push_back(choice);
 
-    cout << "Enter column to search in" << endl;
+    cout << endl << "Enter column to search in" << endl;
     cout << "Valid column names are: ";
 
     if (choice == "persons") {
         cout << VALID_PERSON_COLUMNS << endl;
-        cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl;
+        cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl << endl;
 
         string column = getInputString(
                     "Enter column name: ",
@@ -330,16 +331,18 @@ void consoleui::searchMenu(string choice)
         if (column == "birth_year" || column == "death_year")
             search_string = to_string(getInputInt("Input year: "));
         else
+            cout << endl;
             search_string = getInputString("Input searchstring: ", MULTI);
 
         arguments.push_back(column);
 
         arguments.push_back(search_string );
+        cout << endl;
         print_persons(ps.searchPersons(arguments));
     }
     else if (choice == "computers") {
         cout << VALID_COMPUTER_COLUMNS << endl;
-        cout << endl << "end; - to stop inputting arguments" << endl;
+        cout << endl << "end; - to stop inputting arguments" << endl << endl;
 
         string column = getInputString(
                     "Enter column name: ",
@@ -356,9 +359,11 @@ void consoleui::searchMenu(string choice)
         if (column == "build_yeare")
             search_string = to_string(getInputInt("Input year: "));
         else
+            cout << endl;
             search_string = getInputString("Input searchstring: ", MULTI);
 
         arguments.push_back(search_string );
+        cout << endl;
         print_computers(ps.searchComputers(arguments));
     }
 }
