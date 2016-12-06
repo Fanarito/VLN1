@@ -42,6 +42,9 @@ public:
 
     void addComputer(computer p);
 
+    void updatePerson(person p);
+    void updateComputer(computer c);
+
 };
 
 #endif // DATAACCESS_H

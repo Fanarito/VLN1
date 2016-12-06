@@ -84,3 +84,13 @@ vector<computer> personservice::sortComputers(string column, string order)
 
     return data.getComputersByQuery(QString::fromStdString("SELECT c.ID, c.Name, c.Build_Year, c.Computer_Type, c.Built, n.Nationality, c.Info FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID ORDER BY " + column + " " + order));
 }
+
+void personservice::updatePerson(person p)
+{
+    data.updatePerson(p);
+}
+
+void personservice::updateComputer(computer c)
+{
+    data.updateComputer(c);
+}
