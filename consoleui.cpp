@@ -1,9 +1,20 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
 #include "consoleui.h"
 
 using namespace std;
+
+template<typename T> bool expect(T input, T *valid_input)
+{
+    T *result = find(begin(valid_input), end(valid_input), input);
+
+    if (result != end(valid_input))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 consoleui::consoleui()
 {
@@ -515,6 +526,19 @@ void consoleui::sort()
 //his name, sex, birth year, death year or nationality.
 void consoleui::search()
 {
+    vector<string> arguments;
+
+    cout << "persons - Will search in the persons table" << endl;
+    cout << "computers - Will search in the computers table" << endl;
+
+    string input;
+    cin >> input;
+
+    if (input == "persons" || input == "computers")
+    {
+        arguments.push_back(input);
+    }
+
     //TODO: Implement searching functionality
 
     /*
