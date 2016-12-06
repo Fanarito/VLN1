@@ -10,6 +10,11 @@ dataaccess::dataaccess()
     if(!db.open()) std::cerr << "Error: SQL did not open properly!" << std::endl;
 }
 
+dataaccess::~dataaccess()
+{
+    db.close();
+}
+
 int dataaccess::getNationalityID(std::string nationality)
 {
     QSqlQuery query(db);
@@ -228,7 +233,7 @@ std::vector<person> dataaccess::searchPersons(std::vector<std::string> args)
 std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
 {
     if (args.size() < 3) {
-        std::cerr << "Too few arguments to searchPersons";
+        std::cerr << "Too few arguments to searchComputers";
         return std::vector<computer>();
     }
 

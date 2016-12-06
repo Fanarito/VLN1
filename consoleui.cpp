@@ -117,6 +117,10 @@ void consoleui::print_computers(vector<computer> c)
     }
 }
 
+void consoleui::print_options(string options)
+{
+}
+
 //Lists out information from the text file.
 void consoleui::listMenu(string choice)
 {
@@ -262,56 +266,26 @@ void consoleui::removeMenu(string choice)
 //choice the new list will be printed.
 void consoleui::sortMenu(string choice)
 {
-    vector<person> sortedPersonsList;
-    vector<computer> sortedComputersList;
+    string options;
 
-    if(choice == "computers")
+    if(choice == "persons") options = VALID_PERSON_COLUMNS;
+    else if(choice == "computers") options = VALID_COMPUTER_COLUMNS;
+
+    cout << "Please enter one of the following:" << endl;
+    cout << options << endl;
+
+    string column = getInputString(NO_MESS,SINGLE,options);
+    string order = getInputString(NO_MESS,SINGLE, "asc|desc");
+
+    if(choice == "persons")
     {
-        cout << endl;
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "id \t\t"        << "- Sorts by id" << endl;
-        cout << "name \t\t" << "- Sorts names alphabetically" << endl;
-        cout << "build_year \t" << "- Sorts by build year" << endl;
-        cout << "computer_type \t" << "- Sorts computer type alphabetically" << endl;
-        cout << "built \t\t" << "- Sorts by whether it has been built" << endl;
-        cout << "nationality \t" << "- Sorts nationalities alphabetically" << endl << endl;
-
-        string column = getInputString(NO_MESS, SINGLE, "id|name|build_year|computer_type|built|nationality");
-
-        cout << endl;
-
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "asc \t- Sorts by ascending order" << endl;
-        cout << "desc \t- Sorts by descending order" << endl << endl;
-
-        string order = getInputString(NO_MESS, SINGLE, "asc|desc");
-
-        sortedComputersList = ps.sortComputers(column, order);
-        print_computers(sortedComputersList);
+        print_persons(ps.sortPersons(column, order));
     }
-    else if(choice == "persons")
+    else if(choice == "computers")
     {
-        cout << endl;
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "id \t\t"        << "- Sorts by id" << endl;
-        cout << "name \t\t" << "- Sorts names alphabetically" << endl;
-        cout << "sex \t\t"          << "- Sort by sex" << endl;
-        cout << "birth_year \t"        << "- Sorts by year of birth" << endl;
-        cout << "death_year \t"        << "- Sorts by year of death" << endl;
-        cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
-
-        string column = getInputString(NO_MESS, SINGLE, "id|name|sex|birth_year|death_year|nationality");
-
-        cout << endl;
-        cout << "Please enter one of the following commands:" << endl;
-        cout << "asc \t- Sorts by ascending order" << endl;
-        cout << "desc \t- Sorts by descending order" << endl << endl;
-
-        string order = getInputString(NO_MESS, SINGLE, "asc|desc");
-
-        sortedPersonsList = ps.sortPersons(column, order);
-        print_persons(sortedPersonsList);
+        print_computers(ps.sortComputers(column, order));
     }
+
 }
 //This function allows you to search for a specific scientist in the entire list. You can search the system by
 //This name, sex, birth year, death year or nationality.
