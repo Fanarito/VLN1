@@ -144,9 +144,9 @@ void consoleui::list()
 void consoleui::add()
 {
     string choice;
-    cout << "Select one of the following:" << endl;
+    cout << endl << "Select one of the following:" << endl;
     cout << "person - Adds a person to the list" << endl;
-    cout << "computer - Adds a computer to the list" << endl;
+    cout << "computer - Adds a computer to the list" << endl << endl;
     cin >> choice;
     if(choice == "person")
     {
@@ -157,9 +157,15 @@ void consoleui::add()
         string nationality;
         string info;
 
-        cout << "Name: " << endl;
+        cout << endl << "Name: " << endl;
         cin.ignore(1000, '\n');
         getline(cin, name);
+
+        if(name.empty())
+        {
+            cout << "The name field cannot be empty" << endl;
+            run();
+        }
 
         cout << "Sex: " << endl;
         cin >> sex;
@@ -204,9 +210,15 @@ void consoleui::add()
         string nationality;
         string info;
 
-        cout << "Name: " << endl;
+        cout << endl << "Name: " << endl;
         cin.ignore(1000, '\n');
         getline(cin, name);
+
+        if(name.empty())
+        {
+            cout << "The name field cannot be empty" << endl;
+            run();
+        }
 
         cout << "type: " << endl;
         cin >> type;
