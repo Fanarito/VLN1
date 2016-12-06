@@ -275,7 +275,7 @@ void consoleui::removeMenu(string choice)
 
         if(removeID == -1) return;
 
-        ps.removePerson(removeID);
+        ps.removeComputer(removeID);
     }
 }
 
@@ -288,10 +288,12 @@ void consoleui::sortMenu(string choice)
     if(choice == "persons") options = VALID_PERSON_COLUMNS;
     else if(choice == "computers") options = VALID_COMPUTER_COLUMNS;
 
-    cout << "Please enter one of the following:" << endl;
+    cout << "Column you would like to sort by:" << endl;
     cout << options << endl;
 
     string column = getInputString(NO_MESS,SINGLE,options);
+
+    cout << "asc|desc" << endl;
     string order = getInputString(NO_MESS,SINGLE, "asc|desc");
 
     if(choice == "persons")
