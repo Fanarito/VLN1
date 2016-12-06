@@ -1,7 +1,8 @@
 #include "object.h"
 
-Object::Object(std::string name, std::string nationality, std::string info)
+Object::Object(int id, std::string name, std::string nationality, std::string info)
 {
+    m_id = id;
     m_name = name;
     m_nationality = nationality;
     m_info = info;

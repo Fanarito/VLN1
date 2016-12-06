@@ -2,8 +2,9 @@
 #include <iostream>
 
 person::person(std::string name, std::string sex, int birthyear,
-               int deathyear, std::string nationality, std::string info)
+               int deathyear, std::string nationality, std::string info, int id)
 {
+    m_id = id;
     m_name = name;
     m_sex = sex;
     m_birthyear = birthyear;
@@ -56,6 +57,7 @@ std::ostream& operator<<(std::ostream& lhs, const person rhs)
         death = "Alive";
     }
 
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getId();
     lhs << std::left << std::setw(nameWidth) << std::setfill(separator) << rhs.getName();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getSex();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getBirthYear();

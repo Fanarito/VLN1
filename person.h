@@ -17,7 +17,7 @@ protected:
 public:
     person();
     person(std::string name, std::string sex, int birthyear,
-           int deathyear, std::string nationality, std::string info);
+           int deathyear, std::string nationality, std::string info, int id = 0);
 
     std::string getSex() const;
     void setSex(std::string sex);
