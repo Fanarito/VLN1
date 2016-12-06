@@ -292,7 +292,7 @@ void consoleui::sortMenu(string choice)
 
     string column = getInputString(NO_MESS,SINGLE,options);
 
-    cout << "asc|desc"
+    cout << "asc|desc" << endl;
     string order = getInputString(NO_MESS,SINGLE, "asc|desc");
 
     if(choice == "persons")
