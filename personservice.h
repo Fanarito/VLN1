@@ -37,6 +37,12 @@ public:
 	vector<person> matchByDeath(int);
 	vector<person> matchByNationality(string);
 
+    vector<computer> matchByCompName(string);
+    vector<computer> matchByBuild(int);
+    vector<computer> matchByType(string);
+    vector<computer> matchByBuilt(string);
+    vector<computer> matchByCompNationality(string);
+
     vector<person> filterWithRegex(std::string _regex);
 
 private:
