@@ -39,8 +39,6 @@ void consoleui::run()
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
-        cout << "regex \t- Use regex to match either name, sex, birthyear or deathyear" << endl;
-        cout << "update \t- Moves all persons into viewable list" << endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
