@@ -71,7 +71,6 @@ void consoleui::run()
         {
             search();
         }
-
         else if(command == "quit")
         {
             running = false;

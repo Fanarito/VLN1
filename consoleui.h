@@ -15,6 +15,9 @@ const string valid_computer_columns[] = {
     "name", "buildyear", "nationality", "built"
 };
 
+const bool MULTI_TOKEN = true;
+const bool SINGLE_TOKEN = true;
+
 class consoleui
 {
 public:
@@ -33,6 +36,9 @@ private:
     void remove();
     void sort();
     void search();
+
+    std::string getInputString(std::string message);
+    int getInputInt(std::string message);
 };
 
 #endif // CONSOLEUI_H

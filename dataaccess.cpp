@@ -10,22 +10,6 @@ dataaccess::dataaccess()
     if(!db.open()) std::cerr << "Error: SQL did not open properly!" << std::endl;
 }
 
-// Splits a string into a vector of strings with a specified delimiter.
-// Example: split this string becomes [split, this, string]
-std::vector<std::string> split(const std::string &s, char delim)
-{
-
-    std::stringstream ss(s);
-    std::string item;
-    std::vector<std::string> tokens;
-
-    while (std::getline(ss, item, delim))
-    {
-        tokens.push_back(item);
-    }
-
-    return tokens;
-}
 
 int dataaccess::getNationalityID(std::string nationality)
 {
