@@ -145,6 +145,28 @@ std::vector<person> dataaccess::execQueryPerson(QSqlQuery query)
 
 }
 
+std::vector<computer> dataaccess::execQueryComputer(QSqlQuery query)
+{
+    query.exec();
+
+    std::vector<computer> computers;
+
+    while(query.next())
+    {
+        std::string name = query.value("Name").toString().toStdString();
+        int build_year = query.value("Build_Year").toUInt();
+        std::string computer_type = query.value("Computer_Type").toString().toStdString();
+        bool built = query.value("Built").toBool();
+        std::string nationality = query.value("Nationality").toString().toStdString();
+        std::string info = query.value("Info").toString().toStdString();
+
+        computers.push_back(computer(name, build_year, computer_type, built, nationality, info));
+    }
+
+    return computers;
+
+}
+
 
 std::vector<person> dataaccess::searchPersons(std::vector<std::string> args)
 {
@@ -152,17 +174,54 @@ std::vector<person> dataaccess::searchPersons(std::vector<std::string> args)
         std::cerr << "Too few arguments to searchPersons";
         return std::vector<person>();
     }
-    args[2] = "%" + args[2] + "%";
-    QString q_string = QString::fromStdString("SELECT * FROM persons JOIN Nationality n ON n.id = nationalityid WHERE " + args[1] + " LIKE :arg");
+
+    QString q_string = QString::fromStdString("SELECT * FROM persons JOIN Nationality n ON n.id = nationalityid WHERE " + args[1]);
     QSqlQuery query(db);
 
-    bool noerr = query.prepare(q_string);
-    query.bindValue(":arg", QString::fromStdString(args[2]));
+    bool noerr;
+
+    if (args[1] == "birth_year" || args[1] == "death_year") {
+        q_string += QString::fromStdString(" = :arg");
+        noerr = query.prepare(q_string);
+        query.bindValue(":arg", std::stoi(args[2]));
+    } else {
+        q_string += QString::fromStdString(" LIKE :arg");
+        args[2] = "%" + args[2] + "%";
+        noerr = query.prepare(q_string);
+        query.bindValue(":arg", QString::fromStdString(args[2]));
+    }
+
+    if (noerr)
+        std::cerr << "SHITTING SHIT" << endl;
 
     return execQueryPerson(query);
 }
 
 std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
 {
+    if (args.size() < 3) {
+        std::cerr << "Too few arguments to searchPersons";
+        return std::vector<computer>();
+    }
 
+    QString q_string = QString::fromStdString("SELECT * FROM computers JOIN Nationality n ON n.id = nationalityid WHERE " + args[1]);
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    if (args[1] == "build_year") {
+        q_string += QString::fromStdString(" = :arg");
+        noerr = query.prepare(q_string);
+        query.bindValue(":arg", std::stoi(args[2]));
+    } else {
+        q_string += QString::fromStdString(" LIKE :arg");
+        args[2] = "%" + args[2] + "%";
+        noerr = query.prepare(q_string);
+        query.bindValue(":arg", QString::fromStdString(args[2]));
+    }
+
+    if (noerr)
+        std::cerr << "SHITTING SHIT" << endl;
+
+    return execQueryComputer(query);
 }

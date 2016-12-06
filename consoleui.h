@@ -11,8 +11,8 @@
 #include <array>
 
 const string VALID_TABLE_NAMES = "persons|computers";
-const string VALID_PERSON_COLUMNS = "name|sex|birthyear|deathyear|nationality|info";
-const string VALID_COMPUTER_COLUMNS = "name|buildyear|nationality|built";
+const string VALID_PERSON_COLUMNS = "name|sex|birth_year|death_year|nationality|info";
+const string VALID_COMPUTER_COLUMNS = "name|build_year|nationality|built";
 
 const string INPUT_ENDER = "end;";
 const bool MULTI = true;
@@ -25,7 +25,6 @@ class consoleui
 {
 public:
     consoleui();
-
     void run();
 private:
     personservice ps;
@@ -39,6 +38,12 @@ private:
     void removeMenu();
     void sortMenu();
     void searchMenu();
+
+    const int nameCompWidth = 30;
+    const int namePersonWidth = 25;
+    const int typeWidth = 20;
+    const int restWidth = 15;
+    const char separator = ' ';
 
     template<typename T> void printElement(T t, const int& width);
 

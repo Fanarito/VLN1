@@ -74,24 +74,17 @@ void consoleui::run()
     } while(running);
 }
 
-template<typename T> void consoleui::printElement(T t, const int& width)
-{
-    const char separator    = ' ';
-    cout << left << setw(width) << setfill(separator) << t;
-}
 
 //This function runs through the vector of person and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
 void consoleui::print_persons(vector<person> p)
 {
     cout << endl;
-    const int nameWidth = 25;
-    const int restWidth = 15;
-    printElement("Name", nameWidth);
-    printElement("Sex", restWidth);
-    printElement("Birth Year", restWidth);
-    printElement("Death Year", restWidth);
-    printElement("Nationality", restWidth);
+    cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Sex";
+    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
     cout << endl;
     for(size_t i = 0; i < p.size(); i++)
     {
@@ -105,14 +98,12 @@ void consoleui::print_persons(vector<person> p)
 void consoleui::print_computers(vector<computer> c)
 {
     cout << endl;
-    const int nameWidth = 30;
-    const int typeWidth = 20;
-    const int restWidth = 15;
-    printElement("Name", nameWidth);
-    printElement("Build Year", restWidth);
-    printElement("Computer Type", typeWidth);
-    printElement("Built", restWidth);
-    printElement("Nationality", restWidth);
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Build Year";
+    cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
+    cout << left << setw(restWidth) << setfill(separator) << "Built";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
     cout << endl;
     for(size_t i = 0; i < c.size(); i++)
     {
@@ -309,12 +300,15 @@ void consoleui::searchMenu(string choice)
 
         if (column == "end;")
             return;
+
+        string search_string;
+        if (column == "birth_year" || column == "death_year")
+            search_string = to_string(getInputInt("Input year: "));
+        else
+            search_string = getInputString("Input searchstring: ", MULTI);
+
         arguments.push_back(column);
 
-        string search_string = getInputString("Input searchstring: ", MULTI);
-        while (search_string.empty()) {
-            search_string = getInputString("Input searchstring: ", MULTI);
-        }
         arguments.push_back(search_string );
         print_persons(ps.searchPersons(arguments));
     }
@@ -332,12 +326,15 @@ void consoleui::searchMenu(string choice)
 
         if (column == "end;")
             return;
+
         arguments.push_back(column);
 
-        string search_string = getInputString("Input searchstring: ", MULTI);
-        while (search_string.empty()) {
+        string search_string;
+        if (column == "build_yeare")
+            search_string = to_string(getInputInt("Input year: "));
+        else
             search_string = getInputString("Input searchstring: ", MULTI);
-        }
+
         arguments.push_back(search_string );
         print_computers(ps.searchComputers(arguments));
     }

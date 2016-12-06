@@ -49,11 +49,26 @@ std::ostream& operator<<(std::ostream& lhs, const computer rhs)
     const int typeWidth = 20;
     const int restWidth = 15;
     const char separator = ' ';
+    std::string built;
+    std::string buildYear = std::to_string(rhs.getBuildYear());
+    if(buildYear == "0")
+    {
+        buildYear = "Not built";
+    }
+    if(rhs.getBuilt())
+    {
+        built = "True";
+    }
+    else
+    {
+        built = "False";
+    }
 
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getId();
     lhs << std::left << std::setw(nameWidth) << std::setfill(separator) << rhs.getName();
-    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getBuildYear();
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << buildYear;
     lhs << std::left << std::setw(typeWidth) << std::setfill(separator) << rhs.getType();
-    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getBuilt();
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << built;
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getNationality() << std::endl;
 
     return lhs;
