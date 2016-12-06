@@ -280,13 +280,11 @@ void consoleui::searchMenu(string choice)
     arguments.push_back(choice);
 
     cout << "Enter column to search in" << endl;
-    cout << "Valid column names are:" << endl;
+    cout << "Valid column names are: ";
 
     if (choice == "persons") {
-        for (string column : utils::split(VALID_PERSON_COLUMNS, '|')) {
-            cout << column << " ";
-        }
-        cout << endl << "end; - to stop inputting arguments" << endl;
+        cout << VALID_PERSON_COLUMNS << endl;
+        cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl;
 
         string column = getInputString(
                     "Enter column name: ",
@@ -308,9 +306,7 @@ void consoleui::searchMenu(string choice)
         print_persons(ps.searchPersons(arguments));
     }
     else if (choice == "computers") {
-        for (string column : utils::split(VALID_COMPUTER_COLUMNS, '|')) {
-            cout << column << " ";
-        }
+        cout << VALID_COMPUTER_COLUMNS << endl;
         cout << endl << "end; - to stop inputting arguments" << endl;
 
         string column = getInputString(

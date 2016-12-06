@@ -162,8 +162,9 @@ std::vector<computer> dataaccess::execQueryComputer(QSqlQuery query)
         bool built = query.value("Built").toBool();
         std::string nationality = query.value("Nationality").toString().toStdString();
         std::string info = query.value("Info").toString().toStdString();
+        unsigned int id = query.value("ID").toUInt();
 
-        computers.push_back(computer(name, build_year, computer_type, built, nationality, info));
+        computers.push_back(computer(name, build_year, computer_type, built, nationality, info, id));
     }
 
     return computers;
