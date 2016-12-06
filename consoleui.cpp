@@ -68,11 +68,6 @@ void consoleui::run()
     } while(running);
 }
 
-template<typename T> void consoleui::printElement(T t, const int& width)
-{
-    const char separator    = ' ';
-    cout << left << setw(width) << setfill(separator) << t;
-}
 
 //This function runs through the vector of person and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
@@ -81,11 +76,12 @@ void consoleui::print_persons(vector<person> p)
     cout << endl;
     const int nameWidth = 25;
     const int restWidth = 15;
-    printElement("Name", nameWidth);
-    printElement("Sex", restWidth);
-    printElement("Birth Year", restWidth);
-    printElement("Death Year", restWidth);
-    printElement("Nationality", restWidth);
+    const char separator = ' ';
+    cout << left << setw(nameWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Sex";
+    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
     cout << endl;
     for(size_t i = 0; i < p.size(); i++)
     {
@@ -102,11 +98,12 @@ void consoleui::print_computers(vector<computer> c)
     const int nameWidth = 30;
     const int typeWidth = 20;
     const int restWidth = 15;
-    printElement("Name", nameWidth);
-    printElement("Build Year", restWidth);
-    printElement("Computer Type", typeWidth);
-    printElement("Built", restWidth);
-    printElement("Nationality", restWidth);
+    const char separator = ' ';
+    cout << left << setw(nameWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Build Year";
+    cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
+    cout << left << setw(restWidth) << setfill(separator) << "Built";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
     cout << endl;
     for(size_t i = 0; i < c.size(); i++)
     {
