@@ -179,13 +179,25 @@ void consoleui::add()
                 cout << "Invalid input it must be a number" << endl << "Try again:";
         }
 
-        cout << "Year of death: " << endl;
-
-        while(!(cin >> year_of_death))
+        while(1)
         {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
+            cout << "Year of death: " << endl;
+
+            while(!(cin >> year_of_death))
+            {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input it must be a number" << endl << "Try again:";
+            }
+
+            if(year_of_death < year_of_birth)
+            {
+                cout << endl << "Year of death cannot be before year of birth!" << endl << endl;
+            }
+            else
+            {
+                break;
+            }
         }
 
         cout << "Nationality: " << endl;
