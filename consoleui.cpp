@@ -444,14 +444,32 @@ void consoleui::infoMenu(string choice)
 
     if(choice == "persons")
     {
+        person infoPerson;
+        string infoPrint;
+
         int infoID = getInputInt("Please enter ID of person you want information about. -1 to cancel");
 
         if(infoID == -1) return;
+
+        infoPerson = ps.getPersonById(infoID);
+
+        infoPrint = infoPerson.getInfo();
+
+        cout << endl << infoPrint << endl;
     }
     else if(choice == "computers")
     {
+        computer infoComputer;
+        string infoPrint;
+
         int infoID = getInputInt("Please enter ID of computer you want information about -1 to cancel");
 
         if(infoID == -1) return;
+
+        infoComputer = ps.getComputerById(infoID);
+
+        infoPrint = infoComputer.getInfo();
+
+        cout << endl << infoPrint << endl;
     }
 }
