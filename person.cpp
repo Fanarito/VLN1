@@ -12,6 +12,7 @@ person::person(std::string name, std::string sex, int birthyear,
     m_info = info;
 }
 
+
 std::string person::getSex() const
 {
     return m_sex;
@@ -49,11 +50,16 @@ std::ostream& operator<<(std::ostream& lhs, const person rhs)
     const int nameWidth = 25;
     const int restWidth = 15;
     const char separator = ' ';
+    std::string death = std::to_string(rhs.getDeathYear());
+    if(death == "0")
+    {
+        death = "Alive";
+    }
 
     lhs << std::left << std::setw(nameWidth) << std::setfill(separator) << rhs.getName();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getSex();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getBirthYear();
-    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getDeathYear();
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << death;
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getNationality() << std::endl;
 
     return lhs;
