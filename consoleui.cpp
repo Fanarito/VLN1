@@ -205,9 +205,23 @@ void consoleui::changeMenu(string choice)
 
         if(changeId == -1) return;
 
-        cout << ps.getPersonById(changeId).getName() << endl;
+        person p = ps.getPersonById(changeId);
 
-        //ps.removePerson(0);
+        string name = getInputString("Enter name: (empty for no change)", MULTI);
+        // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
+        string info = getInputString("Enter info: (empty for no change)", MULTI);
+        string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
+        int birthyear = getInputInt("Enter year of birth(-1 for unchanged): ");
+        int deathyear = getInputInt("Enter year of death(0 for not dead, -1 for unchanged): ");
+
+        if (!name.empty()) p.setName(name);
+        // if (!nationality.empty()) p.setNationality(nationality);
+        if (!info.empty()) p.setInfo(info);
+        if (!sex.empty()) p.setSex(sex);
+        if (birthyear != -1) p.setBirthYear(birthyear);
+        if (deathyear != -1) p.setDeathYear(deathyear);
+
+        ps.updatePerson(p);
     }
     else if(choice == "computers")
     {
@@ -218,7 +232,7 @@ void consoleui::changeMenu(string choice)
         computer comp = ps.getComputerById(changeId);
 
         string name = getInputString("Enter name: ", MULTI);
-        string nationality = getInputString("Enter nationality; ", MULTI);
+        // string nationality = getInputString("Enter nationality; ", MULTI);
         string info = getInputString("Enter info: ", MULTI);
         bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
         int buildyear;
@@ -227,12 +241,14 @@ void consoleui::changeMenu(string choice)
         string type = getInputString("Enter machine type: ", MULTI);
 
         if (!name.empty()) comp.setName(name);
-        if (!nationality.empty()) comp.setNationality(nationality);
+        // if (!nationality.empty()) comp.setNationality(nationality);
         if (!info.empty()) comp.setInfo(info);
         comp.setBuilt(built);
         if (buildyear != -1) comp.setBuildYear(buildyear);
-        if (!type.empty()) comp.setType(type); }
+        if (!type.empty()) comp.setType(type);
 
+        ps.updateComputer(comp);
+    }
 }
 
 //This function allows you to remove one or more persons from the list.
@@ -276,7 +292,7 @@ void consoleui::sortMenu(string choice)
         cout << "built \t\t" << "- Sorts by whether it has been built" << endl;
         cout << "nationality \t" << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "id|name|build_year|computer_type|built|nationality");
+        string column = getInputString(NO_MESS, SINGLE, "id|name|build_year|computer_type|built|nationality");
 
         cout << endl;
 
@@ -284,7 +300,7 @@ void consoleui::sortMenu(string choice)
         cout << "asc \t- Sorts by ascending order" << endl;
         cout << "desc \t- Sorts by descending order" << endl << endl;
 
-        string order = getInputString(nomes, SINGLE, "asc|desc");
+        string order = getInputString(NO_MESS, SINGLE, "asc|desc");
 
         sortedComputersList = ps.sortComputers(column, order);
         print_computers(sortedComputersList);
@@ -300,14 +316,14 @@ void consoleui::sortMenu(string choice)
         cout << "death_year \t"        << "- Sorts by year of death" << endl;
         cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "id|name|sex|birth_year|death_year|nationality");
+        string column = getInputString(NO_MESS, SINGLE, "id|name|sex|birth_year|death_year|nationality");
 
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "asc \t- Sorts by ascending order" << endl;
         cout << "desc \t- Sorts by descending order" << endl << endl;
 
-        string order = getInputString(nomes, SINGLE, "asc|desc");
+        string order = getInputString(NO_MESS, SINGLE, "asc|desc");
 
         sortedPersonsList = ps.sortPersons(column, order);
         print_persons(sortedPersonsList);
@@ -375,7 +391,7 @@ void consoleui::searchMenu(string choice)
 
 string consoleui::getInputString(string message, bool multiToken, string expected)
 {
-    if(message != nomes)
+    if(message != NO_MESS)
     {
         cout << message << endl;
     }
@@ -392,7 +408,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
         return getInputString(message, multiToken, expected);
     }
 
-    if(expected == noexp)
+    if(expected == NO_EXP)
     {
         return input;
     }
@@ -413,12 +429,12 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 
 string consoleui::getInputString(string message, bool multiToken)
 {
-    return getInputString(message, multiToken, noexp);
+    return getInputString(message, multiToken, NO_EXP);
 }
 
 int consoleui::getInputInt(string message)
 {
-    if(message != nomes)
+    if(message != NO_MESS)
     {
         cout << message << endl;
     }

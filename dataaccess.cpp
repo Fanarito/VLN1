@@ -275,3 +275,44 @@ computer dataaccess::getComputerById(unsigned int id)
 
     return execQueryComputer(query).at(0);
 }
+
+void dataaccess::updatePerson(person p)
+{
+
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    noerr = query.prepare("UPDATE Persons "
+                          "SET name=:name, sex=:sex, birth_year=:birth_year, death_year=:death_year, info=:info WHERE id = :id");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
+
+    query.bindValue(":name", QString::fromStdString(p.getName()));
+    query.bindValue(":sex", QString::fromStdString(p.getSex()));
+    query.bindValue(":birth_year", QString::fromStdString(std::to_string(p.getBirthYear())));
+    query.bindValue(":death_year", QString::fromStdString(std::to_string(p.getDeathYear())));
+    query.bindValue(":info", QString::fromStdString(p.getInfo()));
+    query.bindValue(":id", p.getId());
+
+    query.exec();
+}
+
+void dataaccess::updateComputer(computer c)
+{
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    noerr = query.prepare("UPDATE Computers "
+                          "SET name=:name, build_year=:build_year, computer_type=:computer_type, built=:built, info=:info WHERE id = :id");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
+
+    query.bindValue(":name", QString::fromStdString(c.getName()));
+    query.bindValue(":build_year", QString::fromStdString(std::to_string(c.getBuildYear())));
+    query.bindValue(":computer_type", QString::fromStdString(c.getType()));
+    query.bindValue(":built", QString::fromStdString(c.getBuilt()?"TRUE":"FALSE"));
+    query.bindValue(":info", QString::fromStdString(c.getInfo()));
+    query.bindValue(":id", c.getId());
+
+    query.exec();
+}
