@@ -123,7 +123,7 @@ void consoleui::addMenu()
     cout << "persons - Adds to the list of persons" << endl;
     cout << "computers - Adds to the list of computers" << endl << endl;
 
-    string choice = getInputString(nomes, "persons|computers");
+    string choice = getInputString(nomes, SINGLE, "persons|computers");
 
     if(choice == "persons")
     {
@@ -172,13 +172,9 @@ void consoleui::addMenu()
         }
 
         type = getInputString("Type:", MULTI);
-
         build_year = getInputInt("Build year:");
-
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
-
         nationality = getInputString("Nationality: ", MULTI);
-
         info = getInputString("Info: ", MULTI);
 
         cout << endl;
@@ -311,6 +307,15 @@ void consoleui::changeMenu()
 //This function allows you to remove one or more persons from the list.
 void consoleui::removeMenu()
 {
+    cout << "Not Implemented properly yet" << endl;
+    return;
+
+    cout << endl << "Select one of the following:" << endl;
+    cout << "persons - Adds to the list of persons" << endl;
+    cout << "computers - Adds to the list of computers" << endl << endl;
+
+    string choice = getInputString(nomes, SINGLE, "persons|computers");
+
     cout << endl;
     cout << "Please enter one of the following commands:" << endl;
     cout << "name \t\t"          << "- Remove by name" << endl;
@@ -319,61 +324,7 @@ void consoleui::removeMenu()
     cout << "death \t\t"        << "- Remove by year of death" << endl;
     cout << "nationality \t"  << "- Remove by nationality" << endl << endl;
     string remove_command;
-    cin >> remove_command;
-    vector<person> match;
-    if(remove_command == "name")
-    {
-        cout << "Enter the name" << endl;
-        string name;
-        cin.ignore(1000, '\n');
-        getline(cin, name);
-        //match = ps.matchByName(name);
-    }
-    else if(remove_command == "sex")
-    {
-        cout << "Enter the sex (m/f)" << endl;
-        string sex;
-        cin >> sex;
-        //match = ps.matchBySex(sex);
-    }
-    else if(remove_command == "birth")
-    {
-        cout << "Enter the birth year" << endl;
-        int birth;
-        cin >> birth;
-        //match = ps.matchByBirth(birth);
-    }
-    else if(remove_command == "death")
-    {
-        cout << "Enter the death year" << endl;
-        int death;
-        cin >> death;
-        //match = ps.matchByDeath(death);
-    }
-    else if(remove_command == "nationality")
-    {
-        cout << "Enter the nationality" << endl;
-        string nationality;
-        cin >> nationality;
-        //match = ps.matchByName(nationality);
-    }
-    if(match.size() >= 1)
-    {
-        person the_person = match[0];
-        ps.removePerson(the_person);
-        for(size_t i = 0; i < match.size(); i++)
-        {
-            ps.removePerson(match[i]);
-        }
-        cout << "Use the save command if you want to keep the changes" << endl;
-    }
-    else
-    {
-        if(match.size() == 0)
-        {
-            cout << "Something went wrong" << endl;
-        }
-    }
+    cin >> remove_command;    
 }
 
 //This is the function where you can choose how you want to sort the list. After you have made your
