@@ -200,9 +200,23 @@ void consoleui::changeMenu(string choice)
 
         if(changeId == -1) return;
 
-        cout << ps.getPersonById(changeId).getName() << endl;
+        person p = ps.getPersonById(changeId);
 
-        //ps.removePerson(0);
+        string name = getInputString("Enter name: (empty for no change)", MULTI);
+        // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
+        string info = getInputString("Enter info: (empty for no change)", MULTI);
+        string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
+        int birthyear = getInputInt("Enter year of birth(-1 for unchanged): ");
+        int deathyear = getInputInt("Enter year of death(0 for not dead, -1 for unchanged): ");
+
+        if (!name.empty()) p.setName(name);
+        // if (!nationality.empty()) p.setNationality(nationality);
+        if (!info.empty()) p.setInfo(info);
+        if (!sex.empty()) p.setSex(sex);
+        if (birthyear != -1) p.setBirthYear(birthyear);
+        if (deathyear != -1) p.setDeathYear(deathyear);
+
+        ps.updatePerson(p);
     }
     else if(choice == "computers")
     {
@@ -213,7 +227,7 @@ void consoleui::changeMenu(string choice)
         computer comp = ps.getComputerById(changeId);
 
         string name = getInputString("Enter name: ", MULTI);
-        string nationality = getInputString("Enter nationality; ", MULTI);
+        // string nationality = getInputString("Enter nationality; ", MULTI);
         string info = getInputString("Enter info: ", MULTI);
         bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
         int buildyear;
@@ -222,12 +236,14 @@ void consoleui::changeMenu(string choice)
         string type = getInputString("Enter machine type: ", MULTI);
 
         if (!name.empty()) comp.setName(name);
-        if (!nationality.empty()) comp.setNationality(nationality);
+        // if (!nationality.empty()) comp.setNationality(nationality);
         if (!info.empty()) comp.setInfo(info);
         comp.setBuilt(built);
         if (buildyear != -1) comp.setBuildYear(buildyear);
-        if (!type.empty()) comp.setType(type); }
+        if (!type.empty()) comp.setType(type);
 
+        ps.updateComputer(comp);
+    }
 }
 
 //This function allows you to remove one or more persons from the list.
