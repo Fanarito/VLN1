@@ -68,13 +68,27 @@ void consoleui::run()
     } while(running);
 }
 
+template<typename T> void consoleui::printElement(T t, const int& width)
+{
+    const char separator    = ' ';
+    cout << left << setw(width) << setfill(separator) << t;
+}
+
 //This function runs through the vector of person and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
 void consoleui::print_persons(vector<person> p)
 {
+    cout << endl;
+    const int nameWidth = 25;
+    const int restWidth = 15;
+    printElement("Name", nameWidth);
+    printElement("Sex", restWidth);
+    printElement("Birth Year", restWidth);
+    printElement("Death Year", restWidth);
+    printElement("Nationality", restWidth);
+    cout << endl;
     for(size_t i = 0; i < p.size(); i++)
     {
-        cout << "----" << endl;
         cout << p.at(i);
     }
 
@@ -84,13 +98,20 @@ void consoleui::print_persons(vector<person> p)
 //using an overloaded operator << to print out each field.
 void consoleui::print_computers(vector<computer> c)
 {
+    cout << endl;
+    const int nameWidth = 30;
+    const int typeWidth = 20;
+    const int restWidth = 15;
+    printElement("Name", nameWidth);
+    printElement("Build Year", restWidth);
+    printElement("Computer Type", typeWidth);
+    printElement("Built", restWidth);
+    printElement("Nationality", restWidth);
+    cout << endl;
     for(size_t i = 0; i < c.size(); i++)
     {
-        cout << "----" << endl;
         cout << c.at(i);
     }
-
-    cout << "----" << endl;
 }
 
 //Lists out information from the text file.

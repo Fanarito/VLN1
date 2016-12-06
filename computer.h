@@ -2,6 +2,7 @@
 #define COMPUTER_H
 #include <string>
 #include <iostream>
+#include <iomanip>
 
 #include "object.h"
 
