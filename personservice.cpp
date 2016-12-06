@@ -20,6 +20,16 @@ vector<computer> personservice::getComputers()
     return curr_computers;
 }
 
+person personservice::getPersonById(unsigned int id)
+{
+    return data.getPersonById(id);
+}
+
+computer personservice::getComputerById(unsigned int id)
+{
+    return data.getComputerById(id);
+}
+
 void personservice::reset()
 {
     curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID");
