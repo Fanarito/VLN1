@@ -40,6 +40,7 @@ void consoleui::run()
 
         if(command != "quit")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
         }
 
@@ -274,7 +275,7 @@ void consoleui::removeMenu(string choice)
 
         if(removeID == -1) return;
 
-        ps.removePerson(removeID);
+        ps.removeComputer(removeID);
     }
 }
 
@@ -287,10 +288,12 @@ void consoleui::sortMenu(string choice)
     if(choice == "persons") options = VALID_PERSON_COLUMNS;
     else if(choice == "computers") options = VALID_COMPUTER_COLUMNS;
 
-    cout << "Please enter one of the following:" << endl;
+    cout << "Column you would like to sort by:" << endl;
     cout << options << endl;
 
     string column = getInputString(NO_MESS,SINGLE,options);
+
+    cout << "asc|desc" << endl;
     string order = getInputString(NO_MESS,SINGLE, "asc|desc");
 
     if(choice == "persons")
@@ -318,7 +321,6 @@ void consoleui::searchMenu(string choice)
     cout << "Enter column to search in" << endl;
     cout << "Valid column names are: " << options << endl;
     cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl;
-
     string column = getInputString(
                     "Enter column name: ",
                     SINGLE, options + "|end;"
@@ -330,7 +332,6 @@ void consoleui::searchMenu(string choice)
         search_string = to_string(getInputInt("Input year: "));
     else
         search_string = getInputString("Input searchstring: ", MULTI);
-
     arguments.push_back(column);
     arguments.push_back(search_string );
 
@@ -413,14 +414,32 @@ void consoleui::infoMenu(string choice)
 
     if(choice == "persons")
     {
+        person infoPerson;
+        string infoPrint;
+
         int infoID = getInputInt("Please enter ID of person you want information about. -1 to cancel");
 
         if(infoID == -1) return;
+
+        infoPerson = ps.getPersonById(infoID);
+
+        infoPrint = infoPerson.getInfo();
+
+        cout << endl << infoPrint << endl;
     }
     else if(choice == "computers")
     {
+        computer infoComputer;
+        string infoPrint;
+
         int infoID = getInputInt("Please enter ID of computer you want information about -1 to cancel");
 
         if(infoID == -1) return;
+
+        infoComputer = ps.getComputerById(infoID);
+
+        infoPrint = infoComputer.getInfo();
+
+        cout << endl << infoPrint << endl;
     }
 }
