@@ -40,6 +40,7 @@ void consoleui::run()
 
         if(command != "quit")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
         }
 
@@ -313,54 +314,31 @@ void consoleui::searchMenu(string choice)
 
     arguments.push_back(choice);
 
+    string options;
+    if (choice == "persons") options = VALID_PERSON_COLUMNS;
+    else if (choice == "computers") options = VALID_COMPUTER_COLUMNS;
+
     cout << "Enter column to search in" << endl;
-    cout << "Valid column names are: ";
+    cout << "Valid column names are: " << options << endl;
+    cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl;
+    string column = getInputString(
+                    "Enter column name: ",
+                    SINGLE, options + "|end;"
+                );
+    if (column == "end;") return;
+
+    string search_string;
+    if (column == "birth_year" || column == "death_year" || column == "build_year")
+        search_string = to_string(getInputInt("Input year: "));
+    else
+        search_string = getInputString("Input searchstring: ", MULTI);
+    arguments.push_back(column);
+    arguments.push_back(search_string );
 
     if (choice == "persons") {
-        cout << VALID_PERSON_COLUMNS << endl;
-        cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl;
-
-        string column = getInputString(
-                    "Enter column name: ",
-                    SINGLE, VALID_PERSON_COLUMNS + "|end;"
-                    );
-
-        if (column == "end;")
-            return;
-
-        string search_string;
-        if (column == "birth_year" || column == "death_year")
-            search_string = to_string(getInputInt("Input year: "));
-        else
-            search_string = getInputString("Input searchstring: ", MULTI);
-
-        arguments.push_back(column);
-
-        arguments.push_back(search_string );
         print_persons(ps.searchPersons(arguments));
     }
     else if (choice == "computers") {
-        cout << VALID_COMPUTER_COLUMNS << endl;
-        cout << endl << "end; - to stop inputting arguments" << endl;
-
-        string column = getInputString(
-                    "Enter column name: ",
-                    SINGLE,
-                    VALID_COMPUTER_COLUMNS + "|end;"
-                    );
-
-        if (column == "end;")
-            return;
-
-        arguments.push_back(column);
-
-        string search_string;
-        if (column == "build_yeare")
-            search_string = to_string(getInputInt("Input year: "));
-        else
-            search_string = getInputString("Input searchstring: ", MULTI);
-
-        arguments.push_back(search_string );
         print_computers(ps.searchComputers(arguments));
     }
 }
