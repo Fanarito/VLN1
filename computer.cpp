@@ -45,30 +45,16 @@ void computer::setBuildYear(int year)
  */
 std::ostream& operator<<(std::ostream& lhs, const computer rhs)
 {
-	lhs.setf(std::ios::left);
+    const int nameWidth = 30;
+    const int typeWidth = 20;
+    const int restWidth = 15;
+    const char separator = ' ';
 
-    int stdwidth = 15;
-
-    lhs.width(stdwidth);
-    lhs << "Name: " << rhs.getName() << std::endl;
-
-    lhs.width(stdwidth);
-    lhs << "-" << std::endl;
-
-    lhs.width(stdwidth);
-    lhs << "Built: " << rhs.getBuilt() << std::endl;
-
-    lhs.width(stdwidth);
-    lhs << "Type: " << rhs.getType() << std::endl;
-
-    lhs.width(stdwidth);
-    lhs << "Build year: " << rhs.getBuildYear() << std::endl;
-
-    lhs.width(stdwidth);
-    lhs << "Nationality: " << rhs.getNationality() << std::endl;
-
-    lhs.width(stdwidth);
-    lhs << "Info: " << rhs.getInfo() << std::endl;
+    lhs << std::left << std::setw(nameWidth) << std::setfill(separator) << rhs.getName();
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getBuildYear();
+    lhs << std::left << std::setw(typeWidth) << std::setfill(separator) << rhs.getType();
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getBuilt();
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getNationality() << std::endl;
 
     return lhs;
 }
