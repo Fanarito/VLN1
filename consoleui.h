@@ -11,8 +11,8 @@
 #include <array>
 
 const string VALID_TABLE_NAMES = "persons|computers";
-const string VALID_PERSON_COLUMNS = "name|sex|birth_year|death_year|nationality|info";
-const string VALID_COMPUTER_COLUMNS = "name|build_year|nationality|built";
+const string VALID_PERSON_COLUMNS = "id|name|sex|birth_year|death_year|nationality|info";
+const string VALID_COMPUTER_COLUMNS = "id|name|build_year|computer_type|built|nationality";
 
 const string INPUT_ENDER = "end;";
 
@@ -32,6 +32,7 @@ private:
 
     void print_persons(vector<person> p);
     void print_computers(vector<computer> c);
+    void print_options(string options);
 
     void listMenu(string choice);
     void addMenu(string choice);

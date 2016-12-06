@@ -18,6 +18,7 @@ private:
     QSqlDatabase db;
 public:
     dataaccess();
+    ~dataaccess();
 
     std::vector<person> getPersons();
     std::vector<computer> getComputers();
