@@ -15,7 +15,7 @@ private:
 
 public:
     computer(std::string name="Undefined", int buildyear=0, std::string type="Undefined",
-             bool built=false, std::string info="", std::string nationality="Undefined");
+             bool built=false, std::string info="", std::string nationality="Undefined", int id=0);
 
     std::string getType() const;
     void setType(std::string type);

@@ -74,6 +74,7 @@ void consoleui::run()
 void consoleui::print_persons(vector<person> p)
 {
     cout << endl;
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
     cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
     cout << left << setw(restWidth) << setfill(separator) << "Sex";
     cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
