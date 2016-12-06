@@ -24,10 +24,10 @@ public:
 
     void reset();
 
-    //Functions to sort the data according to the user's preferences.
     vector<person> getPersons();
     vector<computer> getComputers();
 
+    //Functions to sort the data according to the user's preferences.
     vector<person> sortPersons(string column, string order);
     vector<computer> sortComputers(string column, string order);
 
