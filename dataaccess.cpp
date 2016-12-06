@@ -4,27 +4,10 @@
 dataaccess::dataaccess()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "CompSci.sqlite";
+    QString dbName = QString::fromStdString(DATABASE);
     db.setDatabaseName(dbName);
 
     if(!db.open()) std::cerr << "Error: SQL did not open properly!" << std::endl;
-}
-
-// Splits a string into a vector of strings with a specified delimiter.
-// Example: split this string becomes [split, this, string]
-std::vector<std::string> split(const std::string &s, char delim)
-{
-
-    std::stringstream ss(s);
-    std::string item;
-    std::vector<std::string> tokens;
-
-    while (std::getline(ss, item, delim))
-    {
-        tokens.push_back(item);
-    }
-
-    return tokens;
 }
 
 int dataaccess::getNationalityID(std::string nationality)
@@ -90,8 +73,11 @@ void dataaccess::addPerson(person p)
 {
     QSqlQuery query(db);
 
-    query.prepare("INSERT INTO Persons (name, sex, birth_year, death_year, nationalityID, info) "
+    bool noerr;
+
+    noerr = query.prepare("INSERT INTO Persons (name, sex, birth_year, death_year, nationalityID, info) "
                           "VALUES (:name, :sex, :birth_year, :death_year, :nationalityID, :info)");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
 
     query.bindValue(":name", QString::fromStdString(p.getName()));
     query.bindValue(":sex", QString::fromStdString(p.getSex()));
@@ -112,6 +98,7 @@ void dataaccess::addComputer(computer c)
     noerr = query.prepare("INSERT INTO Computers(name, build_year, computer_type, built, nationalityID, info) "
                           "VALUES(:name,:build_year, :computer_type, :built,:nationalityID,:info)");
     if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
+
     query.bindValue(":name", QString::fromStdString(c.getName()));
     query.bindValue(":build_year", QString::fromStdString(std::to_string(c.getBuildYear())));
     query.bindValue(":computer_type", QString::fromStdString(c.getType()));

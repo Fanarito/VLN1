@@ -22,6 +22,11 @@ const vector<string> valid_computer_columns = {
 };
 
 const string INPUT_ENDER = "end;";
+const bool MULTI = true;
+const bool SINGLE = false;
+
+const string nomes = "\0";
+const string noexp = "\0";
 
 class consoleui
 {
@@ -35,12 +40,16 @@ private:
     void print_persons(vector<person> p);
     void print_computers(vector<computer> c);
 
-    void list();
-    void add();
-    void change();
-    void remove();
-    void sort();
-    void search();
+    void listMenu();
+    void addMenu();
+    void changeMenu();
+    void removeMenu();
+    void sortMenu();
+    void searchMenu();
+
+    std::string getInputString(std::string message, bool multiToken, string expected);
+    std::string getInputString(std::string message, bool multiToken);
+    int getInputInt(std::string message);
 };
 
 #endif // CONSOLEUI_H

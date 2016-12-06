@@ -24,10 +24,10 @@ public:
 
     void reset();
 
-    //Functions to sort the data according to the user's preferences.
     vector<person> getPersons();
     vector<computer> getComputers();
 
+    //Functions to sort the data according to the user's preferences.
     vector<person> sortPersons(string column, string order);
     vector<computer> sortComputers(string column, string order);
 
@@ -36,6 +36,12 @@ public:
 	vector<person> matchByBirth(int);
 	vector<person> matchByDeath(int);
 	vector<person> matchByNationality(string);
+
+    vector<computer> matchByCompName(string);
+    vector<computer> matchByBuild(int);
+    vector<computer> matchByType(string);
+    vector<computer> matchByBuilt(string);
+    vector<computer> matchByCompNationality(string);
 
     vector<person> filterWithRegex(std::string _regex);
 

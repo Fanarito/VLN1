@@ -23,4 +23,6 @@ HEADERS += \
     person.h \
     personservice.h \
     computer.h \
-    object.h
+    object.h \
+    utils.h
+

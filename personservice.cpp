@@ -20,7 +20,6 @@ vector<computer> personservice::getComputers()
     return curr_computers;
 }
 
-//Updates current working list of data with changes made in-program
 void personservice::reset()
 {
     curr_persons = data.getPersonsByQuery("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID");
@@ -62,34 +61,24 @@ vector<computer> personservice::sortComputers(string column, string order)
     return curr_computers;
 }
 
-//Changes string input, name, to lowercase and runs through vector of person and changes its name variables to lowercase.
-//This function returns a vector of all names that match, without distinguising uppercase and lowercase characters.
-//The change and remove functions in the personservice class use this to make matching case insensitive.
 vector<person> personservice::matchByName(string name)
 {
     curr_persons = data.getPersonsByQuery(QString::fromStdString("SELECT p.Name, p.Sex, p.Birth_Year, p.Death_Year, n.Nationality, p.Info FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID WHERE p.Name LIKE '%" + name + "%'"));
     return curr_persons;
 }
 
-//Changes string input, sex, to lowercase and runs through vector of person and changes its sex variables to lowercase.
-//This function returns a vector of all sexes that match, without distinguising uppercase and lowercase characters.
-//The change and remove functions in the personservice class use this to make matching case insensitive.
 vector<person> personservice::matchBySex(string sex)
 {
     curr_persons = data.getPersonsByQuery(QString::fromStdString("SELECT p.Name, p.Sex, p.Birth_Year, p.Death_Year, n.Nationality, p.Info FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID WHERE p.Sex LIKE '%" + sex + "%'"));
     return curr_persons;
 }
 
-//Runs through a vector of person and looks for birth years that match the int input, year.
-//The matches are returned in the vector of person, match.
 vector<person> personservice::matchByBirth(int year)
 {
     curr_persons = data.getPersonsByQuery(QString::fromStdString("SELECT p.Name, p.Sex, p.Birth_Year, p.Death_Year, n.Nationality, p.Info FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID WHERE p.Birth_Year LIKE '%" + to_string(year) + "%'"));
     return curr_persons;
 }
 
-//Runs through a vector of person and looks for death years that match the int input, year.
-//The matches are returned in the vector of person, match.
 vector<person> personservice::matchByDeath(int year)
 {
     curr_persons = data.getPersonsByQuery(QString::fromStdString("SELECT p.Name, p.Sex, p.Birth_Year, p.Death_Year, n.Nationality, p.Info FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID WHERE p.Death_Year LIKE '%" + to_string(year) + "%'"));
@@ -98,6 +87,36 @@ vector<person> personservice::matchByDeath(int year)
 
 vector<person> personservice::matchByNationality(string nationality)
 {
-    curr_persons = data.getPersonsByQuery(QString::fromStdString("SELECT p.Name, p.Sex, p.Birth_Year, p.Death_Year, n.Nationality, p.Info FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID WHERE n.Nationality LIKE = '%" + nationality + "%'"));
+    curr_persons = data.getPersonsByQuery(QString::fromStdString("SELECT p.Name, p.Sex, p.Birth_Year, p.Death_Year, n.Nationality, p.Info FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID WHERE n.Nationality LIKE '%" + nationality + "%'"));
     return curr_persons;
+}
+
+vector<computer> personservice::matchByCompName(string name)
+{
+    curr_computers = data.getComputersByQuery(QString::fromStdString("SELECT c.Name, c.Build_Year, c.Computer_Type, c.Built, n.Nationality, c.Info FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID WHERE c.Name LIKE '%" + name + "%'"));
+    return curr_computers;
+}
+
+vector<computer> personservice::matchByBuild(int build)
+{
+    curr_computers = data.getComputersByQuery(QString::fromStdString("SELECT c.Name, c.Build_Year, c.Computer_Type, c.Built, n.Nationality, c.Info FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID WHERE c.Build_Year LIKE '%" + to_string(build) + "%'"));
+    return curr_computers;
+}
+
+vector<computer> personservice::matchByType(string type)
+{
+    curr_computers = data.getComputersByQuery(QString::fromStdString("SELECT c.Name, c.Build_Year, c.Computer_Type, c.Built, n.Nationality, c.Info FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID WHERE c.Computer_Type LIKE '%" + type + "%'"));
+    return curr_computers;
+}
+
+vector<computer> personservice::matchByBuilt(string built)
+{
+    curr_computers = data.getComputersByQuery(QString::fromStdString("SELECT c.Name, c.Build_Year, c.Computer_Type, c.Built, n.Nationality, c.Info FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID WHERE c.Built = '" + built + "'"));
+    return curr_computers;
+}
+
+vector<computer> personservice::matchByCompNationality(string nationality)
+{
+    curr_computers = data.getComputersByQuery(QString::fromStdString("SELECT c.Name, c.Build_Year, c.Computer_Type, c.Built, n.Nationality, c.Info FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID WHERE n.Nationality LIKE '%" + nationality + "%'"));
+    return curr_computers;
 }
