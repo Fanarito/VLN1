@@ -109,12 +109,17 @@ void dataaccess::addComputer(computer c)
     query.exec();
 }
 
-void dataaccess::removePerson(person p)
+void dataaccess::removePerson(int id)
 {
     QSqlQuery query(db);
 
-    query.prepare("DELETE FROM persons WHERE id = :id");
-    query.bindValue(":id", p.getId());
+    bool noerr;
+
+    noerr = query.prepare("DELETE FROM persons WHERE id = :id");
+
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    query.bindValue(":id", id);
     query.exec();
 }
 

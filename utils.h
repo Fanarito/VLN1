@@ -17,4 +17,16 @@ namespace utils {
 		return tokens;
 	}
 
+    std::string removeWhiteSpace(std::string str)
+    {
+        auto first = str.find_first_not_of(" \t");
+
+        if(first == string::npos) return "";
+
+        auto last = str.find_last_not_of(" \t");
+        auto range = last - first + 1;
+
+        return str.substr(first,range);
+    }
+
 }
