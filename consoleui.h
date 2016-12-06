@@ -25,7 +25,6 @@ class consoleui
 {
 public:
     consoleui();
-
     void run();
 private:
     personservice ps;
@@ -39,6 +38,12 @@ private:
     void removeMenu();
     void sortMenu();
     void searchMenu();
+
+    const int nameCompWidth = 30;
+    const int namePersonWidth = 25;
+    const int typeWidth = 20;
+    const int restWidth = 15;
+    const char separator = ' ';
 
     template<typename T> void printElement(T t, const int& width);
 

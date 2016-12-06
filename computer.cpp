@@ -64,6 +64,7 @@ std::ostream& operator<<(std::ostream& lhs, const computer rhs)
         built = "False";
     }
 
+    lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getId();
     lhs << std::left << std::setw(nameWidth) << std::setfill(separator) << rhs.getName();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << buildYear;
     lhs << std::left << std::setw(typeWidth) << std::setfill(separator) << rhs.getType();

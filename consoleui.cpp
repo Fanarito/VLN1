@@ -74,10 +74,7 @@ void consoleui::run()
 void consoleui::print_persons(vector<person> p)
 {
     cout << endl;
-    const int nameWidth = 25;
-    const int restWidth = 15;
-    const char separator = ' ';
-    cout << left << setw(nameWidth) << setfill(separator) << "Name";
+    cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
     cout << left << setw(restWidth) << setfill(separator) << "Sex";
     cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
     cout << left << setw(restWidth) << setfill(separator) << "Death Year";
@@ -95,11 +92,8 @@ void consoleui::print_persons(vector<person> p)
 void consoleui::print_computers(vector<computer> c)
 {
     cout << endl;
-    const int nameWidth = 30;
-    const int typeWidth = 20;
-    const int restWidth = 15;
-    const char separator = ' ';
-    cout << left << setw(nameWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
     cout << left << setw(restWidth) << setfill(separator) << "Build Year";
     cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
     cout << left << setw(restWidth) << setfill(separator) << "Built";
