@@ -193,6 +193,41 @@ void consoleui::addMenu(string choice)
 void consoleui::changeMenu(string choice)
 {
     searchMenu(choice);
+
+    if(choice == "persons")
+    {
+        int changeId = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+
+        if(changeId == -1) return;
+
+        cout << ps.getPersonById(changeId).getName() << endl;
+
+        //ps.removePerson(0);
+    }
+    else if(choice == "computers")
+    {
+        int changeId = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+
+        if(changeId == -1) return;
+
+        computer comp = ps.getComputerById(changeId);
+
+        string name = getInputString("Enter name: ", MULTI);
+        string nationality = getInputString("Enter nationality; ", MULTI);
+        string info = getInputString("Enter info: ", MULTI);
+        bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
+        int buildyear;
+        if (built)
+            buildyear = getInputInt("When was it built: ");
+        string type = getInputString("Enter machine type: ", MULTI);
+
+        if (!name.empty()) comp.setName(name);
+        if (!nationality.empty()) comp.setNationality(nationality);
+        if (!info.empty()) comp.setInfo(info);
+        comp.setBuilt(built);
+        if (buildyear != -1) comp.setBuildYear(buildyear);
+        if (!type.empty()) comp.setType(type); }
+
 }
 
 //This function allows you to remove one or more persons from the list.

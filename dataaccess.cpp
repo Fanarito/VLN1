@@ -229,3 +229,25 @@ std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
 
     return execQueryComputer(query);
 }
+
+person dataaccess::getPersonById(unsigned int id)
+{
+    QString q_string = QString::fromStdString("SELECT * FROM persons JOIN Nationality n ON n.id = nationalityid WHERE persons.id = :id");
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare(q_string);
+    query.bindValue(0, id);
+
+    return execQueryPerson(query).at(0);
+}
+
+computer dataaccess::getComputerById(unsigned int id)
+{
+    QString q_string = QString::fromStdString("SELECT * FROM computers JOIN Nationality n ON n.id = nationalityid WHERE computers.id = :id");
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare(q_string);
+    query.bindValue(0, id);
+
+    return execQueryComputer(query).at(0);
+}
