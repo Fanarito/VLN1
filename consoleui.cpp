@@ -276,18 +276,12 @@ void consoleui::searchMenu(string choice)
 {
     vector<string> arguments;
 
-    cout << "Valid tables are:" << endl;
-    for (string t : utils::split(VALID_TABLE_NAMES, '|')) {
-        cout << t << endl;
-    }
-    string table = getInputString(nomes, SINGLE, VALID_TABLE_NAMES);
-
-    arguments.push_back(table);
+    arguments.push_back(choice);
 
     cout << "Enter column to search in" << endl;
     cout << "Valid column names are:" << endl;
 
-    if (table == "persons") {
+    if (choice == "persons") {
         for (string column : utils::split(VALID_PERSON_COLUMNS, '|')) {
             cout << column << " ";
         }
@@ -312,7 +306,7 @@ void consoleui::searchMenu(string choice)
         arguments.push_back(search_string );
         print_persons(ps.searchPersons(arguments));
     }
-    else if (table == "computers") {
+    else if (choice == "computers") {
         for (string column : utils::split(VALID_COMPUTER_COLUMNS, '|')) {
             cout << column << " ";
         }
