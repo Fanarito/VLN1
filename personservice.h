@@ -37,6 +37,9 @@ public:
 	vector<person> matchByDeath(int);
 	vector<person> matchByNationality(string);
 
+    vector<person> searchPersons(vector<string> args);
+    vector<computer> searchComputers(vector<string> args);
+
     vector<computer> matchByCompName(string);
     vector<computer> matchByBuild(int);
     vector<computer> matchByType(string);
