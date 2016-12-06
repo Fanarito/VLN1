@@ -141,7 +141,7 @@ void consoleui::addMenu()
     cout << "persons - Adds to the list of persons" << endl;
     cout << "computers - Adds to the list of computers" << endl << endl;
 
-    string choice = getInputString(nomes, "persons|computers");
+    string choice = getInputString(nomes, SINGLE, "persons|computers");
 
     if(choice == "persons")
     {
@@ -190,13 +190,9 @@ void consoleui::addMenu()
         }
 
         type = getInputString("Type:", MULTI);
-
         build_year = getInputInt("Build year:");
-
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
-
         nationality = getInputString("Nationality: ", MULTI);
-
         info = getInputString("Info: ", MULTI);
 
         cout << endl;
@@ -209,6 +205,9 @@ void consoleui::addMenu()
 //This function allows you to change some, or all properties of a person.
 void consoleui::changeMenu()
 {
+    cout << "Not Implemented properly yet" << endl;
+    return;
+
     cout << endl;
     cout << "Please enter one of the following commands:" << endl;
     cout << "name \t\t"          << "- Remove by name" << endl;
@@ -329,6 +328,15 @@ void consoleui::changeMenu()
 //This function allows you to remove one or more persons from the list.
 void consoleui::removeMenu()
 {
+    cout << "Not Implemented properly yet" << endl;
+    return;
+
+    cout << endl << "Select one of the following:" << endl;
+    cout << "persons - Adds to the list of persons" << endl;
+    cout << "computers - Adds to the list of computers" << endl << endl;
+
+    string choice = getInputString(nomes, SINGLE, "persons|computers");
+
     cout << endl;
     cout << "Please enter one of the following commands:" << endl;
     cout << "name \t\t"          << "- Remove by name" << endl;
@@ -337,61 +345,7 @@ void consoleui::removeMenu()
     cout << "death \t\t"        << "- Remove by year of death" << endl;
     cout << "nationality \t"  << "- Remove by nationality" << endl << endl;
     string remove_command;
-    cin >> remove_command;
-    vector<person> match;
-    if(remove_command == "name")
-    {
-        cout << "Enter the name" << endl;
-        string name;
-        cin.ignore(1000, '\n');
-        getline(cin, name);
-        //match = ps.matchByName(name);
-    }
-    else if(remove_command == "sex")
-    {
-        cout << "Enter the sex (m/f)" << endl;
-        string sex;
-        cin >> sex;
-        //match = ps.matchBySex(sex);
-    }
-    else if(remove_command == "birth")
-    {
-        cout << "Enter the birth year" << endl;
-        int birth;
-        cin >> birth;
-        //match = ps.matchByBirth(birth);
-    }
-    else if(remove_command == "death")
-    {
-        cout << "Enter the death year" << endl;
-        int death;
-        cin >> death;
-        //match = ps.matchByDeath(death);
-    }
-    else if(remove_command == "nationality")
-    {
-        cout << "Enter the nationality" << endl;
-        string nationality;
-        cin >> nationality;
-        //match = ps.matchByName(nationality);
-    }
-    if(match.size() >= 1)
-    {
-        person the_person = match[0];
-        ps.removePerson(the_person);
-        for(size_t i = 0; i < match.size(); i++)
-        {
-            ps.removePerson(match[i]);
-        }
-        cout << "Use the save command if you want to keep the changes" << endl;
-    }
-    else
-    {
-        if(match.size() == 0)
-        {
-            cout << "Something went wrong" << endl;
-        }
-    }
+    cin >> remove_command;    
 }
 
 //This is the function where you can choose how you want to sort the list. After you have made your
@@ -459,101 +413,62 @@ void consoleui::searchMenu()
 {
     vector<string> arguments;
 
-    string table;
-    do {
-        cout << "persons - Will search in the persons table" << endl;
-        cout << "computers - Will search in the computers table" << endl;
-
-        cin >> table;
-    } while (!expect(table, valid_table_names));
+    cout << "Valid tables are:" << endl;
+    for (string t : utils::split(VALID_TABLE_NAMES, '|')) {
+        cout << t << endl;
+    }
+    string table = getInputString(nomes, SINGLE, VALID_TABLE_NAMES);
 
     arguments.push_back(table);
-    string input;
 
-    do {
-        cout << "Enter column to search in" << endl;
-        cout << "Valid column names below" << endl;
-        if (table == "persons") {
-            for (string column : valid_person_columns) {
-                cout << column << endl;
-            }
-            cout << "end; - to stop inputting arguments" << endl;
+    cout << "Enter column to search in" << endl;
+    cout << "Valid column names are:" << endl;
 
-            cin >> input;
-        } else if (table == "computers") {
-            for (string column : valid_computer_columns) {
-                cout << column << endl;
-            }
-            cout << "end; - to stop inputting arguments" << endl;
-
-            cin >> input;
+    if (table == "persons") {
+        for (string column : utils::split(VALID_PERSON_COLUMNS, '|')) {
+            cout << column << " ";
         }
-    } while(input != INPUT_ENDER);
+        cout << endl << "end; - to stop inputting arguments" << endl;
 
-    //TODO: Implement searching functionality
+        string column = getInputString(
+                    "Enter column name: ",
+                    SINGLE, VALID_PERSON_COLUMNS + "|end;"
+                    );
 
-    /*
+        if (column == "end;")
+            return;
+        arguments.push_back(column);
 
-    cout << endl;
-    cout << "name - Will search the system for a name" << endl;
-    cout << "sex - Will search the system for a sex(m/f)" << endl;
-    cout << "birth - Will search the system for a birth year" << endl;
-    cout << "death - Will search the system for a death year" << endl;
-    cout << "nationality - Will search the system for a nationality" << endl << endl;
-
-
-    vector<person> match;
-    vector<person> temp = ps.getPersons();
-
-    string searchCommand;
-    string search_string;
-
-    cin >> searchCommand;
-    cout << endl << "Search string: " << endl << endl;
-    cin.ignore(1000, '\n');
-
-    if(searchCommand == "name")
-    {
-		getline(cin, search_string);
-        //match = ps.matchByName(search_string);
-    }
-    else if(searchCommand == "sex")
-    {
-		getline(cin, search_string);
-        //match = ps.matchBySex(search_string);
-    }
-    else if(searchCommand == "birth")
-    {
-        int search_int;
-
-
-        //match = ps.matchByBirth(search_int);
-    }
-    else if(searchCommand == "death")
-    {
-        int search_int;
-        while(!(cin >> search_int))
-        {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
+        string search_string = getInputString("Input searchstring: ", MULTI);
+        while (search_string.empty()) {
+            search_string = getInputString("Input searchstring: ", MULTI);
         }
-
-        //match = ps.matchByDeath(search_int);
+        arguments.push_back(search_string );
+        print_persons(ps.searchPersons(arguments));
     }
-    else if(searchCommand == "nationality")
-    {
-        getline(cin, search_string);
+    else if (table == "computers") {
+        for (string column : utils::split(VALID_COMPUTER_COLUMNS, '|')) {
+            cout << column << " ";
+        }
+        cout << endl << "end; - to stop inputting arguments" << endl;
 
-        //match = ps.matchByNationality(search_string);
-	}
-    else
-    {
-        cout << "error: invalid search command" << endl;
+        string column = getInputString(
+                    "Enter column name: ",
+                    SINGLE,
+                    VALID_COMPUTER_COLUMNS + "|end;"
+                    );
+
+        if (column == "end;")
+            return;
+        arguments.push_back(column);
+
+        string search_string = getInputString("Input searchstring: ", MULTI);
+        while (search_string.empty()) {
+            search_string = getInputString("Input searchstring: ", MULTI);
+        }
+        arguments.push_back(search_string );
+        print_computers(ps.searchComputers(arguments));
     }
-
-    print_persons(match);
-    */
 }
 
 string consoleui::getInputString(string message, bool multiToken, string expected)

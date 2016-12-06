@@ -10,17 +10,9 @@
 #include <iomanip>
 #include <array>
 
-const vector<string> valid_table_names = {
-    "persons", "computers"
-};
-
-const vector<string> valid_person_columns = {
-    "name", "sex", "birthyear", "deathyear", "nationality", "info"
-};
-
-const vector<string> valid_computer_columns = {
-    "name", "buildyear", "nationality", "built"
-};
+const string VALID_TABLE_NAMES = "persons|computers";
+const string VALID_PERSON_COLUMNS = "name|sex|birthyear|deathyear|nationality|info";
+const string VALID_COMPUTER_COLUMNS = "name|buildyear|nationality|built";
 
 const string INPUT_ENDER = "end;";
 const bool MULTI = true;
@@ -47,6 +39,7 @@ private:
     void removeMenu();
     void sortMenu();
     void searchMenu();
+
     template<typename T> void printElement(T t, const int& width);
 
     std::string getInputString(std::string message, bool multiToken, string expected);

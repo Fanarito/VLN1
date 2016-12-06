@@ -117,3 +117,47 @@ void dataaccess::removePerson(person p)
     query.bindValue(":id", p.getId());
     query.exec();
 }
+
+std::vector<person> dataaccess::execQueryPerson(QSqlQuery query)
+{
+    query.exec();
+
+    std::vector<person> persons;
+
+    while(query.next())
+    {
+        std::string name = query.value("Name").toString().toStdString();
+        std::string sex = query.value("Sex").toString().toStdString();
+        int birthyear = query.value("Birth_Year").toUInt();
+        int deathyear = query.value("Death_Year").toUInt();
+        std::string nationality = query.value("Nationality").toString().toStdString();
+        std::string info = query.value("Info").toString().toStdString();
+
+        persons.push_back(person(name, sex, birthyear, deathyear, nationality, info));
+    }
+
+    return persons;
+
+}
+
+
+std::vector<person> dataaccess::searchPersons(std::vector<std::string> args)
+{
+    if (args.size() < 3) {
+        std::cerr << "Too few arguments to searchPersons";
+        return std::vector<person>();
+    }
+    args[2] = "%" + args[2] + "%";
+    QString q_string = QString::fromStdString("SELECT * FROM persons JOIN Nationality n ON n.id = nationalityid WHERE " + args[1] + " LIKE :arg");
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare(q_string);
+    query.bindValue(":arg", QString::fromStdString(args[2]));
+
+    return execQueryPerson(query);
+}
+
+std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
+{
+
+}
