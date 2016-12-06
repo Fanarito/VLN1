@@ -38,6 +38,7 @@ private:
     void removeMenu(string choice);
     void sortMenu(string choice);
     void searchMenu(string choice);
+    void infoMenu(string choice);
 
     const int nameCompWidth = 30;
     const int namePersonWidth = 25;

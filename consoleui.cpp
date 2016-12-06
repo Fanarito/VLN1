@@ -31,10 +31,11 @@ void consoleui::run()
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
+        cout << "info \t- This will display information about a famous programmer or computer" << endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
-        string command = getInputString("Please enter a command:", SINGLE, "list|add|change|remove|sort|search|quit");
+        string command = getInputString("Please enter a command:", SINGLE, "list|add|change|remove|sort|search|info|quit");
         string choice;
 
         if(command != "quit")
@@ -65,6 +66,10 @@ void consoleui::run()
         else if(command == "search")
         {
             searchMenu(choice);
+        }
+        else if(command == "info")
+        {
+            infoMenu(choice);
         }
         else if(command == "quit")
         {
@@ -393,4 +398,23 @@ int consoleui::getInputInt(string message)
     cin.ignore();
 
     return input;
+}
+
+//This allows you to request information about a person or computer
+void consoleui::infoMenu(string choice)
+{
+    searchMenu(choice);
+
+    if(choice == "persons")
+    {
+        int infoID = getInputInt("Please enter ID of person you want information about. -1 to cancel");
+
+        if(infoID == -1) return;
+    }
+    else if(choice == "computers")
+    {
+        int infoID = getInputInt("Please enter ID of computer you want information about -1 to cancel");
+
+        if(infoID == -1) return;
+    }
 }
