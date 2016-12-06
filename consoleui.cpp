@@ -413,36 +413,63 @@ void consoleui::searchMenu()
 {
     vector<string> arguments;
 
-    string table;
-    do {
-        cout << "persons - Will search in the persons table" << endl;
-        cout << "computers - Will search in the computers table" << endl;
-
-        cin >> table;
-    } while (!expect(table, valid_table_names));
+    cout << "Valid tables are:" << endl;
+    for (string t : utils::split(VALID_TABLE_NAMES, '|')) {
+        cout << t << endl;
+    }
+    string table = getInputString(nomes, SINGLE, VALID_TABLE_NAMES);
 
     arguments.push_back(table);
-    string input;
 
-    do {
-        cout << "Enter column to search in" << endl;
-        cout << "Valid column names below" << endl;
-        if (table == "persons") {
-            for (string column : valid_person_columns) {
-                cout << column << endl;
-            }
-            cout << "end; - to stop inputting arguments" << endl;
+    cout << "Enter column to search in" << endl;
+    cout << "Valid column names are:" << endl;
 
-            cin >> input;
-        } else if (table == "computers") {
-            for (string column : valid_computer_columns) {
-                cout << column << endl;
-            }
-            cout << "end; - to stop inputting arguments" << endl;
-
-            cin >> input;
+    if (table == "persons") {
+        for (string column : utils::split(VALID_PERSON_COLUMNS, '|')) {
+            cout << column << " ";
         }
-    } while(input != INPUT_ENDER);
+        cout << endl << "end; - to stop inputting arguments" << endl;
+
+        string column = getInputString(
+                    "Enter column name: ",
+                    SINGLE, VALID_PERSON_COLUMNS + "|end;"
+                    );
+
+        if (column == "end;")
+            return;
+        arguments.push_back(column);
+
+        string search_string = getInputString("Input searchstring: ", MULTI);
+        while (search_string.empty()) {
+            search_string = getInputString("Input searchstring: ", MULTI);
+        }
+        arguments.push_back(search_string );
+        print_persons(ps.searchPersons(arguments));
+    }
+    else if (table == "computers") {
+        for (string column : utils::split(VALID_COMPUTER_COLUMNS, '|')) {
+            cout << column << " ";
+        }
+        cout << endl << "end; - to stop inputting arguments" << endl;
+
+        string column = getInputString(
+                    "Enter column name: ",
+                    SINGLE,
+                    VALID_COMPUTER_COLUMNS + "|end;"
+                    );
+
+        if (column == "end;")
+            return;
+        arguments.push_back(column);
+
+        string search_string = getInputString("Input searchstring: ", MULTI);
+        while (search_string.empty()) {
+            search_string = getInputString("Input searchstring: ", MULTI);
+        }
+        arguments.push_back(search_string );
+        print_computers(ps.searchComputers(arguments));
+    }
+
 
     //TODO: Implement searching functionality
 

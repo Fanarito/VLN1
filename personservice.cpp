@@ -48,6 +48,16 @@ void personservice::removePerson(person p)
     data.removePerson(p);
 }
 
+vector<person> personservice::searchPersons(vector<string> args)
+{
+    return data.searchPersons(args);
+}
+
+vector<computer> personservice::searchComputers(vector<string> args)
+{
+    return data.searchComputers(args);
+}
+
 
 vector<person> personservice::sortPersons(string column, string order)
 {

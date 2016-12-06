@@ -22,6 +22,12 @@ public:
     std::vector<person> getPersonsByQuery(QString q);
     std::vector<computer> getComputersByQuery(QString q);
 
+    std::vector<person> searchPersons(std::vector<std::string> args);
+    std::vector<computer> searchComputers(std::vector<std::string> args);
+
+    std::vector<person> execQueryPerson(QSqlQuery query);
+    std::vector<computer> execQueryComputer(QSqlQuery query);
+
     int getNationalityID(std::string nationality);
 
     void addPerson(person p);
