@@ -2,18 +2,10 @@
 
 using namespace std;
 
-template<typename T> bool expect(T input, T *valid_input)
+template<typename T> bool expect(T input, const vector<T> valid_input)
 {
-    T *result = find(begin(valid_input), end(valid_input), input);
-
-    if (result != end(valid_input))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    auto result = find(valid_input.begin(), valid_input.end(), input);
+    return result != valid_input.end();
 }
 
 consoleui::consoleui()
@@ -528,16 +520,36 @@ void consoleui::search()
 {
     vector<string> arguments;
 
-    cout << "persons - Will search in the persons table" << endl;
-    cout << "computers - Will search in the computers table" << endl;
+    string table;
+    do {
+        cout << "persons - Will search in the persons table" << endl;
+        cout << "computers - Will search in the computers table" << endl;
 
+        cin >> table;
+    } while (!expect(table, valid_table_names));
+
+    arguments.push_back(table);
     string input;
-    cin >> input;
 
-    if (input == "persons" || input == "computers")
-    {
-        arguments.push_back(input);
-    }
+    do {
+        cout << "Enter column to search in" << endl;
+        cout << "Valid column names below" << endl;
+        if (table == "persons") {
+            for (string column : valid_person_columns) {
+                cout << column << endl;
+            }
+            cout << "end; - to stop inputting arguments" << endl;
+
+            cin >> input;
+        } else if (table == "computers") {
+            for (string column : valid_computer_columns) {
+                cout << column << endl;
+            }
+            cout << "end; - to stop inputting arguments" << endl;
+
+            cin >> input;
+        }
+    } while(input != INPUT_ENDER);
 
     //TODO: Implement searching functionality
 

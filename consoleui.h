@@ -6,14 +6,22 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <iterator>
+#include <array>
 
-const string valid_person_columns[] = {
+const vector<string> valid_table_names = {
+    "persons", "computers"
+};
+
+const vector<string> valid_person_columns = {
     "name", "sex", "birthyear", "deathyear", "nationality", "info"
 };
 
-const string valid_computer_columns[] = {
+const vector<string> valid_computer_columns = {
     "name", "buildyear", "nationality", "built"
 };
+
+const string INPUT_ENDER = "end;";
 
 class consoleui
 {
