@@ -39,8 +39,6 @@ void consoleui::run()
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
-        cout << "regex \t- Use regex to match either name, sex, birthyear or deathyear" << endl;
-        cout << "update \t- Moves all persons into viewable list" << endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
@@ -143,9 +141,9 @@ void consoleui::list()
 void consoleui::add()
 {
     string choice;
-    cout << "Select one of the following:" << endl;
+    cout << endl << "Select one of the following:" << endl;
     cout << "person - Adds a person to the list" << endl;
-    cout << "computer - Adds a computer to the list" << endl;
+    cout << "computer - Adds a computer to the list" << endl << endl;
     cin >> choice;
     if(choice == "person")
     {
@@ -156,9 +154,15 @@ void consoleui::add()
         string nationality;
         string info;
 
-        cout << "Name: " << endl;
+        cout << endl << "Name: " << endl;
         cin.ignore(1000, '\n');
         getline(cin, name);
+
+        if(name.empty())
+        {
+            cout << "The name field cannot be empty" << endl;
+            run();
+        }
 
         cout << "Sex: " << endl;
         cin >> sex;
@@ -172,13 +176,25 @@ void consoleui::add()
                 cout << "Invalid input it must be a number" << endl << "Try again:";
         }
 
-        cout << "Year of death: " << endl;
-
-        while(!(cin >> year_of_death))
+        while(1)
         {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
+            cout << "Year of death: " << endl;
+
+            while(!(cin >> year_of_death))
+            {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input it must be a number" << endl << "Try again:";
+            }
+
+            if(year_of_death < year_of_birth)
+            {
+                cout << endl << "Year of death cannot be before year of birth!" << endl << endl;
+            }
+            else
+            {
+                break;
+            }
         }
 
         cout << "Nationality: " << endl;
@@ -203,9 +219,15 @@ void consoleui::add()
         string nationality;
         string info;
 
-        cout << "Name: " << endl;
+        cout << endl << "Name: " << endl;
         cin.ignore(1000, '\n');
         getline(cin, name);
+
+        if(name.empty())
+        {
+            cout << "The name field cannot be empty" << endl;
+            run();
+        }
 
         cout << "type: " << endl;
         cin >> type;
