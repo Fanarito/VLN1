@@ -274,7 +274,7 @@ void consoleui::removeMenu(string choice)
 
         if(removeID == -1) return;
 
-        ps.removePerson(removeID);
+        ps.removeComputer(removeID);
     }
 }
 
