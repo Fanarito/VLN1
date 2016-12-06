@@ -3,18 +3,10 @@
 
 using namespace std;
 
-template<typename T> bool expect(T input, T *valid_input)
+template<typename T> bool expect(T input, const vector<T> valid_input)
 {
-    T *result = find(begin(valid_input), end(valid_input), input);
-
-    if (result != end(valid_input))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    auto result = find(valid_input.begin(), valid_input.end(), input);
+    return result != valid_input.end();
 }
 
 consoleui::consoleui()
@@ -133,7 +125,7 @@ void consoleui::addMenu()
 
     string choice = getInputString(nomes, "persons|computers");
 
-    if(choice == "person")
+    if(choice == "persons")
     {
         string name;
         string sex;
@@ -150,7 +142,7 @@ void consoleui::addMenu()
             name = getInputString("Name:", MULTI);
         }
 
-        sex = getInputString("Sex: m|f", "m|f");
+        sex = getInputString("Sex: m|f", SINGLE, "m|f");
         year_of_birth = getInputInt("Year of birth:");
         year_of_death = getInputInt("Year of death:");
         nationality = getInputString("Nationality:", MULTI);
@@ -160,7 +152,7 @@ void consoleui::addMenu()
 
         ps.addPerson(name, sex, year_of_birth, year_of_death, nationality, info);
     }
-    else if(choice == "computer")
+    else if(choice == "computers")
     {
 
         string name;
@@ -183,7 +175,7 @@ void consoleui::addMenu()
 
         build_year = getInputInt("Build year:");
 
-        built = ("y" == getInputString("Built: y|n", "m|f");
+        built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
 
         nationality = getInputString("Nationality: ", MULTI);
 
@@ -449,16 +441,36 @@ void consoleui::searchMenu()
 {
     vector<string> arguments;
 
-    cout << "persons - Will search in the persons table" << endl;
-    cout << "computers - Will search in the computers table" << endl;
+    string table;
+    do {
+        cout << "persons - Will search in the persons table" << endl;
+        cout << "computers - Will search in the computers table" << endl;
 
+        cin >> table;
+    } while (!expect(table, valid_table_names));
+
+    arguments.push_back(table);
     string input;
-    cin >> input;
 
-    if (input == "persons" || input == "computers")
-    {
-        arguments.push_back(input);
-    }
+    do {
+        cout << "Enter column to search in" << endl;
+        cout << "Valid column names below" << endl;
+        if (table == "persons") {
+            for (string column : valid_person_columns) {
+                cout << column << endl;
+            }
+            cout << "end; - to stop inputting arguments" << endl;
+
+            cin >> input;
+        } else if (table == "computers") {
+            for (string column : valid_computer_columns) {
+                cout << column << endl;
+            }
+            cout << "end; - to stop inputting arguments" << endl;
+
+            cin >> input;
+        }
+    } while(input != INPUT_ENDER);
 
     //TODO: Implement searching functionality
 
@@ -536,6 +548,13 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
     string input;
     getline(cin, input);
 
+    auto first = input.find_first_not_of(" \t");
+    if(first == string::npos) return "";
+    auto last = input.find_last_not_of(" \t");
+    auto range = last - first + 1;
+
+    input = input.substr(first,range);
+
     if(!multiToken && utils::split(input, ' ').size() > 1)
     {
         cout << "Multiple tokens detected in buffer, please try again." << endl;
@@ -565,11 +584,6 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 string consoleui::getInputString(string message, bool multiToken)
 {
     return getInputString(message, multiToken, noexp);
-}
-
-string consoleui::getInputString(string message, string expected)
-{
-    return getInputString(message, SINGLE, expected);
 }
 
 int consoleui::getInputInt(string message)
