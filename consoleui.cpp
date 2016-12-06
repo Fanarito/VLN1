@@ -35,30 +35,36 @@ void consoleui::run()
         cout << endl;
 
         string command = getInputString("Please enter a command:", SINGLE, "list|add|change|remove|sort|search|quit");
+        string choice;
+
+        if(command != "quit")
+        {
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
+        }
 
         if(command == "list")
         {
-            listMenu();
+            listMenu(choice);
         }
         else if(command == "add")
         {
-            addMenu();
+            addMenu(choice);
         }
         else if(command == "change")
         {
-            changeMenu();
+            changeMenu(choice);
         }
         else if(command == "remove")
         {
-            removeMenu();
+            removeMenu(choice);
         }
         else if(command == "sort")
         {
-            sortMenu();
+            sortMenu(choice);
         }
         else if(command == "search")
         {
-            searchMenu();
+            searchMenu(choice);
         }
         else if(command == "quit")
         {
@@ -107,14 +113,8 @@ void consoleui::print_computers(vector<computer> c)
 }
 
 //Lists out information from the text file.
-void consoleui::listMenu()
+void consoleui::listMenu(string choice)
 {
-        cout << "Select one of the following:" << endl;
-        cout << "persons - Prints out a list of persons" << endl;
-        cout << "computers - Prints out a list of computers" << endl;
-
-        string choice = getInputString(nomes, SINGLE, "persons|computers");
-
         if(choice == "persons")
         {
             vector<person> p = ps.getPersons();
@@ -127,17 +127,9 @@ void consoleui::listMenu()
         }
 }
 
-//
-
 //this function allows you to add a scientist. The user can add value to each instance of the new scientist.
-void consoleui::addMenu()
+void consoleui::addMenu(string choice)
 {
-    cout << endl << "Select one of the following:" << endl;
-    cout << "persons - Adds to the list of persons" << endl;
-    cout << "computers - Adds to the list of computers" << endl << endl;
-
-    string choice = getInputString(nomes, SINGLE, "persons|computers");
-
     if(choice == "persons")
     {
         string name;
@@ -198,166 +190,42 @@ void consoleui::addMenu()
 }
 
 //This function allows you to change some, or all properties of a person.
-void consoleui::changeMenu()
+void consoleui::changeMenu(string choice)
 {
-    cout << "Not Implemented properly yet" << endl;
-    return;
-
-    cout << endl;
-    cout << "Please enter one of the following commands:" << endl;
-    cout << "name \t\t"          << "- Remove by name" << endl;
-    cout << "sex \t\t"          << "- Remove by sex" << endl;
-    cout << "birth \t\t"        << "- Remove by year of birth" << endl;
-    cout << "death \t\t"        << "- Remove by year of death" << endl;
-    cout << "nationality \t"  << "- Remove by nationality" << endl << endl;
-    string remove_command;
-    cin >> remove_command;
-    vector<person> match;
-
-    vector<person> temp = ps.getPersons();
-
-    if(remove_command == "name")
-    {
-        cout << "Enter the name" << endl;
-        string name;
-        cin.ignore(1000, '\n');
-        getline(cin, name);
-        //match = ps.matchByName(name);
-    }
-    else if(remove_command == "sex")
-    {
-        cout << "Enter the sex (m/f)" << endl;
-        string sex;
-        cin >> sex;
-        //match = ps.matchBySex(sex);
-    }
-    else if(remove_command == "birth")
-    {
-        cout << "Enter the birth year" << endl;
-        int birth;
-        cin >> birth;
-        //match = ps.matchByBirth(birth);
-    }
-    else if(remove_command == "death")
-    {
-        cout << "Enter the death year" << endl;
-        int death;
-        cin >> death;
-        //match = ps.matchByDeath(death);
-    }
-    else if(remove_command == "nationality")
-    {
-        cout << "Enter the nationality" << endl;
-        string nationality;
-        cin >> nationality;
-        //match = ps.matchByName(nationality);
-    }
-
-    if(match.size() == 1)
-    {
-        person the_person = match[0];
-
-        ps.removePerson(the_person);
-
-        string name;
-        string sex;
-        int birthyear;
-        int deathyear;
-        string nationality;
-        string info;
-        cout << "-1 Means no change" << endl;
-        cout << "Name: " << endl;
-        //cin.ignore(1000, '\n');
-        getline(cin, name);
-        cout << "Sex: " << endl;
-        cin >> sex;
-        cout << "Year of birth: " << endl;
-        while(!(cin >> birthyear))
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
-        cout << "Year of death: " << endl;
-        while(!(cin >> deathyear))
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
-        cout << "Nationality: " << endl;
-        cin.ignore(1000, '\n');
-        getline(cin, nationality);
-        cout << "Info: " << endl;
-        //cin.ignore(1000, '\n');
-        getline(cin, info);
-
-        name = (name != "-1")?(name):(the_person.getName());
-        sex  = (sex != "-1")?(sex):(the_person.getSex());
-        birthyear = (birthyear != -1)?(birthyear):(the_person.getBirthYear());
-        deathyear = (deathyear != -1)?(deathyear):(the_person.getDeathYear());
-        nationality = (nationality != "-1")?(nationality):(the_person.getNationality());
-        info = (info != "-1")?(info):(the_person.getInfo());
-
-        the_person = person(name, sex, birthyear, deathyear, nationality, info);
-        ps.addPerson(the_person);
-
-        cout << "Changes made" << endl;
-
-    }
-    else
-    {
-        if(match.size() == 0)
-        {
-            cout << "No people match this name" << endl;
-        }
-        else
-        {
-            cout << "Multiple people match this name: " << endl;
-            print_persons(match);
-        }
-    }
-
+    searchMenu();
 }
 
 //This function allows you to remove one or more persons from the list.
-void consoleui::removeMenu()
+void consoleui::removeMenu(string choice)
 {
-    cout << "Not Implemented properly yet" << endl;
-    return;
+    searchMenu(choice);
 
-    cout << endl << "Select one of the following:" << endl;
-    cout << "persons - Adds to the list of persons" << endl;
-    cout << "computers - Adds to the list of computers" << endl << endl;
+    if(choice == "persons")
+    {
+        int removeID = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
 
-    string choice = getInputString(nomes, SINGLE, "persons|computers");
+        if(removeID == -1) return;
 
-    cout << endl;
-    cout << "Please enter one of the following commands:" << endl;
-    cout << "name \t\t"          << "- Remove by name" << endl;
-    cout << "sex \t\t"          << "- Remove by sex" << endl;
-    cout << "birth \t\t"        << "- Remove by year of birth" << endl;
-    cout << "death \t\t"        << "- Remove by year of death" << endl;
-    cout << "nationality \t"  << "- Remove by nationality" << endl << endl;
-    string remove_command;
-    cin >> remove_command;    
+        ps.removePerson(removeID);
+    }
+    else if(choice == "computers")
+    {
+        int removeID = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+
+        if(removeID == -1) return;
+
+        ps.removePerson(removeID);
+    }
 }
 
 //This is the function where you can choose how you want to sort the list. After you have made your
 //choice the new list will be printed.
-void consoleui::sortMenu()
+void consoleui::sortMenu(string choice)
 {
     vector<person> sortedPersonsList;
     vector<computer> sortedComputersList;
 
-    cout << endl;
-    cout << "Please enter one of the following commands:" << endl;
-    cout << "computers - Sorts computers table " << endl;
-    cout << "persons - Sorts persons table " << endl << endl;
-
-    string table = getInputString(nomes, SINGLE, "computers|persons");
-
-    if(table == "computers")
+    if(choice == "computers")
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
@@ -370,6 +238,7 @@ void consoleui::sortMenu()
         string column = getInputString(nomes, SINGLE, "name|build_year|computer_type|built|nationality");
 
         cout << endl;
+
         cout << "Please enter one of the following commands:" << endl;
         cout << "asc \t- Sorts by ascending order" << endl;
         cout << "desc \t- Sorts by descending order" << endl << endl;
@@ -379,7 +248,7 @@ void consoleui::sortMenu()
         sortedComputersList = ps.sortComputers(column, order);
         print_computers(sortedComputersList);
     }
-    else if(table == "persons")
+    else if(choice == "persons")
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
@@ -404,7 +273,7 @@ void consoleui::sortMenu()
 }
 //This function allows you to search for a specific scientist in the entire list. You can search the system by
 //This name, sex, birth year, death year or nationality.
-void consoleui::searchMenu()
+void consoleui::searchMenu(string choice)
 {
     vector<string> arguments;
 
@@ -432,12 +301,15 @@ void consoleui::searchMenu()
 
         if (column == "end;")
             return;
+
+        string search_string;
+        if (column == "birth_year" || column == "death_year")
+            search_string = to_string(getInputInt("Input year: "));
+        else
+            search_string = getInputString("Input searchstring: ", MULTI);
+
         arguments.push_back(column);
 
-        string search_string = getInputString("Input searchstring: ", MULTI);
-        while (search_string.empty()) {
-            search_string = getInputString("Input searchstring: ", MULTI);
-        }
         arguments.push_back(search_string );
         print_persons(ps.searchPersons(arguments));
     }
@@ -455,12 +327,15 @@ void consoleui::searchMenu()
 
         if (column == "end;")
             return;
+
         arguments.push_back(column);
 
-        string search_string = getInputString("Input searchstring: ", MULTI);
-        while (search_string.empty()) {
+        string search_string;
+        if (column == "build_yeare")
+            search_string = to_string(getInputInt("Input year: "));
+        else
             search_string = getInputString("Input searchstring: ", MULTI);
-        }
+
         arguments.push_back(search_string );
         print_computers(ps.searchComputers(arguments));
     }
@@ -476,12 +351,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
     string input;
     getline(cin, input);
 
-    auto first = input.find_first_not_of(" \t");
-    if(first == string::npos) return "";
-    auto last = input.find_last_not_of(" \t");
-    auto range = last - first + 1;
-
-    input = input.substr(first,range);
+    input = utils::removeWhiteSpace(input);
 
     if(!multiToken && utils::split(input, ' ').size() > 1)
     {

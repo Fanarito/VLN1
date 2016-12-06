@@ -11,8 +11,8 @@
 #include <array>
 
 const string VALID_TABLE_NAMES = "persons|computers";
-const string VALID_PERSON_COLUMNS = "name|sex|birthyear|deathyear|nationality|info";
-const string VALID_COMPUTER_COLUMNS = "name|buildyear|nationality|built";
+const string VALID_PERSON_COLUMNS = "name|sex|birth_year|death_year|nationality|info";
+const string VALID_COMPUTER_COLUMNS = "name|build_year|nationality|built";
 
 const string INPUT_ENDER = "end;";
 const bool MULTI = true;

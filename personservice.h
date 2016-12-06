@@ -19,8 +19,8 @@ public:
 
     void addComputer(std::string name, int build_year, std::string type, int built, std::string nationality, std::string info);
 
-    void removePerson(person p);
-    void removeComputer(computer c);
+    void removePerson(int id);
+    void removeComputer(int id);
 
     void reset();
 
@@ -31,20 +31,8 @@ public:
     vector<person> sortPersons(string column, string order);
     vector<computer> sortComputers(string column, string order);
 
-	vector<person> matchByName(string);
-	vector<person> matchBySex(string);
-	vector<person> matchByBirth(int);
-	vector<person> matchByDeath(int);
-	vector<person> matchByNationality(string);
-
     vector<person> searchPersons(vector<string> args);
     vector<computer> searchComputers(vector<string> args);
-
-    vector<computer> matchByCompName(string);
-    vector<computer> matchByBuild(int);
-    vector<computer> matchByType(string);
-    vector<computer> matchByBuilt(string);
-    vector<computer> matchByCompNationality(string);
 
     vector<person> filterWithRegex(std::string _regex);
 

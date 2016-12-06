@@ -31,7 +31,7 @@ public:
     int getNationalityID(std::string nationality);
 
     void addPerson(person p);
-    void removePerson(person p);
+    void removePerson(int id);
 
     void addComputer(computer p);
 
