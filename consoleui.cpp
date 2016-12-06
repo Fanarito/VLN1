@@ -31,10 +31,11 @@ void consoleui::run()
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
+        cout << "info \t- This will display information about a famous programmer or computer" << endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
-        string command = getInputString("Please enter a command:", SINGLE, "list|add|change|remove|sort|search|quit");
+        string command = getInputString("Please enter a command:", SINGLE, "list|add|change|remove|sort|search|info|quit");
         string choice;
 
         if(command != "quit")
@@ -65,6 +66,10 @@ void consoleui::run()
         else if(command == "search")
         {
             searchMenu(choice);
+        }
+        else if(command == "info")
+        {
+            infoMenu(choice);
         }
         else if(command == "quit")
         {
@@ -280,13 +285,14 @@ void consoleui::sortMenu(string choice)
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
+        cout << "id \t\t"        << "- Sorts by id" << endl;
         cout << "name \t\t" << "- Sorts names alphabetically" << endl;
         cout << "build_year \t" << "- Sorts by build year" << endl;
         cout << "computer_type \t" << "- Sorts computer type alphabetically" << endl;
         cout << "built \t\t" << "- Sorts by whether it has been built" << endl;
         cout << "nationality \t" << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "name|build_year|computer_type|built|nationality");
+        string column = getInputString(NO_MESS, SINGLE, "id|name|build_year|computer_type|built|nationality");
 
         cout << endl;
 
@@ -294,7 +300,7 @@ void consoleui::sortMenu(string choice)
         cout << "asc \t- Sorts by ascending order" << endl;
         cout << "desc \t- Sorts by descending order" << endl << endl;
 
-        string order = getInputString(nomes, SINGLE, "asc|desc");
+        string order = getInputString(NO_MESS, SINGLE, "asc|desc");
 
         sortedComputersList = ps.sortComputers(column, order);
         print_computers(sortedComputersList);
@@ -303,20 +309,21 @@ void consoleui::sortMenu(string choice)
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
+        cout << "id \t\t"        << "- Sorts by id" << endl;
         cout << "name \t\t" << "- Sorts names alphabetically" << endl;
         cout << "sex \t\t"          << "- Sort by sex" << endl;
         cout << "birth_year \t"        << "- Sorts by year of birth" << endl;
         cout << "death_year \t"        << "- Sorts by year of death" << endl;
         cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "name|sex|birth_year|death_year|nationality");
+        string column = getInputString(NO_MESS, SINGLE, "id|name|sex|birth_year|death_year|nationality");
 
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "asc \t- Sorts by ascending order" << endl;
         cout << "desc \t- Sorts by descending order" << endl << endl;
 
-        string order = getInputString(nomes, SINGLE, "asc|desc");
+        string order = getInputString(NO_MESS, SINGLE, "asc|desc");
 
         sortedPersonsList = ps.sortPersons(column, order);
         print_persons(sortedPersonsList);
@@ -384,7 +391,7 @@ void consoleui::searchMenu(string choice)
 
 string consoleui::getInputString(string message, bool multiToken, string expected)
 {
-    if(message != nomes)
+    if(message != NO_MESS)
     {
         cout << message << endl;
     }
@@ -401,7 +408,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
         return getInputString(message, multiToken, expected);
     }
 
-    if(expected == noexp)
+    if(expected == NO_EXP)
     {
         return input;
     }
@@ -422,12 +429,12 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 
 string consoleui::getInputString(string message, bool multiToken)
 {
-    return getInputString(message, multiToken, noexp);
+    return getInputString(message, multiToken, NO_EXP);
 }
 
 int consoleui::getInputInt(string message)
 {
-    if(message != nomes)
+    if(message != NO_MESS)
     {
         cout << message << endl;
     }
@@ -444,4 +451,23 @@ int consoleui::getInputInt(string message)
     cin.ignore();
 
     return input;
+}
+
+//This allows you to request information about a person or computer
+void consoleui::infoMenu(string choice)
+{
+    searchMenu(choice);
+
+    if(choice == "persons")
+    {
+        int infoID = getInputInt("Please enter ID of person you want information about. -1 to cancel");
+
+        if(infoID == -1) return;
+    }
+    else if(choice == "computers")
+    {
+        int infoID = getInputInt("Please enter ID of computer you want information about -1 to cancel");
+
+        if(infoID == -1) return;
+    }
 }

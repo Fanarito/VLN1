@@ -19,6 +19,9 @@ private:
 public:
     dataaccess();
 
+    std::vector<person> getPersons();
+    std::vector<computer> getComputers();
+
     std::vector<person> getPersonsByQuery(QString q);
     std::vector<computer> getComputersByQuery(QString q);
 
