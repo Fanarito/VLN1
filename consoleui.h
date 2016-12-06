@@ -15,11 +15,12 @@ const string VALID_PERSON_COLUMNS = "name|sex|birth_year|death_year|nationality|
 const string VALID_COMPUTER_COLUMNS = "name|build_year|nationality|built";
 
 const string INPUT_ENDER = "end;";
+
+const string NO_MESS = "\0";
+const string NO_EXP = "\0";
+
 const bool MULTI = true;
 const bool SINGLE = false;
-
-const string nomes = "\0";
-const string noexp = "\0";
 
 class consoleui
 {

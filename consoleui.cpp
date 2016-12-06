@@ -276,7 +276,7 @@ void consoleui::sortMenu(string choice)
         cout << "built \t\t" << "- Sorts by whether it has been built" << endl;
         cout << "nationality \t" << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "id|name|build_year|computer_type|built|nationality");
+        string column = getInputString(NO_MESS, SINGLE, "id|name|build_year|computer_type|built|nationality");
 
         cout << endl;
 
@@ -284,7 +284,7 @@ void consoleui::sortMenu(string choice)
         cout << "asc \t- Sorts by ascending order" << endl;
         cout << "desc \t- Sorts by descending order" << endl << endl;
 
-        string order = getInputString(nomes, SINGLE, "asc|desc");
+        string order = getInputString(NO_MESS, SINGLE, "asc|desc");
 
         sortedComputersList = ps.sortComputers(column, order);
         print_computers(sortedComputersList);
@@ -300,14 +300,14 @@ void consoleui::sortMenu(string choice)
         cout << "death_year \t"        << "- Sorts by year of death" << endl;
         cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "id|name|sex|birth_year|death_year|nationality");
+        string column = getInputString(NO_MESS, SINGLE, "id|name|sex|birth_year|death_year|nationality");
 
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
         cout << "asc \t- Sorts by ascending order" << endl;
         cout << "desc \t- Sorts by descending order" << endl << endl;
 
-        string order = getInputString(nomes, SINGLE, "asc|desc");
+        string order = getInputString(NO_MESS, SINGLE, "asc|desc");
 
         sortedPersonsList = ps.sortPersons(column, order);
         print_persons(sortedPersonsList);
@@ -375,7 +375,7 @@ void consoleui::searchMenu(string choice)
 
 string consoleui::getInputString(string message, bool multiToken, string expected)
 {
-    if(message != nomes)
+    if(message != NO_MESS)
     {
         cout << message << endl;
     }
@@ -392,7 +392,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
         return getInputString(message, multiToken, expected);
     }
 
-    if(expected == noexp)
+    if(expected == NO_EXP)
     {
         return input;
     }
@@ -413,12 +413,12 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 
 string consoleui::getInputString(string message, bool multiToken)
 {
-    return getInputString(message, multiToken, noexp);
+    return getInputString(message, multiToken, NO_EXP);
 }
 
 int consoleui::getInputInt(string message)
 {
-    if(message != nomes)
+    if(message != NO_MESS)
     {
         cout << message << endl;
     }
