@@ -198,6 +198,41 @@ void consoleui::addMenu(string choice)
 void consoleui::changeMenu(string choice)
 {
     searchMenu(choice);
+
+    if(choice == "persons")
+    {
+        int changeId = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+
+        if(changeId == -1) return;
+
+        cout << ps.getPersonById(changeId).getName() << endl;
+
+        //ps.removePerson(0);
+    }
+    else if(choice == "computers")
+    {
+        int changeId = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+
+        if(changeId == -1) return;
+
+        computer comp = ps.getComputerById(changeId);
+
+        string name = getInputString("Enter name: ", MULTI);
+        string nationality = getInputString("Enter nationality; ", MULTI);
+        string info = getInputString("Enter info: ", MULTI);
+        bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
+        int buildyear;
+        if (built)
+            buildyear = getInputInt("When was it built: ");
+        string type = getInputString("Enter machine type: ", MULTI);
+
+        if (!name.empty()) comp.setName(name);
+        if (!nationality.empty()) comp.setNationality(nationality);
+        if (!info.empty()) comp.setInfo(info);
+        comp.setBuilt(built);
+        if (buildyear != -1) comp.setBuildYear(buildyear);
+        if (!type.empty()) comp.setType(type); }
+
 }
 
 //This function allows you to remove one or more persons from the list.
@@ -234,13 +269,14 @@ void consoleui::sortMenu(string choice)
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
+        cout << "id \t\t"        << "- Sorts by id" << endl;
         cout << "name \t\t" << "- Sorts names alphabetically" << endl;
         cout << "build_year \t" << "- Sorts by build year" << endl;
         cout << "computer_type \t" << "- Sorts computer type alphabetically" << endl;
         cout << "built \t\t" << "- Sorts by whether it has been built" << endl;
         cout << "nationality \t" << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "name|build_year|computer_type|built|nationality");
+        string column = getInputString(nomes, SINGLE, "id|name|build_year|computer_type|built|nationality");
 
         cout << endl;
 
@@ -257,13 +293,14 @@ void consoleui::sortMenu(string choice)
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
+        cout << "id \t\t"        << "- Sorts by id" << endl;
         cout << "name \t\t" << "- Sorts names alphabetically" << endl;
         cout << "sex \t\t"          << "- Sort by sex" << endl;
         cout << "birth_year \t"        << "- Sorts by year of birth" << endl;
         cout << "death_year \t"        << "- Sorts by year of death" << endl;
         cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "name|sex|birth_year|death_year|nationality");
+        string column = getInputString(nomes, SINGLE, "id|name|sex|birth_year|death_year|nationality");
 
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;

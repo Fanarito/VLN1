@@ -23,6 +23,30 @@ int dataaccess::getNationalityID(std::string nationality)
     return 0;
 }
 
+std::vector<person> dataaccess::getPersons()
+{
+    QSqlQuery query(db);
+
+    QString q = "SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID";
+
+    bool noerr = query.prepare(q);
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    return execQueryPerson(query);
+}
+
+std::vector<computer> dataaccess::getComputers()
+{
+    QSqlQuery query(db);
+
+    QString q =  "SELECT * FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID";
+
+    bool noerr = query.prepare(q);
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    return execQueryComputer(query);
+}
+
 std::vector<person> dataaccess::getPersonsByQuery(QString q)
 {
    QSqlQuery query(db);
@@ -228,4 +252,26 @@ std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
         std::cerr << "SHITTING SHIT" << endl;
 
     return execQueryComputer(query);
+}
+
+person dataaccess::getPersonById(unsigned int id)
+{
+    QString q_string = QString::fromStdString("SELECT * FROM persons JOIN Nationality n ON n.id = nationalityid WHERE persons.id = :id");
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare(q_string);
+    query.bindValue(0, id);
+
+    return execQueryPerson(query).at(0);
+}
+
+computer dataaccess::getComputerById(unsigned int id)
+{
+    QString q_string = QString::fromStdString("SELECT * FROM computers JOIN Nationality n ON n.id = nationalityid WHERE computers.id = :id");
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare(q_string);
+    query.bindValue(0, id);
+
+    return execQueryComputer(query).at(0);
 }

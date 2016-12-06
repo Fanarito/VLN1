@@ -19,8 +19,14 @@ private:
 public:
     dataaccess();
 
+    std::vector<person> getPersons();
+    std::vector<computer> getComputers();
+
     std::vector<person> getPersonsByQuery(QString q);
     std::vector<computer> getComputersByQuery(QString q);
+
+    person getPersonById(unsigned int id);
+    computer getComputerById(unsigned int id);
 
     std::vector<person> searchPersons(std::vector<std::string> args);
     std::vector<computer> searchComputers(std::vector<std::string> args);

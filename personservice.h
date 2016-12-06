@@ -27,6 +27,9 @@ public:
     vector<person> getPersons();
     vector<computer> getComputers();
 
+    person getPersonById(unsigned int id);
+    computer getComputerById(unsigned int id);
+
     //Functions to sort the data according to the user's preferences.
     vector<person> sortPersons(string column, string order);
     vector<computer> sortComputers(string column, string order);
@@ -38,8 +41,6 @@ public:
 
 private:
     dataaccess data;
-    vector<person> curr_persons;
-    vector<computer> curr_computers;
 };
 
 #endif // PERSONSERVICE_H
