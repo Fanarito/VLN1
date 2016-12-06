@@ -15,8 +15,11 @@ const string valid_computer_columns[] = {
     "name", "buildyear", "nationality", "built"
 };
 
-const bool MULTI_TOKEN = true;
-const bool SINGLE_TOKEN = true;
+const bool MULTI = true;
+const bool SINGLE = false;
+
+const string nomes = "\0";
+const string noexp = "\0";
 
 class consoleui
 {
@@ -37,7 +40,8 @@ private:
     void sort();
     void search();
 
-    std::string getInputString(std::string message);
+    std::string getInputString(std::string message, bool multiToken, string expected);
+    std::string getInputString(std::string message, bool multiToken);
     int getInputInt(std::string message);
 };
 

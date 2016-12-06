@@ -1,4 +1,5 @@
 #include "consoleui.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -32,7 +33,6 @@ void consoleui::run()
         ps.reset();
 
         cout << endl;
-        cout << "Please enter one of the following commands:" << endl;
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer or computer to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
@@ -42,8 +42,7 @@ void consoleui::run()
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
-        string command;
-        cin >> command;
+        string command = getInputString("Please enter a command:", SINGLE, "list|add|change|remove|sort|search|quit");
 
         if(command == "list")
         {
@@ -109,13 +108,11 @@ void consoleui::print_computers(vector<computer> c)
 //Lists out information from the text file.
 void consoleui::list()
 {
-
-
-        string choice;
         cout << "Select one of the following:" << endl;
         cout << "persons - Prints out a list of persons" << endl;
         cout << "computers - Prints out a list of computers" << endl;
-        cin >> choice;
+
+        string choice = getInputString(nomes, SINGLE, "persons|computers");
 
         if(choice == "persons")
         {
@@ -125,14 +122,8 @@ void consoleui::list()
         else if(choice == "computers")
         {
            vector<computer> c = ps.getComputers();
-           cout << "Number of computers" << c.size() << endl;
            print_computers(c);
         }
-        else
-        {
-            cout<<"This is not a valid command"<<endl;
-        }
-
 }
 
 //
@@ -540,7 +531,7 @@ void consoleui::sort()
     }
     else
     {
-        cout << "You enterd an invalid command" <<endl;
+        cout << "You entered an invalid command" <<endl;
     }
 }
 //This function allows you to search for a specific scientist in the entire list. You can search the system by
@@ -595,12 +586,7 @@ void consoleui::search()
     else if(searchCommand == "birth")
     {
         int search_int;
-        while(!(cin >> search_int))
-        {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
+
 
         //match = ps.matchByBirth(search_int);
     }
@@ -629,4 +615,64 @@ void consoleui::search()
 
     print_persons(match);
     */
+}
+
+string consoleui::getInputString(string message, bool multiToken, string expected)
+{
+    if(message != nomes)
+    {
+        cout << message << endl;
+    }
+
+    string input;
+    getline(cin, input);
+
+    if(!multiToken && utils::split(input, ' ').size() > 1)
+    {
+        cout << "Multiple tokens detected in buffer, please try again." << endl;
+
+        return getInputString(message, multiToken, expected);
+    }
+
+    if(expected == noexp)
+    {
+        return input;
+    }
+    else
+    {
+        vector<string> exp = utils::split(expected, '|');
+
+        if(find(exp.begin(), exp.end(), input) != exp.end())
+        {
+            return input;
+        }
+
+        cout << "Invalid input, please try again." << endl;
+
+        return getInputString(message, multiToken, expected);
+    }
+}
+
+string consoleui::getInputString(string message, bool multiToken)
+{
+    return getInputString(message, multiToken, noexp);
+}
+
+int consoleui::getInputInt(string message)
+{
+    if(message != nomes)
+    {
+        cout << message << endl;
+    }
+
+    int input;
+
+    while(!(cin >> input))
+    {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input it must be a number" << endl << "Try again:";
+    }
+
+    return input;
 }
