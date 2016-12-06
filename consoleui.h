@@ -39,6 +39,7 @@ private:
     void removeMenu();
     void sortMenu();
     void searchMenu();
+
     template<typename T> void printElement(T t, const int& width);
 
     std::string getInputString(std::string message, bool multiToken, string expected);

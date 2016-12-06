@@ -208,6 +208,9 @@ void consoleui::addMenu()
 //This function allows you to change some, or all properties of a person.
 void consoleui::changeMenu()
 {
+    cout << "Not Implemented properly yet" << endl;
+    return;
+
     cout << endl;
     cout << "Please enter one of the following commands:" << endl;
     cout << "name \t\t"          << "- Remove by name" << endl;
@@ -469,72 +472,6 @@ void consoleui::searchMenu()
         arguments.push_back(search_string );
         print_computers(ps.searchComputers(arguments));
     }
-
-
-    //TODO: Implement searching functionality
-
-    /*
-
-    cout << endl;
-    cout << "name - Will search the system for a name" << endl;
-    cout << "sex - Will search the system for a sex(m/f)" << endl;
-    cout << "birth - Will search the system for a birth year" << endl;
-    cout << "death - Will search the system for a death year" << endl;
-    cout << "nationality - Will search the system for a nationality" << endl << endl;
-
-
-    vector<person> match;
-    vector<person> temp = ps.getPersons();
-
-    string searchCommand;
-    string search_string;
-
-    cin >> searchCommand;
-    cout << endl << "Search string: " << endl << endl;
-    cin.ignore(1000, '\n');
-
-    if(searchCommand == "name")
-    {
-		getline(cin, search_string);
-        //match = ps.matchByName(search_string);
-    }
-    else if(searchCommand == "sex")
-    {
-		getline(cin, search_string);
-        //match = ps.matchBySex(search_string);
-    }
-    else if(searchCommand == "birth")
-    {
-        int search_int;
-
-
-        //match = ps.matchByBirth(search_int);
-    }
-    else if(searchCommand == "death")
-    {
-        int search_int;
-        while(!(cin >> search_int))
-        {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input it must be a number" << endl << "Try again:";
-        }
-
-        //match = ps.matchByDeath(search_int);
-    }
-    else if(searchCommand == "nationality")
-    {
-        getline(cin, search_string);
-
-        //match = ps.matchByNationality(search_string);
-	}
-    else
-    {
-        cout << "error: invalid search command" << endl;
-    }
-
-    print_persons(match);
-    */
 }
 
 string consoleui::getInputString(string message, bool multiToken, string expected)
