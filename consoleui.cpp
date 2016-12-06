@@ -229,13 +229,14 @@ void consoleui::sortMenu(string choice)
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
+        cout << "id \t\t"        << "- Sorts by id" << endl;
         cout << "name \t\t" << "- Sorts names alphabetically" << endl;
         cout << "build_year \t" << "- Sorts by build year" << endl;
         cout << "computer_type \t" << "- Sorts computer type alphabetically" << endl;
         cout << "built \t\t" << "- Sorts by whether it has been built" << endl;
         cout << "nationality \t" << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "name|build_year|computer_type|built|nationality");
+        string column = getInputString(nomes, SINGLE, "id|name|build_year|computer_type|built|nationality");
 
         cout << endl;
 
@@ -252,13 +253,14 @@ void consoleui::sortMenu(string choice)
     {
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
+        cout << "id \t\t"        << "- Sorts by id" << endl;
         cout << "name \t\t" << "- Sorts names alphabetically" << endl;
         cout << "sex \t\t"          << "- Sort by sex" << endl;
         cout << "birth_year \t"        << "- Sorts by year of birth" << endl;
         cout << "death_year \t"        << "- Sorts by year of death" << endl;
         cout << "nationality \t"  << "- Sorts nationalities alphabetically" << endl << endl;
 
-        string column = getInputString(nomes, SINGLE, "name|sex|birth_year|death_year|nationality");
+        string column = getInputString(nomes, SINGLE, "id|name|sex|birth_year|death_year|nationality");
 
         cout << endl;
         cout << "Please enter one of the following commands:" << endl;
