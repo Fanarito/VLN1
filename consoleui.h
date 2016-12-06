@@ -42,6 +42,7 @@ private:
 
     std::string getInputString(std::string message, bool multiToken, string expected);
     std::string getInputString(std::string message, bool multiToken);
+    std::string getInputString(std::string message, string expected);
     int getInputInt(std::string message);
 };
 
