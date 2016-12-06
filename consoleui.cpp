@@ -136,7 +136,10 @@ void consoleui::addMenu()
 
         name = getInputString("Name:", MULTI);
 
-        if(name.empty())
+        string name_nospaces = name;
+        name_nospaces.erase(remove(name_nospaces.begin(),name_nospaces.end(), ' '), name_nospaces.end());
+
+        if(name_nospaces.empty())
         {
             cout << "The name field cannot be empty" << endl;
             run();
