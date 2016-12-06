@@ -486,12 +486,15 @@ void consoleui::searchMenu()
 
         if (column == "end;")
             return;
+
+        string search_string;
+        if (column == "birth_year" || column == "death_year")
+            search_string = to_string(getInputInt("Input year: "));
+        else
+            search_string = getInputString("Input searchstring: ", MULTI);
+
         arguments.push_back(column);
 
-        string search_string = getInputString("Input searchstring: ", MULTI);
-        while (search_string.empty()) {
-            search_string = getInputString("Input searchstring: ", MULTI);
-        }
         arguments.push_back(search_string );
         print_persons(ps.searchPersons(arguments));
     }
@@ -509,12 +512,15 @@ void consoleui::searchMenu()
 
         if (column == "end;")
             return;
+
         arguments.push_back(column);
 
-        string search_string = getInputString("Input searchstring: ", MULTI);
-        while (search_string.empty()) {
+        string search_string;
+        if (column == "build_yeare")
+            search_string = to_string(getInputInt("Input year: "));
+        else
             search_string = getInputString("Input searchstring: ", MULTI);
-        }
+
         arguments.push_back(search_string );
         print_computers(ps.searchComputers(arguments));
     }
