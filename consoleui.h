@@ -32,12 +32,12 @@ private:
     void print_persons(vector<person> p);
     void print_computers(vector<computer> c);
 
-    void listMenu();
-    void addMenu();
-    void changeMenu();
-    void removeMenu();
-    void sortMenu();
-    void searchMenu();
+    void listMenu(string choice);
+    void addMenu(string choice);
+    void changeMenu(string choice);
+    void removeMenu(string choice);
+    void sortMenu(string choice);
+    void searchMenu(string choice);
 
     const int nameCompWidth = 30;
     const int namePersonWidth = 25;

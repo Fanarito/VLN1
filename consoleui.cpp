@@ -80,6 +80,7 @@ void consoleui::run()
 void consoleui::print_persons(vector<person> p)
 {
     cout << endl;
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
     cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
     cout << left << setw(restWidth) << setfill(separator) << "Sex";
     cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
@@ -191,7 +192,7 @@ void consoleui::addMenu(string choice)
 //This function allows you to change some, or all properties of a person.
 void consoleui::changeMenu(string choice)
 {
-    searchMenu();
+    searchMenu(choice);
 }
 
 //This function allows you to remove one or more persons from the list.

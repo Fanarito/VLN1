@@ -33,6 +33,7 @@ std::vector<person> dataaccess::getPersonsByQuery(QString q)
 
    while(query.next())
    {
+       int id = query.value("ID").toUInt();
        std::string name = query.value("Name").toString().toStdString();
        std::string sex = query.value("Sex").toString().toStdString();
        int birthyear = query.value("Birth_Year").toUInt();
@@ -40,7 +41,7 @@ std::vector<person> dataaccess::getPersonsByQuery(QString q)
        std::string nationality = query.value("Nationality").toString().toStdString();
        std::string info = query.value("Info").toString().toStdString();
 
-       persons.push_back(person(name, sex, birthyear, deathyear, nationality, info));
+       persons.push_back(person(name, sex, birthyear, deathyear, nationality, info, id));
    }
 
    return persons;
@@ -57,6 +58,7 @@ std::vector<computer> dataaccess::getComputersByQuery(QString q)
 
    while(query.next())
    {
+       int id = query.value("ID").toUInt();
        std::string name = query.value("Name").toString().toStdString();
        int build_year = query.value("Build_Year").toUInt();
        std::string computer_type = query.value("Computer_Type").toString().toStdString();
@@ -64,7 +66,7 @@ std::vector<computer> dataaccess::getComputersByQuery(QString q)
        std::string nationality = query.value("Nationality").toString().toStdString();
        std::string info = query.value("Info").toString().toStdString();
 
-       computers.push_back(computer(name, build_year, computer_type, built, nationality, info));
+       computers.push_back(computer(name, build_year, computer_type, built, nationality, info, id));
    }
 
    return computers;
@@ -131,6 +133,7 @@ std::vector<person> dataaccess::execQueryPerson(QSqlQuery query)
 
     while(query.next())
     {
+        int id = query.value("ID").toUInt();
         std::string name = query.value("Name").toString().toStdString();
         std::string sex = query.value("Sex").toString().toStdString();
         int birthyear = query.value("Birth_Year").toUInt();
@@ -138,7 +141,7 @@ std::vector<person> dataaccess::execQueryPerson(QSqlQuery query)
         std::string nationality = query.value("Nationality").toString().toStdString();
         std::string info = query.value("Info").toString().toStdString();
 
-        persons.push_back(person(name, sex, birthyear, deathyear, nationality, info));
+        persons.push_back(person(name, sex, birthyear, deathyear, nationality, info, id));
     }
 
     return persons;

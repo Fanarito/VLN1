@@ -2,8 +2,9 @@
 
 
 computer::computer(std::string name, int buildyear, std::string type,
-                   bool built, std::string nationality, std::string info)
+                   bool built, std::string nationality, std::string info, int id)
 {
+    m_id = id;
     m_name = name;
     m_buildyear = buildyear;
     m_type = type;
