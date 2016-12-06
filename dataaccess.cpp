@@ -23,6 +23,30 @@ int dataaccess::getNationalityID(std::string nationality)
     return 0;
 }
 
+std::vector<person> dataaccess::getPersons()
+{
+    QSqlQuery query(db);
+
+    QString q = "SELECT * FROM Persons p JOIN Nationality n ON p.NationalityID = n.ID";
+
+    bool noerr = query.prepare(q);
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    return execQueryPerson(query);
+}
+
+std::vector<computer> dataaccess::getComputers()
+{
+    QSqlQuery query(db);
+
+    QString q =  "SELECT * FROM Computers c JOIN Nationality n ON c.NationalityID = n.ID";
+
+    bool noerr = query.prepare(q);
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    return execQueryComputer(query);
+}
+
 std::vector<person> dataaccess::getPersonsByQuery(QString q)
 {
    QSqlQuery query(db);
