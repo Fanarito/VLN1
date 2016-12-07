@@ -383,3 +383,29 @@ void dataaccess::updateComputer(computer c)
 
     query.exec();
 }
+
+std::vector<person> dataaccess::sortPersons(std::string column, std::string order)
+{
+    QSqlQuery query(db);
+
+    // cannot bind order, cuz stuff
+    bool noerr = query.prepare(QString::fromStdString("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityId = n.id ORDER BY :column" + order));
+    if (!noerr) std::cerr << "Query did not prepare successfully";
+    query.bindValue(":column", QString::fromStdString(column));
+    query.bindValue(":order", QString::fromStdString(order));
+
+    return execQueryPerson(query);
+}
+
+std::vector<computer> dataaccess::sortComputers(std::string column, std::string order)
+{
+    QSqlQuery query(db);
+
+    // cannot bind order, cuz stuff
+    bool noerr = query.prepare(QString::fromStdString("SELECT * FROM Computers c JOIN Nationality n ON c.NationalityId = n.id ORDER BY :column" + order));
+    if (!noerr) std::cerr << "Query did not prepare successfully";
+    query.bindValue(":column", QString::fromStdString(column));
+    query.bindValue(":order", QString::fromStdString(order));
+
+    return execQueryComputer(query);
+}
