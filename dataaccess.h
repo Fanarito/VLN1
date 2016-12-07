@@ -29,6 +29,9 @@ public:
     person getPersonById(unsigned int id, bool &success);
     computer getComputerById(unsigned int id, bool &success);
 
+    std::vector<person> getPersonsByComputerId(unsigned int id, bool &success);
+    std::vector<computer> getComputersByPersonId(unsigned int id, bool &success);
+
     std::vector<person> searchPersons(std::vector<std::string> args);
     std::vector<computer> searchComputers(std::vector<std::string> args);
 

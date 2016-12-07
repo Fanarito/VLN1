@@ -35,12 +35,20 @@ public:
     consoleui();
     void run();
 private:
+
+    const int nameCompWidth = 30;
+    const int namePersonWidth = 25;
+    const int typeWidth = 20;
+    const int restWidth = 15;
+    const char separator = ' ';
+
     personservice ps;
 
-    void print_persons(vector<person> p);
-    void print_person(person p);
-    void print_computers(vector<computer> c);
-    void print_computer(computer c);
+    void printPersons(vector<person> p);
+    void printComputers(vector<computer> c);
+
+    void printPerson(person p);
+    void printComputer(computer c);
 
     void listMenu(string choice);
     void addMenu(string choice);
@@ -50,17 +58,10 @@ private:
     int searchMenu(string choice);
     void infoMenu(string choice);
 
-    const int nameCompWidth = 30;
-    const int namePersonWidth = 25;
-    const int typeWidth = 20;
-    const int restWidth = 15;
-    const char separator = ' ';
-
-    template<typename T> void printElement(T t, const int& width);
-
     std::string getInputString(std::string message, bool multiToken, string expected, bool allow_number);
     std::string getInputString(std::string message, bool multiToken, string expected);
     std::string getInputString(std::string message, bool multiToken);
+
     int getInputInt(std::string message, int low_bound, int high_bound);
     int getInputInt(std::string message);
 
