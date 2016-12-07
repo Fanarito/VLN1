@@ -34,8 +34,6 @@ void consoleui::run()
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
-        cout << "The current year is: " << getCurrentYear() << endl;
-
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
 
@@ -101,6 +99,7 @@ void consoleui::print_persons(vector<person> p)
 
     cout << "----" << endl;
 }
+
 // Prints single person
 void consoleui::print_person(person p)
 {
@@ -175,8 +174,8 @@ void consoleui::addMenu(string choice)
     {
         string name;
         string sex;
-        int year_of_birth;
-        int year_of_death;
+        int birthyear;
+        int deathyear;
         string nationality;
         string info;
 
@@ -189,39 +188,27 @@ void consoleui::addMenu(string choice)
         }
 
         sex = getInputString("Sex: m|f", SINGLE, "m|f");
-        year_of_birth = getInputInt("Year of birth:");
 
-        bool fail = true;
-
+        deathyear = getInputInt("Year of death (if alive enter 0):", PYTHAGORAS, getCurrentYear());
         do
         {
-            year_of_death = getInputInt("Year of death (if alive, enter 0):");
-
-            if((year_of_death == 0) || (year_of_death > year_of_birth))
-            {
-                fail = false;
-            }
-            else
-            {
-                cout << endl << "Year of death cannot be before year of birth!" << endl << endl;
-            }
-
-        }while(fail);
+            birthyear = getInputInt("Enter year of birth(cannot be after death year): ", PYTHAGORAS, getCurrentYear());
+        }
+        while(birthyear > deathyear && deathyear != 0);
 
         nationality = getInputString("Nationality:", MULTI);
         info = getInputString("Info:", MULTI);
 
         cout << endl;
 
-        ps.addPerson(name, sex, year_of_birth, year_of_death, nationality, info);
+        ps.addPerson(name, sex, birthyear, deathyear, nationality, info);
     }
     else if(choice == "computers")
     {
 
         string name;
         string type;
-        int build_year;
-        string b;       //horrible hack
+        int build_year = 0; //Asked for if machine was built
         bool built;
         string nationality;
         string info;
@@ -235,39 +222,10 @@ void consoleui::addMenu(string choice)
         }
 
         type = getInputString("Type:", MULTI);
-        build_year = getInputInt("Build year (if not built, enter 0):");
 
-        bool fail = true;
+        built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
 
-        do
-        {
-            built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
-            cout << built << endl;
-
-            if(built == 1)
-            {
-                if(build_year == 0)
-                {
-                    cout << endl << "Cannot select y because build year was 0" << endl;
-                }
-                else
-                {
-                    fail = false;
-                }
-            }
-
-            if(built == 0)
-            {
-                if(build_year != 0)
-                {
-                    cout << endl << "Cannot select n because build year was not 0" << endl;
-                }
-                else
-                {
-                    fail = false;
-                }
-             }
-        }while(fail);
+        if(built) build_year = getInputInt("Build year:", PYTHAGORAS, getCurrentYear());
 
         nationality = getInputString("Nationality: ", MULTI);
         info = getInputString("Info: ", MULTI);
@@ -303,7 +261,7 @@ void consoleui::changeMenu(string choice)
     if(choice == "persons")
     {
         if (res == -1)
-            changeId = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+            changeId = getInputInt("Please Enter ID of person you want to change. -1 to cancel");
         else
             changeId = res;
 
@@ -322,8 +280,12 @@ void consoleui::changeMenu(string choice)
         // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
         string info = getInputString("Enter info: (empty for no change)", MULTI);
         string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
-        int birthyear = getInputInt("Enter year of birth(-1 for unchanged): ");
-        int deathyear = getInputInt("Enter year of death(0 for not dead, -1 for unchanged): ");
+        int deathyear = getInputInt("Enter year of death(0 for not dead, -1 for unchanged): ",PYTHAGORAS, getCurrentYear());
+        int birthyear;
+        do
+        {
+            birthyear = getInputInt("Enter year of birth(-1 for unchanged, cannot be after death year): ", PYTHAGORAS, getCurrentYear());
+        } while(birthyear > deathyear && deathyear != 0 && deathyear != -1);
 
         if (!name.empty()) p.setName(name);
         // if (!nationality.empty()) p.setNationality(nationality);
@@ -337,7 +299,7 @@ void consoleui::changeMenu(string choice)
     else if(choice == "computers")
     {
         if (res == -1)
-            changeId = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+            changeId = getInputInt("Please enter ID of computer you want to change. -1 to cancel");
         else
             changeId = res;
 
@@ -356,9 +318,9 @@ void consoleui::changeMenu(string choice)
         // string nationality = getInputString("Enter nationality; ", MULTI);
         string info = getInputString("Enter info: ", MULTI);
         bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
-        int buildyear;
+        int buildyear = -1;
         if (built)
-            buildyear = getInputInt("When was it built: ");
+            buildyear = getInputInt("When was it built: ", PYTHAGORAS, getCurrentYear());
         string type = getInputString("Enter machine type: ", MULTI);
 
         if (!name.empty()) comp.setName(name);
@@ -489,7 +451,7 @@ int consoleui::searchMenu(string choice)
         return stoi(column);
     }
     else if (column == "birth_year" || column == "death_year" || column == "build_year")
-        search_string = to_string(getInputInt("Input year: "));
+        search_string = to_string(getInputInt("Input year: ", PYTHAGORAS, getCurrentYear()));
     else if (column == "id")
     {
         search_string = to_string(getInputInt("Enter id: "));
@@ -618,10 +580,10 @@ string consoleui::getInputString(string message, bool multiToken)
 
 int consoleui::getInputInt(std::string message)
 {
-    getInputInt(message, INT_MAX, INT_MIN);
+    return getInputInt(message, INT_MIN, INT_MAX);
 }
 
-int consoleui::getInputInt(string message, int high_bound, int low_bound)
+int consoleui::getInputInt(string message, int low_bound, int high_bound)
 {
     if(message != NO_MESS)
     {
