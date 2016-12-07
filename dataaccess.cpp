@@ -238,8 +238,8 @@ std::vector<person> dataaccess::searchPersons(std::vector<std::string> args)
         query.bindValue(":arg", QString::fromStdString(args[2]));
     }
 
-    if (noerr)
-        std::cerr << "SHITTING SHIT" << endl;
+    if (!noerr)
+        std::cerr << "Query did not prepare successfully." << endl;
 
     return execQueryPerson(query);
 }
@@ -267,8 +267,8 @@ std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
         query.bindValue(":arg", QString::fromStdString(args[2]));
     }
 
-    if (noerr)
-        std::cerr << "SHITTING SHIT" << endl;
+    if (!noerr)
+        std::cerr << "Query did not prepare successfully." << endl;
 
     return execQueryComputer(query);
 }
