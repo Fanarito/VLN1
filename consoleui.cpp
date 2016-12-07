@@ -231,8 +231,40 @@ void consoleui::addMenu(string choice)
         }
 
         type = getInputString("Type:", MULTI);
-        build_year = getInputInt("Build year:");
-        built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
+        build_year = getInputInt("Build year (if not built, enter 0):");
+
+        bool fail = true;
+
+        do
+        {
+            built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
+            cout << built << endl;
+
+            if(built == 1)
+            {
+                if(build_year == 0)
+                {
+                    cout << endl << "Cannot select y because build year was 0" << endl;
+                }
+                else
+                {
+                    fail = false;
+                }
+            }
+
+            if(built == 0)
+            {
+                if(build_year != 0)
+                {
+                    cout << endl << "Cannot select n because build year was not 0" << endl;
+                }
+                else
+                {
+                    fail = false;
+                }
+             }
+        }while(fail);
+
         nationality = getInputString("Nationality: ", MULTI);
         info = getInputString("Info: ", MULTI);
 
