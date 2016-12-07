@@ -55,6 +55,7 @@ public:
     void removeComputer(int id);
 
     void addConnection(int comp_id, int person_id);
+    void removeConnection(int pid, int cid);
 
     void updatePerson(person p);
     void updateComputer(computer c);

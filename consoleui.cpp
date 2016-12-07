@@ -377,7 +377,10 @@ void consoleui::changeMenu(string choice)
 //This function allows you to remove one or more persons/computers from the list.
 void consoleui::removeMenu(string choice)
 {
-    int res = searchMenu(choice);
+    int res;
+    if (choice != "connections")
+        res = searchMenu(choice);
+
     int removeId;
 
     if(choice == "persons")
@@ -401,6 +404,13 @@ void consoleui::removeMenu(string choice)
         if(removeId == -1) return;
 
         ps.removeComputer(removeId);
+    }
+    else if(choice == "connections")
+    {
+        int pid = searchMenu("persons");
+        int cid = searchMenu("computers");
+
+        ps.removeConnection(pid, cid);
     }
 }
 
