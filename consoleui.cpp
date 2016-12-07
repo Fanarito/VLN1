@@ -685,7 +685,7 @@ void consoleui::infoMenu(string choice)
         if (success)
         {
             infoPrint = infoPerson.getInfo();
-            cout << endl << utils::wordWrap(infoPrint, 50) << endl;
+            cout << endl << utils::wordWrap(infoPrint, 25) << endl;
         }
         else
         {
