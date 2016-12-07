@@ -24,7 +24,7 @@ void consoleui::run()
     {
         cout << endl;
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
-        cout << "add \t- This will add a new famous programmer or computer to the system" << endl;
+        cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
