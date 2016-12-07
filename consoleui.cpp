@@ -290,11 +290,15 @@ void consoleui::changeMenu(string choice)
 //This function allows you to remove one or more persons from the list.
 void consoleui::removeMenu(string choice)
 {
-    searchMenu(choice);
+    int res = searchMenu(choice);
+    int removeID;
 
     if(choice == "persons")
     {
-        int removeID = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+        if (res == -1)
+            removeID = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+        else
+            removeID = res;
 
         if(removeID == -1) return;
 
@@ -302,7 +306,10 @@ void consoleui::removeMenu(string choice)
     }
     else if(choice == "computers")
     {
-        int removeID = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+        if (res == -1)
+            removeID = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+        else
+            removeID = res;
 
         if(removeID == -1) return;
 
@@ -339,27 +346,49 @@ void consoleui::sortMenu(string choice)
 }
 //This function allows you to search for a specific scientist in the entire list. You can search the system by
 //This name, sex, birth year, death year or nationality.
-void consoleui::searchMenu(string choice)
+// Returns -1 if multiple people were found, else returns the id of the person
+int consoleui::searchMenu(string choice)
 {
     vector<string> arguments;
-
     arguments.push_back(choice);
 
     string options;
-    if (choice == "persons") options = VALID_PERSON_COLUMNS;
-    else if (choice == "computers") options = VALID_COMPUTER_COLUMNS;
+    if (choice == "persons")
+    {
+        options = VALID_PERSON_COLUMNS;
+        cout << "Enter column to search in or enter the id of the person" << endl;
+    }
+    else if (choice == "computers")
+    {
+        options = VALID_COMPUTER_COLUMNS;
+        cout << "Enter column to search in or enter the id of the computer" << endl;
+    }
 
-    cout << "Enter column to search in" << endl;
     cout << "Valid column names are: " << options << endl;
     cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl;
     string column = getInputString(
                     "Enter column name: ",
-                    SINGLE, options + "|end;"
+                    SINGLE, options + "|end;",
+                    true
                 );
-    if (column == "end;") return;
+    if (column == INPUT_ENDER) return -1;
 
     string search_string;
-    if (column == "birth_year" || column == "death_year" || column == "build_year")
+    bool is_int = column.find_first_not_of("0123456789") == string::npos;
+    // Disgusting but it works
+    if (is_int && choice == "persons")
+    {
+        person p = ps.getPersonById(stoi(column));
+        cout << p;
+        return stoi(column);
+    }
+    else if (is_int && choice == "computers")
+    {
+        computer c = ps.getComputerById(stoi(column));
+        cout << c;
+        return stoi(column);
+    }
+    else if (column == "birth_year" || column == "death_year" || column == "build_year")
         search_string = to_string(getInputInt("Input year: "));
     else if (column == "id")
     {
@@ -372,10 +401,57 @@ void consoleui::searchMenu(string choice)
     arguments.push_back(search_string );
 
     if (choice == "persons") {
-        print_persons(ps.searchPersons(arguments));
+        vector<person> p = ps.searchPersons(arguments);
+        print_persons(p);
+        if (p.size() > 1)
+            return -1;
+        return p.at(0).getId();
     }
     else if (choice == "computers") {
-        print_computers(ps.searchComputers(arguments));
+        vector<computer> c = ps.searchComputers(arguments);
+        print_computers(c);
+        if (c.size() > 1)
+            return -1;
+        return c.at(0).getId();
+    }
+}
+
+string consoleui::getInputString(string message, bool multiToken, string expected, bool allow_number)
+{
+    if(message != NO_MESS)
+    {
+        cout << message << endl;
+    }
+
+    string input;
+    getline(cin, input);
+
+    input = utils::removeWhiteSpace(input);
+
+    if(!multiToken && utils::split(input, ' ').size() > 1)
+    {
+        cout << "Multiple tokens detected in buffer, please try again." << endl;
+
+        return getInputString(message, multiToken, expected);
+    }
+
+    if(expected == NO_EXP)
+    {
+        return input;
+    }
+    else
+    {
+        vector<string> exp = utils::split(expected, '|');
+
+        if(find(exp.begin(), exp.end(), input) != exp.end())
+        {
+            return input;
+        } else if (allow_number && input.find_first_not_of("0123456789") == string::npos)
+            return input;
+
+        cout << "Invalid input, please try again." << endl;
+
+        return getInputString(message, multiToken, expected);
     }
 }
 
