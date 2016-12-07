@@ -43,6 +43,8 @@ public:
     void addComputer(computer p);
     void removeComputer(int id);
 
+    void addConnection(int comp_id, int person_id);
+
     void updatePerson(person p);
     void updateComputer(computer c);
 

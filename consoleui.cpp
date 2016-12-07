@@ -41,7 +41,7 @@ void consoleui::run()
         if(command != "quit")
         {
             cout << endl;
-            choice = getInputString("Select one of the following: persons|computers", SINGLE, VALID_TABLE_NAMES);
+            choice = getInputString("Select one of the following: persons|computers|connections", SINGLE, VALID_TABLE_NAMES);
         }
 
         if(command == "list")
@@ -195,6 +195,21 @@ void consoleui::addMenu(string choice)
         cout << endl;
 
         ps.addComputer(name, build_year, type, built, nationality, info);
+
+    }
+    else if(choice == "connections")
+    {
+        int comp_id;
+        int person_id;
+
+
+        searchMenu("persons");
+        person_id = getInputInt("Please enter the ID of the person you want to connect:");
+        searchMenu("computers");
+        comp_id = getInputInt("Please enter the ID of the computer you want to connect to previusly selected person:");
+        cout << endl;
+
+        ps.addConnection(comp_id, person_id);
 
     }
 }

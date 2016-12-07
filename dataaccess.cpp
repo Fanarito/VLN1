@@ -140,6 +140,22 @@ void dataaccess::addComputer(computer c)
     query.exec();
 }
 
+void dataaccess::addConnection(int comp_id, int person_id)
+{
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    noerr = query.prepare("INSERT INTO Connections(ComputersID, PersonsID) "
+                          "VALUES(:comp_id,:person_id)");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
+
+    query.bindValue(":comp_id", QString::fromStdString(std::to_string(comp_id)));
+    query.bindValue(":person_id", QString::fromStdString(std::to_string(person_id)));
+
+    query.exec();
+}
+
 void dataaccess::removePerson(int id)
 {
     QSqlQuery query(db);

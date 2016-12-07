@@ -99,3 +99,8 @@ void personservice::updateComputer(computer c)
 {
     data.updateComputer(c);
 }
+
+void personservice::addConnection(int comp_id, int person_id)
+{
+    data.addConnection(comp_id, person_id);
+}
