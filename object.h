@@ -24,9 +24,6 @@ public:
 
     std::string getInfo() const;
     void setInfo(std::string info);
-
-    friend std::ostream& operator<<(std::ostream& lhs, const Object rhs);
-    friend bool operator==(const Object lsh, const Object rhs);
 };
 
 #endif // OBJECT_H
