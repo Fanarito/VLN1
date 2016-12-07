@@ -19,6 +19,19 @@ vector<computer> personservice::getComputers()
     return data.getComputers();
 }
 
+vector<person> personservice::getPersonsConnectedWithComputer(computer c)
+{
+    bool temp;
+    return data.getPersonsByComputerId(c.getId(), temp);
+}
+
+vector<computer> personservice::getComputersConnectedWithPerson(person p)
+{
+    bool temp;
+    return data.getComputersByPersonId(p.getId(), temp);
+}
+
+
 person personservice::getPersonById(unsigned int id, bool &success)
 {
     return data.getPersonById(id, success);

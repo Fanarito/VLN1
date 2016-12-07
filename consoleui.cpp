@@ -40,7 +40,7 @@ void consoleui::run()
         if(command != "quit")
         {
             cout << endl;
-            choice = getInputString("Select one of the following: persons|computers|connections", SINGLE, VALID_TABLE_NAMES);
+            choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
         }
 
         if(command == "list")
@@ -82,8 +82,10 @@ void consoleui::run()
 
 //This function runs through the vector of person and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
-void consoleui::print_persons(vector<person> p)
+void consoleui::printPersons(vector<person> p)
 {
+    if(p.size() == 0) return;
+
     cout << endl;
     cout << left << setw(restWidth) << setfill(separator) << "ID";
     cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
@@ -92,6 +94,7 @@ void consoleui::print_persons(vector<person> p)
     cout << left << setw(restWidth) << setfill(separator) << "Death Year";
     cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
     cout << endl;
+
     for(size_t i = 0; i < p.size(); i++)
     {
         cout << p.at(i);
@@ -101,7 +104,7 @@ void consoleui::print_persons(vector<person> p)
 }
 
 // Prints single person
-void consoleui::print_person(person p)
+void consoleui::printPerson(person p)
 {
     cout << endl;
     cout << left << setw(restWidth) << setfill(separator) << "ID";
@@ -117,8 +120,10 @@ void consoleui::print_person(person p)
 
 //This function runs through the vector of computers and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
-void consoleui::print_computers(vector<computer> c)
+void consoleui::printComputers(vector<computer> c)
 {
+    if(c.size() == 0) return;
+
     cout << endl;
     cout << left << setw(restWidth) << setfill(separator) << "ID";
     cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
@@ -127,6 +132,7 @@ void consoleui::print_computers(vector<computer> c)
     cout << left << setw(restWidth) << setfill(separator) << "Built";
     cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
     cout << endl;
+
     for(size_t i = 0; i < c.size(); i++)
     {
         cout << c.at(i);
@@ -134,7 +140,7 @@ void consoleui::print_computers(vector<computer> c)
 }
 
 // Prints single computer
-void consoleui::print_computer(computer c)
+void consoleui::printComputer(computer c)
 {
     cout << endl;
     cout << left << setw(restWidth) << setfill(separator) << "ID";
@@ -154,12 +160,49 @@ void consoleui::listMenu(string choice)
         if(choice == "persons")
         {
             vector<person> p = ps.getPersons();
-            print_persons(p);
+            printPersons(p);
         }
         else if(choice == "computers")
         {
            vector<computer> c = ps.getComputers();
-           print_computers(c);
+           printComputers(c);
+        }
+        else if(choice == "connections")
+        {
+            cout << "Connections to persons or computers?" << endl;
+
+            string conn_choice = getInputString("persons|computers", SINGLE, "persons|computers");
+
+            if(conn_choice == "persons")
+            {
+                vector<person> p = ps.getPersons();
+
+                for(person t_p : p)
+                {
+                    vector<computer> c = ps.getComputersConnectedWithPerson(t_p);
+
+                    if(c.size() > 0)
+                    {
+                        printPerson(t_p);
+                        printComputers(c);
+                    }
+                }
+            }
+            else if(conn_choice == "computers")
+            {
+                vector<computer> c = ps.getComputers();
+
+                for(computer t_c : c)
+                {
+                    vector<person> p = ps.getPersonsConnectedWithComputer(t_c);
+
+                    if(p.size() > 0)
+                    {
+                        printComputer(t_c);
+                        printPersons(p);
+                    }
+                }
+            }
         }
 }
 
@@ -379,11 +422,11 @@ void consoleui::sortMenu(string choice)
 
     if(choice == "persons")
     {
-        print_persons(ps.sortPersons(column, order));
+        printPersons(ps.sortPersons(column, order));
     }
     else if(choice == "computers")
     {
-        print_computers(ps.sortComputers(column, order));
+        printComputers(ps.sortComputers(column, order));
     }
 
 }
@@ -431,7 +474,7 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        print_person(p);
+        printPerson(p);
         return stoi(column);
     }
     else if (is_int && choice == "computers")
@@ -443,7 +486,7 @@ int consoleui::searchMenu(string choice)
             cout << endl << "Computer not found try again" << endl;
             return searchMenu(choice);
         }
-        print_computer(c);
+        printComputer(c);
         return stoi(column);
     }
     else if (column == "birth_year" || column == "death_year" || column == "build_year")
@@ -462,7 +505,7 @@ int consoleui::searchMenu(string choice)
         vector<person> p = ps.searchPersons(arguments);
         if (p.size() > 1)
         {
-            print_persons(p);
+            printPersons(p);
             return -1;
         }
         else if (p.size() == 0)
@@ -471,14 +514,14 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        print_persons(p);
+        printPersons(p);
         return p.at(0).getId();
     }
     else if (choice == "computers") {
         vector<computer> c = ps.searchComputers(arguments);
         if (c.size() > 1)
         {
-            print_computers(c);
+            printComputers(c);
             return -1;
         }
         else if (c.size() == 0)
@@ -487,7 +530,7 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        print_computers(c);
+        printComputers(c);
         return c.at(0).getId();
     }
 

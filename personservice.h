@@ -30,6 +30,9 @@ public:
     vector<person> getPersons();
     vector<computer> getComputers();
 
+    vector<person> getPersonsConnectedWithComputer(computer c);
+    vector<computer> getComputersConnectedWithPerson(person p);
+
     person getPersonById(unsigned int id, bool &success);
     computer getComputerById(unsigned int id, bool &success);
 
