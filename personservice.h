@@ -19,6 +19,8 @@ public:
 
     void addComputer(std::string name, int build_year, std::string type, int built, std::string nationality, std::string info);
 
+    void addConnection(int comp_id, int person_id);
+
     void removePerson(int id);
     void removeComputer(int id);
 
