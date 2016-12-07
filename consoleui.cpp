@@ -281,6 +281,7 @@ void consoleui::addMenu(string choice)
         comp_id = getInputInt("Please enter the ID of the computer you want to connect to previusly selected person:");
         cout << endl;
 
+        ps.removeConnection(comp_id, person_id);
         ps.addConnection(comp_id, person_id);
 
     }
