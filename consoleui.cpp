@@ -330,6 +330,11 @@ void consoleui::searchMenu(string choice)
     string search_string;
     if (column == "birth_year" || column == "death_year" || column == "build_year")
         search_string = to_string(getInputInt("Input year: "));
+    else if (column == "id")
+    {
+        search_string = to_string(getInputInt("Enter id: "));
+        column = choice + ".id";
+    }
     else
         search_string = getInputString("Input searchstring: ", MULTI);
     arguments.push_back(column);

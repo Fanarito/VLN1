@@ -227,7 +227,7 @@ std::vector<person> dataaccess::searchPersons(std::vector<std::string> args)
 
     bool noerr;
 
-    if (args[1] == "birth_year" || args[1] == "death_year") {
+    if (args[1] == "birth_year" || args[1] == "death_year" || args[1] == "persons.id") {
         q_string += QString::fromStdString(" = :arg");
         noerr = query.prepare(q_string);
         query.bindValue(":arg", std::stoi(args[2]));
@@ -256,7 +256,7 @@ std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
 
     bool noerr;
 
-    if (args[1] == "build_year") {
+    if (args[1] == "build_year" || args[1] == "computers.id") {
         q_string += QString::fromStdString(" = :arg");
         noerr = query.prepare(q_string);
         query.bindValue(":arg", std::stoi(args[2]));
