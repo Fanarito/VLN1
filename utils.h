@@ -21,7 +21,7 @@ namespace utils {
     {
         auto first = str.find_first_not_of(" \t");
 
-        if(first == string::npos) return "";
+        if(first == std::string::npos) return "";
 
         auto last = str.find_last_not_of(" \t");
         auto range = last - first + 1;
