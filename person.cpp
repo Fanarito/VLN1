@@ -1,6 +1,7 @@
 #include "person.h"
 
 
+
 person::person(std::string name, std::string sex, int birthyear,
                int deathyear, std::string nationality, std::string info, int id)
 {
