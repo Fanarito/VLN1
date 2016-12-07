@@ -437,16 +437,17 @@ int consoleui::searchMenu(string choice)
     if (choice == "persons")
     {
         options = VALID_PERSON_COLUMNS;
-        cout << "Enter column to search in or enter the id of the person" << endl;
+        cout << endl << "Enter column to search in or enter the id of the person" << endl;
     }
     else if (choice == "computers")
     {
         options = VALID_COMPUTER_COLUMNS;
-        cout << "Enter column to search in or enter the id of the computer" << endl;
+        cout << endl << "Enter column to search in or enter the id of the computer" << endl;
     }
 
     cout << "Valid column names are: " << options << endl;
-    cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl;
+    cout << INPUT_ENDER << " - to stop inputting arguments" << endl;
+    cout << endl;
     string column = getInputString(
                     "Enter column name: ",
                     SINGLE, options + "|end;",
@@ -456,6 +457,7 @@ int consoleui::searchMenu(string choice)
 
     string search_string;
     bool is_int = column.find_first_not_of("0123456789") == string::npos;
+    cout << endl;
     // Disgusting but it works
     if (is_int && choice == "persons")
     {
@@ -543,7 +545,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
         } else if (allow_number && input.find_first_not_of("0123456789") == string::npos)
             return input;
 
-        cout << "Invalid input, please try again." << endl;
+        cout << endl << "Invalid input, please try again." << endl << endl;
 
         return getInputString(message, multiToken, expected);
     }
@@ -581,7 +583,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
             return input;
         }
 
-        cout << "Invalid input, please try again." << endl;
+        cout << endl << "Invalid input, please try again." << endl << endl;
 
         return getInputString(message, multiToken, expected);
     }
