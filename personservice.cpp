@@ -29,11 +29,6 @@ computer personservice::getComputerById(unsigned int id, bool &success)
     return data.getComputerById(id, success);
 }
 
-void personservice::reset()
-{
-
-}
-
 //Adds a person to a vector for later use
 void personservice::addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info)
 {

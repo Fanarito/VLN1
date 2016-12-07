@@ -22,8 +22,6 @@ void consoleui::run()
 
     do
     {
-        ps.reset();
-
         cout << endl;
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer or computer to the system" << endl;

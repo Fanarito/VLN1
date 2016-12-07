@@ -27,8 +27,6 @@ public:
     void updatePerson(person p);
     void updateComputer(computer c);
 
-    void reset();
-
     vector<person> getPersons();
     vector<computer> getComputers();
 
