@@ -218,6 +218,7 @@ void consoleui::addMenu(string choice)
         string nationality;
         string info;
 
+        cout << endl;
         name = getInputString("Name:", MULTI);
 
         while(name.empty())
@@ -226,16 +227,22 @@ void consoleui::addMenu(string choice)
             name = getInputString("Name:", MULTI);
         }
 
+        cout << endl;
         sex = getInputString("Sex: m|f", SINGLE, "m|f");
 
+        cout << endl;
         deathyear = getInputInt("Year of death (if alive enter 0):", PYTHAGORAS, getCurrentYear());
         do
         {
+            cout << endl;
             birthyear = getInputInt("Enter year of birth(cannot be after death year): ", PYTHAGORAS, getCurrentYear());
         }
         while(birthyear > deathyear && deathyear != 0);
 
+        cout << endl;
         nationality = getInputString("Nationality:", MULTI);
+
+        cout << endl;
         info = getInputString("Info:", MULTI);
 
         cout << endl;
@@ -252,6 +259,7 @@ void consoleui::addMenu(string choice)
         string nationality;
         string info;
 
+        cout << endl;
         name = getInputString("Name:", MULTI);
 
         while(name.empty())
@@ -260,13 +268,18 @@ void consoleui::addMenu(string choice)
             name = getInputString("Name:", MULTI);
         }
 
+        cout << endl;
         type = getInputString("Type:", MULTI);
 
+        cout << endl;
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
 
+        cout << endl;
         if(built) build_year = getInputInt("Build year:", PYTHAGORAS, getCurrentYear());
 
+        cout << endl;
         nationality = getInputString("Nationality: ", MULTI);
+        cout << endl;
         info = getInputString("Info: ", MULTI);
 
         cout << endl;
