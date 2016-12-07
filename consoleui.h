@@ -56,7 +56,10 @@ private:
     std::string getInputString(std::string message, bool multiToken, string expected, bool allow_number);
     std::string getInputString(std::string message, bool multiToken, string expected);
     std::string getInputString(std::string message, bool multiToken);
+    int getInputInt(std::string message, int low_bound, int high_bound);
     int getInputInt(std::string message);
+
+    int getCurrentYear();
 };
 
 #endif // CONSOLEUI_H

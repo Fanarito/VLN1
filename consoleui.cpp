@@ -1,5 +1,6 @@
 #include "consoleui.h"
 #include "utils.h"
+#include <time.h>
 
 using namespace std;
 
@@ -32,6 +33,8 @@ void consoleui::run()
         cout << "info \t- This will display information about a famous programmer or computer" << endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
+
+        cout << "The current year is: " << getCurrentYear() << endl;
 
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
@@ -202,6 +205,7 @@ void consoleui::addMenu(string choice)
             {
                 cout << endl << "Year of death cannot be before year of birth!" << endl << endl;
             }
+
         }while(fail);
 
         nationality = getInputString("Nationality:", MULTI);
@@ -592,7 +596,12 @@ string consoleui::getInputString(string message, bool multiToken)
     return getInputString(message, multiToken, NO_EXP);
 }
 
-int consoleui::getInputInt(string message)
+int consoleui::getInputInt(std::string message)
+{
+    getInputInt(message, INT_MAX, INT_MIN);
+}
+
+int consoleui::getInputInt(string message, int high_bound, int low_bound)
 {
     if(message != NO_MESS)
     {
@@ -608,9 +617,23 @@ int consoleui::getInputInt(string message)
             cout << "Invalid input it must be a number" << endl << "Try again:";
     }
 
+    if(input > high_bound || input < low_bound)
+    {
+        cout << "Input out of bounds, please try again." << endl;
+        return getInputInt(message, high_bound, low_bound);
+    }
+
     cin.ignore();
 
     return input;
+}
+
+int consoleui::getCurrentYear()
+{
+    time_t the_time;
+    time (&the_time);
+
+    return localtime (&the_time)->tm_year + 1900;
 }
 
 //This allows you to request information about a person or computer
