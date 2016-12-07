@@ -249,8 +249,7 @@ void consoleui::changeMenu(string choice)
 
         cout << endl;
         string name = getInputString("Enter name: (empty for no change)", MULTI);
-        // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
-        string info = getInputString("Enter info: (empty for no change)", MULTI);
+        string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
         string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
         int deathyear = getInputInt("Enter year of death(0 for not dead, -1 for unchanged): ",PYTHAGORAS, utils::getCurrentYear());
         int birthyear;
@@ -259,8 +258,10 @@ void consoleui::changeMenu(string choice)
             birthyear = getInputInt("Enter year of birth(-1 for unchanged, cannot be after death year): ", PYTHAGORAS, utils::getCurrentYear());
         } while(birthyear > deathyear && deathyear != 0 && deathyear != -1);
 
+        string info = getInputString("Enter info: (empty for no change)", MULTI);
+
         if (!name.empty()) p.setName(name);
-        // if (!nationality.empty()) p.setNationality(nationality);
+        if (!nationality.empty()) p.setNationality(nationality);
         if (!info.empty()) p.setInfo(info);
         if (!sex.empty()) p.setSex(sex);
         if (birthyear != -1) p.setBirthYear(birthyear);

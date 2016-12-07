@@ -397,11 +397,19 @@ void dataaccess::updatePerson(person p)
     bool noerr;
 
     noerr = query.prepare("UPDATE Persons "
-                          "SET name=:name, sex=:sex, birth_year=:birth_year, death_year=:death_year, info=:info WHERE id = :id");
+                          "SET "
+                          "name=:name, "
+                          "sex=:sex, "
+                          "nationalityid=:nationalityid, "
+                          "birth_year=:birth_year, "
+                          "death_year=:death_year, "
+                          "info=:info "
+                          "WHERE id = :id");
     if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
 
     query.bindValue(":name", QString::fromStdString(p.getName()));
     query.bindValue(":sex", QString::fromStdString(p.getSex()));
+    query.bindValue(":nationalityid", getNationalityID(p.getNationality()));
     query.bindValue(":birth_year", QString::fromStdString(std::to_string(p.getBirthYear())));
     query.bindValue(":death_year", QString::fromStdString(std::to_string(p.getDeathYear())));
     query.bindValue(":info", QString::fromStdString(p.getInfo()));
@@ -417,10 +425,18 @@ void dataaccess::updateComputer(computer c)
     bool noerr;
 
     noerr = query.prepare("UPDATE Computers "
-                          "SET name=:name, build_year=:build_year, computer_type=:computer_type, built=:built, info=:info WHERE id = :id");
+                          "SET "
+                          "name=:name, "
+                          "nationalityid=:nationalityid"
+                          "build_year=:build_year, "
+                          "computer_type=:computer_type, "
+                          "built=:built, "
+                          "info=:info "
+                          "WHERE id = :id");
     if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
 
     query.bindValue(":name", QString::fromStdString(c.getName()));
+    query.bindValue(":nationalityid", getNationalityID(c.getNationality()));
     query.bindValue(":build_year", QString::fromStdString(std::to_string(c.getBuildYear())));
     query.bindValue(":computer_type", QString::fromStdString(c.getType()));
     query.bindValue(":built", QString::fromStdString(c.getBuilt()?"TRUE":"FALSE"));
