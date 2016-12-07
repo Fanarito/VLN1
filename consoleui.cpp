@@ -172,9 +172,10 @@ void consoleui::listMenu(string choice)
         }
         else if(choice == "connections")
         {
-            cout << "Connections to persons or computers?" << endl;
+            cout << endl << "Connections to persons or computers?" << endl;
 
             string conn_choice = getInputString("persons|computers", SINGLE, "persons|computers");
+            cout << endl;
 
             if(conn_choice == "persons")
             {
