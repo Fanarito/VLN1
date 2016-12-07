@@ -159,7 +159,23 @@ void consoleui::addMenu(string choice)
 
         sex = getInputString("Sex: m|f", SINGLE, "m|f");
         year_of_birth = getInputInt("Year of birth:");
-        year_of_death = getInputInt("Year of death:");
+
+        bool fail = true;
+
+        do
+        {
+            year_of_death = getInputInt("Year of death (if alive, enter 0):");
+
+            if((year_of_death == 0) || (year_of_death > year_of_birth))
+            {
+                fail = false;
+            }
+            else
+            {
+                cout << endl << "Year of death cannot be before year of birth!" << endl << endl;
+            }
+        }while(fail);
+
         nationality = getInputString("Nationality:", MULTI);
         info = getInputString("Info:", MULTI);
 
