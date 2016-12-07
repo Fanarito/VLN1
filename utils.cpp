@@ -38,8 +38,14 @@ std::string utils::wordWrap(std::string str, int width)
             last_space_index = i;
         if (count_since_last_newline >= width)
         {
-            str.insert(last_space_index + 1, "\n");
-            count_since_last_newline = 0;
+            if (last_space_index != -1)
+            {
+                str.insert(last_space_index + 1, "\n");
+                count_since_last_newline = 0;
+                last_space_index = -1;
+                continue;
+            }
+            count_since_last_newline = 49;
         }
     }
 

@@ -172,9 +172,10 @@ void consoleui::listMenu(string choice)
         }
         else if(choice == "connections")
         {
-            cout << "Connections to persons or computers?" << endl;
+            cout << endl << "Connections to persons or computers?" << endl;
 
             string conn_choice = getInputString("persons|computers", SINGLE, "persons|computers");
+            cout << endl;
 
             if(conn_choice == "persons")
             {
@@ -276,8 +277,10 @@ void consoleui::addMenu(string choice)
 
 
         searchMenu("persons");
+        cout << endl;
         person_id = getInputInt("Please enter the ID of the person you want to connect:");
         searchMenu("computers");
+        cout << endl;
         comp_id = getInputInt("Please enter the ID of the computer you want to connect to previusly selected person:");
         cout << endl;
 
@@ -311,6 +314,7 @@ void consoleui::changeMenu(string choice)
             return;
         }
 
+        cout << endl;
         string name = getInputString("Enter name: (empty for no change)", MULTI);
         // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
         string info = getInputString("Enter info: (empty for no change)", MULTI);
@@ -689,7 +693,7 @@ void consoleui::infoMenu(string choice)
         if (success)
         {
             infoPrint = infoPerson.getInfo();
-            cout << endl << utils::wordWrap(infoPrint, 50) << endl;
+            cout << endl << utils::wordWrap(infoPrint, 25) << endl;
         }
         else
         {
