@@ -618,7 +618,7 @@ string consoleui::getInputString(string message, bool multiToken)
 
 int consoleui::getInputInt(std::string message)
 {
-    getInputInt(message, INT_MAX, INT_MIN);
+    return getInputInt(message, INT_MAX, INT_MIN);
 }
 
 int consoleui::getInputInt(string message, int high_bound, int low_bound)
