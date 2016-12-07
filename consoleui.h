@@ -37,9 +37,10 @@ public:
 private:
 
     const int nameCompWidth = 30;
-    const int namePersonWidth = 25;
+    const int namePersonWidth = 30;
     const int typeWidth = 20;
     const int restWidth = 15;
+    const int combinedWidth = nameCompWidth + restWidth * 4 + typeWidth;
     const char separator = ' ';
 
     personservice ps;
@@ -49,6 +50,9 @@ private:
 
     void printPerson(person p);
     void printComputer(computer c);
+
+    void printPersonConnections(vector<person> persons);
+    void printComputerConnections(vector<computer> computers);
 
     void listMenu(string choice);
     void addMenu(string choice);

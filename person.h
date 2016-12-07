@@ -34,8 +34,6 @@ public:
     //std::vector<uint> getConnectedComputerIds();
 
     friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
-
-    friend bool operator==(const person lhs, const person rhs);
 };
 
 #endif // PERSON_H

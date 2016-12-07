@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//**COMMENT?**
 template<typename T> bool expect(T input, const vector<T> valid_input)
 {
     auto result = find(valid_input.begin(), valid_input.end(), input);
@@ -119,7 +120,7 @@ void consoleui::printPerson(person p)
     cout << p;
 }
 
-//This function runs through the vector of computers and prints out each instance of person. We are
+//This function runs through the vector of computers and prints out each instance of a computer. We are
 //using an overloaded operator << to print out each field.
 void consoleui::printComputers(vector<computer> c)
 {
@@ -155,7 +156,7 @@ void consoleui::printComputer(computer c)
     cout << c;
 }
 
-//Lists out information from the text file.
+//Lists out information from the text file????.
 void consoleui::listMenu(string choice)
 {
         if(choice == "persons")
@@ -176,38 +177,17 @@ void consoleui::listMenu(string choice)
 
             if(conn_choice == "persons")
             {
-                vector<person> p = ps.getPersons();
-
-                for(person t_p : p)
-                {
-                    vector<computer> c = ps.getComputersConnectedWithPerson(t_p);
-
-                    if(c.size() > 0)
-                    {
-                        printPerson(t_p);
-                        printComputers(c);
-                    }
-                }
+                printPersonConnections(ps.getPersons());
             }
             else if(conn_choice == "computers")
             {
-                vector<computer> c = ps.getComputers();
-
-                for(computer t_c : c)
-                {
-                    vector<person> p = ps.getPersonsConnectedWithComputer(t_c);
-
-                    if(p.size() > 0)
-                    {
-                        printComputer(t_c);
-                        printPersons(p);
-                    }
-                }
+                printComputerConnections(ps.getComputers());
             }
+
         }
 }
 
-//this function allows you to add a scientist. The user can add value to each instance of the new scientist.
+//this function allows you to add a person/computer. The user can add value to each instance of the new person/computer..
 void consoleui::addMenu(string choice)
 {
     if(choice == "persons")
@@ -305,7 +285,7 @@ void consoleui::addMenu(string choice)
     }
 }
 
-//This function allows you to change some, or all properties of a person.
+//This function allows you to change some, or all properties of a person/computer.
 void consoleui::changeMenu(string choice)
 {
     int res = searchMenu(choice);
@@ -393,7 +373,7 @@ void consoleui::changeMenu(string choice)
     }
 }
 
-//This function allows you to remove one or more persons from the list.
+//This function allows you to remove one or more persons/computers from the list.
 void consoleui::removeMenu(string choice)
 {
     int res = searchMenu(choice);
@@ -450,9 +430,9 @@ void consoleui::sortMenu(string choice)
     }
 
 }
-//This function allows you to search for a specific scientist in the entire list. You can search the system by
-//This name, sex, birth year, death year or nationality.
-// Returns -1 if multiple people were found, else returns the id of the person
+//This function allows you to search for a specific scientist/computer in the entire list. You can search the system
+//by their properties. Example: for a person you can search by name, sex, birth year, death year or nationality.
+// Returns -1 if multiple people were found, else returns the id of the person/computer.
 int consoleui::searchMenu(string choice)
 {
     vector<string> arguments;
@@ -707,7 +687,7 @@ void consoleui::infoMenu(string choice)
         if (success)
         {
             infoPrint = infoPerson.getInfo();
-            cout << endl << infoPrint << endl;
+            cout << endl << utils::wordWrap(infoPrint, 50) << endl;
         }
         else
         {
@@ -738,5 +718,71 @@ void consoleui::infoMenu(string choice)
         {
             cout << endl << "Computer not found" << endl;
         }
+    }
+}
+
+void consoleui::printPersonConnections(vector<person> persons)
+{
+    cout << endl;
+    cout << left << setw(namePersonWidth) << setfill(' ') << "Person";
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Build Year";
+    cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
+    cout << left << setw(restWidth) << setfill(separator) << "Built";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
+    cout << endl;
+
+    for (person p : persons)
+    {
+        vector<computer> connections = ps.getComputersConnectedWithPerson(p);
+        if (connections.size() == 0)
+            continue;
+
+        cout << endl;
+        cout << left << setw(namePersonWidth) << setfill(' ') << p.getName();
+        cout << endl;
+
+        for (computer c : connections)
+        {
+            cout << setw(namePersonWidth - 1) << setfill('-') << " ";
+            cout << " ";
+            cout << c;
+        }
+
+        cout << left << setw(combinedWidth + namePersonWidth) << setfill('-') << " " << endl;
+    }
+}
+
+void consoleui::printComputerConnections(vector<computer> computers)
+{
+    cout << endl;
+    cout << left << setw(namePersonWidth) << setfill(' ') << "Computer";
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Sex";
+    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
+    cout << endl;
+
+    for (computer c : computers)
+    {
+        vector<person> connections = ps.getPersonsConnectedWithComputer(c);
+        if (connections.size() == 0)
+            continue;
+
+        cout << endl;
+        cout << left << setw(nameCompWidth) << setfill(' ') << c.getName();
+        cout << endl;
+
+        for (person p : connections)
+        {
+            cout << setw(namePersonWidth - 1) << setfill('-') << " ";
+            cout << " ";
+            cout << p;
+        }
+
+        cout << left << setw(combinedWidth + namePersonWidth) << setfill('-') << " " << endl;
     }
 }

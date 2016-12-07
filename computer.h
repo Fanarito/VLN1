@@ -27,7 +27,6 @@ public:
     void setBuildYear(int year);
 
     friend std::ostream& operator<<(std::ostream& lhs, const computer rhs);
-    friend bool operator==(const computer lsh, const computer rhs);
 };
 
 #endif // COMPUTER_H

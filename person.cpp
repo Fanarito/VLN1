@@ -95,16 +95,3 @@ std::ostream& operator<<(std::ostream& lhs, const person rhs)
 
     return lhs;
 }
-
-//Overloaded operator to compare person with another person. Returns true if they are the same.
-bool operator==(const person lhs, const person rhs)
-{
-    if(lhs.m_id != rhs.m_id) return false;
-    if(lhs.m_name != rhs.m_name) return false;
-    if(lhs.m_sex != rhs.m_sex) return false;
-    if(lhs.m_birthyear != rhs.m_birthyear) return false;
-    if(lhs.m_nationality != rhs.m_nationality) return false;
-    if(lhs.m_info != rhs.m_info) return false;
-
-    return true;
-}

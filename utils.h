@@ -29,4 +29,23 @@ namespace utils {
         return str.substr(first,range);
     }
 
+    std::string wordWrap(std::string str, int width)
+    {
+        int count_since_last_newline = 0;
+        int last_space_index = 0;
+
+        for (size_t i = 0; i < str.length(); i++)
+        {
+            count_since_last_newline++;
+            if (str.at(i) == ' ')
+                last_space_index = i;
+            if (count_since_last_newline >= width)
+            {
+                str.insert(last_space_index + 1, "\n");
+                count_since_last_newline = 0;
+            }
+        }
+
+        return str;
+    }
 }
