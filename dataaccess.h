@@ -26,8 +26,8 @@ public:
     std::vector<person> getPersonsByQuery(QString q);
     std::vector<computer> getComputersByQuery(QString q);
 
-    person getPersonById(unsigned int id);
-    computer getComputerById(unsigned int id);
+    person getPersonById(unsigned int id, bool &success);
+    computer getComputerById(unsigned int id, bool &success);
 
     std::vector<person> searchPersons(std::vector<std::string> args);
     std::vector<computer> searchComputers(std::vector<std::string> args);
