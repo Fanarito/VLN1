@@ -506,6 +506,10 @@ int consoleui::searchMenu(string choice)
         printComputer(c);
         return stoi(column);
     }
+    else if(column == "sex")
+    {
+        search_string = getInputString("m|f", SINGLE, "m|f");
+    }
     else if (column == "birth_year" || column == "death_year" || column == "build_year")
         search_string = to_string(getInputInt("Input year: ", PYTHAGORAS, getCurrentYear()));
     else if (column == "id")
