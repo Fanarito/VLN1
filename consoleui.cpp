@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//**COMMENT?**
 template<typename T> bool expect(T input, const vector<T> valid_input)
 {
     auto result = find(valid_input.begin(), valid_input.end(), input);
@@ -37,7 +38,7 @@ void consoleui::run()
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
 
-        if(command != "quit")
+        if(command != "quit" && command != "search" && command != "info" && command != "sort")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
@@ -61,14 +62,17 @@ void consoleui::run()
         }
         else if(command == "sort")
         {
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             sortMenu(choice);
         }
         else if(command == "search")
         {
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             searchMenu(choice);
         }
         else if(command == "info")
         {
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             infoMenu(choice);
         }
         else if(command == "quit")
@@ -116,7 +120,7 @@ void consoleui::printPerson(person p)
     cout << p;
 }
 
-//This function runs through the vector of computers and prints out each instance of person. We are
+//This function runs through the vector of computers and prints out each instance of a computer. We are
 //using an overloaded operator << to print out each field.
 void consoleui::printComputers(vector<computer> c)
 {
@@ -152,7 +156,7 @@ void consoleui::printComputer(computer c)
     cout << c;
 }
 
-//Lists out information from the text file.
+//Lists out information from the text file????.
 void consoleui::listMenu(string choice)
 {
         if(choice == "persons")
@@ -183,7 +187,7 @@ void consoleui::listMenu(string choice)
         }
 }
 
-//this function allows you to add a scientist. The user can add value to each instance of the new scientist.
+//this function allows you to add a person/computer. The user can add value to each instance of the new person/computer..
 void consoleui::addMenu(string choice)
 {
     if(choice == "persons")
@@ -195,6 +199,7 @@ void consoleui::addMenu(string choice)
         string nationality;
         string info;
 
+        cout << endl;
         name = getInputString("Name:", MULTI);
 
         while(name.empty())
@@ -203,16 +208,22 @@ void consoleui::addMenu(string choice)
             name = getInputString("Name:", MULTI);
         }
 
+        cout << endl;
         sex = getInputString("Sex: m|f", SINGLE, "m|f");
 
+        cout << endl;
         deathyear = getInputInt("Year of death (if alive enter 0):", PYTHAGORAS, getCurrentYear());
         do
         {
+            cout << endl;
             birthyear = getInputInt("Enter year of birth(cannot be after death year): ", PYTHAGORAS, getCurrentYear());
         }
         while(birthyear > deathyear && deathyear != 0);
 
+        cout << endl;
         nationality = getInputString("Nationality:", MULTI);
+
+        cout << endl;
         info = getInputString("Info:", MULTI);
 
         cout << endl;
@@ -229,6 +240,7 @@ void consoleui::addMenu(string choice)
         string nationality;
         string info;
 
+        cout << endl;
         name = getInputString("Name:", MULTI);
 
         while(name.empty())
@@ -237,13 +249,18 @@ void consoleui::addMenu(string choice)
             name = getInputString("Name:", MULTI);
         }
 
+        cout << endl;
         type = getInputString("Type:", MULTI);
 
+        cout << endl;
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
 
+        cout << endl;
         if(built) build_year = getInputInt("Build year:", PYTHAGORAS, getCurrentYear());
 
+        cout << endl;
         nationality = getInputString("Nationality: ", MULTI);
+        cout << endl;
         info = getInputString("Info: ", MULTI);
 
         cout << endl;
@@ -268,7 +285,7 @@ void consoleui::addMenu(string choice)
     }
 }
 
-//This function allows you to change some, or all properties of a person.
+//This function allows you to change some, or all properties of a person/computer.
 void consoleui::changeMenu(string choice)
 {
     int res = searchMenu(choice);
@@ -356,7 +373,7 @@ void consoleui::changeMenu(string choice)
     }
 }
 
-//This function allows you to remove one or more persons from the list.
+//This function allows you to remove one or more persons/computers from the list.
 void consoleui::removeMenu(string choice)
 {
     int res = searchMenu(choice);
@@ -413,9 +430,9 @@ void consoleui::sortMenu(string choice)
     }
 
 }
-//This function allows you to search for a specific scientist in the entire list. You can search the system by
-//This name, sex, birth year, death year or nationality.
-// Returns -1 if multiple people were found, else returns the id of the person
+//This function allows you to search for a specific scientist/computer in the entire list. You can search the system
+//by their properties. Example: for a person you can search by name, sex, birth year, death year or nationality.
+// Returns -1 if multiple people were found, else returns the id of the person/computer.
 int consoleui::searchMenu(string choice)
 {
     vector<string> arguments;
@@ -471,6 +488,10 @@ int consoleui::searchMenu(string choice)
         }
         printComputer(c);
         return stoi(column);
+    }
+    else if(column == "sex")
+    {
+        search_string = getInputString("m|f", SINGLE, "m|f");
     }
     else if (column == "birth_year" || column == "death_year" || column == "build_year")
         search_string = to_string(getInputInt("Input year: ", PYTHAGORAS, getCurrentYear()));
