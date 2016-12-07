@@ -32,6 +32,9 @@ public:
     std::vector<person> searchPersons(std::vector<std::string> args);
     std::vector<computer> searchComputers(std::vector<std::string> args);
 
+    std::vector<person> sortPersons(std::string column, std::string order);
+    std::vector<computer> sortComputers(std::string column, std::string order);
+
     std::vector<person> execQueryPerson(QSqlQuery query);
     std::vector<computer> execQueryComputer(QSqlQuery query);
 
