@@ -99,8 +99,6 @@ void consoleui::printPersons(vector<person> p)
     {
         cout << p.at(i);
     }
-
-    cout << "----" << endl;
 }
 
 // Prints single person
