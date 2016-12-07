@@ -173,34 +173,13 @@ void consoleui::listMenu(string choice)
 
             if(conn_choice == "persons")
             {
-                vector<person> p = ps.getPersons();
-
-                for(person t_p : p)
-                {
-                    vector<computer> c = ps.getComputersConnectedWithPerson(t_p);
-
-                    if(c.size() > 0)
-                    {
-                        printPerson(t_p);
-                        printComputers(c);
-                    }
-                }
+                printPersonConnections(ps.getPersons());
             }
             else if(conn_choice == "computers")
             {
-                vector<computer> c = ps.getComputers();
-
-                for(computer t_c : c)
-                {
-                    vector<person> p = ps.getPersonsConnectedWithComputer(t_c);
-
-                    if(p.size() > 0)
-                    {
-                        printComputer(t_c);
-                        printPersons(p);
-                    }
-                }
+                printComputerConnections(ps.getComputers());
             }
+
         }
 }
 
@@ -687,7 +666,7 @@ void consoleui::infoMenu(string choice)
         if (success)
         {
             infoPrint = infoPerson.getInfo();
-            cout << endl << infoPrint << endl;
+            cout << endl << utils::wordwrap(infoPrint, 50) << endl;
         }
         else
         {
@@ -718,5 +697,71 @@ void consoleui::infoMenu(string choice)
         {
             cout << endl << "Computer not found" << endl;
         }
+    }
+}
+
+void consoleui::printPersonConnections(vector<person> persons)
+{
+    cout << endl;
+    cout << left << setw(namePersonWidth) << setfill(' ') << "Person";
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Build Year";
+    cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
+    cout << left << setw(restWidth) << setfill(separator) << "Built";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
+    cout << endl;
+
+    for (person p : persons)
+    {
+        vector<computer> connections = ps.getComputersConnectedWithPerson(p);
+        if (connections.size() == 0)
+            continue;
+
+        cout << endl;
+        cout << left << setw(namePersonWidth) << setfill(' ') << p.getName();
+        cout << endl;
+
+        for (computer c : connections)
+        {
+            cout << setw(namePersonWidth - 1) << setfill('-') << " ";
+            cout << " ";
+            cout << c;
+        }
+
+        cout << left << setw(combinedWidth + namePersonWidth) << setfill('-') << " " << endl;
+    }
+}
+
+void consoleui::printComputerConnections(vector<computer> computers)
+{
+    cout << endl;
+    cout << left << setw(namePersonWidth) << setfill(' ') << "Computer";
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Sex";
+    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
+    cout << endl;
+
+    for (computer c : computers)
+    {
+        vector<person> connections = ps.getPersonsConnectedWithComputer(c);
+        if (connections.size() == 0)
+            continue;
+
+        cout << endl;
+        cout << left << setw(nameCompWidth) << setfill(' ') << c.getName();
+        cout << endl;
+
+        for (person p : connections)
+        {
+            cout << setw(namePersonWidth - 1) << setfill('-') << " ";
+            cout << " ";
+            cout << p;
+        }
+
+        cout << left << setw(combinedWidth + namePersonWidth) << setfill('-') << " " << endl;
     }
 }
