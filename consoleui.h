@@ -40,7 +40,7 @@ private:
     void changeMenu(string choice);
     void removeMenu(string choice);
     void sortMenu(string choice);
-    void searchMenu(string choice);
+    int searchMenu(string choice);
     void infoMenu(string choice);
 
     const int nameCompWidth = 30;
@@ -51,6 +51,7 @@ private:
 
     template<typename T> void printElement(T t, const int& width);
 
+    std::string getInputString(std::string message, bool multiToken, string expected, bool allow_number);
     std::string getInputString(std::string message, bool multiToken, string expected);
     std::string getInputString(std::string message, bool multiToken);
     int getInputInt(std::string message);
