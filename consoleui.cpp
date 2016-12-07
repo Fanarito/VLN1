@@ -98,6 +98,21 @@ void consoleui::print_persons(vector<person> p)
 
     cout << "----" << endl;
 }
+// Prints single person
+void consoleui::print_person(person p)
+{
+    cout << endl;
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Sex";
+    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
+    cout << endl;
+
+    cout << p;
+}
+
 //This function runs through the vector of computers and prints out each instance of person. We are
 //using an overloaded operator << to print out each field.
 void consoleui::print_computers(vector<computer> c)
@@ -114,6 +129,21 @@ void consoleui::print_computers(vector<computer> c)
     {
         cout << c.at(i);
     }
+}
+
+// Prints single computer
+void consoleui::print_computer(computer c)
+{
+    cout << endl;
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Build Year";
+    cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
+    cout << left << setw(restWidth) << setfill(separator) << "Built";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
+    cout << endl;
+
+    cout << c;
 }
 
 void consoleui::print_options(string options)
@@ -405,7 +435,7 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        cout << p;
+        print_person(p);
         return stoi(column);
     }
     else if (is_int && choice == "computers")
@@ -417,7 +447,7 @@ int consoleui::searchMenu(string choice)
             cout << endl << "Computer not found try again" << endl;
             return searchMenu(choice);
         }
-        cout << c;
+        print_computer(c);
         return stoi(column);
     }
     else if (column == "birth_year" || column == "death_year" || column == "build_year")

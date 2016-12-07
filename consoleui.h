@@ -32,7 +32,9 @@ private:
     personservice ps;
 
     void print_persons(vector<person> p);
+    void print_person(person p);
     void print_computers(vector<computer> c);
+    void print_computer(computer c);
     void print_options(string options);
 
     void listMenu(string choice);
