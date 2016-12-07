@@ -416,12 +416,12 @@ void consoleui::sortMenu(string choice)
     if(choice == "persons") options = VALID_PERSON_COLUMNS;
     else if(choice == "computers") options = VALID_COMPUTER_COLUMNS;
 
-    cout << "Column you would like to sort by:" << endl;
-    cout << options << endl;
+    cout << endl << "Column you would like to sort by:" << endl;
+    cout << options << endl << endl;
 
     string column = getInputString(NO_MESS,SINGLE,options);
 
-    cout << VALID_SORT_COMMANDS << endl;
+    cout << endl << VALID_SORT_COMMANDS << endl << endl;
     string order = getInputString(NO_MESS,SINGLE, VALID_SORT_COMMANDS);
 
     if(choice == "persons")
