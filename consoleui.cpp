@@ -498,16 +498,34 @@ int consoleui::searchMenu(string choice)
 
     if (choice == "persons") {
         vector<person> p = ps.searchPersons(arguments);
-        print_persons(p);
         if (p.size() > 1)
+        {
+            print_persons(p);
             return -1;
+        }
+        else if (p.size() == 0)
+        {
+            cout << endl << "No persons found try again" << endl;
+            return searchMenu(choice);
+        }
+
+        print_persons(p);
         return p.at(0).getId();
     }
     else if (choice == "computers") {
         vector<computer> c = ps.searchComputers(arguments);
-        print_computers(c);
         if (c.size() > 1)
+        {
+            print_computers(c);
             return -1;
+        }
+        else if (c.size() == 0)
+        {
+            cout << endl << "No computers found try again" << endl;
+            return searchMenu(choice);
+        }
+
+        print_computers(c);
         return c.at(0).getId();
     }
 }
