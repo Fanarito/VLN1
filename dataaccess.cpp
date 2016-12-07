@@ -19,7 +19,7 @@ int dataaccess::getNationalityID(std::string nationality)
 {
     QSqlQuery query(db);
 
-    query.exec(QString::fromStdString("SELECT * FROM nationality n WHERE n.nationality = \"" + nationality + "\""));
+    query.exec(QString::fromStdString("SELECT * FROM nationality n WHERE n.nationality LIKE \"" + nationality + "\""));
 
     //If country is found, return first match
     if(query.next()) return query.value("ID").toUInt();
