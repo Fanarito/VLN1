@@ -16,8 +16,9 @@ void consoleui::run()
     bool running = true;
 
     do
-    {
-        cout << endl;
+    {   
+        cout << string( 100, '\n' );
+
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
@@ -30,6 +31,8 @@ void consoleui::run()
 
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
+
+        cout << string( 100, '\n' );
 
         if(command != "quit" && command != "search" && command != "info" && command != "sort")
         {
@@ -74,6 +77,12 @@ void consoleui::run()
         else if(command == "quit")
         {
             running = false;
+        }
+
+        if(running)
+        {
+            cout << endl << "Press ENTER to continue." << endl;
+            cin.get();
         }
 
     } while(running);
@@ -210,6 +219,8 @@ void consoleui::addMenu(string choice)
         ps.addConnection(comp_id, person_id);
 
     }
+
+    cout << choice << " added!" << endl;
 }
 
 //This function allows you to change some, or all properties of a person/computer.
