@@ -277,8 +277,10 @@ void consoleui::addMenu(string choice)
 
 
         searchMenu("persons");
+        cout << endl;
         person_id = getInputInt("Please enter the ID of the person you want to connect:");
         searchMenu("computers");
+        cout << endl;
         comp_id = getInputInt("Please enter the ID of the computer you want to connect to previusly selected person:");
         cout << endl;
 
@@ -311,6 +313,7 @@ void consoleui::changeMenu(string choice)
             return;
         }
 
+        cout << endl;
         string name = getInputString("Enter name: (empty for no change)", MULTI);
         // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
         string info = getInputString("Enter info: (empty for no change)", MULTI);
