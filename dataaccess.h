@@ -12,7 +12,10 @@
 #include "person.h"
 #include "computer.h"
 
-static std::string DATABASE = "CompSci.sqlite";
+#include "constants.h"
+
+using namespace constants;
+
 
 class dataaccess
 {
