@@ -19,14 +19,14 @@ vector<computer> personservice::getComputers()
     return data.getComputers();
 }
 
-person personservice::getPersonById(unsigned int id)
+person personservice::getPersonById(unsigned int id, bool &success)
 {
-    return data.getPersonById(id);
+    return data.getPersonById(id, success);
 }
 
-computer personservice::getComputerById(unsigned int id)
+computer personservice::getComputerById(unsigned int id, bool &success)
 {
-    return data.getComputerById(id);
+    return data.getComputerById(id, success);
 }
 
 void personservice::reset()

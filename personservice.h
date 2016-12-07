@@ -32,8 +32,8 @@ public:
     vector<person> getPersons();
     vector<computer> getComputers();
 
-    person getPersonById(unsigned int id);
-    computer getComputerById(unsigned int id);
+    person getPersonById(unsigned int id, bool &success);
+    computer getComputerById(unsigned int id, bool &success);
 
     //Functions to sort the data according to the user's preferences.
     vector<person> sortPersons(string column, string order);

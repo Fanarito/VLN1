@@ -217,15 +217,26 @@ void consoleui::addMenu(string choice)
 //This function allows you to change some, or all properties of a person.
 void consoleui::changeMenu(string choice)
 {
-    searchMenu(choice);
+    int res = searchMenu(choice);
+    int changeId;
 
     if(choice == "persons")
     {
-        int changeId = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+        if (res == -1)
+            changeId = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+        else
+            changeId = res;
 
         if(changeId == -1) return;
 
-        person p = ps.getPersonById(changeId);
+        bool success;
+        person p = ps.getPersonById(changeId, success);
+
+        if (!success)
+        {
+            cout << endl << "Person not found" << endl;
+            return;
+        }
 
         string name = getInputString("Enter name: (empty for no change)", MULTI);
         // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
@@ -245,11 +256,21 @@ void consoleui::changeMenu(string choice)
     }
     else if(choice == "computers")
     {
-        int changeId = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+        if (res == -1)
+            changeId = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+        else
+            changeId = res;
 
         if(changeId == -1) return;
 
-        computer comp = ps.getComputerById(changeId);
+        bool success;
+        computer comp = ps.getComputerById(changeId, success);
+
+        if (!success)
+        {
+            cout << endl << "Computer not found" << endl;
+            return;
+        }
 
         string name = getInputString("Enter name: ", MULTI);
         // string nationality = getInputString("Enter nationality; ", MULTI);
@@ -275,29 +296,29 @@ void consoleui::changeMenu(string choice)
 void consoleui::removeMenu(string choice)
 {
     int res = searchMenu(choice);
-    int removeID;
+    int removeId;
 
     if(choice == "persons")
     {
         if (res == -1)
-            removeID = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+            removeId = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
         else
-            removeID = res;
+            removeId = res;
 
-        if(removeID == -1) return;
+        if(removeId == -1) return;
 
-        ps.removePerson(removeID);
+        ps.removePerson(removeId);
     }
     else if(choice == "computers")
     {
         if (res == -1)
-            removeID = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+            removeId = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
         else
-            removeID = res;
+            removeId = res;
 
-        if(removeID == -1) return;
+        if(removeId == -1) return;
 
-        ps.removeComputer(removeID);
+        ps.removeComputer(removeId);
     }
 }
 
@@ -362,13 +383,26 @@ int consoleui::searchMenu(string choice)
     // Disgusting but it works
     if (is_int && choice == "persons")
     {
-        person p = ps.getPersonById(stoi(column));
+        bool success;
+        person p = ps.getPersonById(stoi(column), success);
+        if (!success)
+        {
+            cout << endl << "Person not found try again" << endl;
+            return searchMenu(choice);
+        }
+
         cout << p;
         return stoi(column);
     }
     else if (is_int && choice == "computers")
     {
-        computer c = ps.getComputerById(stoi(column));
+        bool success;
+        computer c = ps.getComputerById(stoi(column), success);
+        if (!success)
+        {
+            cout << endl << "Computer not found try again" << endl;
+            return searchMenu(choice);
+        }
         cout << c;
         return stoi(column);
     }
@@ -506,36 +540,57 @@ int consoleui::getInputInt(string message)
 //This allows you to request information about a person or computer
 void consoleui::infoMenu(string choice)
 {
-    searchMenu(choice);
+    int res = searchMenu(choice);
+    int infoId;
 
     if(choice == "persons")
     {
         person infoPerson;
         string infoPrint;
 
-        int infoID = getInputInt("Please enter ID of person you want information about. -1 to cancel");
+        if (res == -1)
+            infoId = getInputInt("Please enter ID of person you want information about. -1 to cancel");
+        else
+            infoId = res;
 
-        if(infoID == -1) return;
+        if(infoId == -1) return;
 
-        infoPerson = ps.getPersonById(infoID);
+        bool success;
+        infoPerson = ps.getPersonById(infoId, success);
 
-        infoPrint = infoPerson.getInfo();
-
-        cout << endl << infoPrint << endl;
+        if (success)
+        {
+            infoPrint = infoPerson.getInfo();
+            cout << endl << infoPrint << endl;
+        }
+        else
+        {
+            cout << endl << "Person not found" << endl;
+        }
     }
     else if(choice == "computers")
     {
         computer infoComputer;
         string infoPrint;
 
-        int infoID = getInputInt("Please enter ID of computer you want information about -1 to cancel");
+        if (res == -1)
+            infoId = getInputInt("Please enter ID of computer you want information about -1 to cancel");
+        else
+            infoId = res;
 
-        if(infoID == -1) return;
+        if(infoId == -1) return;
 
-        infoComputer = ps.getComputerById(infoID);
+        bool success;
+        infoComputer = ps.getComputerById(infoId, success);
 
-        infoPrint = infoComputer.getInfo();
-
-        cout << endl << infoPrint << endl;
+        if (success)
+        {
+            infoPrint = infoComputer.getInfo();
+            cout << endl << infoPrint << endl;
+        }
+        else
+        {
+            cout << endl << "Computer not found" << endl;
+        }
     }
 }

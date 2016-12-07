@@ -289,7 +289,7 @@ std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
     return execQueryComputer(query);
 }
 
-person dataaccess::getPersonById(unsigned int id)
+person dataaccess::getPersonById(unsigned int id, bool &success)
 {
     QString q_string = QString::fromStdString("SELECT * FROM persons JOIN Nationality n ON n.id = nationalityid WHERE persons.id = :id");
     QSqlQuery query(db);
@@ -297,10 +297,20 @@ person dataaccess::getPersonById(unsigned int id)
     bool noerr = query.prepare(q_string);
     query.bindValue(0, id);
 
-    return execQueryPerson(query).at(0);
+    std::vector<person> p = execQueryPerson(query);
+    if (p.size() > 0)
+    {
+        success = true;
+        return p.at(0);
+    }
+    else
+    {
+        success = false;
+        return person();
+    }
 }
 
-computer dataaccess::getComputerById(unsigned int id)
+computer dataaccess::getComputerById(unsigned int id, bool &success)
 {
     QString q_string = QString::fromStdString("SELECT * FROM computers JOIN Nationality n ON n.id = nationalityid WHERE computers.id = :id");
     QSqlQuery query(db);
@@ -308,7 +318,17 @@ computer dataaccess::getComputerById(unsigned int id)
     bool noerr = query.prepare(q_string);
     query.bindValue(0, id);
 
-    return execQueryComputer(query).at(0);
+    std::vector<computer> c = execQueryComputer(query);
+    if (c.size() > 0)
+    {
+        success = true;
+        return c.at(0);
+    }
+    else
+    {
+        success = false;
+        return computer();
+    }
 }
 
 void dataaccess::updatePerson(person p)
