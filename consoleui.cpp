@@ -35,13 +35,13 @@ void consoleui::run()
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
-        string command = getInputString("Please enter a command:", SINGLE, "list|add|change|remove|sort|search|info|quit");
+        string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
 
         if(command != "quit")
         {
             cout << endl;
-            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, VALID_TABLE_NAMES);
         }
 
         if(command == "list")
