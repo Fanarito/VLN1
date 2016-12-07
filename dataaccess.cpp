@@ -347,7 +347,7 @@ std::vector<person> dataaccess::getPersonsByComputerId(unsigned int id, bool &su
 {
     QSqlQuery query(db);
     QString q_string = QString::fromStdString("SELECT * FROM Persons p "
-                                              "JOIN Nationality n ON n.id = p.nationalityid"
+                                              "JOIN Nationality n ON n.id = p.nationalityid "
                                               "JOIN Connections con ON con.personsid = p.id "
                                               "JOIN Computers c ON con.computersid = c.id "
                                               "WHERE c.id = :id");
@@ -364,7 +364,7 @@ std::vector<computer> dataaccess::getComputersByPersonId(unsigned int id, bool &
 {
     QSqlQuery query(db);
     QString q_string = QString::fromStdString("SELECT * FROM Computers c "
-                                              "JOIN Nationality n ON n.id = c.nationalityid"
+                                              "JOIN Nationality n ON n.id = c.nationalityid "
                                               "JOIN Connections con ON con.computersid = c.id "
                                               "JOIN Persons p ON con.personsid = p.id "
                                               "WHERE p.id = :id");
