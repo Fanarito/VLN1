@@ -1,6 +1,5 @@
 #include "computer.h"
 
-
 computer::computer(std::string name, int buildyear, std::string type,
                    bool built, std::string nationality, std::string info, int id)
 {
@@ -39,9 +38,4 @@ void computer::setBuildYear(int year)
 {
     m_buildyear = year;
 }
-
-/*
- * Overloaded operator for printing out to console
- *
- */
 

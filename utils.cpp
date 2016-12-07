@@ -29,18 +29,22 @@ std::string utils::removeWhiteSpace(std::string str)
 std::string utils::wordWrap(std::string str, int width)
 {
     int count_since_last_newline = 0;
-    int last_space_index = 0;
+    int last_space_index = -1;
 
     for (size_t i = 0; i < str.length(); i++)
     {
         count_since_last_newline++;
-        if (str.at(i) == ' ')
-            last_space_index = i;
+
+        if (str.at(i) == ' ') last_space_index = i;
+
         if (count_since_last_newline >= width)
         {
             if (last_space_index != -1)
             {
                 str.insert(last_space_index + 1, "\n");
+
+                i = last_space_index + 2;
+
                 count_since_last_newline = 0;
                 last_space_index = -1;
                 continue;
