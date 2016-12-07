@@ -37,7 +37,7 @@ void consoleui::run()
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
 
-        if(command != "quit")
+        if(command != "quit" && command != "search" && command != "info" && command != "sort")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
@@ -61,14 +61,17 @@ void consoleui::run()
         }
         else if(command == "sort")
         {
+            choice = getInputString("Select one of the following: " + "computers|persons", SINGLE, "computers|persons");
             sortMenu(choice);
         }
         else if(command == "search")
         {
+            choice = getInputString("Select one of the following: " + "computers|persons", SINGLE, "computers|persons");
             searchMenu(choice);
         }
         else if(command == "info")
         {
+            choice = getInputString("Select one of the following: " + "computers|persons", SINGLE, "computers|persons");
             infoMenu(choice);
         }
         else if(command == "quit")
