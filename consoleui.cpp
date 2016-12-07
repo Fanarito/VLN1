@@ -61,17 +61,17 @@ void consoleui::run()
         }
         else if(command == "sort")
         {
-            choice = getInputString("Select one of the following: " + "computers|persons", SINGLE, "computers|persons");
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             sortMenu(choice);
         }
         else if(command == "search")
         {
-            choice = getInputString("Select one of the following: " + "computers|persons", SINGLE, "computers|persons");
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             searchMenu(choice);
         }
         else if(command == "info")
         {
-            choice = getInputString("Select one of the following: " + "computers|persons", SINGLE, "computers|persons");
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             infoMenu(choice);
         }
         else if(command == "quit")
