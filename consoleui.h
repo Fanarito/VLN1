@@ -10,7 +10,7 @@
 #include <iomanip>
 #include <array>
 
-const string VALID_TABLE_NAMES = "persons|computers";
+const string VALID_TABLE_NAMES = "persons|computers|connections";
 const string VALID_PERSON_COLUMNS = "id|name|sex|birth_year|death_year|nationality|info";
 const string VALID_COMPUTER_COLUMNS = "id|name|build_year|computer_type|built|nationality";
 const string VALID_COMMANDS = "list|add|change|remove|sort|search|info|quit";
