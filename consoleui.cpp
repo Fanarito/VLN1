@@ -148,10 +148,6 @@ void consoleui::print_computer(computer c)
     cout << c;
 }
 
-void consoleui::print_options(string options)
-{
-}
-
 //Lists out information from the text file.
 void consoleui::listMenu(string choice)
 {
@@ -320,7 +316,13 @@ void consoleui::changeMenu(string choice)
         bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
         int buildyear = -1;
         if (built)
+        {
             buildyear = getInputInt("When was it built: ", PYTHAGORAS, getCurrentYear());
+        }
+        else
+        {
+            buildyear = 0;
+        }
         string type = getInputString("Enter machine type: ", MULTI);
 
         if (!name.empty()) comp.setName(name);
@@ -378,8 +380,8 @@ void consoleui::sortMenu(string choice)
 
     string column = getInputString(NO_MESS,SINGLE,options);
 
-    cout << "asc|desc" << endl;
-    string order = getInputString(NO_MESS,SINGLE, "asc|desc");
+    cout << VALID_SORT_COMMANDS << endl;
+    string order = getInputString(NO_MESS,SINGLE, VALID_SORT_COMMANDS);
 
     if(choice == "persons")
     {
@@ -494,6 +496,8 @@ int consoleui::searchMenu(string choice)
         print_computers(c);
         return c.at(0).getId();
     }
+
+    return -1;
 }
 
 string consoleui::getInputString(string message, bool multiToken, string expected, bool allow_number)

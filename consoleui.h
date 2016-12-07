@@ -11,10 +11,13 @@
 #include <array>
 
 const string VALID_TABLE_NAMES = "persons|computers|connections";
+
 const string VALID_PERSON_COLUMNS = "id|name|sex|birth_year|death_year|nationality|info";
 const string VALID_COMPUTER_COLUMNS = "id|name|build_year|computer_type|built|nationality";
 const string VALID_CONNECTIONS_COLUMNS = "computersid|personsid";
+
 const string VALID_COMMANDS = "list|add|change|remove|sort|search|info|quit";
+const string VALID_SORT_COMMANDS = "asc|desc";
 
 const string INPUT_ENDER = "end;";
 
@@ -38,7 +41,6 @@ private:
     void print_person(person p);
     void print_computers(vector<computer> c);
     void print_computer(computer c);
-    void print_options(string options);
 
     void listMenu(string choice);
     void addMenu(string choice);
