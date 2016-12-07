@@ -388,11 +388,11 @@ std::vector<person> dataaccess::sortPersons(std::string column, std::string orde
 {
     QSqlQuery query(db);
 
+    QString q_string = QString::fromStdString("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityId = n.id ORDER BY " + column + " " + order);
     // cannot bind order, cuz stuff
-    bool noerr = query.prepare(QString::fromStdString("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityId = n.id ORDER BY :column" + order));
+    bool noerr = query.prepare(q_string);
     if (!noerr) std::cerr << "Query did not prepare successfully";
-    query.bindValue(":column", QString::fromStdString(column));
-    query.bindValue(":order", QString::fromStdString(order));
+    //query.bindValue(":column", QString::fromStdString(column));
 
     return execQueryPerson(query);
 }
@@ -401,11 +401,11 @@ std::vector<computer> dataaccess::sortComputers(std::string column, std::string 
 {
     QSqlQuery query(db);
 
+    QString q_string = QString::fromStdString("SELECT * FROM Computers c JOIN Nationality n ON c.NationalityId = n.id ORDER BY " + column + " " + order);
     // cannot bind order, cuz stuff
-    bool noerr = query.prepare(QString::fromStdString("SELECT * FROM Computers c JOIN Nationality n ON c.NationalityId = n.id ORDER BY :column" + order));
+    bool noerr = query.prepare(q_string);
     if (!noerr) std::cerr << "Query did not prepare successfully";
-    query.bindValue(":column", QString::fromStdString(column));
-    query.bindValue(":order", QString::fromStdString(order));
+    //query.bindValue(":column", QString::fromStdString(column));
 
     return execQueryComputer(query);
 }
