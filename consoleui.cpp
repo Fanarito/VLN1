@@ -60,16 +60,19 @@ void consoleui::run()
         }
         else if(command == "sort")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             sortMenu(choice);
         }
         else if(command == "search")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             searchMenu(choice);
         }
         else if(command == "info")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             infoMenu(choice);
         }
@@ -639,7 +642,7 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound)
     {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input it must be a number" << endl << "Try again:";
+            cout << endl << "Invalid input it must be a number" << endl << "Try again:";
     }
 
     if(input > high_bound || input < low_bound)
