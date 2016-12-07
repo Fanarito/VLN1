@@ -29,6 +29,8 @@ public:
     int getDeathYear() const;
     void setDeathYear(int year);
 
+    std::string getDetailedInformation();
+
     //std::vector<uint> getConnectedComputerIds();
 
     friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
