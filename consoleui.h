@@ -20,6 +20,8 @@ const string INPUT_ENDER = "end;";
 const string NO_MESS = "\0";
 const string NO_EXP = "\0";
 
+const int PYTHAGORAS = -570;
+
 const bool MULTI = true;
 const bool SINGLE = false;
 
