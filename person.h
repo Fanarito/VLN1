@@ -8,6 +8,9 @@
 
 #include "object.h"
 #include "utils.h"
+#include "constants.h"
+
+using namespace constants;
 
 class person: public Object
 {

@@ -25,5 +25,6 @@ HEADERS += \
     personservice.h \
     computer.h \
     object.h \
-    utils.h
+    utils.h \
+    constants.h
 

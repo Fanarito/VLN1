@@ -46,10 +46,6 @@ void computer::setBuildYear(int year)
  */
 std::ostream& operator<<(std::ostream& lhs, const computer rhs)
 {
-    const int nameWidth = 30;
-    const int typeWidth = 20;
-    const int restWidth = 15;
-    const char separator = ' ';
     std::string built;
     std::string buildYear = std::to_string(rhs.getBuildYear());
     if(buildYear == "0")
@@ -66,7 +62,7 @@ std::ostream& operator<<(std::ostream& lhs, const computer rhs)
     }
 
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getId();
-    lhs << std::left << std::setw(nameWidth) << std::setfill(separator) << rhs.getName();
+    lhs << std::left << std::setw(nameCompWidth) << std::setfill(separator) << rhs.getName();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << buildYear;
     lhs << std::left << std::setw(typeWidth) << std::setfill(separator) << rhs.getType();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << built;

@@ -67,9 +67,6 @@ std::string person::getDetailedInformation()
  */
 std::ostream& operator<<(std::ostream& lhs, const person rhs)
 {
-    const int nameWidth = 25;
-    const int restWidth = 15;
-    const char separator = ' ';
     std::string death = std::to_string(rhs.getDeathYear());
     std::string sex = rhs.getSex();
     if(death == "0")
@@ -86,7 +83,7 @@ std::ostream& operator<<(std::ostream& lhs, const person rhs)
     }
 
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getId();
-    lhs << std::left << std::setw(nameWidth) << std::setfill(separator) << rhs.getName();
+    lhs << std::left << std::setw(namePersonWidth) << std::setfill(separator) << rhs.getName();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << sex;
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << rhs.getBirthYear();
     lhs << std::left << std::setw(restWidth) << std::setfill(separator) << death;

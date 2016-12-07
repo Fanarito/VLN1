@@ -5,6 +5,9 @@
 #include <iomanip>
 
 #include "object.h"
+#include "constants.h"
+
+using namespace constants;
 
 class computer: public Object
 {
