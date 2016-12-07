@@ -3,31 +3,10 @@
 
 
 #include "personservice.h"
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <iterator>
-#include <iomanip>
-#include <array>
+#include "utils.h"
+#include "constants.h"
 
-const string VALID_TABLE_NAMES = "persons|computers|connections";
-
-const string VALID_PERSON_COLUMNS = "id|name|sex|birth_year|death_year|nationality";
-const string VALID_COMPUTER_COLUMNS = "id|name|build_year|computer_type|built|nationality";
-const string VALID_CONNECTIONS_COLUMNS = "computersid|personsid";
-
-const string VALID_COMMANDS = "list|add|change|remove|sort|search|info|quit";
-const string VALID_SORT_COMMANDS = "asc|desc";
-
-const string INPUT_ENDER = "end;";
-
-const string NO_MESS = "\0";
-const string NO_EXP = "\0";
-
-const int PYTHAGORAS = -570;
-
-const bool MULTI = true;
-const bool SINGLE = false;
+using namespace constants;
 
 class consoleui
 {
@@ -35,14 +14,6 @@ public:
     consoleui();
     void run();
 private:
-
-    const int nameWidth = 30;
-    const int typeWidth = 20;
-    const int restWidth = 15;
-    const int pageWidth = 60;
-    const int combinedWidth = nameWidth + restWidth * 4 + typeWidth;
-    const char separator = ' ';
-
     personservice ps;
 
     void listMenu(string choice);

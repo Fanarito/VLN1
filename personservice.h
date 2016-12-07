@@ -26,6 +26,7 @@ public:
 
     void removePerson(int id);
     void removeComputer(int id);
+    void removeConnection(int pid, int cid);
 
     void updatePerson(person p);
     void updateComputer(computer c);

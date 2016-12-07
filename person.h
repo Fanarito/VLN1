@@ -7,7 +7,10 @@
 #include <iomanip>
 
 #include "object.h"
-#include "computer.h"
+#include "utils.h"
+#include "constants.h"
+
+using namespace constants;
 
 class person: public Object
 {

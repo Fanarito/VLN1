@@ -19,7 +19,7 @@ void consoleui::run()
     {
         cout << endl;
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
-        cout << "add \t- This will add a new famous programmer or computer to the system" << endl;
+        cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
@@ -55,16 +55,19 @@ void consoleui::run()
         }
         else if(command == "sort")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             sortMenu(choice);
         }
         else if(command == "search")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             searchMenu(choice);
         }
         else if(command == "info")
         {
+            cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             infoMenu(choice);
         }
@@ -91,9 +94,10 @@ void consoleui::listMenu(string choice)
         }
         else if(choice == "connections")
         {
-            cout << "Connections to persons or computers?" << endl;
+            cout << endl << "Connections to persons or computers?" << endl;
 
             string conn_choice = getInputString("persons|computers", SINGLE, "persons|computers");
+            cout << endl;
 
             if(conn_choice == "persons")
             {
@@ -195,11 +199,14 @@ void consoleui::addMenu(string choice)
 
 
         searchMenu("persons");
+        cout << endl;
         person_id = getInputInt("Please enter the ID of the person you want to connect:");
         searchMenu("computers");
+        cout << endl;
         comp_id = getInputInt("Please enter the ID of the computer you want to connect to previusly selected person:");
         cout << endl;
 
+        ps.removeConnection(comp_id, person_id);
         ps.addConnection(comp_id, person_id);
 
     }
@@ -229,6 +236,7 @@ void consoleui::changeMenu(string choice)
             return;
         }
 
+        cout << endl;
         string name = getInputString("Enter name: (empty for no change)", MULTI);
         // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
         string info = getInputString("Enter info: (empty for no change)", MULTI);
@@ -296,7 +304,10 @@ void consoleui::changeMenu(string choice)
 //This function allows you to remove one or more persons/computers from the list.
 void consoleui::removeMenu(string choice)
 {
-    int res = searchMenu(choice);
+    int res;
+    if (choice != "connections")
+        res = searchMenu(choice);
+
     int removeId;
 
     if(choice == "persons")
@@ -320,6 +331,13 @@ void consoleui::removeMenu(string choice)
         if(removeId == -1) return;
 
         ps.removeComputer(removeId);
+    }
+    else if(choice == "connections")
+    {
+        int pid = searchMenu("persons");
+        int cid = searchMenu("computers");
+
+        ps.removeConnection(pid, cid);
     }
 }
 
@@ -799,7 +817,6 @@ void consoleui::printComputerConnections(vector<computer> computers)
     }
 }
 
-
 string consoleui::getInputString(string message, bool multiToken, string expected, bool allow_number)
 {
     if(message != NO_MESS)
@@ -900,7 +917,7 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound)
     {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input it must be a number" << endl << "Try again:";
+            cout << endl << "Invalid input it must be a number" << endl << "Try again:";
     }
 
     if(input > high_bound || input < low_bound)

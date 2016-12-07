@@ -195,6 +195,19 @@ void dataaccess::removeComputer(int id)
     query.exec();
 }
 
+void dataaccess::removeConnection(int pid, int cid)
+{
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare("DELETE FROM connections WHERE computersid = :cid AND personsid = :pid");
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    query.bindValue(":cid", cid);
+    query.bindValue(":pid", pid);
+
+    query.exec();
+}
+
 std::vector<person> dataaccess::execQueryPerson(QSqlQuery query)
 {
     query.exec();

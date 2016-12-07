@@ -64,6 +64,11 @@ void personservice::removeComputer(int id)
     data.removeComputer(id);
 }
 
+void personservice::removeConnection(int pid, int cid)
+{
+    data.removeConnection(pid, cid);
+}
+
 vector<person> personservice::searchPersons(vector<string> args)
 {
     return data.searchPersons(args);
