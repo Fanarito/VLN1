@@ -1,7 +1,5 @@
 #include "person.h"
-#include "utils.h"
-#include <iostream>
-#include <sstream>
+
 
 person::person(std::string name, std::string sex, int birthyear,
                int deathyear, std::string nationality, std::string info, int id)
@@ -47,16 +45,16 @@ void person::setDeathYear(int year)
 
 std::string person::getDetailedInformation()
 {
-    std::sstream info;
+    std::stringstream info;
 
     int infowidth = 30;
 
     info << std::setw(infowidth) << "Name: "        << m_name << std::endl;
-    info << std::setw(infowidth) << "Sex: "         << (m_sex == "f")?("Female"):("Male") << std::endl;
+    info << std::setw(infowidth) << "Sex: "         << ((m_sex == "f")?("Female"):("Male")) << std::endl;
     info << std::setw(infowidth) << "Nationality: " << m_nationality << std::endl;
     info << std::setw(infowidth) << "Born: "        << m_birthyear << std::endl;
     if(m_deathyear != 0)
-        info << std::setw(infowidth) << "Died: "    << m_deathyear << std::endl
+        info << std::setw(infowidth) << "Died: "    << m_deathyear << std::endl;
     info << std::setw(infowidth) << "Information:"  << utils::wordWrap(m_info, infowidth*2) << std::endl;
 
     return info.str();

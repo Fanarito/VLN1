@@ -1,5 +1,8 @@
-// Splits a string into a vector of strings with a specified delimiter.
-// Example: split this string becomes [split, this, string]
+#ifndef UTILS_H
+#define UTILS_H
+
+#include <vector>
+#include <sstream>
 
 namespace utils {
 
@@ -49,3 +52,5 @@ namespace utils {
         return str;
     }
 }
+
+#endif

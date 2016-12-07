@@ -1,6 +1,4 @@
 #include "consoleui.h"
-#include "utils.h"
-#include <time.h>
 
 using namespace std;
 

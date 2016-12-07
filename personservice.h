@@ -4,6 +4,9 @@
 #include <vector>
 #include <string>
 #include <regex>
+#include <algorithm>
+#include <iostream>
+
 #include "person.h"
 #include "computer.h"
 #include "dataaccess.h"

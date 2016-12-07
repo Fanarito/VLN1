@@ -1,13 +1,13 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 #include "object.h"
-#include "computer.h"
+#include "utils.h"
 
 class person: public Object
 {
@@ -29,7 +29,7 @@ public:
     int getDeathYear() const;
     void setDeathYear(int year);
 
-    std::string getDetailedInformation() const;
+    std::string getDetailedInformation();
 
     //std::vector<uint> getConnectedComputerIds();
 

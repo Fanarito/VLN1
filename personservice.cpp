@@ -1,8 +1,4 @@
 #include "personservice.h"
-#include <algorithm>
-
-
-#include <iostream>
 
 personservice::personservice()
 {
