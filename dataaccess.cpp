@@ -19,10 +19,22 @@ int dataaccess::getNationalityID(std::string nationality)
 {
     QSqlQuery query(db);
 
-    query.exec(QString::fromStdString("SELECT * FROM nationality n WHERE n.nationality LIKE \"" + nationality + "\""));
+    query.prepare(QString::fromStdString("SELECT * FROM nationality n WHERE n.nationality LIKE :nat"));
+    query.bindValue(":nat", QString::fromStdString(nationality));
+    query.exec();
 
     //If country is found, return first match
     if(query.next()) return query.value("ID").toUInt();
+    else
+    {
+        QSqlQuery insert_query(db);
+        insert_query.prepare(QString::fromStdString("INSERT INTO nationality (Nationality) VALUES (:nat)"));
+        insert_query.bindValue(":nat", QString::fromStdString(nationality));
+        insert_query.exec();
+
+        // Find the nationality and return the id
+        return getNationalityID(nationality);
+    }
 
     //If no match, return id for nationality "UNKNOWN"
     return 0;
