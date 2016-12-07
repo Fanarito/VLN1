@@ -441,16 +441,17 @@ int consoleui::searchMenu(string choice)
     if (choice == "persons")
     {
         options = VALID_PERSON_COLUMNS;
-        cout << "Enter column to search in or enter the id of the person" << endl;
+        cout << endl << "Enter column to search in or enter the id of the person" << endl;
     }
     else if (choice == "computers")
     {
         options = VALID_COMPUTER_COLUMNS;
-        cout << "Enter column to search in or enter the id of the computer" << endl;
+        cout << endl << "Enter column to search in or enter the id of the computer" << endl;
     }
 
     cout << "Valid column names are: " << options << endl;
-    cout << endl << INPUT_ENDER << " - to stop inputting arguments" << endl;
+    cout << INPUT_ENDER << " - to stop inputting arguments" << endl;
+    cout << endl;
     string column = getInputString(
                     "Enter column name: ",
                     SINGLE, options + "|end;",
@@ -459,7 +460,8 @@ int consoleui::searchMenu(string choice)
     if (column == INPUT_ENDER) return -1;
 
     string search_string;
-    bool is_int = column.find_first_not_of("0123456789") == string::npos;
+    bool is_int = (column.find_first_not_of("0123456789") == string::npos && !column.empty());
+    cout << endl;
     // Disgusting but it works
     if (is_int && choice == "persons")
     {
@@ -500,16 +502,34 @@ int consoleui::searchMenu(string choice)
 
     if (choice == "persons") {
         vector<person> p = ps.searchPersons(arguments);
-        print_persons(p);
         if (p.size() > 1)
+        {
+            print_persons(p);
             return -1;
+        }
+        else if (p.size() == 0)
+        {
+            cout << endl << "No persons found try again" << endl;
+            return searchMenu(choice);
+        }
+
+        print_persons(p);
         return p.at(0).getId();
     }
     else if (choice == "computers") {
         vector<computer> c = ps.searchComputers(arguments);
-        print_computers(c);
         if (c.size() > 1)
+        {
+            print_computers(c);
             return -1;
+        }
+        else if (c.size() == 0)
+        {
+            cout << endl << "No computers found try again" << endl;
+            return searchMenu(choice);
+        }
+
+        print_computers(c);
         return c.at(0).getId();
     }
 }
@@ -544,12 +564,12 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
         if(find(exp.begin(), exp.end(), input) != exp.end())
         {
             return input;
-        } else if (allow_number && input.find_first_not_of("0123456789") == string::npos)
+        } else if (allow_number && input.find_first_not_of("0123456789") == string::npos && !input.empty())
             return input;
 
-        cout << "Invalid input, please try again." << endl;
+        cout << endl << "Invalid input, please try again." << endl << endl;
 
-        return getInputString(message, multiToken, expected);
+        return getInputString(message, multiToken, expected, allow_number);
     }
 }
 
@@ -585,7 +605,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
             return input;
         }
 
-        cout << "Invalid input, please try again." << endl;
+        cout << endl << "Invalid input, please try again." << endl << endl;
 
         return getInputString(message, multiToken, expected);
     }
