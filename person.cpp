@@ -1,5 +1,5 @@
 #include "person.h"
-#include <iostream>
+
 
 
 person::person(std::string name, std::string sex, int birthyear,
@@ -38,12 +38,13 @@ int person::getDeathYear() const
 {
     return m_deathyear;
 }
+
 void person::setDeathYear(int year)
 {
     m_deathyear = year;
 }
 
-/*std::string person::getDetailedInformation()
+std::string person::getDetailedInformation()
 {
     std::stringstream info;
 
@@ -58,7 +59,7 @@ void person::setDeathYear(int year)
     info << std::setw(infowidth) << "Information:"  << utils::wordWrap(m_info, infowidth*2) << std::endl;
 
     return info.str();
-}*/
+}
 
 /*
  * Overloaded operator for printing out to console

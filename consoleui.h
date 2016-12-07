@@ -1,14 +1,18 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 
-
-#include "personservice.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
 #include <iterator>
 #include <iomanip>
 #include <array>
+#include <time.h>
+
+#include "personservice.h"
+#include "utils.h"
+
+
 
 const string VALID_TABLE_NAMES = "persons|computers|connections";
 
