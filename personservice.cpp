@@ -113,3 +113,8 @@ void personservice::addConnection(int comp_id, int person_id)
 {
     data.addConnection(comp_id, person_id);
 }
+
+void personservice::removeConnection(int comp_id, int person_id)
+{
+    data.removeConnection(comp_id, person_id);
+}
