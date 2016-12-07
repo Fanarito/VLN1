@@ -25,8 +25,6 @@ public:
 
     int getBuildYear() const;
     void setBuildYear(int year);
-
-    friend std::ostream& operator<<(std::ostream& lhs, const computer rhs);
 };
 
 #endif // COMPUTER_H

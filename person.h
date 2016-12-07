@@ -1,13 +1,13 @@
 #ifndef PERSON_H
 #define PERSON_H
 
+
 #include <string>
 #include <iostream>
 #include <iomanip>
-#include <sstream>
 
 #include "object.h"
-#include "utils.h"
+#include "computer.h"
 
 class person: public Object
 {
@@ -32,8 +32,6 @@ public:
     std::string getDetailedInformation();
 
     //std::vector<uint> getConnectedComputerIds();
-
-    friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
 };
 
 #endif // PERSON_H

@@ -1,13 +1,8 @@
 #include "consoleui.h"
+#include "utils.h"
+#include <time.h>
 
 using namespace std;
-
-//**COMMENT?**
-template<typename T> bool expect(T input, const vector<T> valid_input)
-{
-    auto result = find(valid_input.begin(), valid_input.end(), input);
-    return result != valid_input.end();
-}
 
 consoleui::consoleui()
 {
@@ -81,79 +76,6 @@ void consoleui::run()
     } while(running);
 }
 
-
-//This function runs through the vector of person and prints out each instance of person. We are
-//using an overloaded operator << to print out each field.
-void consoleui::printPersons(vector<person> p)
-{
-    if(p.size() == 0) return;
-
-    cout << endl;
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
-    cout << left << setw(restWidth) << setfill(separator) << "Sex";
-    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
-    cout << endl;
-
-    for(size_t i = 0; i < p.size(); i++)
-    {
-        cout << p.at(i);
-    }
-}
-
-// Prints single person
-void consoleui::printPerson(person p)
-{
-    cout << endl;
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
-    cout << left << setw(restWidth) << setfill(separator) << "Sex";
-    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
-    cout << endl;
-
-    cout << p;
-}
-
-//This function runs through the vector of computers and prints out each instance of a computer. We are
-//using an overloaded operator << to print out each field.
-void consoleui::printComputers(vector<computer> c)
-{
-    if(c.size() == 0) return;
-
-    cout << endl;
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
-    cout << left << setw(restWidth) << setfill(separator) << "Build Year";
-    cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
-    cout << left << setw(restWidth) << setfill(separator) << "Built";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
-    cout << endl;
-
-    for(size_t i = 0; i < c.size(); i++)
-    {
-        cout << c.at(i);
-    }
-}
-
-// Prints single computer
-void consoleui::printComputer(computer c)
-{
-    cout << endl;
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
-    cout << left << setw(restWidth) << setfill(separator) << "Build Year";
-    cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
-    cout << left << setw(restWidth) << setfill(separator) << "Built";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
-    cout << endl;
-
-    cout << c;
-}
-
 //Lists out information from the text file????.
 void consoleui::listMenu(string choice)
 {
@@ -210,11 +132,11 @@ void consoleui::addMenu(string choice)
         sex = getInputString("Sex: m|f", SINGLE, "m|f");
 
         cout << endl;
-        deathyear = getInputInt("Year of death (if alive enter 0):", PYTHAGORAS, getCurrentYear());
+        deathyear = getInputInt("Year of death (if alive enter 0):", PYTHAGORAS, utils::getCurrentYear());
         do
         {
             cout << endl;
-            birthyear = getInputInt("Enter year of birth(cannot be after death year): ", PYTHAGORAS, getCurrentYear());
+            birthyear = getInputInt("Enter year of birth(cannot be after death year): ", PYTHAGORAS, utils::getCurrentYear());
         }
         while(birthyear > deathyear && deathyear != 0);
 
@@ -254,7 +176,7 @@ void consoleui::addMenu(string choice)
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
 
         cout << endl;
-        if(built) build_year = getInputInt("Build year:", PYTHAGORAS, getCurrentYear());
+        if(built) build_year = getInputInt("Build year:", PYTHAGORAS, utils::getCurrentYear());
 
         cout << endl;
         nationality = getInputString("Nationality: ", MULTI);
@@ -311,11 +233,11 @@ void consoleui::changeMenu(string choice)
         // string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
         string info = getInputString("Enter info: (empty for no change)", MULTI);
         string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
-        int deathyear = getInputInt("Enter year of death(0 for not dead, -1 for unchanged): ",PYTHAGORAS, getCurrentYear());
+        int deathyear = getInputInt("Enter year of death(0 for not dead, -1 for unchanged): ",PYTHAGORAS, utils::getCurrentYear());
         int birthyear;
         do
         {
-            birthyear = getInputInt("Enter year of birth(-1 for unchanged, cannot be after death year): ", PYTHAGORAS, getCurrentYear());
+            birthyear = getInputInt("Enter year of birth(-1 for unchanged, cannot be after death year): ", PYTHAGORAS, utils::getCurrentYear());
         } while(birthyear > deathyear && deathyear != 0 && deathyear != -1);
 
         if (!name.empty()) p.setName(name);
@@ -352,7 +274,7 @@ void consoleui::changeMenu(string choice)
         int buildyear = -1;
         if (built)
         {
-            buildyear = getInputInt("When was it built: ", PYTHAGORAS, getCurrentYear());
+            buildyear = getInputInt("When was it built: ", PYTHAGORAS, utils::getCurrentYear());
         }
         else
         {
@@ -428,6 +350,7 @@ void consoleui::sortMenu(string choice)
     }
 
 }
+
 //This function allows you to search for a specific scientist/computer in the entire list. You can search the system
 //by their properties. Example: for a person you can search by name, sex, birth year, death year or nationality.
 // Returns -1 if multiple people were found, else returns the id of the person/computer.
@@ -472,7 +395,7 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        printPerson(p);
+        printPersons(p);
         return stoi(column);
     }
     else if (is_int && choice == "computers")
@@ -484,7 +407,7 @@ int consoleui::searchMenu(string choice)
             cout << endl << "Computer not found try again" << endl;
             return searchMenu(choice);
         }
-        printComputer(c);
+        printComputers(c);
         return stoi(column);
     }
     else if(column == "sex")
@@ -492,7 +415,7 @@ int consoleui::searchMenu(string choice)
         search_string = getInputString("m|f", SINGLE, "m|f");
     }
     else if (column == "birth_year" || column == "death_year" || column == "build_year")
-        search_string = to_string(getInputInt("Input year: ", PYTHAGORAS, getCurrentYear()));
+        search_string = to_string(getInputInt("Input year: ", PYTHAGORAS, utils::getCurrentYear()));
     else if (column == "id")
     {
         search_string = to_string(getInputInt("Enter id: "));
@@ -538,6 +461,344 @@ int consoleui::searchMenu(string choice)
 
     return -1;
 }
+
+//This allows you to request information about a person or computer
+void consoleui::infoMenu(string choice)
+{
+    //int res = searchMenu(choice);
+    int infoId;
+
+    if(choice == "persons")
+    {
+        person infoPerson;
+        string infoPrint;
+
+        //if (res == -1)
+            infoId = getInputInt("Please enter ID of person you want information about. -1 to cancel");
+        //else
+         //   infoId = res;
+
+        if(infoId == -1) return;
+
+        bool success;
+        infoPerson = ps.getPersonById(infoId, success);
+
+        if (success)
+        {
+            printInfoPerson(infoPerson);
+        }
+        else
+        {
+            cout << endl << "Person not found" << endl;
+        }
+    }
+    else if(choice == "computers")
+    {
+        computer infoComputer;
+        string infoPrint;
+
+        //if (res == -1)
+            infoId = getInputInt("Please enter ID of computer you want information about -1 to cancel");
+        //else
+        //infoId = res;
+
+        if(infoId == -1) return;
+
+        bool success;
+        infoComputer = ps.getComputerById(infoId, success);
+
+        if (success)
+        {
+            printInfoComputer(infoComputer);
+        }
+        else
+        {
+            cout << endl << "Computer not found" << endl;
+        }
+    }
+}
+
+void consoleui::tablePrint(string s, int width)
+{
+    cout << left << setw(width) << setfill(separator) << s;
+}
+
+void consoleui::printDetailsPerson(person p)
+{
+    string death = to_string(p.getDeathYear());
+    string sex = p.getSex();
+
+    death = (death == "0")?("Alive"):(death);
+    sex = (sex == "f")?("Female"):("Male");
+
+    tablePrint(to_string(p.getId()), restWidth);
+    tablePrint(p.getName(), nameWidth);
+    tablePrint(sex, restWidth);
+    tablePrint(to_string(p.getBirthYear()), restWidth);
+    tablePrint(death, restWidth);
+    tablePrint(p.getNationality(), restWidth);
+
+    cout << endl;
+}
+
+void consoleui::printDetailsComputer(computer c)
+{
+    string built;
+    string buildYear = to_string(c.getBuildYear());
+
+    buildYear = (buildYear == "0")?("Not built"):(buildYear);
+    built = (c.getBuilt())?("True"):("False");
+
+    tablePrint(to_string(c.getId()), restWidth);
+    tablePrint(c.getName(), nameWidth);
+    tablePrint(buildYear, restWidth);
+    tablePrint(c.getType(), typeWidth);
+    tablePrint(built, restWidth);
+    tablePrint(c.getNationality(), restWidth);
+
+    cout << endl;
+}
+
+void consoleui::printInfoPerson(person p)
+{
+    string name = p.getName();
+    string nationality = p.getNationality();
+    string death = to_string(p.getDeathYear());
+    string birth = to_string(p.getBirthYear());
+    string sex = p.getSex();
+    string info = p.getInfo();
+
+    sex = (sex == "f")?("Female"):("Male");
+
+    cout << endl;
+    tablePrint(name, restWidth);
+    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+
+    tablePrint("Nationality: ", restWidth);
+    tablePrint(nationality, restWidth);
+    cout << endl;
+
+    tablePrint("Born: ", restWidth);
+    tablePrint(birth, restWidth);
+    cout << endl;
+
+    if(death != "0")
+    {
+        tablePrint("Died: ", restWidth);
+        tablePrint(death, restWidth);
+        cout << endl;
+    }
+
+    cout << endl;
+    tablePrint("Information ", restWidth);
+    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+
+    cout << utils::wordWrap(info, pageWidth);
+
+    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+
+    cout << endl;
+
+    vector<computer> computers_connected = ps.getComputersConnectedWithPerson(p);
+
+    if(computers_connected.size() > 0)
+    {
+        tablePrint("Associated Computers", restWidth);
+        cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+
+        for(computer c : computers_connected)
+        {
+            cout << c.getName() << endl;
+        }
+
+        cout << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+    }
+}
+
+void consoleui::printInfoComputer(computer c)
+{
+    string name = c.getName();
+    string type = c.getType();
+    string nationality = c.getNationality();
+    string buildYear = to_string(c.getBuildYear());
+    string info = c.getInfo();
+
+    buildYear = (buildYear == "0")?("Not built"):(buildYear);
+
+    cout << endl;
+    tablePrint(name, restWidth);
+    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+
+    tablePrint("Type: ", restWidth);
+    tablePrint(type, restWidth);
+    cout << endl;
+
+    tablePrint("Nationality: ", restWidth);
+    tablePrint(nationality, restWidth);
+    cout << endl;
+
+    tablePrint("Built: ", restWidth);
+    tablePrint(buildYear, restWidth);
+    cout << endl;
+
+    cout << endl;
+    tablePrint("Information ", restWidth);
+    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+
+    cout << utils::wordWrap(info, pageWidth);
+
+    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+
+    cout << endl;
+
+    vector<person> persons_connected = ps.getPersonsConnectedWithComputer(c);
+
+    if(persons_connected.size() > 0)
+    {
+        tablePrint("Associated People", restWidth);
+        cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+
+        for(person p : persons_connected)
+        {
+            cout << p.getName() << endl;
+        }
+
+        cout << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+    }
+}
+
+//This function runs through the vector of person and prints out each instance of person. We are
+//using an overloaded operator << to print out each field.
+void consoleui::printPersons(vector<person> p)
+{
+    if(p.size() == 0) return;
+
+    cout << endl;
+
+    tablePrint("ID", restWidth);
+    tablePrint("Name", nameWidth);
+    tablePrint("Sex", restWidth);
+    tablePrint("Birth Year", restWidth);
+    tablePrint("Death Year", restWidth);
+    tablePrint("Nationality", restWidth);
+
+    cout << endl << endl;
+
+    for(size_t i = 0; i < p.size(); i++)
+    {
+        printDetailsPerson(p.at(i));
+    }
+}
+
+// Prints single person
+void consoleui::printPersons(person p)
+{
+    vector<person> temp;
+    temp.push_back(p);
+    printPersons(temp);
+}
+
+//This function runs through the vector of computers and prints out each instance of a computer. We are
+//using an overloaded operator << to print out each field.
+void consoleui::printComputers(vector<computer> c)
+{
+    if(c.size() == 0) return;
+
+    cout << endl;
+
+    tablePrint("ID", restWidth);
+    tablePrint("Name", nameWidth);
+    tablePrint("Build Year", restWidth);
+    tablePrint("Computer Type", typeWidth);
+    tablePrint("Built", restWidth);
+    tablePrint("Nationality", restWidth);
+
+    cout << endl;
+
+    for(size_t i = 0; i < c.size(); i++)
+    {
+        printDetailsComputer(c.at(i));
+    }
+}
+
+// Prints single computer
+void consoleui::printComputers(computer c)
+{
+    vector<computer> temp;
+    temp.push_back(c);
+    printComputers(temp);
+}
+
+void consoleui::printPersonConnections(vector<person> persons)
+{
+    cout << endl;
+
+    tablePrint("Person", nameWidth);
+    tablePrint("ID", restWidth);
+    tablePrint("Name", nameWidth);
+    tablePrint("Build Year", restWidth);
+    tablePrint("Computer Type", typeWidth);
+    tablePrint("Built", restWidth);
+    tablePrint("Nationality", restWidth);
+
+    cout << endl << endl;
+
+    for (person p : persons)
+    {
+        vector<computer> connections = ps.getComputersConnectedWithPerson(p);
+        if (connections.size() == 0)
+            continue;
+
+        cout << endl;
+
+        tablePrint(p.getName(), nameWidth);
+
+        cout << endl;
+
+        for (computer c : connections)
+        {
+            cout << setw(nameWidth - 1) << setfill('-') << " ";
+            cout << " ";
+            printDetailsComputer(c);
+        }
+
+        cout << left << setw(combinedWidth + nameWidth) << setfill('-') << " " << endl;
+    }
+}
+
+void consoleui::printComputerConnections(vector<computer> computers)
+{
+    cout << endl;
+    cout << left << setw(nameWidth) << setfill(' ') << "Computer";
+    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    cout << left << setw(nameWidth) << setfill(separator) << "Name";
+    cout << left << setw(restWidth) << setfill(separator) << "Sex";
+    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
+    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << endl;
+    cout << endl;
+
+    for (computer c : computers)
+    {
+        vector<person> connections = ps.getPersonsConnectedWithComputer(c);
+        if (connections.size() == 0)
+            continue;
+
+        cout << endl;
+        cout << left << setw(nameWidth) << setfill(' ') << c.getName();
+        cout << endl;
+
+        for (person p : connections)
+        {
+            cout << setw(nameWidth - 1) << setfill('-') << " ";
+            cout << " ";
+            printDetailsPerson(p);
+        }
+
+        cout << left << setw(combinedWidth + nameWidth) << setfill('-') << " " << endl;
+    }
+}
+
 
 string consoleui::getInputString(string message, bool multiToken, string expected, bool allow_number)
 {
@@ -621,7 +882,7 @@ string consoleui::getInputString(string message, bool multiToken)
     return getInputString(message, multiToken, NO_EXP);
 }
 
-int consoleui::getInputInt(std::string message)
+int consoleui::getInputInt(string message)
 {
     return getInputInt(message, INT_MIN, INT_MAX);
 }
@@ -651,136 +912,4 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound)
     cin.ignore();
 
     return input;
-}
-
-int consoleui::getCurrentYear()
-{
-    time_t the_time;
-    time (&the_time);
-
-    return localtime (&the_time)->tm_year + 1900;
-}
-
-//This allows you to request information about a person or computer
-void consoleui::infoMenu(string choice)
-{
-    int res = searchMenu(choice);
-    int infoId;
-
-    if(choice == "persons")
-    {
-        person infoPerson;
-        string infoPrint;
-
-        if (res == -1)
-            infoId = getInputInt("Please enter ID of person you want information about. -1 to cancel");
-        else
-            infoId = res;
-
-        if(infoId == -1) return;
-
-        bool success;
-        infoPerson = ps.getPersonById(infoId, success);
-
-        if (success)
-        {
-            infoPrint = infoPerson.getInfo();
-            cout << endl << utils::wordWrap(infoPrint, 50) << endl;
-        }
-        else
-        {
-            cout << endl << "Person not found" << endl;
-        }
-    }
-    else if(choice == "computers")
-    {
-        computer infoComputer;
-        string infoPrint;
-
-        if (res == -1)
-            infoId = getInputInt("Please enter ID of computer you want information about -1 to cancel");
-        else
-            infoId = res;
-
-        if(infoId == -1) return;
-
-        bool success;
-        infoComputer = ps.getComputerById(infoId, success);
-
-        if (success)
-        {
-            infoPrint = infoComputer.getInfo();
-            cout << endl << infoPrint << endl;
-        }
-        else
-        {
-            cout << endl << "Computer not found" << endl;
-        }
-    }
-}
-
-void consoleui::printPersonConnections(vector<person> persons)
-{
-    cout << endl;
-    cout << left << setw(namePersonWidth) << setfill(' ') << "Person";
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(nameCompWidth) << setfill(separator) << "Name";
-    cout << left << setw(restWidth) << setfill(separator) << "Build Year";
-    cout << left << setw(typeWidth) << setfill(separator) << "Computer Type";
-    cout << left << setw(restWidth) << setfill(separator) << "Built";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
-    cout << endl;
-
-    for (person p : persons)
-    {
-        vector<computer> connections = ps.getComputersConnectedWithPerson(p);
-        if (connections.size() == 0)
-            continue;
-
-        cout << endl;
-        cout << left << setw(namePersonWidth) << setfill(' ') << p.getName();
-        cout << endl;
-
-        for (computer c : connections)
-        {
-            cout << setw(namePersonWidth - 1) << setfill('-') << " ";
-            cout << " ";
-            cout << c;
-        }
-
-        cout << left << setw(combinedWidth + namePersonWidth) << setfill('-') << " " << endl;
-    }
-}
-
-void consoleui::printComputerConnections(vector<computer> computers)
-{
-    cout << endl;
-    cout << left << setw(namePersonWidth) << setfill(' ') << "Computer";
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(namePersonWidth) << setfill(separator) << "Name";
-    cout << left << setw(restWidth) << setfill(separator) << "Sex";
-    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << std::endl;
-    cout << endl;
-
-    for (computer c : computers)
-    {
-        vector<person> connections = ps.getPersonsConnectedWithComputer(c);
-        if (connections.size() == 0)
-            continue;
-
-        cout << endl;
-        cout << left << setw(nameCompWidth) << setfill(' ') << c.getName();
-        cout << endl;
-
-        for (person p : connections)
-        {
-            cout << setw(namePersonWidth - 1) << setfill('-') << " ";
-            cout << " ";
-            cout << p;
-        }
-
-        cout << left << setw(combinedWidth + namePersonWidth) << setfill('-') << " " << endl;
-    }
 }

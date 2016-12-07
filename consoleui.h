@@ -1,18 +1,14 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 
+
+#include "personservice.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
 #include <iterator>
 #include <iomanip>
 #include <array>
-#include <time.h>
-
-#include "personservice.h"
-#include "utils.h"
-
-
 
 const string VALID_TABLE_NAMES = "persons|computers|connections";
 
@@ -40,23 +36,14 @@ public:
     void run();
 private:
 
-    const int nameCompWidth = 30;
-    const int namePersonWidth = 30;
+    const int nameWidth = 30;
     const int typeWidth = 20;
     const int restWidth = 15;
-    const int combinedWidth = nameCompWidth + restWidth * 4 + typeWidth;
+    const int pageWidth = 60;
+    const int combinedWidth = nameWidth + restWidth * 4 + typeWidth;
     const char separator = ' ';
 
     personservice ps;
-
-    void printPersons(vector<person> p);
-    void printComputers(vector<computer> c);
-
-    void printPerson(person p);
-    void printComputer(computer c);
-
-    void printPersonConnections(vector<person> persons);
-    void printComputerConnections(vector<computer> computers);
 
     void listMenu(string choice);
     void addMenu(string choice);
@@ -66,6 +53,23 @@ private:
     int searchMenu(string choice);
     void infoMenu(string choice);
 
+    void tablePrint(string s, int width);
+
+    void printDetailsPerson(person p);
+    void printDetailsComputer(computer c);
+
+    void printInfoPerson(person p);
+    void printInfoComputer(computer c);
+
+    void printPersons(vector<person> p);
+    void printPersons(person p);
+
+    void printComputers(vector<computer> c);
+    void printComputers(computer c);
+
+    void printPersonConnections(vector<person> persons);
+    void printComputerConnections(vector<computer> computers);
+
     std::string getInputString(std::string message, bool multiToken, string expected, bool allow_number);
     std::string getInputString(std::string message, bool multiToken, string expected);
     std::string getInputString(std::string message, bool multiToken);
@@ -73,7 +77,7 @@ private:
     int getInputInt(std::string message, int low_bound, int high_bound);
     int getInputInt(std::string message);
 
-    int getCurrentYear();
+
 };
 
 #endif // CONSOLEUI_H

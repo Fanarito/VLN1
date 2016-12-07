@@ -45,3 +45,12 @@ std::string utils::wordWrap(std::string str, int width)
 
     return str;
 }
+
+int utils::getCurrentYear()
+{
+    time_t the_time;
+    time (&the_time);
+
+    return localtime (&the_time)->tm_year + 1900;
+}
+
