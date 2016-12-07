@@ -279,7 +279,7 @@ std::vector<person> dataaccess::searchPersons(std::vector<std::string> args)
     }
 
     if (!noerr)
-        std::cerr << "Query did not prepare successfully." << endl;
+        std::cerr << "Query did not prepare successfully." << std::endl;
 
     return execQueryPerson(query);
 }
@@ -308,7 +308,7 @@ std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
     }
 
     if (!noerr)
-        std::cerr << "Query did not prepare successfully." << endl;
+        std::cerr << "Query did not prepare successfully." << std::endl;
 
     return execQueryComputer(query);
 }
@@ -318,7 +318,7 @@ person dataaccess::getPersonById(unsigned int id, bool &success)
     QString q_string = QString::fromStdString("SELECT * FROM persons JOIN Nationality n ON n.id = nationalityid WHERE persons.id = :id");
     QSqlQuery query(db);
 
-    bool noerr = query.prepare(q_string);
+    success = query.prepare(q_string);
     query.bindValue(0, id);
 
     std::vector<person> p = execQueryPerson(query);
@@ -339,7 +339,7 @@ computer dataaccess::getComputerById(unsigned int id, bool &success)
     QString q_string = QString::fromStdString("SELECT * FROM computers JOIN Nationality n ON n.id = nationalityid WHERE computers.id = :id");
     QSqlQuery query(db);
 
-    bool noerr = query.prepare(q_string);
+    success = query.prepare(q_string);
     query.bindValue(0, id);
 
     std::vector<computer> c = execQueryComputer(query);
@@ -364,7 +364,7 @@ std::vector<person> dataaccess::getPersonsByComputerId(unsigned int id, bool &su
                                               "JOIN Computers c ON con.computersid = c.id "
                                               "WHERE c.id = :id");
 
-    bool noerr = query.prepare(q_string);
+    success = query.prepare(q_string);
     query.bindValue(0, id);
 
     std::vector<person> p = execQueryPerson(query);
@@ -381,7 +381,7 @@ std::vector<computer> dataaccess::getComputersByPersonId(unsigned int id, bool &
                                               "JOIN Persons p ON con.personsid = p.id "
                                               "WHERE p.id = :id");
 
-    bool noerr = query.prepare(q_string);
+    success = query.prepare(q_string);
     query.bindValue(0, id);
 
     std::vector<computer> c = execQueryComputer(query);
