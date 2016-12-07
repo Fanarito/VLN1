@@ -456,7 +456,7 @@ int consoleui::searchMenu(string choice)
     if (column == INPUT_ENDER) return -1;
 
     string search_string;
-    bool is_int = column.find_first_not_of("0123456789") == string::npos;
+    bool is_int = (column.find_first_not_of("0123456789") == string::npos && !column.empty());
     cout << endl;
     // Disgusting but it works
     if (is_int && choice == "persons")
@@ -542,12 +542,12 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
         if(find(exp.begin(), exp.end(), input) != exp.end())
         {
             return input;
-        } else if (allow_number && input.find_first_not_of("0123456789") == string::npos)
+        } else if (allow_number && input.find_first_not_of("0123456789") == string::npos && !input.empty())
             return input;
 
         cout << endl << "Invalid input, please try again." << endl << endl;
 
-        return getInputString(message, multiToken, expected);
+        return getInputString(message, multiToken, expected, allow_number);
     }
 }
 
