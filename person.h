@@ -7,6 +7,7 @@
 #include <iomanip>
 
 #include "object.h"
+#include "computer.h"
 
 class person: public Object
 {
@@ -14,6 +15,7 @@ protected:
     std::string m_sex;
     int m_birthyear;
     int m_deathyear;
+    //std::vector<uint> computer_ids;
 public:
     person(std::string name="Undefined", std::string sex="Undefined", int birthyear=0,
            int deathyear=0, std::string nationality="Undefined", std::string info="", int id = 0);
@@ -26,6 +28,8 @@ public:
 
     int getDeathYear() const;
     void setDeathYear(int year);
+
+    //std::vector<uint> getConnectedComputerIds();
 
     friend std::ostream& operator<<(std::ostream& lhs, const person rhs);
 

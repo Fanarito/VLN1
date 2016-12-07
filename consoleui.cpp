@@ -359,7 +359,13 @@ void consoleui::changeMenu(string choice)
         bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
         int buildyear = -1;
         if (built)
+        {
             buildyear = getInputInt("When was it built: ", PYTHAGORAS, getCurrentYear());
+        }
+        else
+        {
+            buildyear = 0;
+        }
         string type = getInputString("Enter machine type: ", MULTI);
 
         if (!name.empty()) comp.setName(name);
