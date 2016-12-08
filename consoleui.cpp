@@ -25,9 +25,9 @@ void consoleui::run()
         cout << Color::GREEN <<"search \t" << Color::AQUA <<"- This will search the system for a variable" << endl;
         cout << Color::GREEN <<"info \t" << Color::AQUA <<"- This will display information about a famous programmer or computer (including connections)" << endl;
         cout << Color::GREEN <<"clear \t" << Color::AQUA <<"- This will clear the window"<<endl;
-        cout << Color::GREEN <<"quit \t" << Color::AQUA <<"- This will quit the program"<< Color::DEF << endl;
+        cout << Color::GREEN <<"quit \t" << Color::AQUA <<"- This will quit the program"<< endl;
         cout << endl;
-
+        cout << Color::PURPLE;
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
 
@@ -683,6 +683,7 @@ void consoleui::tablePrint(string s, int width)
 //Prints details about a scientist
 void consoleui::printDetailsPerson(person p)
 {
+    std::cout << Color::LBLUE;
     string death = to_string(p.getDeathYear());
     string sex = p.getSex();
 
@@ -696,12 +697,13 @@ void consoleui::printDetailsPerson(person p)
     tablePrint(death, restWidth);
     tablePrint(p.getNationality(), restWidth);
 
-    cout << endl;
+    cout << Color::PURPLE << endl;
 }
 
 //Prints details about a computer
 void consoleui::printDetailsComputer(computer c)
 {
+    cout << Color::YELLOW;
     string built;
     string buildYear = to_string(c.getBuildYear());
 
@@ -715,12 +717,13 @@ void consoleui::printDetailsComputer(computer c)
     tablePrint(built, restWidth);
     tablePrint(c.getNationality(), restWidth);
 
-    cout << endl;
+    cout << Color::PURPLE << endl;
 }
 
 //Prints information about a requested person
 void consoleui::printInfoPerson(person p)
 {
+    std::cout << Color::LBLUE;
     string name = p.getName();
     string nationality = p.getNationality();
     string death = to_string(p.getDeathYear());
@@ -771,13 +774,14 @@ void consoleui::printInfoPerson(person p)
             cout << c.getName() << endl;
         }
 
-        cout << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+        cout << std::left << setw(pageWidth) << setfill('-') << "" << Color::PURPLE << endl;
     }
 }
 
 //Prints information about a requested computer
 void consoleui::printInfoComputer(computer c)
 {
+    std::cout << Color::YELLOW;
     string name = c.getName();
     string type = c.getType();
     string nationality = c.getNationality();
@@ -826,6 +830,7 @@ void consoleui::printInfoComputer(computer c)
 
         cout << std::left << setw(pageWidth) << setfill('-') << "" << endl;
     }
+    cout << Color::PURPLE;
 }
 
 //This function runs through the vector of person and prints out each instance of person in a table.
@@ -834,7 +839,7 @@ void consoleui::printPersons(vector<person> p)
 {
     if(p.size() == 0) return;
 
-    cout << endl;
+    cout << Color::LBLUE << endl;
 
     tablePrint("ID", restWidth);
     tablePrint("Name", nameWidth);
@@ -854,9 +859,11 @@ void consoleui::printPersons(vector<person> p)
 // Prints single person
 void consoleui::printPersons(person p)
 {
+    cout << Color::LBLUE;
     vector<person> temp;
     temp.push_back(p);
     printPersons(temp);
+    cout << Color::PURPLE;
 }
 
 //This function runs through the vector of computer and prints out each instance of computer in a table.
@@ -864,7 +871,7 @@ void consoleui::printComputers(vector<computer> c)
 {
     if(c.size() == 0) return;
 
-    cout << endl;
+    cout << Color::YELLOW << endl;
 
     tablePrint("ID", restWidth);
     tablePrint("Name", nameWidth);
@@ -883,15 +890,17 @@ void consoleui::printComputers(vector<computer> c)
 
 void consoleui::printComputers(computer c)
 {
+    cout << Color::YELLOW;
     vector<computer> temp;
     temp.push_back(c);
     printComputers(temp);
+    cout << Color::PURPLE;
 }
 
 //Prints a table of connections for all persons
 void consoleui::printPersonConnections(vector<person> persons)
 {
-    cout << endl;
+    cout << Color::LBLUE << endl;
 
     tablePrint("Person", nameWidth);
     tablePrint("ID", restWidth);
@@ -924,12 +933,13 @@ void consoleui::printPersonConnections(vector<person> persons)
 
         cout << left << setw(combinedWidth + nameWidth) << setfill('-') << " " << endl;
     }
+    cout << Color::PURPLE;
 }
 
 //Prints a table of connections for all computers
 void consoleui::printComputerConnections(vector<computer> computers)
 {
-    cout << endl;
+    cout << Color::YELLOW << endl;
     cout << left << setw(nameWidth) << setfill(' ') << "Computer";
     cout << left << setw(restWidth) << setfill(separator) << "ID";
     cout << left << setw(nameWidth) << setfill(separator) << "Name";
@@ -958,6 +968,7 @@ void consoleui::printComputerConnections(vector<computer> computers)
 
         cout << left << setw(combinedWidth + nameWidth) << setfill('-') << " " << endl;
     }
+    cout << Color::PURPLE;
 }
 
 //Receives input from user and validates the input
