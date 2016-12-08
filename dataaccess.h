@@ -57,6 +57,8 @@ public:
     void addConnection(int comp_id, int person_id);
     void removeConnection(int pid, int cid);
 
+    void addNationality(std::string nationality);
+
     void updatePerson(person p);
     void updateComputer(computer c);
 

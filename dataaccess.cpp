@@ -167,6 +167,21 @@ void dataaccess::addConnection(int comp_id, int person_id)
     query.exec();
 }
 
+void dataaccess::addNationality(std::string nationality)
+{
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    noerr = query.prepare("INSERT INTO Nationality(Nationality) "
+                          "VALUES(:nationality)");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
+
+    query.bindValue(":nationality", QString::fromStdString(nationality));
+
+    query.exec();
+}
+
 void dataaccess::removePerson(int id)
 {
     QSqlQuery query(db);

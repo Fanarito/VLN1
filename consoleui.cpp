@@ -20,7 +20,7 @@ void consoleui::run()
         cout << string( 100, '\n' );
 
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
-        cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
+        cout << "add \t- This will add a new famous programmer, computer, connection, nationality or computer type to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
@@ -34,7 +34,7 @@ void consoleui::run()
 
         cout << string( 100, '\n' );
 
-        if(command != "quit" && command != "search" && command != "info" && command != "sort")
+        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "add")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
@@ -46,6 +46,8 @@ void consoleui::run()
         }
         else if(command == "add")
         {
+            cout << endl;
+            choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
             addMenu(choice);
         }
         else if(command == "change")
@@ -217,6 +219,24 @@ void consoleui::addMenu(string choice)
 
         ps.removeConnection(comp_id, person_id);
         ps.addConnection(comp_id, person_id);
+
+    }
+    else if(choice == "nationality")
+    {
+        string nationality;
+
+        cout << endl;
+        nationality = getInputString("Nationality:", SINGLE);
+
+        while(nationality.empty())
+        {
+            cout << "The field cannot be empty" << endl;
+            nationality = getInputString("Nationality:", SINGLE);
+        }
+
+        cout << endl;
+
+        ps.addNationality(nationality);
 
     }
 
