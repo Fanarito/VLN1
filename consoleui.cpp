@@ -19,7 +19,7 @@ void consoleui::run()
     {   
 
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
-        cout << "add \t- This will add a new famous programmer, computer, connection, nationality or computer type to the system" << endl;
+        cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
@@ -32,7 +32,7 @@ void consoleui::run()
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
 
-        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "add" && command != "list")
+        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "list")
 
         {
             cout << endl;
@@ -47,8 +47,6 @@ void consoleui::run()
         }
         else if(command == "add")
         {
-            cout << endl;
-            choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
             addMenu(choice);
         }
         else if(command == "change")
@@ -192,7 +190,33 @@ void consoleui::addMenu(string choice)
         while(birthyear > deathyear && deathyear != 0);
 
         cout << endl;
+
         nationality = getInputString("Nationality:", MULTI);
+
+        string answer;
+        int check = ps.getNationalityById(nationality);
+
+        if(check == 0)
+        {
+            cout << endl << "Nationality type does not exist in database. Would you like to add this nationality to the database (y/n)?" << endl << endl;
+            answer = getInputString(NO_MESS, SINGLE, "y|n");
+
+            if(answer == "n")
+            {
+                return;
+            }
+            else if(answer == "y")
+            {
+                while(nationality.empty())
+                {
+                    cout << "The field cannot be empty" << endl;
+                    nationality = getInputString("Nationality:", MULTI);
+                }
+                cout << endl;
+
+                ps.addNationality(nationality);
+            }
+        }
 
         cout << endl;
         info = getInputString("Info:", MULTI);
@@ -223,6 +247,31 @@ void consoleui::addMenu(string choice)
         cout << endl;
         type = getInputString("Type:", MULTI);
 
+        string answer;
+        int check = ps.getComputerTypeById(type);
+
+        if(check == 0)
+        {
+            cout << endl << "Computer type does not exist in database. Would you like to add this computer type to the database (y/n)?" << endl << endl;
+            answer = getInputString(NO_MESS, SINGLE, "y|n");
+
+            if(answer == "n")
+            {
+                return;
+            }
+            else if(answer == "y")
+            {
+                while(type.empty())
+                {
+                    cout << "The field cannot be empty" << endl;
+                    type = getInputString("Type:", MULTI);
+                }
+                cout << endl;
+
+                ps.addComputerType(type);
+            }
+        }
+
         cout << endl;
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
 
@@ -231,6 +280,32 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
         nationality = getInputString("Nationality: ", MULTI);
+
+        string answer_nat;
+        int check_nat = ps.getNationalityById(nationality);
+
+        if(check_nat == 0)
+        {
+            cout << endl << "Nationality type does not exist in database. Would you like to add this nationality to the database (y/n)?" << endl << endl;
+            answer = getInputString(NO_MESS, SINGLE, "y|n");
+
+            if(answer == "n")
+            {
+                return;
+            }
+            else if(answer == "y")
+            {
+                while(nationality.empty())
+                {
+                    cout << "The field cannot be empty" << endl;
+                    nationality = getInputString("Nationality:", MULTI);
+                }
+                cout << endl;
+
+                ps.addNationality(nationality);
+            }
+        }
+
         cout << endl;
         info = getInputString("Info: ", MULTI);
 
@@ -256,23 +331,6 @@ void consoleui::addMenu(string choice)
         ps.removeConnection(comp_id, person_id);
         ps.addConnection(comp_id, person_id);
 
-    }
-    else if(choice == "nationalities")
-    {
-        string nationality;
-
-        cout << endl;
-        nationality = getInputString("Nationality:", MULTI);
-
-        while(nationality.empty())
-        {
-            cout << "The field cannot be empty" << endl;
-            nationality = getInputString("Nationality:", MULTI);
-        }
-
-        cout << endl;
-
-        ps.addNationality(nationality);
     }
     else if(choice == "computer_types")
     {
@@ -301,6 +359,7 @@ void consoleui::addMenu(string choice)
 
     cout << choice << " added!" << endl;
 }
+
 
 //This function allows you to change some, or all properties of a person/computer.
 void consoleui::changeMenu(string choice)
@@ -574,7 +633,7 @@ int consoleui::searchMenu(string choice)
 //This information includes associations between people and computers.
 void consoleui::infoMenu(string choice)
 {
-    //int res = searchMenu(choice);
+    int res = searchMenu(choice);
     int infoId;
 
     if(choice == "persons")
@@ -582,10 +641,10 @@ void consoleui::infoMenu(string choice)
         person infoPerson;
         string infoPrint;
 
-        //if (res == -1)
+        if (res == -1)
             infoId = getInputInt("Please enter ID of person you want information about. -1 to cancel");
-        //else
-         //   infoId = res;
+        else
+            infoId = res;
 
         if(infoId == -1) return;
 
