@@ -131,7 +131,7 @@ void consoleui::listMenu(string choice)
             }
 
         }
-        else if(choice == "nationality")
+        else if(choice == "nationalities")
         {
            vector<std::string> n = ps.getNationalities();
 
@@ -140,6 +140,21 @@ void consoleui::listMenu(string choice)
            {
                cout << n.at(i) << endl;
            }
+        }
+        else if(choice == "computer_types")
+        {
+           vector<std::string> ct = ps.getComputerTypes();
+
+           cout << endl;
+           for(size_t i = 0; i < ct.size(); i++)
+           {
+               cout << ct.at(i) << endl;
+           }
+        }
+        else
+        {
+            cout << endl << "Invalid command!" << endl << endl;
+            run();
         }
 }
 
@@ -242,7 +257,7 @@ void consoleui::addMenu(string choice)
         ps.addConnection(comp_id, person_id);
 
     }
-    else if(choice == "nationality")
+    else if(choice == "nationalities")
     {
         string nationality;
 
@@ -259,7 +274,7 @@ void consoleui::addMenu(string choice)
 
         ps.addNationality(nationality);
     }
-    else if(choice == "computer_type")
+    else if(choice == "computer_types")
     {
         string comp_type;
 
@@ -279,7 +294,7 @@ void consoleui::addMenu(string choice)
     }
     else
     {
-        cout << "Invalid command!" << endl;
+        cout << "Invalid command!" << endl << endl;
 
         run();
     }

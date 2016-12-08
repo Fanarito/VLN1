@@ -99,7 +99,19 @@ std::vector<std::string> dataaccess::getNationalities()
     bool noerr = query.prepare(q);
     if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
 
-    return execQueryString(query);
+    return execQueryNat(query);
+}
+
+std::vector<std::string> dataaccess::getComputerTypes()
+{
+    QSqlQuery query(db);
+
+    QString q =  "SELECT Computer_Type FROM Computer_Types";
+
+    bool noerr = query.prepare(q);
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    return execQueryComp(query);
 }
 
 std::vector<person> dataaccess::getPersonsByQuery(QString q)
@@ -332,7 +344,7 @@ std::vector<computer> dataaccess::execQueryComputer(QSqlQuery query)
 
 }
 
-std::vector<std::string> dataaccess::execQueryString(QSqlQuery query)
+std::vector<std::string> dataaccess::execQueryNat(QSqlQuery query)
 {
     query.exec();
 
@@ -346,7 +358,22 @@ std::vector<std::string> dataaccess::execQueryString(QSqlQuery query)
     }
 
     return nationalities;
+}
 
+std::vector<std::string> dataaccess::execQueryComp(QSqlQuery query)
+{
+    query.exec();
+
+    std::vector<std::string> comp_types;
+
+    while(query.next())
+    {
+        std::string comp_type = query.value("Computer_Type").toString().toStdString();
+
+        comp_types.push_back(comp_type);
+    }
+
+    return comp_types;
 }
 
 

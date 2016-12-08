@@ -20,6 +20,12 @@ vector<std::string> personservice::getNationalities()
     return data.getNationalities();
 }
 
+vector<std::string> personservice::getComputerTypes()
+{
+    return data.getComputerTypes();
+}
+
+
 vector<person> personservice::getPersonsConnectedWithComputer(computer c)
 {
     bool temp;
