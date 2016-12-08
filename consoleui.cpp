@@ -33,16 +33,25 @@ void consoleui::run()
 
         string choice;
 
-        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "list")
+        if(command == "change" || command == "search" || command == "sort" || command == "info")
         {
             cout << endl;
-            choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
         }
-
-        if(command == "list")
+        else if(command == "add" || command == "list" || command == "remove")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
+        }
+
+        /*else if(command != "quit" && command != "clear")
+        {
+            cout << endl;
+            choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
+        }*/
+
+        if(command == "list")
+        {
             listMenu(choice);
         }
         else if(command == "add")
@@ -59,20 +68,14 @@ void consoleui::run()
         }
         else if(command == "sort")
         {
-            cout << endl;
-            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             sortMenu(choice);
         }
         else if(command == "search")
         {
-            cout << endl;
-            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             searchMenu(choice);
         }
         else if(command == "info")
         {
-            cout << endl;
-            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             infoMenu(choice);
         }
         else if(command == "clear")
@@ -1099,7 +1102,8 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 
         return getInputString(message, multiToken, expected);
     }
-    Color::PURPLE;
+
+    cout << Color::PURPLE;
 }
 
 //Receives input from user and validates the input
