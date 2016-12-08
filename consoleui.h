@@ -16,6 +16,7 @@ public:
     void run();
 private:
     personservice ps;
+    string command;
 
     void listMenu(string choice);
     void addMenu(string choice);

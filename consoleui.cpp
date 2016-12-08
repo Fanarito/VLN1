@@ -31,7 +31,7 @@ void consoleui::run()
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
-        string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
+        command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
 
         if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "list")
