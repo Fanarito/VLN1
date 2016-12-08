@@ -30,7 +30,7 @@ namespace Color {
 
             SetConsoleTextAttribute(hConsole, mod.code);
 
-            return os << "test";
+            return os;
         }
     };
 }
