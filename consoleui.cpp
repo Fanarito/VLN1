@@ -1021,7 +1021,7 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound)
     while(!(cin >> input))
     {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.ignore(1000, '\n');
             cout << endl << "Invalid input it must be a number" << endl << "Try again:";
     }
 
