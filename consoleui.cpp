@@ -25,7 +25,7 @@ void consoleui::run()
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
-        cout << "info \t- This will display information about a famous programmer or computer" << endl;
+        cout << "info \t- This will display information about a famous programmer or computer (including connections)" << endl;
         cout << "clear \t- This will clear the window"<<endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
@@ -35,7 +35,7 @@ void consoleui::run()
 
         cout << string( 100, '\n' );
 
-        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "add")
+        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "add" && command != "list")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
@@ -43,6 +43,8 @@ void consoleui::run()
 
         if(command == "list")
         {
+            cout << endl;
+            choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
             listMenu(choice);
         }
         else if(command == "add")
@@ -130,6 +132,16 @@ void consoleui::listMenu(string choice)
                 printComputerConnections(ps.getComputers());
             }
 
+        }
+        else if(choice == "nationality")
+        {
+           vector<std::string> n = ps.getNationalities();
+
+           cout << endl;
+           for(size_t i = 0; i < n.size(); i++)
+           {
+               cout << n.at(i) << endl;
+           }
         }
 }
 
@@ -266,6 +278,12 @@ void consoleui::addMenu(string choice)
 
         ps.addComputerType(comp_type);
 
+    }
+    else
+    {
+        cout << "Invalid command!" << endl;
+
+        run();
     }
 
     cout << choice << " added!" << endl;
