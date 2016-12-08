@@ -18,10 +18,7 @@ void consoleui::run()
     do
     {   
 
-        Color::Modifier red(Color::FG_BLUE);
-        Color::Modifier def(Color::FG_DEFAULT);
-
-        cout << red << "this is red" << def << endl;
+        cout << Color::fg_red << "this is red" << Color::def << endl;
 
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer, connection, nationality or computer type to the system" << endl;

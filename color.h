@@ -62,4 +62,15 @@ namespace Color {
 }
 
 #endif // not windows
+
+namespace Color {
+    const Color::Modifier fg_red(Color::FG_RED);
+    const Color::Modifier fg_blue(Color::FG_BLUE);
+    const Color::Modifier fg_green(Color::FG_GREEN);
+    const Color::Modifier bg_red(Color::BG_RED);
+    const Color::Modifier bg_blue(Color::BG_BLUE);
+    const Color::Modifier bg_green(Color::BG_GREEN);
+    const Color::Modifier def(Color::FG_DEFAULT);
+}
+
 #endif // COLOR_H
