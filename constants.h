@@ -11,7 +11,7 @@ namespace constants {
     const std::string VALID_COMPUTER_COLUMNS = "id|name|build_year|computer_type|built|nationality";
     const std::string VALID_CONNECTIONS_COLUMNS = "computersid|personsid";
 
-    const std::string VALID_COMMANDS = "list|add|change|remove|sort|search|info|quit";
+    const std::string VALID_COMMANDS = "list|add|change|remove|sort|search|info|clear|quit";
     const std::string VALID_SORT_COMMANDS = "asc|desc";
 
     const std::string INPUT_ENDER = "end;";

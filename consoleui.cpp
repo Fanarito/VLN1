@@ -26,6 +26,7 @@ void consoleui::run()
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
         cout << "info \t- This will display information about a famous programmer or computer" << endl;
+        cout << "clear \t- This will clear the window"<<endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
 
@@ -34,7 +35,7 @@ void consoleui::run()
 
         cout << string( 100, '\n' );
 
-        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "add")
+        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "add")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
@@ -76,6 +77,10 @@ void consoleui::run()
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             infoMenu(choice);
         }
+        else if(command == "clear")
+        {
+            system("CLS");
+        }
         else if(command == "quit")
         {
             running = false;
@@ -83,8 +88,14 @@ void consoleui::run()
 
         if(running)
         {
-            cout << endl << "Press ENTER to continue." << endl;
-            cin.get();
+            if(command == "clear")
+            {
+            }
+            else
+            {
+                 cout << endl << "Press ENTER to continue." << endl;
+                 cin.get();
+            }
         }
 
     } while(running);
