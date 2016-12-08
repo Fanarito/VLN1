@@ -18,7 +18,7 @@ void consoleui::run()
     do
     {   
 
-        Color::Modifier red(Color::FG_RED);
+        Color::Modifier red(Color::FG_BLUE);
         Color::Modifier def(Color::FG_DEFAULT);
 
         cout << red << "this is red" << def << endl;

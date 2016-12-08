@@ -8,14 +8,14 @@
 
 namespace Color {
     enum Code {
-        FG_RED      = 31,
-        FG_GREEN    = 32,
-        FG_BLUE     = 34,
-        FG_DEFAULT  = 39,
-        BG_RED      = 41,
-        BG_GREEN    = 42,
-        BG_BLUE     = 44,
-        BG_DEFAULT  = 49
+        FG_RED      = 04,
+        FG_GREEN    = 02,
+        FG_BLUE     = 01,
+        FG_DEFAULT  = 07,
+        BG_RED      = 74,
+        BG_GREEN    = 72,
+        BG_BLUE     = 71,
+        BG_DEFAULT  = 07
     };
 
     class Modifier {
