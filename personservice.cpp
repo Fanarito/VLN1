@@ -90,6 +90,16 @@ void personservice::removeConnection(int pid, int cid)
     data.removeConnection(pid, cid);
 }
 
+void personservice::removeNationality(std::string nationality)
+{
+    data.removeNationality(nationality);
+}
+
+void personservice::removeComputerType(std::string comp_type)
+{
+    data.removeComputerType(comp_type);
+}
+
 vector<person> personservice::searchPersons(vector<string> args)
 {
     return data.searchPersons(args);

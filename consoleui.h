@@ -17,6 +17,7 @@ public:
 private:
     personservice ps;
     string command;
+    bool EXIT;
 
     void listMenu(string choice);
     void addMenu(string choice);
@@ -43,9 +44,7 @@ private:
     void printPersonConnections(vector<person> persons);
     void printComputerConnections(vector<computer> computers);
 
-    std::string getInputString(std::string message, bool multiToken, string expected, bool allow_number);
-    std::string getInputString(std::string message, bool multiToken, string expected);
-    std::string getInputString(std::string message, bool multiToken);
+    std::string getInputString(std::string message, bool multiToken = MULTI, string expected = NO_EXP, bool allow_number = false);
 
     int getInputInt(std::string message, int low_bound, int high_bound);
     int getInputInt(std::string message);

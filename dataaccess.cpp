@@ -299,6 +299,30 @@ void dataaccess::removeConnection(int pid, int cid)
     query.exec();
 }
 
+void dataaccess::removeNationality(std::string nationality)
+{
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare("DELETE FROM Nationality n WHERE nationality = :nationality");
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    query.bindValue(":nationality", QString::fromStdString(nationality));
+
+    query.exec();
+}
+
+void dataaccess::removeComputerType(std::string computer_type)
+{
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare("DELETE FROM Computer_Types WHERE Computer_Type = :comptype");
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    query.bindValue(":comptype", QString::fromStdString(computer_type));
+
+    query.exec();
+}
+
 std::vector<person> dataaccess::execQueryPerson(QSqlQuery query)
 {
     query.exec();

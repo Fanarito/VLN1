@@ -17,6 +17,8 @@ void consoleui::run()
 
     do
     {
+        EXIT = false;
+
         cout << endl << Color::GREEN << "list \t" << Color::AQUA << "- This will list famous programmers, computers, connections, nationalities and computer types in the system" << endl;
         cout << Color::GREEN << "add \t" << Color::AQUA <<"- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << Color::GREEN <<"change \t" << Color::AQUA <<"- This will change a famous programmer or computer in the system" << endl;
@@ -27,9 +29,12 @@ void consoleui::run()
         cout << Color::GREEN <<"clear \t" << Color::AQUA <<"- This will clear the window"<<endl;
         cout << Color::GREEN <<"quit \t" << Color::AQUA <<"- This will quit the program"<< endl;
         cout << endl;
+        cout << Color::RED << INPUT_ENDER << Color::AQUA <<"\t- You can write this at any point to return to this screen."<< endl;
+        cout << endl;
 
         cout << Color::PURPLE;
         command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
+        if(EXIT) continue;
 
         string choice;
 
@@ -37,11 +42,13 @@ void consoleui::run()
         {
             cout << endl;
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
+            if(EXIT) continue;
         }
         else if(command == "add" || command == "list" || command == "remove")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
+            if(EXIT) continue;
         }
 
         /*else if(command != "quit" && command != "clear")
@@ -106,10 +113,16 @@ void consoleui::listMenu(string choice)
         }
         else if(choice == "connections")
         {
-            cout << endl << "Connections to persons or computers?" << endl;
+            string conn_choice;
 
-            string conn_choice = getInputString("persons|computers", SINGLE, "persons|computers");
             cout << endl;
+            cout << "Connections to persons or computers?" << endl;
+            cout << endl;
+
+            conn_choice = getInputString("persons|computers", SINGLE, "persons|computers");
+            cout << endl;
+
+            if(EXIT) return;
 
             if(conn_choice == "persons")
             {
@@ -127,7 +140,7 @@ void consoleui::listMenu(string choice)
            cout << endl;
            for(size_t i = 0; i < n.size(); i++)
            {
-               cout << n.at(i) << endl;
+               cout << Color::LRED << n.at(i) << endl;
            }
         }
         else if(choice == "computer_types")
@@ -135,16 +148,19 @@ void consoleui::listMenu(string choice)
            vector<string> ct = ps.getComputerTypes();
 
            cout << endl;
+
            for(size_t i = 0; i < ct.size(); i++)
            {
-               cout << ct.at(i) << endl;
+               cout << Color::YELLOW << ct.at(i) << endl;
            }
         }
         else
         {
             cout << endl << Color::RED << "Invalid command!" << Color::PURPLE << endl << endl;
-            run();
+            return;
         }
+
+        cout << endl;
 }
 
 //This function allows you to add a person/computer/connection/nationality/computer_type.
@@ -161,33 +177,41 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
         name = getInputString("Name:", MULTI);
+        if(EXIT) return;
 
         while(name.empty())
         {
             cout << "The name field cannot be empty" << endl;
             name = getInputString("Name:", MULTI);
+            if(EXIT) return;
         }
 
         cout << endl;
         sex = getInputString("Sex: m|f", SINGLE, "m|f");
+        if(EXIT) return;
 
         cout << endl;
         deathyear = getInputInt("Year of death (if alive enter 0):", PYTHAGORAS, utils::getCurrentYear());
+        if(EXIT) return;
+
         do
         {
             cout << endl;
             birthyear = getInputInt("Enter year of birth(cannot be after death year): ", PYTHAGORAS, utils::getCurrentYear());
+            if(EXIT) return;
         }
         while(birthyear > deathyear && deathyear != 0);
 
         cout << endl;
 
         nationality = getInputString("Nationality:", MULTI);
+        if(EXIT) return;
 
         while(nationality.empty())
         {
             cout << "The field cannot be empty" << endl;
             nationality = getInputString("Nationality:", MULTI);
+            if(EXIT) return;
         }
 
         string answer;
@@ -195,11 +219,11 @@ void consoleui::addMenu(string choice)
 
         bool running = true;
 
-
         if(check == 0)
         {
             cout << endl << "Nationality type does not exist in database. Would you like to add this nationality to the database (y/n)?" << endl << endl;
             answer = getInputString(NO_MESS, SINGLE, "y|n");
+            if(EXIT) return;
 
             if(answer == "n")
             {
@@ -211,6 +235,7 @@ void consoleui::addMenu(string choice)
                 {
                     cout << "The field cannot be empty" << endl;
                     nationality = getInputString("Nationality:", MULTI);
+                    if(EXIT) return;
                 }
                 cout << endl;
 
@@ -222,6 +247,7 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
         info = getInputString("Info:", MULTI);
+        if(EXIT) return;
 
         cout << endl;
 
@@ -239,20 +265,24 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
         name = getInputString("Name:", MULTI);
+        if(EXIT) return;
 
         while(name.empty())
         {
             cout << "The name field cannot be empty" << endl;
             name = getInputString("Name:", MULTI);
+            if(EXIT) return;
         }
 
         cout << endl;
         type = getInputString("Type:", MULTI);
+        if(EXIT) return;
 
         while(type.empty())
         {
             cout << "The field cannot be empty" << endl;
             type = getInputString("Type:", MULTI);
+            if(EXIT) return;
         }
 
         string answer;
@@ -262,6 +292,7 @@ void consoleui::addMenu(string choice)
         {
             cout << endl << "Computer type does not exist in database. Would you like to add this computer type to the database (y/n)?" << endl << endl;
             answer = getInputString(NO_MESS, SINGLE, "y|n");
+            if(EXIT) return;
 
             if(answer == "n")
             {
@@ -273,6 +304,7 @@ void consoleui::addMenu(string choice)
                 {
                     cout << "The field cannot be empty" << endl;
                     type = getInputString("Type:", MULTI);
+                    if(EXIT) return;
                 }
                 cout << endl;
 
@@ -282,17 +314,21 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
+        if(EXIT) return;
 
         cout << endl;
         if(built) build_year = getInputInt("Build year:", PYTHAGORAS, utils::getCurrentYear());
+        if(EXIT) return;
 
         cout << endl;
         nationality = getInputString("Nationality: ", MULTI);
+        if(EXIT) return;
 
         while(nationality.empty())
         {
             cout << "The field cannot be empty" << endl;
             nationality = getInputString("Nationality:", MULTI);
+            if(EXIT) return;
         }
 
         string answer_nat;
@@ -302,6 +338,7 @@ void consoleui::addMenu(string choice)
         {
             cout << endl << "Nationality type does not exist in database. Would you like to add this nationality to the database (y/n)?" << endl << endl;
             answer = getInputString(NO_MESS, SINGLE, "y|n");
+            if(EXIT) return;
 
             if(answer == "n")
             {
@@ -313,6 +350,7 @@ void consoleui::addMenu(string choice)
                 {
                     cout << "The field cannot be empty" << endl;
                     nationality = getInputString("Nationality:", MULTI);
+                    if(EXIT) return;
                 }
                 cout << endl;
 
@@ -322,6 +360,7 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
         info = getInputString("Info: ", MULTI);
+        if(EXIT) return;
 
         cout << endl;
 
@@ -333,18 +372,44 @@ void consoleui::addMenu(string choice)
         int comp_id;
         int person_id;
 
-
         searchMenu("persons");
+        if(EXIT) return;
+
         cout << endl;
         person_id = getInputInt("Please enter the ID of the person you want to connect:");
+        if(EXIT) return;
+
         searchMenu("computers");
+        if(EXIT) return;
+
         cout << endl;
         comp_id = getInputInt("Please enter the ID of the computer you want to connect to previusly selected person:");
+        if(EXIT) return;
+
         cout << endl;
 
         ps.removeConnection(comp_id, person_id);
         ps.addConnection(comp_id, person_id);
 
+    }
+    else if(choice == "nationalities")
+    {
+        string nationality;
+
+        cout << endl;
+        nationality = getInputString("Nationality:", MULTI);
+        if(EXIT) return;
+
+        while(nationality.empty())
+        {
+            cout << Color::RED << "The field cannot be empty" << Color::PURPLE << endl;
+            nationality = getInputString("Nationality:", MULTI);
+            if(EXIT) return;
+        }
+
+        cout << endl;
+
+        ps.addNationality(nationality);
     }
     else if(choice == "computer_types")
     {
@@ -352,11 +417,13 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
         comp_type = getInputString("Computer type:", MULTI);
+        if(EXIT) return;
 
         while(comp_type.empty())
         {
-            cout << "The field cannot be empty" << endl;
+            cout << Color::RED << "The field cannot be empty" << Color::PURPLE << endl;
             comp_type = getInputString("Computer type:", MULTI);
+            if(EXIT) return;
         }
 
         cout << endl;
@@ -366,27 +433,46 @@ void consoleui::addMenu(string choice)
     }
     else
     {
+        //Should never happen
         cout << Color::RED << "Invalid command!" << Color::PURPLE << endl << endl;
-
-        run();
+        return;
     }
 
-    cout << choice << " added!" << endl;
+    cout << Color::GREEN << choice << " added!" << Color::PURPLE << endl;
 }
 
+/*
+ *
+ *
+ *
+ *
+ *
+ *
+ * CANNOT CHANGE NATIONALITY ON COMPUTERS!
+ *
+ *
+ *
+ */
 
 //This function allows you to change some, or all properties of a person/computer.
 void consoleui::changeMenu(string choice)
 {
     int res = searchMenu(choice);
+    if(EXIT) return;
+
     int changeId;
 
     if(choice == "persons")
     {
         if (res == -1)
+        {
             changeId = getInputInt("Please Enter ID of person you want to change. -1 to cancel");
+            if(EXIT) return;
+        }
         else
+        {
             changeId = res;
+        }
 
         if(changeId == -1) return;
 
@@ -400,17 +486,29 @@ void consoleui::changeMenu(string choice)
         }
 
         cout << endl;
+
         string name = getInputString("Enter name: (empty for no change)", MULTI);
+        if(EXIT) return;
+
         string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
+        if(EXIT) return;
+
         string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
+        if(EXIT) return;
+
         int deathyear = getInputInt("Enter year of death(0 for not dead, -1 for unchanged): ",PYTHAGORAS, utils::getCurrentYear());
+        if(EXIT) return;
+
         int birthyear;
+
         do
         {
             birthyear = getInputInt("Enter year of birth(-1 for unchanged, cannot be after death year): ", PYTHAGORAS, utils::getCurrentYear());
+            if(EXIT) return;
         } while(birthyear > deathyear && deathyear != 0 && deathyear != -1);
 
         string info = getInputString("Enter info: (empty for no change)", MULTI);
+        if(EXIT) return;
 
         if (!name.empty()) p.setName(name);
         if (!nationality.empty()) p.setNationality(nationality);
@@ -424,9 +522,14 @@ void consoleui::changeMenu(string choice)
     else if(choice == "computers")
     {
         if (res == -1)
+        {
             changeId = getInputInt("Please enter ID of computer you want to change. -1 to cancel");
+            if(EXIT) return;
+        }
         else
+        {
             changeId = res;
+        }
 
         if(changeId == -1) return;
 
@@ -440,19 +543,29 @@ void consoleui::changeMenu(string choice)
         }
 
         string name = getInputString("Enter name: ", MULTI);
+        if(EXIT) return;
+
         // string nationality = getInputString("Enter nationality; ", MULTI);
         string info = getInputString("Enter info: ", MULTI);
+        if(EXIT) return;
+
         bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
+        if(EXIT) return;
+
         int buildyear = -1;
+
         if (built)
         {
             buildyear = getInputInt("When was it built: ", PYTHAGORAS, utils::getCurrentYear());
+            if(EXIT) return;
         }
         else
         {
             buildyear = 0;
         }
+
         string type = getInputString("Enter machine type: ", MULTI);
+        if(EXIT) return;
 
         if (!name.empty()) comp.setName(name);
         // if (!nationality.empty()) comp.setNationality(nationality);
@@ -463,23 +576,32 @@ void consoleui::changeMenu(string choice)
 
         ps.updateComputer(comp);
     }
+
+    cout << Color::GREEN << choice << " changed!" << Color::PURPLE << endl;
 }
 
 //This function allows you to remove one or more persons/computers from the list.
 void consoleui::removeMenu(string choice)
 {
-    int res;
-    if (choice != "connections")
-        res = searchMenu(choice);
+    int res, removeId;
 
-    int removeId;
+    if (choice != "connections" && choice != "nationalities" && choice != "computer_types")
+    {
+        res = searchMenu(choice);
+        if(EXIT) return;
+    }
 
     if(choice == "persons")
     {
         if (res == -1)
+        {
             removeId = getInputInt("Please Enter ID of person you want to remove. -1 to cancel");
+            if(EXIT) return;
+        }
         else
+        {
             removeId = res;
+        }
 
         if(removeId == -1) return;
 
@@ -488,9 +610,15 @@ void consoleui::removeMenu(string choice)
     else if(choice == "computers")
     {
         if (res == -1)
+        {
             removeId = getInputInt("Please enter ID of computer you want to remove. -1 to cancel");
+            if(EXIT) return;
+        }
         else
+        {
             removeId = res;
+            if(EXIT) return;
+        }
 
         if(removeId == -1) return;
 
@@ -499,10 +627,48 @@ void consoleui::removeMenu(string choice)
     else if(choice == "connections")
     {
         int pid = searchMenu("persons");
+        if(EXIT) return;
+
         int cid = searchMenu("computers");
+        if(EXIT) return;
+
+        if(pid == -1 || cid == -1)
+        {
+            cout << Color::RED << "Invalid person or computer." << endl;
+        }
 
         ps.removeConnection(pid, cid);
     }
+    else if(choice == "nationalities")
+    {
+        listMenu(choice);
+
+        string to_remove = getInputString("Please specify the nationality to remove: ", MULTI);
+        if(EXIT) return;
+
+        if(ps.getNationalityById(to_remove) == -1)
+        {
+            cout << Color::RED << "That nationality does not exist." << Color::PURPLE << endl;
+            cin.get();
+            removeMenu(choice);
+        }
+    }
+    else if(choice == "computer_types")
+    {
+        listMenu(choice);
+
+        string to_remove = getInputString("Please specify the Computer Type to remove: ", MULTI);
+        if(EXIT) return;
+
+        if(ps.getComputerTypeById(to_remove) == -1)
+        {
+            cout << Color::RED << "That computer type does not exist." << Color::PURPLE << endl;
+            cin.get();
+            removeMenu(choice);
+        }
+    }
+
+    cout << Color::GREEN << choice << " removed!" << endl;
 }
 
 //This is the function where you can choose how you want to sort the list. After you have made your
@@ -520,12 +686,14 @@ void consoleui::sortMenu(string choice)
     cout << endl;
 
     column = getInputString(NO_MESS,SINGLE,options);
+    if(EXIT) return;
 
     cout << endl;
     cout << VALID_SORT_COMMANDS << endl;
     cout << endl;
 
     order = getInputString(NO_MESS,SINGLE, VALID_SORT_COMMANDS);
+    if(EXIT) return;
 
     if(choice == "persons")
     {
@@ -560,6 +728,7 @@ int consoleui::searchMenu(string choice, bool printRes)
                     SINGLE, options,
                     true
                 );
+    if(EXIT) return -1;
 
     // Disgusting but it works
     if (utils::isStrInt(column) && choice == "persons")
@@ -600,23 +769,32 @@ int consoleui::searchMenu(string choice, bool printRes)
     if(column == "sex")
     {
         search_string = getInputString("m|f", SINGLE, "m|f");
+        if(EXIT) return -1;
     }
     else if (column == "birth_year" || column == "death_year" || column == "build_year")
     {
         search_string = to_string(getInputInt("Input year: ", PYTHAGORAS, utils::getCurrentYear()));
+        if(EXIT) return -1;
     }
     else if (column == "id")
     {
         search_string = to_string(getInputInt("Enter id: "));
+        if(EXIT) return -1;
         column = choice + ".id";
     }
     else
+    {
         search_string = getInputString("Input searchstring: ", MULTI);
+        if(EXIT) return -1;
+    }
+
     arguments.push_back(column);
     arguments.push_back(search_string );
 
     if (choice == "persons") {
+
         vector<person> p = ps.searchPersons(arguments);
+
         if (p.size() > 1)
         {
             printPersons(p);
@@ -633,7 +811,9 @@ int consoleui::searchMenu(string choice, bool printRes)
         return p.at(0).getId();
     }
     else if (choice == "computers") {
+
         vector<computer> c = ps.searchComputers(arguments);
+
         if (c.size() > 1)
         {
             printComputers(c);
@@ -657,6 +837,7 @@ int consoleui::searchMenu(string choice, bool printRes)
 void consoleui::infoMenu(string choice)
 {
     int res = searchMenu(choice, false);
+    if(EXIT) return;
     int infoId;
 
     if(choice == "persons")
@@ -665,9 +846,14 @@ void consoleui::infoMenu(string choice)
         string infoPrint;
 
         if (res == -1)
+        {
             infoId = getInputInt("Please enter ID of person you want information about. -1 to cancel");
+            if(EXIT) return;
+        }
         else
+        {
             infoId = res;
+        }
 
         if(infoId == -1) return;
 
@@ -689,9 +875,14 @@ void consoleui::infoMenu(string choice)
         string infoPrint;
 
         if (res == -1)
+        {
             infoId = getInputInt("Please enter ID of computer you want information about -1 to cancel");
+            if(EXIT) return;
+        }
         else
+        {
             infoId = res;
+        }
 
         if(infoId == -1) return;
 
@@ -723,17 +914,26 @@ void consoleui::printDetailsPerson(person p)
 
     death = (death == "0")?("Alive"):(death);
     sex = (sex == "f")?("Female"):("Male");
-    cout << Color::LBLUE;
+
+    Color::Modifier primaryColor = Color::BLUE;
+    Color::Modifier secondaryColor = Color::LBLUE;
+
+    cout << primaryColor;
     tablePrint(to_string(p.getId()), restWidth);
-    cout << Color::BLUE;
+
+    cout << secondaryColor;
     tablePrint(p.getName(), nameWidth);
-    cout << Color::LBLUE;
+
+    cout << primaryColor;
     tablePrint(sex, restWidth);
-    cout << Color::BLUE;
+
+    cout << secondaryColor;
     tablePrint(to_string(p.getBirthYear()), restWidth);
-    cout << Color::LBLUE;
+
+    cout << primaryColor;
     tablePrint(death, restWidth);
-    cout << Color::BLUE;
+
+    cout << secondaryColor;
     tablePrint(p.getNationality(), restWidth);
 
     cout << Color::PURPLE << endl;
@@ -748,17 +948,24 @@ void consoleui::printDetailsComputer(computer c)
 
     buildYear = (buildYear == "0")?("Not built"):(buildYear);
     built = (c.getBuilt())?("True"):("False");
-    cout << Color::YELLOW;
+
+    Color::Modifier primaryColor = Color::YELLOW;
+    Color::Modifier secondaryColor = Color::LGREEN;
+
+    cout << primaryColor;
+
     tablePrint(to_string(c.getId()), restWidth);
-    cout << Color::LYELLOW;
+
+    cout << secondaryColor;
     tablePrint(c.getName(), nameWidth);
-    cout << Color::YELLOW;
+
+    cout << primaryColor;
     tablePrint(buildYear, restWidth);
-    cout << Color::LYELLOW;
+
+    cout << secondaryColor;
     tablePrint(c.getType(), typeWidth);
-    cout << Color::YELLOW;
-    tablePrint(built, restWidth);
-    cout << Color::LYELLOW;
+
+    cout << primaryColor;
     tablePrint(c.getNationality(), restWidth);
 
     cout << Color::PURPLE << endl;
@@ -929,12 +1136,11 @@ void consoleui::printComputers(vector<computer> c)
 
     tablePrint("ID", restWidth);
     tablePrint("Name", nameWidth);
-    tablePrint("Build Year", restWidth);
-    tablePrint("Computer Type", typeWidth);
     tablePrint("Built", restWidth);
+    tablePrint("Computer Type", typeWidth);
     tablePrint("Nationality", restWidth);
 
-    cout << endl;
+    cout << endl << endl;
 
     for(size_t i = 0; i < c.size(); i++)
     {
@@ -959,9 +1165,8 @@ void consoleui::printPersonConnections(vector<person> persons)
     tablePrint("Person", nameWidth);
     tablePrint("ID", restWidth);
     tablePrint("Name", nameWidth);
-    tablePrint("Build Year", restWidth);
-    tablePrint("Computer Type", typeWidth);
     tablePrint("Built", restWidth);
+    tablePrint("Computer Type", typeWidth);
     tablePrint("Nationality", restWidth);
 
     cout << Color::PURPLE << endl << endl;
@@ -1006,8 +1211,11 @@ void consoleui::printComputerConnections(vector<computer> computers)
     for (computer c : computers)
     {
         vector<person> connections = ps.getPersonsConnectedWithComputer(c);
+
         if (connections.size() == 0)
+        {
             continue;
+        }
 
         cout << endl;
         cout << left << setw(nameWidth) << setfill(' ') << c.getName();
@@ -1030,7 +1238,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 {
     if(message != NO_MESS)
     {
-        cout << message << endl;
+        cout << Color::PURPLE << message << endl;
     }
 
     string input;
@@ -1038,48 +1246,16 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 
     input = utils::removeWhiteSpace(input);
 
-    if(!multiToken && utils::split(input, ' ').size() > 1)
+    if(input == INPUT_ENDER)
     {
-        cout << Color::RED << "Multiple tokens detected in buffer, please try again." << Color::PURPLE << endl;
-
-        return getInputString(message, multiToken, expected);
-    }
-
-    if(expected == NO_EXP)
-    {
+        EXIT = true;
         return input;
     }
-    else
-    {
-        vector<string> exp = utils::split(expected, '|');
 
-        if(find(exp.begin(), exp.end(), input) != exp.end())
-        {
-            return input;
-        } else if (allow_number && input.find_first_not_of("0123456789") == string::npos && !input.empty())
-            return input;
 
-        cout << endl << Color::RED << "Invalid input, please try again." << Color::PURPLE << endl << endl;
-
-        return getInputString(message, multiToken, expected, allow_number);
-    }
-}
-
-//Receives input from user and validates the input
-string consoleui::getInputString(string message, bool multiToken, string expected)
-{
-    if(message != NO_MESS)
-    {
-        cout << message << endl;
-    }
-
-    string input;
-    getline(cin, input);
-
-    input = utils::removeWhiteSpace(input);
     if(!multiToken && utils::split(input, ' ').size() > 1)
     {
-        cout << Color::RED << "Multiple tokens detected in buffer, please try again." << Color::PURPLE << endl;
+        cout << endl << Color::RED << "Multiple tokens detected in buffer, please try again." << Color::PURPLE << endl;
 
         return getInputString(message, multiToken, expected);
     }
@@ -1096,19 +1272,17 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
         {
             return input;
         }
+        else if(allow_number && utils::isStrInt(input))
+        {
+            return input;
+        }
 
-        cout << endl << "Invalid input, please try again." << endl << endl;
+        cout << endl << Color::RED << "Invalid input, please try again." << Color::PURPLE << endl << endl;
 
-        return getInputString(message, multiToken, expected);
+        return getInputString(message, multiToken, expected, allow_number);
     }
 
     cout << Color::PURPLE;
-}
-
-//Receives input from user and validates the input
-string consoleui::getInputString(string message, bool multiToken)
-{
-    return getInputString(message, multiToken, NO_EXP);
 }
 
 int consoleui::getInputInt(string message)
@@ -1119,27 +1293,35 @@ int consoleui::getInputInt(string message)
 //Receives input from user and validates the input
 int consoleui::getInputInt(string message, int low_bound, int high_bound)
 {
+
     if(message != NO_MESS)
     {
-        cout << message << endl;
+        cout << Color::PURPLE << message << endl;
     }
 
-    int input;
+    string input;
+    getline(cin, input);
+    input = utils::removeWhiteSpace(input);
 
-    while(!(cin >> input))
+    if(input == INPUT_ENDER)
     {
-            cin.clear();
-            cin.ignore(1000, '\n');
-            cout << endl << Color::RED << "Invalid input it must be a number" << Color::PURPLE << endl << "Try again:";
+        EXIT = true;
+        return INT_MIN;
     }
 
-    if(input > high_bound || input < low_bound)
+    while(utils::isStrInt(input) == false)
     {
-        cout << Color::RED << "Input out of bounds, please try again." << Color::PURPLE << endl;
+            cout << endl << Color::RED << "Invalid input it must be a number." << endl;
+            return getInputInt(message, low_bound, high_bound);
+    }
+
+    int input_as_int = stoi(input);
+
+    if(input_as_int > high_bound || input_as_int < low_bound)
+    {
+        cout << Color::RED << "Input out of bounds, please try again." << Color::PURPLE << "Limits are: " << low_bound << ", " << high_bound << endl;
         return getInputInt(message, high_bound, low_bound);
     }
 
-    cin.ignore();
-
-    return input;
+    return input_as_int;
 }

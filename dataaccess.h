@@ -63,8 +63,10 @@ public:
     void removeConnection(int pid, int cid);
 
     void addNationality(std::string nationality);
+    void removeNationality(std::string nationality);
 
     void addComputerType(std::string comp_type);
+    void removeComputerType(std::string comp_type);
 
     void updatePerson(person p);
     void updateComputer(computer c);
