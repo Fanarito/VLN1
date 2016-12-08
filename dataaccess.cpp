@@ -14,6 +14,7 @@ dataaccess::~dataaccess()
     db.close();
 }
 
+//Searches for nationality and if found returns the nationality's ID
 int dataaccess::getNationalityID(std::string nationality)
 {
     QSqlQuery query(db);
@@ -39,6 +40,7 @@ int dataaccess::getNationalityID(std::string nationality)
     return 0;
 }
 
+//Searches for computer type and if found returns the computer type's ID
 int dataaccess::getComputer_TypeID(std::string computer_type)
 {
     QSqlQuery query(db);
@@ -47,7 +49,7 @@ int dataaccess::getComputer_TypeID(std::string computer_type)
     query.bindValue(":comp_type", QString::fromStdString(computer_type));
     query.exec();
 
-    //If country is found, return first match
+    //If computer type is found, return first match
     if(query.next()) return query.value("ID").toUInt();
     else
     {
@@ -56,11 +58,11 @@ int dataaccess::getComputer_TypeID(std::string computer_type)
         insert_query.bindValue(":comp_type", QString::fromStdString(computer_type));
         insert_query.exec();
 
-        // Find the nationality and return the id
+        // Find the computer type and return the id
         return getComputer_TypeID(computer_type);
     }
 
-    //If no match, return id for nationality "UNKNOWN"
+    //If no match, return id for computer type "UNKNOWN"
     return 0;
 }
 
@@ -136,6 +138,8 @@ std::vector<computer> dataaccess::getComputersByQuery(QString q)
 
    return computers;
 }
+
+//Adds an instance of person to the Persons table in the database
 void dataaccess::addPerson(person p)
 {
     QSqlQuery query(db);
@@ -156,6 +160,7 @@ void dataaccess::addPerson(person p)
     query.exec();
 }
 
+//Adds an instance of computer to the Computers table in the database
 void dataaccess::addComputer(computer c)
 {
     QSqlQuery query(db);
@@ -176,6 +181,7 @@ void dataaccess::addComputer(computer c)
     query.exec();
 }
 
+//Adds a connection to the Connections table in the database
 void dataaccess::addConnection(int comp_id, int person_id)
 {
     QSqlQuery query(db);
@@ -192,6 +198,7 @@ void dataaccess::addConnection(int comp_id, int person_id)
     query.exec();
 }
 
+//Adds a nationality to the Nationality table in the database
 void dataaccess::addNationality(std::string nationality)
 {
     QSqlQuery query(db);
@@ -207,6 +214,7 @@ void dataaccess::addNationality(std::string nationality)
     query.exec();
 }
 
+//Adds a computer type to the Computer_Types table in the database
 void dataaccess::addComputerType(std::string comp_type)
 {
     QSqlQuery query(db);
@@ -222,6 +230,7 @@ void dataaccess::addComputerType(std::string comp_type)
     query.exec();
 }
 
+//Removes a person from the Persons table in the database
 void dataaccess::removePerson(int id)
 {
     QSqlQuery query(db);
@@ -236,6 +245,7 @@ void dataaccess::removePerson(int id)
     query.exec();
 }
 
+//Removes a computer from the Computers table in the database
 void dataaccess::removeComputer(int id)
 {
     QSqlQuery query(db);
@@ -250,6 +260,7 @@ void dataaccess::removeComputer(int id)
     query.exec();
 }
 
+//Removes a connection from the Connections table in the database
 void dataaccess::removeConnection(int pid, int cid)
 {
     QSqlQuery query(db);
