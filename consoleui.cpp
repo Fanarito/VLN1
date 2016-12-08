@@ -90,7 +90,7 @@ void consoleui::run()
     } while(running);
 }
 
-//Lists out information from the text file????.
+//Lists out information from the database
 void consoleui::listMenu(string choice)
 {
         if(choice == "persons")
@@ -122,7 +122,7 @@ void consoleui::listMenu(string choice)
         }
 }
 
-//this function allows you to add a person/computer. The user can add value to each instance of the new person/computer..
+//This function allows you to add a person/computer/connection/nationality/computer_type.
 void consoleui::addMenu(string choice)
 {
     if(choice == "persons")
@@ -420,7 +420,6 @@ void consoleui::sortMenu(string choice)
 
 //This function allows you to search for a specific scientist/computer in the entire list. You can search the system
 //by their properties. Example: for a person you can search by name, sex, birth year, death year or nationality.
-// Returns -1 if multiple people were found, else returns the id of the person/computer.
 int consoleui::searchMenu(string choice)
 {
     vector<string> arguments;
@@ -529,7 +528,8 @@ int consoleui::searchMenu(string choice)
     return -1;
 }
 
-//This allows you to request information about a person or computer
+//This allows you to request information about a person or a computer.
+//This information includes associations between people and computers.
 void consoleui::infoMenu(string choice)
 {
     //int res = searchMenu(choice);
@@ -585,11 +585,13 @@ void consoleui::infoMenu(string choice)
     }
 }
 
+//Prints table
 void consoleui::tablePrint(string s, int width)
 {
     cout << left << setw(width) << setfill(separator) << s;
 }
 
+//Prints details about a scientist
 void consoleui::printDetailsPerson(person p)
 {
     string death = to_string(p.getDeathYear());
@@ -608,6 +610,7 @@ void consoleui::printDetailsPerson(person p)
     cout << endl;
 }
 
+//Prints details about a computer
 void consoleui::printDetailsComputer(computer c)
 {
     string built;
@@ -626,6 +629,7 @@ void consoleui::printDetailsComputer(computer c)
     cout << endl;
 }
 
+//Prints information about a requested person
 void consoleui::printInfoPerson(person p)
 {
     string name = p.getName();
@@ -682,6 +686,7 @@ void consoleui::printInfoPerson(person p)
     }
 }
 
+//Prints information about a requested computer
 void consoleui::printInfoComputer(computer c)
 {
     string name = c.getName();
@@ -734,8 +739,8 @@ void consoleui::printInfoComputer(computer c)
     }
 }
 
-//This function runs through the vector of person and prints out each instance of person. We are
-//using an overloaded operator << to print out each field.
+//This function runs through the vector of person and prints out each instance of person in a table.
+//The table does not include information.
 void consoleui::printPersons(vector<person> p)
 {
     if(p.size() == 0) return;
@@ -765,8 +770,7 @@ void consoleui::printPersons(person p)
     printPersons(temp);
 }
 
-//This function runs through the vector of computers and prints out each instance of a computer. We are
-//using an overloaded operator << to print out each field.
+//This function runs through the vector of computer and prints out each instance of computer in a table.
 void consoleui::printComputers(vector<computer> c)
 {
     if(c.size() == 0) return;
@@ -788,7 +792,6 @@ void consoleui::printComputers(vector<computer> c)
     }
 }
 
-// Prints single computer
 void consoleui::printComputers(computer c)
 {
     vector<computer> temp;
@@ -796,6 +799,7 @@ void consoleui::printComputers(computer c)
     printComputers(temp);
 }
 
+//Prints a table of connections for all persons
 void consoleui::printPersonConnections(vector<person> persons)
 {
     cout << endl;
@@ -833,6 +837,7 @@ void consoleui::printPersonConnections(vector<person> persons)
     }
 }
 
+//Prints a table of connections for all computers
 void consoleui::printComputerConnections(vector<computer> computers)
 {
     cout << endl;
@@ -866,6 +871,7 @@ void consoleui::printComputerConnections(vector<computer> computers)
     }
 }
 
+//Receives input from user and validates the input
 string consoleui::getInputString(string message, bool multiToken, string expected, bool allow_number)
 {
     if(message != NO_MESS)
@@ -905,6 +911,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
     }
 }
 
+//Receives input from user and validates the input
 string consoleui::getInputString(string message, bool multiToken, string expected)
 {
     if(message != NO_MESS)
@@ -943,6 +950,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
     }
 }
 
+//Receives input from user and validates the input
 string consoleui::getInputString(string message, bool multiToken)
 {
     return getInputString(message, multiToken, NO_EXP);
@@ -953,6 +961,7 @@ int consoleui::getInputInt(string message)
     return getInputInt(message, INT_MIN, INT_MAX);
 }
 
+//Receives input from user and validates the input
 int consoleui::getInputInt(string message, int low_bound, int high_bound)
 {
     if(message != NO_MESS)
