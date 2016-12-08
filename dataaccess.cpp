@@ -42,6 +42,7 @@ int dataaccess::getNationalityID(std::string nationality)
 }
 
 //Searches for computer type and if found returns the computer type's ID
+//if it is not found it returns 0
 int dataaccess::getComputer_TypeID(std::string computer_type)
 {
     QSqlQuery query(db);
@@ -52,7 +53,7 @@ int dataaccess::getComputer_TypeID(std::string computer_type)
 
     //If computer type is found, return first match
     if(query.next()) return query.value("ID").toUInt();
-    else
+    /*else
     {
         QSqlQuery insert_query(db);
         insert_query.prepare(QString::fromStdString("INSERT INTO Computer_Types (Computer_Type) VALUES (:comp_type)"));
@@ -61,7 +62,7 @@ int dataaccess::getComputer_TypeID(std::string computer_type)
 
         // Find the computer type and return the id
         return getComputer_TypeID(computer_type);
-    }
+    }*/
 
     //If no match, return id for computer type "UNKNOWN"
     return 0;

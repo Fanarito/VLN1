@@ -18,6 +18,8 @@ void consoleui::run()
     do
     {   
 
+        cout << Color::fg_red << "this is red" << Color::def << endl;
+
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
@@ -1075,7 +1077,7 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound)
     while(!(cin >> input))
     {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.ignore(1000, '\n');
             cout << endl << "Invalid input it must be a number" << endl << "Try again:";
     }
 
