@@ -18,7 +18,7 @@ void consoleui::run()
     do
     {   
 
-        Color::Modifier red(Color::FG_RED);
+        Color::Modifier red(Color::FG_BLUE);
         Color::Modifier def(Color::FG_DEFAULT);
 
         cout << red << "this is red" << def << endl;
@@ -1021,7 +1021,7 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound)
     while(!(cin >> input))
     {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.ignore(1000, '\n');
             cout << endl << "Invalid input it must be a number" << endl << "Try again:";
     }
 
