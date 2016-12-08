@@ -19,12 +19,10 @@ public:
     personservice();
     void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info);
     void addPerson(person p);
-
     void addComputer(std::string name, int build_year, std::string type, int built, std::string nationality, std::string info);
-
     void addConnection(int comp_id, int person_id);
-
     void addNationality(std::string nationality);
+    void addComputerType(std::string comp_type);
 
     void removePerson(int id);
     void removeComputer(int id);

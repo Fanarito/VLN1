@@ -207,6 +207,21 @@ void dataaccess::addNationality(std::string nationality)
     query.exec();
 }
 
+void dataaccess::addComputerType(std::string comp_type)
+{
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    noerr = query.prepare("INSERT INTO Computer_Types(Computer_Type) "
+                          "VALUES(:comp_type)");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
+
+    query.bindValue(":comp_type", QString::fromStdString(comp_type));
+
+    query.exec();
+}
+
 void dataaccess::removePerson(int id)
 {
     QSqlQuery query(db);

@@ -226,17 +226,34 @@ void consoleui::addMenu(string choice)
         string nationality;
 
         cout << endl;
-        nationality = getInputString("Nationality:", SINGLE);
+        nationality = getInputString("Nationality:", MULTI);
 
         while(nationality.empty())
         {
             cout << "The field cannot be empty" << endl;
-            nationality = getInputString("Nationality:", SINGLE);
+            nationality = getInputString("Nationality:", MULTI);
         }
 
         cout << endl;
 
         ps.addNationality(nationality);
+    }
+    else if(choice == "computer_type")
+    {
+        string comp_type;
+
+        cout << endl;
+        comp_type = getInputString("Computer type:", MULTI);
+
+        while(comp_type.empty())
+        {
+            cout << "The field cannot be empty" << endl;
+            comp_type = getInputString("Computer type:", MULTI);
+        }
+
+        cout << endl;
+
+        ps.addComputerType(comp_type);
 
     }
 

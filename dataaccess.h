@@ -60,6 +60,8 @@ public:
 
     void addNationality(std::string nationality);
 
+    void addComputerType(std::string comp_type);
+
     void updatePerson(person p);
     void updateComputer(computer c);
 

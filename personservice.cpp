@@ -118,3 +118,8 @@ void personservice::addNationality(std::string nationality)
 {
     data.addNationality(nationality);
 }
+
+void personservice::addComputerType(std::string comp_type)
+{
+    data.addComputerType(comp_type);
+}
