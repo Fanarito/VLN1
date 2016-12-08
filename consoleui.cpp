@@ -18,7 +18,7 @@ void consoleui::run()
     do
     {
         cout << endl << Color::GREEN << "list \t" << Color::AQUA << "- This will list famous programmers, computers, connections, nationalities and computer types in the system" << endl;
-        cout << Color::GREEN << "add \t" << Color::AQUA <<"-This will add a new famous programmer, computer or connection to the system" << endl;
+        cout << Color::GREEN << "add \t" << Color::AQUA <<"- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << Color::GREEN <<"change \t" << Color::AQUA <<"- This will change a famous programmer or computer in the system" << endl;
         cout << Color::GREEN <<"remove \t" << Color::AQUA <<"- This will remove a famous programmer or computer from the system" << endl;
         cout << Color::GREEN <<"sort \t" << Color::AQUA <<"- This will sort the list according to your preferences" << endl;
