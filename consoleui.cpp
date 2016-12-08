@@ -17,7 +17,6 @@ void consoleui::run()
 
     do
     {   
-        cout << string( 100, '\n' );
 
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer, connection, nationality or computer type to the system" << endl;
@@ -32,8 +31,6 @@ void consoleui::run()
 
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
-
-        cout << string( 100, '\n' );
 
         if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "add")
         {
