@@ -33,6 +33,8 @@ public:
 
     vector<person> getPersons();
     vector<computer> getComputers();
+    vector<std::string> getNationalities();
+    vector<std::string> getComputerTypes();
 
     vector<person> getPersonsConnectedWithComputer(computer c);
     vector<computer> getComputersConnectedWithPerson(person p);

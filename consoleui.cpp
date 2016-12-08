@@ -17,7 +17,6 @@ void consoleui::run()
 
     do
     {   
-        cout << string( 100, '\n' );
 
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer, connection, nationality or computer type to the system" << endl;
@@ -25,7 +24,7 @@ void consoleui::run()
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
         cout << "sort \t- This will sort the list according to your preferences" << endl;
         cout << "search \t- This will search the system for a variable" << endl;
-        cout << "info \t- This will display information about a famous programmer or computer" << endl;
+        cout << "info \t- This will display information about a famous programmer or computer (including connections)" << endl;
         cout << "clear \t- This will clear the window"<<endl;
         cout << "quit \t- This will quit the program" << endl;
         cout << endl;
@@ -33,9 +32,8 @@ void consoleui::run()
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
         string choice;
 
-        cout << string( 100, '\n' );
+        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "add" && command != "list")
 
-        if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "add")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
@@ -43,6 +41,8 @@ void consoleui::run()
 
         if(command == "list")
         {
+            cout << endl;
+            choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
             listMenu(choice);
         }
         else if(command == "add")
@@ -130,6 +130,31 @@ void consoleui::listMenu(string choice)
                 printComputerConnections(ps.getComputers());
             }
 
+        }
+        else if(choice == "nationalities")
+        {
+           vector<std::string> n = ps.getNationalities();
+
+           cout << endl;
+           for(size_t i = 0; i < n.size(); i++)
+           {
+               cout << n.at(i) << endl;
+           }
+        }
+        else if(choice == "computer_types")
+        {
+           vector<std::string> ct = ps.getComputerTypes();
+
+           cout << endl;
+           for(size_t i = 0; i < ct.size(); i++)
+           {
+               cout << ct.at(i) << endl;
+           }
+        }
+        else
+        {
+            cout << endl << "Invalid command!" << endl << endl;
+            run();
         }
 }
 
@@ -232,7 +257,7 @@ void consoleui::addMenu(string choice)
         ps.addConnection(comp_id, person_id);
 
     }
-    else if(choice == "nationality")
+    else if(choice == "nationalities")
     {
         string nationality;
 
@@ -249,7 +274,7 @@ void consoleui::addMenu(string choice)
 
         ps.addNationality(nationality);
     }
-    else if(choice == "computer_type")
+    else if(choice == "computer_types")
     {
         string comp_type;
 
@@ -266,6 +291,12 @@ void consoleui::addMenu(string choice)
 
         ps.addComputerType(comp_type);
 
+    }
+    else
+    {
+        cout << "Invalid command!" << endl << endl;
+
+        run();
     }
 
     cout << choice << " added!" << endl;
