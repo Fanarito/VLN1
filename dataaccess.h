@@ -27,6 +27,7 @@ public:
 
     std::vector<person> getPersons();
     std::vector<computer> getComputers();
+    std::vector<std::string> getNationalities();
 
     std::vector<person> getPersonsByQuery(QString q);
     std::vector<computer> getComputersByQuery(QString q);
@@ -45,6 +46,7 @@ public:
 
     std::vector<person> execQueryPerson(QSqlQuery query);
     std::vector<computer> execQueryComputer(QSqlQuery query);
+    std::vector<std::string> execQueryString(QSqlQuery query);
 
     int getNationalityID(std::string nationality);
     int getComputer_TypeID(std::string computer_type);

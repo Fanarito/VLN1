@@ -90,6 +90,18 @@ std::vector<computer> dataaccess::getComputers()
     return execQueryComputer(query);
 }
 
+std::vector<std::string> dataaccess::getNationalities()
+{
+    QSqlQuery query(db);
+
+    QString q =  "SELECT Nationality FROM Nationality";
+
+    bool noerr = query.prepare(q);
+    if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
+
+    return execQueryString(query);
+}
+
 std::vector<person> dataaccess::getPersonsByQuery(QString q)
 {
    QSqlQuery query(db);
@@ -317,6 +329,23 @@ std::vector<computer> dataaccess::execQueryComputer(QSqlQuery query)
     }
 
     return computers;
+
+}
+
+std::vector<std::string> dataaccess::execQueryString(QSqlQuery query)
+{
+    query.exec();
+
+    std::vector<std::string> nationalities;
+
+    while(query.next())
+    {
+        std::string nationality = query.value("Nationality").toString().toStdString();
+
+        nationalities.push_back(nationality);
+    }
+
+    return nationalities;
 
 }
 
