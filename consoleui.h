@@ -23,7 +23,7 @@ private:
     void changeMenu(string choice);
     void removeMenu(string choice);
     void sortMenu(string choice);
-    int searchMenu(string choice);
+    int searchMenu(string choice, bool printRes=true);
     void infoMenu(string choice);
 
     void tablePrint(string s, int width);
