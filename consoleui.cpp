@@ -18,7 +18,7 @@ void consoleui::run()
     do
     {
         cout << endl << Color::GREEN << "list \t" << Color::AQUA << "- This will list famous programmers, computers, connections, nationalities and computer types in the system" << endl;
-        cout << Color::GREEN << "add \t" << Color::AQUA <<"-This will add a new famous programmer, computer or connection to the system" << endl;
+        cout << Color::GREEN << "add \t" << Color::AQUA <<"- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << Color::GREEN <<"change \t" << Color::AQUA <<"- This will change a famous programmer or computer in the system" << endl;
         cout << Color::GREEN <<"remove \t" << Color::AQUA <<"- This will remove a famous programmer or computer from the system" << endl;
         cout << Color::GREEN <<"sort \t" << Color::AQUA <<"- This will sort the list according to your preferences" << endl;
@@ -27,8 +27,10 @@ void consoleui::run()
         cout << Color::GREEN <<"clear \t" << Color::AQUA <<"- This will clear the window"<<endl;
         cout << Color::GREEN <<"quit \t" << Color::AQUA <<"- This will quit the program"<< endl;
         cout << endl;
+
         cout << Color::PURPLE;
-        string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
+        command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
+
         string choice;
 
         if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "list")
@@ -117,7 +119,7 @@ void consoleui::listMenu(string choice)
         }
         else if(choice == "nationalities")
         {
-           vector<std::string> n = ps.getNationalities();
+           vector<string> n = ps.getNationalities();
 
            cout << endl;
            for(size_t i = 0; i < n.size(); i++)
@@ -127,7 +129,7 @@ void consoleui::listMenu(string choice)
         }
         else if(choice == "computer_types")
         {
-           vector<std::string> ct = ps.getComputerTypes();
+           vector<string> ct = ps.getComputerTypes();
 
            cout << endl;
            for(size_t i = 0; i < ct.size(); i++)
@@ -137,7 +139,7 @@ void consoleui::listMenu(string choice)
         }
         else
         {
-            cout << endl << "Invalid command!" << endl << endl;
+            cout << endl << Color::RED << "Invalid command!" << Color::PURPLE << endl << endl;
             run();
         }
 }
@@ -361,7 +363,7 @@ void consoleui::addMenu(string choice)
     }
     else
     {
-        cout << "Invalid command!" << endl << endl;
+        cout << Color::RED << "Invalid command!" << Color::PURPLE << endl << endl;
 
         run();
     }
@@ -535,7 +537,7 @@ void consoleui::sortMenu(string choice)
 
 //This function allows you to search for a specific scientist/computer in the entire list. You can search the system
 //by their properties. Example: for a person you can search by name, sex, birth year, death year or nationality.
-int consoleui::searchMenu(string choice)
+int consoleui::searchMenu(string choice, bool printRes)
 {
     vector<string> arguments;
     arguments.push_back(choice);
@@ -557,34 +559,36 @@ int consoleui::searchMenu(string choice)
                 );
 
     // Disgusting but it works
-    if (utils::isStrInt(column))
+    if (utils::isStrInt(column) && choice == "persons")
     {
         bool success;
 
-        if(choice == "persons")
+        person p = ps.getPersonById(stoi(column), success);
+
+        if (!success)
         {
-            person p = ps.getPersonById(stoi(column), success);
+            cout << endl << "Person not found try again" << endl;
+            return searchMenu(choice);
+        }
 
-            if (!success)
-            {
-                cout << endl << "Person not found try again" << endl;
-                return searchMenu(choice);
-            }
-
+        if (printRes)
             printPersons(p);
-        }
-        else if(choice == "computers")
+
+        return stoi(column);
+    }
+    else if (utils::isStrInt(column) && choice == "computers")
+    {
+        bool success;
+        computer c = ps.getComputerById(stoi(column), success);
+
+        if (!success)
         {
-            computer c = ps.getComputerById(stoi(column), success);
-
-            if (!success)
-            {
-                cout << endl << "Computer not found try again" << endl;
-                return searchMenu(choice);
-            }
-
-            printComputers(c);
+            cout << endl << "Computer not found try again" << endl;
+            return searchMenu(choice);
         }
+
+        if (printRes)
+            printComputers(c);
 
         return stoi(column);
     }
@@ -621,7 +625,8 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        printPersons(p);
+        if (printRes)
+            printPersons(p);
         return p.at(0).getId();
     }
     else if (choice == "computers") {
@@ -637,7 +642,8 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        printComputers(c);
+        if (printRes)
+            printComputers(c);
         return c.at(0).getId();
     }
 
@@ -648,7 +654,7 @@ int consoleui::searchMenu(string choice)
 //This information includes associations between people and computers.
 void consoleui::infoMenu(string choice)
 {
-    int res = searchMenu(choice);
+    int res = searchMenu(choice, false);
     int infoId;
 
     if(choice == "persons")
@@ -710,18 +716,22 @@ void consoleui::tablePrint(string s, int width)
 //Prints details about a scientist
 void consoleui::printDetailsPerson(person p)
 {
-    std::cout << Color::LBLUE;
     string death = to_string(p.getDeathYear());
     string sex = p.getSex();
 
     death = (death == "0")?("Alive"):(death);
     sex = (sex == "f")?("Female"):("Male");
-
+    cout << Color::LBLUE;
     tablePrint(to_string(p.getId()), restWidth);
+    cout << Color::BLUE;
     tablePrint(p.getName(), nameWidth);
+    cout << Color::LBLUE;
     tablePrint(sex, restWidth);
+    cout << Color::BLUE;
     tablePrint(to_string(p.getBirthYear()), restWidth);
+    cout << Color::LBLUE;
     tablePrint(death, restWidth);
+    cout << Color::BLUE;
     tablePrint(p.getNationality(), restWidth);
 
     cout << Color::PURPLE << endl;
@@ -730,18 +740,23 @@ void consoleui::printDetailsPerson(person p)
 //Prints details about a computer
 void consoleui::printDetailsComputer(computer c)
 {
-    cout << Color::YELLOW;
+
     string built;
     string buildYear = to_string(c.getBuildYear());
 
     buildYear = (buildYear == "0")?("Not built"):(buildYear);
     built = (c.getBuilt())?("True"):("False");
-
+    cout << Color::YELLOW;
     tablePrint(to_string(c.getId()), restWidth);
+    cout << Color::LYELLOW;
     tablePrint(c.getName(), nameWidth);
+    cout << Color::YELLOW;
     tablePrint(buildYear, restWidth);
+    cout << Color::LYELLOW;
     tablePrint(c.getType(), typeWidth);
+    cout << Color::YELLOW;
     tablePrint(built, restWidth);
+    cout << Color::LYELLOW;
     tablePrint(c.getNationality(), restWidth);
 
     cout << Color::PURPLE << endl;
@@ -750,7 +765,6 @@ void consoleui::printDetailsComputer(computer c)
 //Prints information about a requested person
 void consoleui::printInfoPerson(person p)
 {
-    std::cout << Color::LBLUE;
     string name = p.getName();
     string nationality = p.getNationality();
     string death = to_string(p.getDeathYear());
@@ -761,17 +775,21 @@ void consoleui::printInfoPerson(person p)
     sex = (sex == "f")?("Female"):("Male");
 
     cout << endl;
+    cout << Color::LBLUE;
     tablePrint(name, restWidth);
-    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+    cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
+    cout << Color::BLUE;
     tablePrint("Nationality: ", restWidth);
     tablePrint(nationality, restWidth);
     cout << endl;
 
+    cout << Color::LBLUE;
     tablePrint("Born: ", restWidth);
     tablePrint(birth, restWidth);
     cout << endl;
 
+    cout << Color::BLUE;
     if(death != "0")
     {
         tablePrint("Died: ", restWidth);
@@ -780,35 +798,36 @@ void consoleui::printInfoPerson(person p)
     }
 
     cout << endl;
+    cout << Color::LBLUE;
     tablePrint("Information ", restWidth);
-    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+    cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
     cout << utils::wordWrap(info, pageWidth);
 
-    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+    cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
     cout << endl;
 
     vector<computer> computers_connected = ps.getComputersConnectedWithPerson(p);
+    cout << Color::BLUE;
 
     if(computers_connected.size() > 0)
     {
         tablePrint("Associated Computers", restWidth);
-        cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+        cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
         for(computer c : computers_connected)
         {
             cout << c.getName() << endl;
         }
 
-        cout << std::left << setw(pageWidth) << setfill('-') << "" << Color::PURPLE << endl;
+        cout << left << setw(pageWidth) << setfill('-') << "" << Color::PURPLE << endl;
     }
 }
 
 //Prints information about a requested computer
 void consoleui::printInfoComputer(computer c)
 {
-    std::cout << Color::YELLOW;
     string name = c.getName();
     string type = c.getType();
     string nationality = c.getNationality();
@@ -817,30 +836,36 @@ void consoleui::printInfoComputer(computer c)
 
     buildYear = (buildYear == "0")?("Not built"):(buildYear);
 
+    cout << Color::YELLOW;
     cout << endl;
     tablePrint(name, restWidth);
-    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+    cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
+    cout << Color::LYELLOW;
     tablePrint("Type: ", restWidth);
     tablePrint(type, restWidth);
     cout << endl;
 
+    cout << Color::YELLOW;
     tablePrint("Nationality: ", restWidth);
     tablePrint(nationality, restWidth);
     cout << endl;
 
+    cout << Color::LYELLOW;
     tablePrint("Built: ", restWidth);
     tablePrint(buildYear, restWidth);
     cout << endl;
 
+    cout << Color::YELLOW;
     cout << endl;
     tablePrint("Information ", restWidth);
-    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+    cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
     cout << utils::wordWrap(info, pageWidth);
 
-    cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+    cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
+    cout << Color::LYELLOW;
     cout << endl;
 
     vector<person> persons_connected = ps.getPersonsConnectedWithComputer(c);
@@ -848,14 +873,14 @@ void consoleui::printInfoComputer(computer c)
     if(persons_connected.size() > 0)
     {
         tablePrint("Associated People", restWidth);
-        cout << endl << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+        cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
         for(person p : persons_connected)
         {
             cout << p.getName() << endl;
         }
 
-        cout << std::left << setw(pageWidth) << setfill('-') << "" << endl;
+        cout << left << setw(pageWidth) << setfill('-') << "" << endl;
     }
     cout << Color::PURPLE;
 }
@@ -866,7 +891,7 @@ void consoleui::printPersons(vector<person> p)
 {
     if(p.size() == 0) return;
 
-    cout << Color::LBLUE << endl;
+    cout << Color::GRAY << endl;
 
     tablePrint("ID", restWidth);
     tablePrint("Name", nameWidth);
@@ -898,7 +923,7 @@ void consoleui::printComputers(vector<computer> c)
 {
     if(c.size() == 0) return;
 
-    cout << Color::YELLOW << endl;
+    cout << Color::GRAY << endl;
 
     tablePrint("ID", restWidth);
     tablePrint("Name", nameWidth);
@@ -927,7 +952,7 @@ void consoleui::printComputers(computer c)
 //Prints a table of connections for all persons
 void consoleui::printPersonConnections(vector<person> persons)
 {
-    cout << Color::LBLUE << endl;
+    cout << Color::GRAY << endl;
 
     tablePrint("Person", nameWidth);
     tablePrint("ID", restWidth);
@@ -937,7 +962,7 @@ void consoleui::printPersonConnections(vector<person> persons)
     tablePrint("Built", restWidth);
     tablePrint("Nationality", restWidth);
 
-    cout << endl << endl;
+    cout << Color::PURPLE << endl << endl;
 
     for (person p : persons)
     {
@@ -966,7 +991,7 @@ void consoleui::printPersonConnections(vector<person> persons)
 //Prints a table of connections for all computers
 void consoleui::printComputerConnections(vector<computer> computers)
 {
-    cout << Color::YELLOW << endl;
+    cout << Color::GRAY << endl;
     cout << left << setw(nameWidth) << setfill(' ') << "Computer";
     cout << left << setw(restWidth) << setfill(separator) << "ID";
     cout << left << setw(nameWidth) << setfill(separator) << "Name";
@@ -974,7 +999,7 @@ void consoleui::printComputerConnections(vector<computer> computers)
     cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
     cout << left << setw(restWidth) << setfill(separator) << "Death Year";
     cout << left << setw(restWidth) << setfill(separator) << "Nationality" << endl;
-    cout << endl;
+    cout << Color::PURPLE << endl;
 
     for (computer c : computers)
     {
@@ -1013,7 +1038,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 
     if(!multiToken && utils::split(input, ' ').size() > 1)
     {
-        cout << "Multiple tokens detected in buffer, please try again." << endl;
+        cout << Color::RED << "Multiple tokens detected in buffer, please try again." << Color::PURPLE << endl;
 
         return getInputString(message, multiToken, expected);
     }
@@ -1032,7 +1057,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
         } else if (allow_number && input.find_first_not_of("0123456789") == string::npos && !input.empty())
             return input;
 
-        cout << endl << "Invalid input, please try again." << endl << endl;
+        cout << endl << Color::RED << "Invalid input, please try again." << Color::PURPLE << endl << endl;
 
         return getInputString(message, multiToken, expected, allow_number);
     }
@@ -1050,10 +1075,9 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
     getline(cin, input);
 
     input = utils::removeWhiteSpace(input);
-
     if(!multiToken && utils::split(input, ' ').size() > 1)
     {
-        cout << "Multiple tokens detected in buffer, please try again." << endl;
+        cout << Color::RED << "Multiple tokens detected in buffer, please try again." << Color::PURPLE << endl;
 
         return getInputString(message, multiToken, expected);
     }
@@ -1075,6 +1099,7 @@ string consoleui::getInputString(string message, bool multiToken, string expecte
 
         return getInputString(message, multiToken, expected);
     }
+    Color::PURPLE;
 }
 
 //Receives input from user and validates the input
@@ -1102,12 +1127,12 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound)
     {
             cin.clear();
             cin.ignore(1000, '\n');
-            cout << endl << "Invalid input it must be a number" << endl << "Try again:";
+            cout << endl << Color::RED << "Invalid input it must be a number" << Color::PURPLE << endl << "Try again:";
     }
 
     if(input > high_bound || input < low_bound)
     {
-        cout << "Input out of bounds, please try again." << endl;
+        cout << Color::RED << "Input out of bounds, please try again." << Color::PURPLE << endl;
         return getInputInt(message, high_bound, low_bound);
     }
 

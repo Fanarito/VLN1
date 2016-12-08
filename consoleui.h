@@ -16,13 +16,14 @@ public:
     void run();
 private:
     personservice ps;
+    string command;
 
     void listMenu(string choice);
     void addMenu(string choice);
     void changeMenu(string choice);
     void removeMenu(string choice);
     void sortMenu(string choice);
-    int searchMenu(string choice);
+    int searchMenu(string choice, bool printRes=true);
     void infoMenu(string choice);
 
     void tablePrint(string s, int width);
