@@ -18,7 +18,7 @@ void consoleui::run()
     do
     {   
 
-        cout << Color::fg_red << "this is red" << Color::def << endl;
+        cout << Color::fg_green << "this is red" << Color::fg_green << endl;
 
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
@@ -35,7 +35,6 @@ void consoleui::run()
         string choice;
 
         if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "list")
-
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
@@ -79,7 +78,7 @@ void consoleui::run()
         }
         else if(command == "clear")
         {
-            system("CLS");
+            cout << string(100, '\n');
         }
         else if(command == "quit")
         {
@@ -129,7 +128,6 @@ void consoleui::listMenu(string choice)
             {
                 printComputerConnections(ps.getComputers());
             }
-
         }
         else if(choice == "nationalities")
         {

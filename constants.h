@@ -28,7 +28,9 @@ namespace constants {
     const int typeWidth = 20;
     const int restWidth = 15;
     const int pageWidth = 60;
+
     const int combinedWidth = nameWidth + restWidth * 4 + typeWidth;
+
     const char separator = ' ';
 
     static std::string DATABASE = "CompSci.sqlite";
