@@ -26,5 +26,6 @@ HEADERS += \
     computer.h \
     object.h \
     utils.h \
-    constants.h
+    constants.h \
+    color.h
 
