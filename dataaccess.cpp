@@ -15,6 +15,7 @@ dataaccess::~dataaccess()
 }
 
 //Searches for nationality and if found returns the nationality's ID
+//else it returns 0 which is the id for Unkown
 int dataaccess::getNationalityID(std::string nationality)
 {
     QSqlQuery query(db);
@@ -25,7 +26,7 @@ int dataaccess::getNationalityID(std::string nationality)
 
     //If country is found, return first match
     if(query.next()) return query.value("ID").toUInt();
-    else
+    /*else
     {
         QSqlQuery insert_query(db);
         insert_query.prepare(QString::fromStdString("INSERT INTO nationality (Nationality) VALUES (:nat)"));
@@ -34,7 +35,7 @@ int dataaccess::getNationalityID(std::string nationality)
 
         // Find the nationality and return the id
         return getNationalityID(nationality);
-    }
+    }*/
 
     //If no match, return id for nationality "UNKNOWN"
     return 0;
