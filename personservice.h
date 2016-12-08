@@ -24,6 +24,8 @@ public:
 
     void addConnection(int comp_id, int person_id);
 
+    void addNationality(std::string nationality);
+
     void removePerson(int id);
     void removeComputer(int id);
     void removeConnection(int pid, int cid);
