@@ -19,7 +19,7 @@ namespace constants {
     const std::string NO_MESS = "\0";
     const std::string NO_EXP = "\0";
 
-    const int PYTHAGORAS = -570;
+    const int AL_KHWARIZMI = 780; //WAS PYTHAGORAS
 
     const bool MULTI = true;
     const bool SINGLE = false;

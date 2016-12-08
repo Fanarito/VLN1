@@ -46,8 +46,7 @@ private:
 
     std::string getInputString(std::string message, bool multiToken = MULTI, string expected = NO_EXP, bool allow_number = false);
 
-    int getInputInt(std::string message, int low_bound, int high_bound);
-    int getInputInt(std::string message);
+    int getInputInt(std::string message, int low_bound = INT_MIN, int high_bound = INT_MAX, bool allow_empty = false);
 
 
 };

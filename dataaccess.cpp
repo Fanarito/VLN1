@@ -303,7 +303,7 @@ void dataaccess::removeNationality(std::string nationality)
 {
     QSqlQuery query(db);
 
-    bool noerr = query.prepare("DELETE FROM Nationality n WHERE nationality = :nationality");
+    bool noerr = query.prepare("DELETE FROM Nationality WHERE nationality = :nationality");
     if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;
 
     query.bindValue(":nationality", QString::fromStdString(nationality));

@@ -66,6 +66,12 @@ int utils::getCurrentYear()
 
 bool utils::isStrInt(std::string str)
 {
-    return str.find_first_not_of("0123456789") == std::string::npos && !str.empty();
+    if(str.empty()) return false;
+
+    bool is_negative = (str[0] == '-');
+
+    if(is_negative) str = str.substr(1);
+
+    return str.find_first_not_of("0123456789") == std::string::npos;
 }
 
