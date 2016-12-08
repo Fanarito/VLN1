@@ -140,7 +140,6 @@ std::vector<person> dataaccess::getPersonsByQuery(QString q)
    return persons;
 }
 
-
 std::vector<computer> dataaccess::getComputersByQuery(QString q)
 {
    QSqlQuery query(db);
@@ -377,7 +376,6 @@ std::vector<std::string> dataaccess::execQueryComp(QSqlQuery query)
 
     return comp_types;
 }
-
 
 std::vector<person> dataaccess::searchPersons(std::vector<std::string> args)
 {
