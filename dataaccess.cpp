@@ -460,7 +460,7 @@ person dataaccess::getPersonById(unsigned int id, bool &success)
 
 computer dataaccess::getComputerById(unsigned int id, bool &success)
 {
-    QString q_string = QString::fromStdString("SELECT * FROM computers JOIN Nationality n ON n.id = nationalityid JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID WHERE computers.id = :id");
+    QString q_string = QString::fromStdString("SELECT * FROM computers c JOIN Nationality n ON n.id = nationalityid JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID WHERE c.id = :id");
     QSqlQuery query(db);
 
     success = query.prepare(q_string);

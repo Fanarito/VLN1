@@ -27,8 +27,10 @@ void consoleui::run()
         cout << Color::GREEN <<"clear \t" << Color::AQUA <<"- This will clear the window"<<endl;
         cout << Color::GREEN <<"quit \t" << Color::AQUA <<"- This will quit the program"<< endl;
         cout << endl;
+
         cout << Color::PURPLE;
-        string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
+        command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
+
         string choice;
 
         if(command != "quit" && command != "search" && command != "info" && command != "sort" && command != "clear" && command != "list")
@@ -532,7 +534,7 @@ void consoleui::sortMenu(string choice)
 
 //This function allows you to search for a specific scientist/computer in the entire list. You can search the system
 //by their properties. Example: for a person you can search by name, sex, birth year, death year or nationality.
-int consoleui::searchMenu(string choice)
+int consoleui::searchMenu(string choice, bool printRes)
 {
     vector<string> arguments;
     arguments.push_back(choice);
@@ -573,7 +575,8 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        printPersons(p);
+        if (printRes)
+            printPersons(p);
         return stoi(column);
     }
     else if (is_int && choice == "computers")
@@ -585,7 +588,9 @@ int consoleui::searchMenu(string choice)
             cout << endl << "Computer not found try again" << endl;
             return searchMenu(choice);
         }
-        printComputers(c);
+
+        if (printRes)
+            printComputers(c);
         return stoi(column);
     }
     else if(column == "sex")
@@ -617,7 +622,8 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        printPersons(p);
+        if (printRes)
+            printPersons(p);
         return p.at(0).getId();
     }
     else if (choice == "computers") {
@@ -633,7 +639,8 @@ int consoleui::searchMenu(string choice)
             return searchMenu(choice);
         }
 
-        printComputers(c);
+        if (printRes)
+            printComputers(c);
         return c.at(0).getId();
     }
 
@@ -644,7 +651,7 @@ int consoleui::searchMenu(string choice)
 //This information includes associations between people and computers.
 void consoleui::infoMenu(string choice)
 {
-    int res = searchMenu(choice);
+    int res = searchMenu(choice, false);
     int infoId;
 
     if(choice == "persons")
