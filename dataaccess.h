@@ -47,6 +47,7 @@ public:
     std::vector<computer> execQueryComputer(QSqlQuery query);
 
     int getNationalityID(std::string nationality);
+    int getComputer_TypeID(std::string computer_type);
 
     void addPerson(person p);
     void removePerson(int id);
