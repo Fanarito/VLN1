@@ -8,21 +8,21 @@
 
 namespace Color {
     enum Code {
-        FG_BLACK    = 00,
-        FG_BLUE     = 01,
-        FG_GREEN    = 02,
-        FG_AQUA	    = 03,
-        FG_RED      = 04,
-        FG_PURPLE   = 05,
-        FG_YELLOW   = 06,
-        FG_GRAY     = 08,
-        FG_LBLUE    = 09,
-        FG_LGREEN   = 10,
-        FG_LAQUA    = 11,
-        FG_LRED     = 12,
-        FG_LPURPLE  = 13,
-        FG_LYELLOW  = 14,
-        FG_DEFAULT  = 07,
+        FG_BLACK    = 0x00,
+        FG_BLUE     = 0x01,
+        FG_GREEN    = 0x02,
+        FG_AQUA	    = 0x03,
+        FG_RED      = 0x04,
+        FG_PURPLE   = 0x05,
+        FG_YELLOW   = 0x06,
+        FG_GRAY     = 0x08,
+        FG_LBLUE    = 0x09,
+        FG_LGREEN   = 0x0a,
+        FG_LAQUA    = 0x0b,
+        FG_LRED     = 0x0c,
+        FG_LPURPLE  = 0x0d,
+        FG_LYELLOW  = 0x0e,
+        FG_DEFAULT  = 0x07,
     };
 
     class Modifier {
