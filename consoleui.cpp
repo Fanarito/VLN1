@@ -644,7 +644,6 @@ int consoleui::searchMenu(string choice, bool printRes)
             cout << endl << "No computers found try again" << endl;
             return searchMenu(choice);
         }
-
         if (printRes)
             printComputers(c);
         return c.at(0).getId();
@@ -689,10 +688,10 @@ void consoleui::infoMenu(string choice)
         computer infoComputer;
         string infoPrint;
 
-        //if (res == -1)
+        if (res == -1)
             infoId = getInputInt("Please enter ID of computer you want information about -1 to cancel");
-        //else
-        //infoId = res;
+        else
+            infoId = res;
 
         if(infoId == -1) return;
 
