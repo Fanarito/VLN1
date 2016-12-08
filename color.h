@@ -86,7 +86,7 @@ namespace Color {
     const Color::Modifier PURPLE(Color::FG_PURPLE);
     const Color::Modifier YELLOW(Color::FG_YELLOW);
     const Color::Modifier GRAY(Color::FG_GRAY);
-    const Color::Modifier LBLAY(Color::FG_LBLUE);
+    const Color::Modifier LBLUE(Color::FG_LBLUE);
     const Color::Modifier LGREEN(Color::FG_LGREEN);
     const Color::Modifier LAQUA(Color::FG_LAQUA);
     const Color::Modifier LRED(Color::FG_RED);

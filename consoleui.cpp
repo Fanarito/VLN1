@@ -16,19 +16,16 @@ void consoleui::run()
     bool running = true;
 
     do
-    {   
-
-        cout << endl << Color::RED << "this is red" << Color::DEF << endl;
-
-        cout << endl << "list \t- This will list famous programmers, computers, connections, nationalities and computer types in the system" << endl;
-        cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
-        cout << "change \t- This will change a famous programmer or computer in the system" << endl;
-        cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
-        cout << "sort \t- This will sort the list according to your preferences" << endl;
-        cout << "search \t- This will search the system for a variable" << endl;
-        cout << "info \t- This will display information about a famous programmer or computer (including connections)" << endl;
-        cout << "clear \t- This will clear the window"<<endl;
-        cout << "quit \t- This will quit the program" << endl;
+    {
+        cout << endl << Color::GREEN << "list \t" << Color::AQUA << "- This will list famous programmers, computers, connections, nationalities and computer types in the system" << endl;
+        cout << Color::GREEN << "add \t" << Color::AQUA <<"-This will add a new famous programmer, computer or connection to the system" << endl;
+        cout << Color::GREEN <<"change \t" << Color::AQUA <<"- This will change a famous programmer or computer in the system" << endl;
+        cout << Color::GREEN <<"remove \t" << Color::AQUA <<"- This will remove a famous programmer or computer from the system" << endl;
+        cout << Color::GREEN <<"sort \t" << Color::AQUA <<"- This will sort the list according to your preferences" << endl;
+        cout << Color::GREEN <<"search \t" << Color::AQUA <<"- This will search the system for a variable" << endl;
+        cout << Color::GREEN <<"info \t" << Color::AQUA <<"- This will display information about a famous programmer or computer (including connections)" << endl;
+        cout << Color::GREEN <<"clear \t" << Color::AQUA <<"- This will clear the window"<<endl;
+        cout << Color::GREEN <<"quit \t" << Color::AQUA <<"- This will quit the program"<< Color::DEF << endl;
         cout << endl;
 
         string command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
