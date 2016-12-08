@@ -64,3 +64,8 @@ int utils::getCurrentYear()
     return localtime (&the_time)->tm_year + 1900;
 }
 
+bool utils::isStrInt(std::string str)
+{
+    return str.find_first_not_of("0123456789") == std::string::npos && !str.empty();
+}
+

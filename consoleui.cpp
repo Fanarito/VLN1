@@ -18,9 +18,9 @@ void consoleui::run()
     do
     {   
 
-        cout << Color::fg_green << "this is red" << Color::fg_green << endl;
+        cout << endl << Color::RED << "this is red" << Color::DEF << endl;
 
-        cout << "list \t- This will list famous programmers or computers in the system" << endl;
+        cout << endl << "list \t- This will list famous programmers, computers, connections, nationalities and computer types in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
@@ -85,17 +85,6 @@ void consoleui::run()
             running = false;
         }
 
-        if(running)
-        {
-            if(command == "clear")
-            {
-            }
-            else
-            {
-                 cout << endl << "Press ENTER to continue." << endl;
-                 cin.get();
-            }
-        }
 
     } while(running);
 }
@@ -495,18 +484,23 @@ void consoleui::removeMenu(string choice)
 //choice the new list will be printed.
 void consoleui::sortMenu(string choice)
 {
-    string options;
+    string options, column, order;
 
     if(choice == "persons") options = VALID_PERSON_COLUMNS;
     else if(choice == "computers") options = VALID_COMPUTER_COLUMNS;
 
-    cout << endl << "Column you would like to sort by:" << endl;
-    cout << options << endl << endl;
+    cout << endl;
+    cout << "Column you would like to sort by:" << endl;
+    cout << options << endl;
+    cout << endl;
 
-    string column = getInputString(NO_MESS,SINGLE,options);
+    column = getInputString(NO_MESS,SINGLE,options);
 
-    cout << endl << VALID_SORT_COMMANDS << endl << endl;
-    string order = getInputString(NO_MESS,SINGLE, VALID_SORT_COMMANDS);
+    cout << endl;
+    cout << VALID_SORT_COMMANDS << endl;
+    cout << endl;
+
+    order = getInputString(NO_MESS,SINGLE, VALID_SORT_COMMANDS);
 
     if(choice == "persons")
     {
@@ -526,63 +520,64 @@ int consoleui::searchMenu(string choice)
     vector<string> arguments;
     arguments.push_back(choice);
 
-    string options;
-    if (choice == "persons")
-    {
-        options = VALID_PERSON_COLUMNS;
-        cout << endl << "Enter column to search in or enter the id of the person" << endl;
-    }
-    else if (choice == "computers")
-    {
-        options = VALID_COMPUTER_COLUMNS;
-        cout << endl << "Enter column to search in or enter the id of the computer" << endl;
-    }
+    string options, column, search_string;
 
-    cout << "Valid column names are: " << options << endl;
-    cout << INPUT_ENDER << " - to stop inputting arguments" << endl;
+    if(choice == "persons") options = VALID_PERSON_COLUMNS;
+    else if(choice == "computers") options = VALID_COMPUTER_COLUMNS;
+
     cout << endl;
-    string column = getInputString(
+    cout << endl << "Enter column to search in or enter id" << endl;
+    cout << options << endl;
+    cout << endl;
+
+    column = getInputString(
                     "Enter column name: ",
-                    SINGLE, options + "|end;",
+                    SINGLE, options,
                     true
                 );
-    if (column == INPUT_ENDER) return -1;
 
-    string search_string;
-    bool is_int = (column.find_first_not_of("0123456789") == string::npos && !column.empty());
-    cout << endl;
     // Disgusting but it works
-    if (is_int && choice == "persons")
+    if (utils::isStrInt(column))
     {
         bool success;
-        person p = ps.getPersonById(stoi(column), success);
-        if (!success)
+
+        if(choice == "persons")
         {
-            cout << endl << "Person not found try again" << endl;
-            return searchMenu(choice);
+            person p = ps.getPersonById(stoi(column), success);
+
+            if (!success)
+            {
+                cout << endl << "Person not found try again" << endl;
+                return searchMenu(choice);
+            }
+
+            printPersons(p);
+        }
+        else if(choice == "computers")
+        {
+            computer c = ps.getComputerById(stoi(column), success);
+
+            if (!success)
+            {
+                cout << endl << "Computer not found try again" << endl;
+                return searchMenu(choice);
+            }
+
+            printComputers(c);
         }
 
-        printPersons(p);
         return stoi(column);
     }
-    else if (is_int && choice == "computers")
-    {
-        bool success;
-        computer c = ps.getComputerById(stoi(column), success);
-        if (!success)
-        {
-            cout << endl << "Computer not found try again" << endl;
-            return searchMenu(choice);
-        }
-        printComputers(c);
-        return stoi(column);
-    }
-    else if(column == "sex")
+
+
+    if(column == "sex")
     {
         search_string = getInputString("m|f", SINGLE, "m|f");
     }
     else if (column == "birth_year" || column == "death_year" || column == "build_year")
+    {
         search_string = to_string(getInputInt("Input year: ", PYTHAGORAS, utils::getCurrentYear()));
+    }
     else if (column == "id")
     {
         search_string = to_string(getInputInt("Enter id: "));

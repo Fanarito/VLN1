@@ -8,14 +8,21 @@
 
 namespace Color {
     enum Code {
-        FG_RED      = 04,
-        FG_GREEN    = 02,
-        FG_BLUE     = 01,
-        FG_DEFAULT  = 07,
-        BG_RED      = 74,
-        BG_GREEN    = 72,
-        BG_BLUE     = 71,
-        BG_DEFAULT  = 07
+        FG_BLACK    = 0x00,
+        FG_BLUE     = 0x01,
+        FG_GREEN    = 0x02,
+        FG_AQUA	    = 0x03,
+        FG_RED      = 0x04,
+        FG_PURPLE   = 0x05,
+        FG_YELLOW   = 0x06,
+        FG_GRAY     = 0x08,
+        FG_LBLUE    = 0x09,
+        FG_LGREEN   = 0x0a,
+        FG_LAQUA    = 0x0b,
+        FG_LRED     = 0x0c,
+        FG_LPURPLE  = 0x0d,
+        FG_LYELLOW  = 0x0e,
+        FG_DEFAULT  = 0x07,
     };
 
     class Modifier {
@@ -30,7 +37,7 @@ namespace Color {
 
             SetConsoleTextAttribute(hConsole, mod.code);
 
-            return os;
+            return os << "test";
         }
     };
 }
@@ -39,14 +46,21 @@ namespace Color {
 
 namespace Color {
     enum Code {
-        FG_RED      = 31,
-        FG_GREEN    = 32,
+        FG_BLACK    = 30,
         FG_BLUE     = 34,
+        FG_GREEN    = 32,
+        FG_AQUA     = 36,
+        FG_RED      = 31,
+        FG_PURPLE   = 35,
+        FG_YELLOW   = 33,
+        FG_GRAY     = 37,
+        FG_LBLUE    = 94,
+        FG_LGREEN   = 92,
+        FG_LAQUA    = 96,
+        FG_LRED     = 91,
+        FG_LPURPLE  = 95,
+        FG_LYELLOW  = 93,
         FG_DEFAULT  = 39,
-        BG_RED      = 41,
-        BG_GREEN    = 42,
-        BG_BLUE     = 44,
-        BG_DEFAULT  = 49
     };
 
     class Modifier {
@@ -64,13 +78,21 @@ namespace Color {
 #endif // not windows
 
 namespace Color {
-    const Color::Modifier fg_red(Color::FG_RED);
-    const Color::Modifier fg_blue(Color::FG_BLUE);
-    const Color::Modifier fg_green(Color::FG_GREEN);
-    const Color::Modifier bg_red(Color::BG_RED);
-    const Color::Modifier bg_blue(Color::BG_BLUE);
-    const Color::Modifier bg_green(Color::BG_GREEN);
-    const Color::Modifier def(Color::FG_DEFAULT);
+    const Color::Modifier BLACK(Color::FG_BLACK);
+    const Color::Modifier BLUE(Color::FG_BLUE);
+    const Color::Modifier GREEN(Color::FG_GREEN);
+    const Color::Modifier AQUA(Color::FG_AQUA);
+    const Color::Modifier RED(Color::FG_RED);
+    const Color::Modifier PURPLE(Color::FG_PURPLE);
+    const Color::Modifier YELLOW(Color::FG_YELLOW);
+    const Color::Modifier GRAY(Color::FG_GRAY);
+    const Color::Modifier LBLAY(Color::FG_LBLUE);
+    const Color::Modifier LGREEN(Color::FG_LGREEN);
+    const Color::Modifier LAQUA(Color::FG_LAQUA);
+    const Color::Modifier LRED(Color::FG_RED);
+    const Color::Modifier LPURPLE(Color::FG_LPURPLE);
+    const Color::Modifier LYELLOW(Color::FG_YELLOW);
+    const Color::Modifier DEF(Color::FG_DEFAULT);
 }
 
 #endif // COLOR_H

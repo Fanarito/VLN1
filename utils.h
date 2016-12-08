@@ -14,6 +14,7 @@ namespace utils
     std::string removeWhiteSpace(std::string str);
     std::string wordWrap(std::string str, int width);
     int getCurrentYear();
+    bool isStrInt(std::string str);
 }
 
 #endif //UTILS_H
