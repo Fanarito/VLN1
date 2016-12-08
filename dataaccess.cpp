@@ -346,7 +346,7 @@ std::vector<computer> dataaccess::searchComputers(std::vector<std::string> args)
         return std::vector<computer>();
     }
 
-    QString q_string = QString::fromStdString("SELECT * FROM computers JOIN Nationality n ON n.id = nationalityid JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID WHERE " + args[1]);
+    QString q_string = QString::fromStdString("SELECT * FROM computers c JOIN Nationality n ON n.id = c.nationalityid JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID WHERE " + args[1]);
     QSqlQuery query(db);
 
     bool noerr;
