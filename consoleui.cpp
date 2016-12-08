@@ -181,8 +181,17 @@ void consoleui::addMenu(string choice)
 
         nationality = getInputString("Nationality:", MULTI);
 
+        while(nationality.empty())
+        {
+            cout << "The field cannot be empty" << endl;
+            nationality = getInputString("Nationality:", MULTI);
+        }
+
         string answer;
         int check = ps.getNationalityById(nationality);
+
+        bool running = true;
+
 
         if(check == 0)
         {
@@ -201,6 +210,8 @@ void consoleui::addMenu(string choice)
                     nationality = getInputString("Nationality:", MULTI);
                 }
                 cout << endl;
+
+                running = false;
 
                 ps.addNationality(nationality);
             }
@@ -235,6 +246,12 @@ void consoleui::addMenu(string choice)
         cout << endl;
         type = getInputString("Type:", MULTI);
 
+        while(type.empty())
+        {
+            cout << "The field cannot be empty" << endl;
+            type = getInputString("Type:", MULTI);
+        }
+
         string answer;
         int check = ps.getComputerTypeById(type);
 
@@ -268,6 +285,12 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
         nationality = getInputString("Nationality: ", MULTI);
+
+        while(nationality.empty())
+        {
+            cout << "The field cannot be empty" << endl;
+            nationality = getInputString("Nationality:", MULTI);
+        }
 
         string answer_nat;
         int check_nat = ps.getNationalityById(nationality);
