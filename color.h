@@ -12,10 +12,6 @@ namespace Color {
         FG_GREEN    = 02,
         FG_BLUE     = 01,
         FG_DEFAULT  = 07,
-        BG_RED      = 74,
-        BG_GREEN    = 72,
-        BG_BLUE     = 71,
-        BG_DEFAULT  = 07
     };
 
     class Modifier {
@@ -30,7 +26,7 @@ namespace Color {
 
             SetConsoleTextAttribute(hConsole, mod.code);
 
-            return os;
+            return os << "test";
         }
     };
 }
@@ -43,10 +39,6 @@ namespace Color {
         FG_GREEN    = 32,
         FG_BLUE     = 34,
         FG_DEFAULT  = 39,
-        BG_RED      = 41,
-        BG_GREEN    = 42,
-        BG_BLUE     = 44,
-        BG_DEFAULT  = 49
     };
 
     class Modifier {
@@ -64,13 +56,10 @@ namespace Color {
 #endif // not windows
 
 namespace Color {
-    const Color::Modifier fg_red(Color::FG_RED);
-    const Color::Modifier fg_blue(Color::FG_BLUE);
-    const Color::Modifier fg_green(Color::FG_GREEN);
-    const Color::Modifier bg_red(Color::BG_RED);
-    const Color::Modifier bg_blue(Color::BG_BLUE);
-    const Color::Modifier bg_green(Color::BG_GREEN);
-    const Color::Modifier def(Color::FG_DEFAULT);
+    const Color::Modifier RED(Color::FG_RED);
+    const Color::Modifier BLUE(Color::FG_BLUE);
+    const Color::Modifier GREEN(Color::FG_GREEN);
+    const Color::Modifier DEF(Color::FG_DEFAULT);
 }
 
 #endif // COLOR_H

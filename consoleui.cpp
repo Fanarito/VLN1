@@ -18,7 +18,7 @@ void consoleui::run()
     do
     {   
 
-        cout << Color::fg_red << "this is red" << Color::def << endl;
+        cout << Color::RED << "this is red" << Color::DEF << endl;
 
         cout << "list \t- This will list famous programmers or computers in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer, connection, nationality or computer type to the system" << endl;
