@@ -18,9 +18,9 @@ void consoleui::run()
     do
     {   
 
-        cout << Color::RED << "this is red" << Color::DEF << endl;
+        cout << endl << Color::RED << "this is red" << Color::DEF << endl;
 
-        cout << "list \t- This will list famous programmers or computers in the system" << endl;
+        cout << endl << "list \t- This will list famous programmers, computers, connections, nationalities and computer types in the system" << endl;
         cout << "add \t- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << "change \t- This will change a famous programmer or computer in the system" << endl;
         cout << "remove \t- This will remove a famous programmer or computer from the system" << endl;
@@ -86,17 +86,6 @@ void consoleui::run()
             running = false;
         }
 
-        if(running)
-        {
-            if(command == "clear")
-            {
-            }
-            else
-            {
-                 cout << endl << "Press ENTER to continue." << endl;
-                 cin.get();
-            }
-        }
 
     } while(running);
 }
