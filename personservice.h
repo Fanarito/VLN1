@@ -41,6 +41,8 @@ public:
 
     person getPersonById(unsigned int id, bool &success);
     computer getComputerById(unsigned int id, bool &success);
+    int getNationalityById(std::string nat);
+    int getComputerTypeById(std::string comp_type);
 
     //Functions to sort the data according to the user's preferences.
     vector<person> sortPersons(string column, string order);
