@@ -683,6 +683,7 @@ void consoleui::removeMenu(string choice)
         if(!noerr)
         {
             cout << Color::RED << "Error, invalid selection" << Color::PURPLE << endl;
+            return;
         }
     }
     else if(choice == "nationalities")
