@@ -448,6 +448,7 @@ void consoleui::changeMenu(string choice)
         else
         {
             changeId = res;
+            cout << Color::YELLOW << "ID " << res << " automatically selected." << Color::PURPLE << endl;
         }
 
         if(changeId == -1) return;
@@ -505,6 +506,7 @@ void consoleui::changeMenu(string choice)
         else
         {
             changeId = res;
+            cout << Color::YELLOW << "ID " << res << " automatically selected." << Color::PURPLE << endl;
         }
 
         if(changeId == -1) return;
@@ -581,6 +583,7 @@ void consoleui::removeMenu(string choice)
         else
         {
             removeId = res;
+            cout << Color::YELLOW << "ID " << res << " automatically selected." << Color::PURPLE << endl;
         }
 
         if(removeId == -1) return;
@@ -597,7 +600,7 @@ void consoleui::removeMenu(string choice)
         else
         {
             removeId = res;
-            if(EXIT) return;
+            cout << Color::YELLOW << "ID " << res << " automatically selected." << Color::PURPLE << endl;
         }
 
         if(removeId == -1) return;
@@ -892,6 +895,7 @@ void consoleui::infoMenu(string choice)
         else
         {
             infoId = res;
+            cout << Color::YELLOW << "ID " << res << " automatically selected." << Color::PURPLE << endl;
         }
 
         if(infoId == -1) return;
@@ -921,6 +925,7 @@ void consoleui::infoMenu(string choice)
         else
         {
             infoId = res;
+            cout << Color::YELLOW << "ID " << res << " automatically selected." << Color::PURPLE << endl;
         }
 
         if(infoId == -1) return;
