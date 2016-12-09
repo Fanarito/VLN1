@@ -50,6 +50,7 @@ void consoleui::run()
             choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE, VALID_ADD_COMMANDS);
             if(EXIT) continue;
         }
+
         else if(command != "quit" && command != "clear")
         {
             cout << endl;
@@ -471,7 +472,7 @@ void consoleui::changeMenu(string choice)
         string nationality = getValidNationality("Enter nationality: (empty for no change)", true);
         if(EXIT) return;
 
-        string sex = getInputString("Enter sex m/f(empty for no change): ", SINGLE, "m|f");
+        string sex = getInputString("Enter sex m|f(empty for no change): ", SINGLE, "m|f|");
         if(EXIT) return;
 
         int deathyear = getInputInt("Enter year of death (0 for not dead, -1 for unchanged): ",AL_KHWARIZMI, utils::getCurrentYear());
