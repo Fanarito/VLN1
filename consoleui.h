@@ -29,7 +29,8 @@ private:
 
     void tablePrint(string s, int width);
 
-    std::string getValidNationality(string message);
+    std::string getValidNationality(std::string message, bool allow_empty=false);
+    std::string getValidComputerType(std::string message, bool allow_empty=false);
 
     void printDetailsPerson(person p);
     void printDetailsComputer(computer c);
