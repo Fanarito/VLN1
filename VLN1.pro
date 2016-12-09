@@ -13,19 +13,19 @@ SOURCES += main.cpp \
     consoleui.cpp \
     dataaccess.cpp \
     person.cpp \
-    personservice.cpp \
     computer.cpp \
     object.cpp \
-    utils.cpp
+    utils.cpp \
+    service.cpp
 
 HEADERS += \
     consoleui.h \
     dataaccess.h \
     person.h \
-    personservice.h \
     computer.h \
     object.h \
     utils.h \
     constants.h \
-    color.h
+    color.h \
+    service.h
 

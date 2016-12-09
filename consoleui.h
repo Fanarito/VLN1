@@ -2,7 +2,7 @@
 #define CONSOLEUI_H
 
 
-#include "personservice.h"
+#include "service.h"
 #include "utils.h"
 #include "constants.h"
 #include "color.h"
@@ -15,7 +15,7 @@ public:
     consoleui();
     void run();
 private:
-    personservice ps;
+    service ps;
     string command;
     bool EXIT;
 
