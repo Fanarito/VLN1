@@ -19,10 +19,10 @@ void consoleui::run()
     {
         EXIT = false;
 
-        cout << endl << Color::GREEN << "list \t" << Color::AQUA << "- This will list famous programmers, computers, connections, nationalities and computer types in the system" << endl;
-        cout << Color::GREEN << "add \t" << Color::AQUA <<"- This will add a new famous programmer, computer or connection to the system" << endl;
+        cout << endl << Color::GREEN << "list \t" << Color::AQUA << "- This will list famous programmers, computers, connections, nationalities or computer types in the system" << endl;
+        cout << Color::GREEN << "add \t" << Color::AQUA <<"- This will add a new famous programmer, computer, connection, nationality or computer type to the system" << endl;
         cout << Color::GREEN <<"change \t" << Color::AQUA <<"- This will change a famous programmer or computer in the system" << endl;
-        cout << Color::GREEN <<"remove \t" << Color::AQUA <<"- This will remove a famous programmer or computer from the system" << endl;
+        cout << Color::GREEN <<"remove \t" << Color::AQUA <<"- This will remove a famous programmer, computer, connection, nationality or computer type from the system" << endl;
         cout << Color::GREEN <<"sort \t" << Color::AQUA <<"- This will sort the list according to your preferences" << endl;
         cout << Color::GREEN <<"search \t" << Color::AQUA <<"- This will search the system for a variable" << endl;
         cout << Color::GREEN <<"info \t" << Color::AQUA <<"- This will display information about a famous programmer or computer (including connections)" << endl;
