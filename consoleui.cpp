@@ -978,7 +978,7 @@ void consoleui::printDetailsPerson(person p)
     death = (death == "0")?("Alive"):(death);
     sex = (sex == "f")?("Female"):("Male");
 
-    Color::Modifier primaryColor = Color::LPURPLE;
+    Color::Modifier primaryColor = Color::BLUE;
     Color::Modifier secondaryColor = Color::LBLUE;
 
     cout << primaryColor;
@@ -1051,7 +1051,7 @@ void consoleui::printInfoPerson(person p)
     tablePrint(name, restWidth);
     cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
-    cout << Color::LPURPLE;
+    cout << Color::BLUE;
     tablePrint("Nationality: ", restWidth);
     tablePrint(nationality, restWidth);
     cout << endl;
@@ -1073,7 +1073,7 @@ void consoleui::printInfoPerson(person p)
     tablePrint("Information ", restWidth);
     cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
-    cout << Color::LPURPLE;
+    cout << Color::BLUE;
     cout << utils::wordWrap(info, pageWidth);
 
     cout << Color::LBLUE;
@@ -1091,7 +1091,7 @@ void consoleui::printInfoPerson(person p)
 
         for(computer c : computers_connected)
         {
-            cout << Color::LPURPLE;
+            cout << Color::BLUE;
             cout << c.getName() << endl;
         }
 
@@ -1267,13 +1267,13 @@ void consoleui::printPersonConnections(vector<person> persons)
 void consoleui::printComputerConnections(vector<computer> computers)
 {
     cout << Color::GRAY << endl;
-    cout << left << setw(nameWidth) << setfill(' ') << "Computer";
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    tablePrint("Computer", nameWidth);
+    tablePrint("ID", restWidth);
     tablePrint("Name", nameWidth);
-    cout << left << setw(restWidth) << setfill(separator) << "Sex";
-    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << endl;
+    tablePrint("Sex", restWidth);
+    tablePrint("Birth Year", restWidth);
+    tablePrint("Death Year", restWidth);
+    tablePrint("Nationality", restWidth);
     cout << Color::PURPLE << endl;
 
     for (computer c : computers)
