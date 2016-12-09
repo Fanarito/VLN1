@@ -51,11 +51,12 @@ void consoleui::run()
             if(EXIT) continue;
         }
 
-        /*else if(command != "quit" && command != "clear")
+        else if(command != "quit" && command != "clear")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
-        }*/
+            if(EXIT) continue;
+        }
 
         if(command == "list")
         {
@@ -63,8 +64,6 @@ void consoleui::run()
         }
         else if(command == "add")
         {
-            cout << endl;
-            choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
             addMenu(choice);
         }
         else if(command == "change")
@@ -874,7 +873,7 @@ int consoleui::searchMenu(string choice, bool printRes)
 //This information includes associations between people and computers.
 void consoleui::infoMenu(string choice)
 {
-    cout << endl << Color::AQUA << "What " << choice << " would you like to info on?" << Color::PURPLE << endl;
+    cout << endl << Color::AQUA << "What " << choice << " would you like to get info on?" << Color::PURPLE << endl;
 
     int res = searchMenu(choice, false);
     if(EXIT) return;
