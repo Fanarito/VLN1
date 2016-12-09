@@ -26,7 +26,7 @@ public:
 
     void removePerson(int id);
     void removeComputer(int id);
-    void removeConnection(int pid, int cid);
+    void removeConnection(int pid, int cid, bool &success);
     void removeNationality(std::string nationality);
     void removeComputerType(std::string comp_type);
 

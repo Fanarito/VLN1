@@ -385,7 +385,16 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
 
-        ps.removeConnection(comp_id, person_id);
+        bool noerr;
+
+        ps.removeConnection(comp_id, person_id, noerr);
+
+        if(!noerr)
+        {
+            cout << Color::RED << "Error, either computer or person is invalid." << endl;
+            return;
+        }
+
         ps.addConnection(comp_id, person_id);
 
     }
@@ -623,18 +632,63 @@ void consoleui::removeMenu(string choice)
     }
     else if(choice == "connections")
     {
-        int pid = searchMenu("persons");
+        string sub_choice = getInputString("persons|computers", SINGLE, "persons|computers");
         if(EXIT) return;
 
-        int cid = searchMenu("computers");
-        if(EXIT) return;
+        int pid, cid;
 
-        if(pid == -1 || cid == -1)
+        if(sub_choice == "persons")
         {
-            cout << Color::RED << "Invalid person or computer." << endl;
+            pid = searchMenu(sub_choice);
+
+            bool noerr;
+
+            person p_temp = ps.getPersonById(pid, noerr);
+
+            if(!noerr)
+            {
+                cout << Color::RED << "Invalid person" << Color::PURPLE << endl;
+                removeMenu(choice);
+                return;
+            }
+
+            vector<computer> connected_computers = ps.getComputersConnectedWithPerson(p_temp);
+
+            printComputers(connected_computers);
+
+            cid = getInputInt("Please enter ID of computer");
+
+        }
+        else if(sub_choice == "computers")
+        {
+            cid = searchMenu(sub_choice);
+
+            bool noerr;
+
+            computer c_temp = ps.getComputerById(cid, noerr);
+
+            if(!noerr)
+            {
+                cout << Color::RED << "Invalid computer" << Color::PURPLE << endl;
+                removeMenu(choice);
+                return;
+            }
+
+            vector<person> connected_persons = ps.getPersonsConnectedWithComputer(c_temp);
+
+            printPersons(connected_persons);
+
+            pid = getInputInt("Please enter ID of person");
         }
 
-        ps.removeConnection(pid, cid);
+        bool noerr;
+
+        ps.removeConnection(pid, cid, noerr);
+
+        if(!noerr)
+        {
+            cout << Color::RED << "Error, invalid selection" << Color::PURPLE << endl;
+        }
     }
     else if(choice == "nationalities")
     {

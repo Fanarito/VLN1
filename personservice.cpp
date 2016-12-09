@@ -85,8 +85,13 @@ void personservice::removeComputer(int id)
     data.removeComputer(id);
 }
 
-void personservice::removeConnection(int pid, int cid)
+void personservice::removeConnection(int pid, int cid, bool &success)
 {
+    data.getPersonById(pid, success);
+    data.getComputerById(pid, success);
+
+    if(!success) return;
+
     data.removeConnection(pid, cid);
 }
 
