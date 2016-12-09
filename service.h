@@ -1,5 +1,5 @@
-#ifndef PERSONSERVICE_H
-#define PERSONSERVICE_H
+#ifndef SERVICE_H
+#define SERVICE_H
 
 #include <vector>
 #include <string>
@@ -13,10 +13,10 @@
 
 using namespace std;
 
-class personservice
+class service
 {
 public:
-    personservice();
+    service();
     void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info);
     void addPerson(person p);
     void addComputer(std::string name, int build_year, std::string type, int built, std::string nationality, std::string info);
@@ -59,4 +59,4 @@ private:
     dataaccess data;
 };
 
-#endif // PERSONSERVICE_H
+#endif // SERVICE_H
