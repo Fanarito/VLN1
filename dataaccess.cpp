@@ -575,7 +575,7 @@ void dataaccess::updateComputer(computer c)
     noerr = query.prepare("UPDATE Computers "
                           "SET "
                           "name=:name, "
-                          "nationalityid=:nationalityid"
+                          "nationalityid=:nationalityid, "
                           "build_year=:build_year, "
                           "computer_typeID=:computer_typeID, "
                           "built=:built, "
