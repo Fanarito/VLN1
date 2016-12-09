@@ -974,7 +974,7 @@ void consoleui::printDetailsPerson(person p)
     death = (death == "0")?("Alive"):(death);
     sex = (sex == "f")?("Female"):("Male");
 
-    Color::Modifier primaryColor = Color::BLUE;
+    Color::Modifier primaryColor = Color::LPURPLE;
     Color::Modifier secondaryColor = Color::LBLUE;
 
     cout << primaryColor;
@@ -1047,7 +1047,7 @@ void consoleui::printInfoPerson(person p)
     tablePrint(name, restWidth);
     cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
-    cout << Color::BLUE;
+    cout << Color::LPURPLE;
     tablePrint("Nationality: ", restWidth);
     tablePrint(nationality, restWidth);
     cout << endl;
@@ -1069,7 +1069,7 @@ void consoleui::printInfoPerson(person p)
     tablePrint("Information ", restWidth);
     cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
-    cout << Color::BLUE;
+    cout << Color::LPURPLE;
     cout << utils::wordWrap(info, pageWidth);
 
     cout << Color::LBLUE;
@@ -1087,7 +1087,7 @@ void consoleui::printInfoPerson(person p)
 
         for(computer c : computers_connected)
         {
-            cout << Color::BLUE;
+            cout << Color::LPURPLE;
             cout << c.getName() << endl;
         }
 
