@@ -598,7 +598,7 @@ std::vector<person> dataaccess::sortPersons(std::string column, std::string orde
 {
     QSqlQuery query(db);
 
-    QString q_string = QString::fromStdString("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityId = n.id ORDER BY " + column + " " + order);
+    QString q_string = QString::fromStdString("SELECT * FROM Persons p JOIN Nationality n ON p.NationalityId = n.id ORDER BY " + column + " COLLATE NOCASE " + order);
     // cannot bind order, cuz stuff
     bool noerr = query.prepare(q_string);
     if (!noerr) std::cerr << "Query did not prepare successfully";
@@ -611,7 +611,7 @@ std::vector<computer> dataaccess::sortComputers(std::string column, std::string 
 {
     QSqlQuery query(db);
 
-    QString q_string = QString::fromStdString("SELECT * FROM Computers c JOIN Nationality n ON c.NationalityId = n.id JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID ORDER BY " + column + " " + order);
+    QString q_string = QString::fromStdString("SELECT * FROM Computers c JOIN Nationality n ON c.NationalityId = n.id JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID ORDER BY " + column + " COLLATE NOCASE " + order);
     // cannot bind order, cuz stuff
     bool noerr = query.prepare(q_string);
     if (!noerr) std::cerr << "Query did not prepare successfully";
