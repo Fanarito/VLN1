@@ -1404,9 +1404,9 @@ void consoleui::printChristmas()
     Color::Modifier g = Color::GREEN;
     Color::Modifier b = Color::BLUE;
     Color::Modifier w = Color::GRAY;
-    Color::Modifier y = Color::BROWN;
+    Color::Modifier y = Color::YELLOW;
     Color::Modifier p = Color::PURPLE;
-    Color::Modifier br = Color::RED;
+    Color::Modifier br = Color::BROWN;
     Color::Modifier l1 = Color::AQUA;
     Color::Modifier l2 = Color::LRED;
     Color::Modifier l3 = Color::YELLOW;
@@ -1444,8 +1444,13 @@ void consoleui::printChristmas()
         <<g<<"       `\"=\"==\"\"==,,,.,=\"==\"===\"`        \n"
         <<w<<"    __.--------''"<<br<<"#####"<<w<<"---...___...-----._" << endl;
 
+        //SOURCE: http://www.chris.com/ascii/index.php?art=holiday/christmas/trees --- by jgs
+
     }
 
+    cout << Color::YELLOW << endl;
+    cout << "SOURCE: http://www.chris.com/ascii/index.php?art=holiday/christmas/trees --- by jgs" << endl;
     cout << "Press ENTER to continue." << endl;
+    cout << Color::PURPLE << endl;
 
 }
