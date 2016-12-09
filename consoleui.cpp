@@ -1,6 +1,8 @@
 #include "consoleui.h"
 #include "utils.h"
 #include <time.h>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -33,7 +35,15 @@ void consoleui::run()
         cout << endl;
 
         cout << Color::PURPLE;
-        command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS);
+        command = getInputString("Please enter a command:", SINGLE, VALID_COMMANDS +"|christmas");
+
+        if(command == "christmas")
+        {
+            printChristmas();
+            cin.get();
+            continue;
+        }
+
         if(EXIT) continue;
 
         string choice;
@@ -267,6 +277,7 @@ string consoleui::getValidComputerType(string message, bool allow_empty)
             return comp_type;
         }
     }
+
     return comp_type;
 }
 
@@ -1381,4 +1392,57 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound, bool a
     }
 
     return input_as_int;
+}
+
+void consoleui::printChristmas()
+{
+
+
+    Color::Modifier r = Color::RED;
+    Color::Modifier g = Color::GREEN;
+    Color::Modifier b = Color::BLUE;
+    Color::Modifier w = Color::GRAY;
+    Color::Modifier y = Color::YELLOW;
+    Color::Modifier p = Color::PURPLE;
+    Color::Modifier br = Color::RED;
+    Color::Modifier l1 = Color::AQUA;
+    Color::Modifier l2 = Color::LRED;
+    Color::Modifier l3 = Color::YELLOW;
+
+    for(int i = 0; i < 10; i++) {
+
+        Color::Modifier temp = l1;
+        l1 = l2;
+        l2 = l3;
+        l3 = l1;
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+        cout << string(100, '\n');
+
+cout << w << "    *             "<<y<<",                    \n"
+"                _/^\\_                          \n"
+"               <     >                         \n"
+<<w<<"*"<<y<<"               /.-.\\         "<<w<<"*                \n"
+"       *    "<<g<<"    `/&\\`                   "<<w<<"*      \n"
+<<g<<"               ,"<<b<<"@"<<g<<".*;"<<b<<"@"<<g<<",                         \n"
+<<g<<"              /_"<<l1<<"o"<<g<<".I %_\\    "<<w<<"*                   \n"
+<<g<<" "<<w<<"*"<<g<<"           "<<r<<"(`'--:"<<l2<<"o"<<g<<"(_"<<b<<"@"<<g<<";\n"
+<<g<<"            /`;"<<r<<"--.,__ `')             "<<w<<"*        \n"
+<<g<<"           ;"<<b<<"@"<<g<<"`"<<l3<<"o"<<g<<" % O,*"<<r<<"`'`"<<g<<"&\\                    \n"
+<<g<<"     "<<w<<"*"<<g<<"    "<<r<<"(`'--"<<g<<")_"<<b<<"@"<<g<<" ;"<<l1<<"o"<<g<<" %'"<<p<<"()"<<g<<"\\      "<<w<<"*            \n"
+<<g<<"          /"<<r<<"`;--._`''--._"<<g<<"O'@;                   \n"
+<<g<<"         /&*,"<<p<<"()"<<g<<"~"<<l2<<"o"<<g<<""<<r<<"`;-.,_ `\"\"`)                \n"
+<<w<<"*"<<g<<"        /`,"<<b<<"@ ;+& "<<p<<"()"<<g<<" "<<l3<<"o"<<g<<"*"<<r<<"`;-';\\                 \n"
+<<g<<"        "<<r<<"(`""--.,_"<<g<<"0 +% @' o~;&"<<p<<"()"<<g<<"\\                 \n"
+<<g<<"        /"<<r<<"-.,_    ``''--....-'`)  "<<w<<"*             \n"
+<<w<<"   *"<<g<<"    /"<<b<<"@"<<g<<"%;"<<l1<<"o"<<g<<""<<r<<"`:;'--,.__   __.'"<<g<<"\\               \n"
+<<g<<"       ;*,&"<<p<<"()"<<g<<"; "<<b<<"@"<<g<<" % &^;~`\"`"<<l2<<"o"<<g<<";"<<b<<"@"<<p<<"()"<<g<<";         "<<w<<"*    \n"
+<<g<<"       /"<<p<<"()"<<g<<"; "<<l3<<"o"<<g<<"^~; & "<<p<<"()"<<g<<"."<<l1<<"o"<<g<<""<<b<<"@"<<g<<"*&`;&%"<<l2<<"o"<<g<<"\\              \n"
+<<g<<"       `\"=\"==\"\"==,,,.,=\"==\"===\"`        \n"
+<<br<<"    __.--------''#####---...___...-----._" << endl;
+
+
+
+    }
+
 }

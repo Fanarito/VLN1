@@ -51,7 +51,7 @@ private:
 
     int getInputInt(std::string message, int low_bound = INT_MIN, int high_bound = INT_MAX, bool allow_empty = false);
 
-
+    void printChristmas();
 };
 
 #endif // CONSOLEUI_H
