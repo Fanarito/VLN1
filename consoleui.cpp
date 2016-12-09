@@ -164,8 +164,10 @@ void consoleui::listMenu(string choice)
 }
 
 string consoleui::getValidNationality(string message, bool allow_empty) {
+
     bool running = true;
     string nationality;
+
     while (running) {
         cout << endl;
         nationality = getInputString(message, MULTI);
@@ -467,6 +469,8 @@ void consoleui::addMenu(string choice)
 //This function allows you to change some, or all properties of a person/computer.
 void consoleui::changeMenu(string choice)
 {
+    cout << endl << Color::AQUA << "What " << choice << " would you like to change?" << Color::PURPLE << endl;
+
     int res = searchMenu(choice);
     if(EXIT) return;
 
@@ -595,6 +599,8 @@ void consoleui::changeMenu(string choice)
 //This function allows you to remove one or more persons/computers from the list.
 void consoleui::removeMenu(string choice)
 {
+    cout << endl << Color::AQUA << "What " << choice << " would you like to remove?" << Color::PURPLE << endl;
+
     int res, removeId;
 
     if (choice != "connections" && choice != "nationalities" && choice != "computer_types")
@@ -782,9 +788,8 @@ int consoleui::searchMenu(string choice, bool printRes)
     if(choice == "persons") options = VALID_PERSON_COLUMNS;
     else if(choice == "computers") options = VALID_COMPUTER_COLUMNS;
 
-    cout << endl;
-    cout << endl << "Enter column to search in or enter id" << endl;
-    cout << options << endl;
+    cout << endl << Color::YELLOW << "Enter column to search in or enter id" << endl;
+    cout << Color::PURPLE << options << endl;
     cout << endl;
 
     column = getInputString(
@@ -906,6 +911,8 @@ int consoleui::searchMenu(string choice, bool printRes)
 //This information includes associations between people and computers.
 void consoleui::infoMenu(string choice)
 {
+    cout << endl << Color::AQUA << "What " << choice << " would you like to info on?" << Color::PURPLE << endl;
+
     int res = searchMenu(choice, false);
     if(EXIT) return;
     int infoId;
