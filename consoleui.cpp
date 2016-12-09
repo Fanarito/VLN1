@@ -20,7 +20,7 @@ void consoleui::run()
         EXIT = false;
 
         cout << endl << Color::GREEN << "list \t" << Color::AQUA << "- This will list famous programmers, computers, connections, nationalities or computer types in the system" << endl;
-        cout << Color::GREEN << "add \t" << Color::AQUA <<"- This will add a new famous programmer, computer, connection, nationality or computer type to the system" << endl;
+        cout << Color::GREEN << "add \t" << Color::AQUA <<"- This will add a new famous programmer, computer or connection to the system" << endl;
         cout << Color::GREEN <<"change \t" << Color::AQUA <<"- This will change a famous programmer or computer in the system" << endl;
         cout << Color::GREEN <<"remove \t" << Color::AQUA <<"- This will remove a famous programmer, computer, connection, nationality or computer type from the system" << endl;
         cout << Color::GREEN <<"sort \t" << Color::AQUA <<"- This will sort the list according to your preferences" << endl;
@@ -44,7 +44,7 @@ void consoleui::run()
             choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
             if(EXIT) continue;
         }
-        else if(command == "add" || command == "list" || command == "remove")
+        else if(command == "list" || command == "remove")
         {
             cout << endl;
             choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
@@ -63,6 +63,8 @@ void consoleui::run()
         }
         else if(command == "add")
         {
+            cout << endl;
+            choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
             addMenu(choice);
         }
         else if(command == "change")
@@ -413,45 +415,6 @@ void consoleui::addMenu(string choice)
         }
 
         ps.addConnection(comp_id, person_id);
-
-    }
-    else if(choice == "nationalities")
-    {
-        string nationality;
-
-        cout << endl;
-        nationality = getInputString("Nationality:", MULTI);
-        if(EXIT) return;
-
-        while(nationality.empty())
-        {
-            cout << Color::RED << "The field cannot be empty" << Color::PURPLE << endl;
-            nationality = getInputString("Nationality:", MULTI);
-            if(EXIT) return;
-        }
-
-        cout << endl;
-
-        ps.addNationality(nationality);
-    }
-    else if(choice == "computer_types")
-    {
-        string comp_type;
-
-        cout << endl;
-        comp_type = getInputString("Computer type:", MULTI);
-        if(EXIT) return;
-
-        while(comp_type.empty())
-        {
-            cout << Color::RED << "The field cannot be empty" << Color::PURPLE << endl;
-            comp_type = getInputString("Computer type:", MULTI);
-            if(EXIT) return;
-        }
-
-        cout << endl;
-
-        ps.addComputerType(comp_type);
 
     }
     else
@@ -985,7 +948,7 @@ void consoleui::printDetailsPerson(person p)
     death = (death == "0")?("Alive"):(death);
     sex = (sex == "f")?("Female"):("Male");
 
-    Color::Modifier primaryColor = Color::LPURPLE;
+    Color::Modifier primaryColor = Color::BLUE;
     Color::Modifier secondaryColor = Color::LBLUE;
 
     cout << primaryColor;
@@ -1058,7 +1021,7 @@ void consoleui::printInfoPerson(person p)
     tablePrint(name, restWidth);
     cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
-    cout << Color::LPURPLE;
+    cout << Color::BLUE;
     tablePrint("Nationality: ", restWidth);
     tablePrint(nationality, restWidth);
     cout << endl;
@@ -1080,7 +1043,7 @@ void consoleui::printInfoPerson(person p)
     tablePrint("Information ", restWidth);
     cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
-    cout << Color::LPURPLE;
+    cout << Color::BLUE;
     cout << utils::wordWrap(info, pageWidth);
 
     cout << Color::LBLUE;
@@ -1098,7 +1061,7 @@ void consoleui::printInfoPerson(person p)
 
         for(computer c : computers_connected)
         {
-            cout << Color::LPURPLE;
+            cout << Color::BLUE;
             cout << c.getName() << endl;
         }
 
@@ -1274,13 +1237,13 @@ void consoleui::printPersonConnections(vector<person> persons)
 void consoleui::printComputerConnections(vector<computer> computers)
 {
     cout << Color::GRAY << endl;
-    cout << left << setw(nameWidth) << setfill(' ') << "Computer";
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
+    tablePrint("Computer", nameWidth);
+    tablePrint("ID", restWidth);
     tablePrint("Name", nameWidth);
-    cout << left << setw(restWidth) << setfill(separator) << "Sex";
-    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << endl;
+    tablePrint("Sex", restWidth);
+    tablePrint("Birth Year", restWidth);
+    tablePrint("Death Year", restWidth);
+    tablePrint("Nationality", restWidth);
     cout << Color::PURPLE << endl;
 
     for (computer c : computers)
