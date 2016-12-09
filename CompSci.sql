@@ -1,25 +1,37 @@
+DROP TABLE IF EXISTS "Computer_Types";
+CREATE TABLE "Computer_Types"
+(
+"ID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+"Computer_Type" VARCHAR UNIQUE
+);
+INSERT INTO "Computer_Types" VALUES(1,'Mechanical');
+INSERT INTO "Computer_Types" VALUES(2,'Electronic');
+INSERT INTO "Computer_Types" VALUES(3,'Electromechanical');
+INSERT INTO "Computer_Types" VALUES(4,'Digital');
 DROP TABLE IF EXISTS "Computers";
 CREATE TABLE "Computers" 
 (
 "ID" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL ,
 "Name" VARCHAR,
 "Build_Year" INTEGER, 
-"Computer_Type" VARCHAR, 
+"Computer_TypeID" INTEGER, 
 "Built" BOOL,
 "NationalityID" INTEGER, "Info" VARCHAR,
 CONSTRAINT FK_Comp_Nationality FOREIGN KEY (NationalityID)
-REFERENCES Nationality(ID)
+REFERENCES Nationality(ID),
+CONSTRAINT FK_Comp_Type FOREIGN KEY (Computer_TypeID)
+REFERENCES Computer_Type(ID)
 );
-INSERT INTO "Computers" VALUES(1,'Analytical Engine','','Mechanical','FALSE',1,'Proposed in 1837. Successor to Babbage''s difference engine.');
-INSERT INTO "Computers" VALUES(2,'Turing machine','','Abstract','FALSE',1,'Invented in 1936. A mathmatical model for a device that manipulates symbols on a strip of tape according to a table of rules.');
-INSERT INTO "Computers" VALUES(3,'EDSAC',1947,'Electronic','TRUE',2,'EDSAC 1 was shut down 11 July 1958.');
-INSERT INTO "Computers" VALUES(4,'Harvard Mark I',1944,'Electromechanical','TRUE',2,'Used in the war effort during the last part of World War II.');
-INSERT INTO "Computers" VALUES(5,'Apollo Guidance Computer',1966,'Digital','TRUE',2,'Produced for the Apollo space program.');
-INSERT INTO "Computers" VALUES(6,'Difference Engine No. 2',1991,'Mechanical','TRUE',1,'Designed between 1847 and1849. Tabulates polynomial functions.');
-INSERT INTO "Computers" VALUES(8,'Colossus',1943,'Electronic','TRUE',1,'Used for cryptanalysis and regarded as the world''s first programmable, electronic, digital computer.');
-INSERT INTO "Computers" VALUES(9,'Atanasoff Berry Computer',1942,'Electronic','TRUE',2,'The first automatic electronic digital computer, designed to solve systems of linear equations.');
-INSERT INTO "Computers" VALUES(10,'ENIAC',1946,'Electronic','TRUE',2,'Turing-complete, digital and reprogrammable. ');
-INSERT INTO "Computers" VALUES(11,'Z3',1941,'Electromechanical','TRUE',5,'The world''s first working programmable, fully automatic digital computer.');
+INSERT INTO "Computers" VALUES(1,'Analytical Engine','',1,'FALSE',1,'Proposed in 1837. Successor to Babbage''s difference engine.');
+INSERT INTO "Computers" VALUES(2,'Turing machine','',1,'FALSE',1,'Invented in 1936. A mathmatical model for a device that manipulates symbols on a strip of tape according to a table of rules.');
+INSERT INTO "Computers" VALUES(3,'EDSAC',1947,2,'TRUE',2,'EDSAC 1 was shut down 11 July 1958.');
+INSERT INTO "Computers" VALUES(4,'Harvard Mark I',1944,3,'TRUE',2,'Used in the war effort during the last part of World War II.');
+INSERT INTO "Computers" VALUES(5,'Apollo Guidance Computer',1966,4,'TRUE',2,'Produced for the Apollo space program.');
+INSERT INTO "Computers" VALUES(6,'Difference Engine No. 2',1991,1,'TRUE',1,'Designed between 1847 and1849. Tabulates polynomial functions.');
+INSERT INTO "Computers" VALUES(8,'Colossus',1943,2,'TRUE',1,'Used for cryptanalysis and regarded as the world''s first programmable, electronic, digital computer.');
+INSERT INTO "Computers" VALUES(9,'Atanasoff Berry Computer',1942,2,'TRUE',2,'The first automatic electronic digital computer, designed to solve systems of linear equations.');
+INSERT INTO "Computers" VALUES(10,'ENIAC',1946,2,'TRUE',2,'Turing-complete, digital and reprogrammable. ');
+INSERT INTO "Computers" VALUES(11,'Z3',1941,3,'TRUE',5,'The world''s first working programmable, fully automatic digital computer.');
 DROP TABLE IF EXISTS "Connections";
 CREATE TABLE "Connections" 
 (
@@ -41,16 +53,13 @@ INSERT INTO "Connections" VALUES(8,6,3);
 INSERT INTO "Connections" VALUES(9,8,1);
 INSERT INTO "Connections" VALUES(10,9,12);
 INSERT INTO "Connections" VALUES(11,11,13);
-INSERT INTO "Connections" VALUES(12,1,1);
 DROP TABLE IF EXISTS "Nationality";
-CREATE TABLE "Nationality" ("ID" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "Nationality" VARCHAR);
-INSERT INTO "Nationality" VALUES(0,'Unknown');
+CREATE TABLE "Nationality" ("ID" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "Nationality" VARCHAR UNIQUE);
 INSERT INTO "Nationality" VALUES(1,'English');
 INSERT INTO "Nationality" VALUES(2,'American');
 INSERT INTO "Nationality" VALUES(3,'Canadian');
 INSERT INTO "Nationality" VALUES(4,'Dutch');
 INSERT INTO "Nationality" VALUES(5,'German');
-INSERT INTO "Nationality" VALUES(6,'Ice');
 DROP TABLE IF EXISTS "Persons";
 CREATE TABLE "Persons" ("ID" INTEGER PRIMARY KEY  NOT NULL ,"Name" VARCHAR NOT NULL ,"Sex" VARCHAR NOT NULL ,"Birth_Year" INTEGER NOT NULL ,"Death_Year" INTEGER,"NationalityID" INTEGER NOT NULL ,"Info" VARCHAR NOT NULL  DEFAULT (null) );
 INSERT INTO "Persons" VALUES(1,'Tommy Flowers','m',1905,1998,1,'English engineer who designed the Colossus computer for cryptanalysis during WWII.');
@@ -67,3 +76,4 @@ INSERT INTO "Persons" VALUES(10,'Kenneth E. Iverson','m',1920,2004,3,'Computer s
 INSERT INTO "Persons" VALUES(11,'Maurice Wilkes','m',1913,2010,1,'Computer scientist. Led a team which developed a computer, known as EDSAC.');
 INSERT INTO "Persons" VALUES(12,'John Vincent Atanasoff','m',1903,1995,2,'American physicist who invented the first electronic digital computer.');
 INSERT INTO "Persons" VALUES(13,'Konrad Zuse','m',1910,1995,5,'German civil engineer and pioneer often regarded as the inventor of the modern computer.');
+INSERT INTO "Persons" VALUES(14,'Testy','m',1930,0,7,'A aussie walks into a bar');
