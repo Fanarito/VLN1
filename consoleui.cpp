@@ -1269,7 +1269,7 @@ void consoleui::printComputerConnections(vector<computer> computers)
     cout << Color::GRAY << endl;
     cout << left << setw(nameWidth) << setfill(' ') << "Computer";
     cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(nameWidth) << setfill(separator) << "Name";
+    tablePrint("Name", nameWidth);
     cout << left << setw(restWidth) << setfill(separator) << "Sex";
     cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
     cout << left << setw(restWidth) << setfill(separator) << "Death Year";
