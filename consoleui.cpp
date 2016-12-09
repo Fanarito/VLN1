@@ -47,7 +47,7 @@ void consoleui::run()
         else if(command == "list" || command == "remove")
         {
             cout << endl;
-            choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
+            choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
             if(EXIT) continue;
         }
 
