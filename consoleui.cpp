@@ -427,7 +427,7 @@ void consoleui::addMenu(string choice)
         return;
     }
 
-    cout << Color::GREEN << choice << " added!" << Color::PURPLE << endl;
+    cout << Color::GREEN << endl << choice << " added!" << Color::PURPLE << endl;
 }
 
 //This function allows you to change some, or all properties of a person/computer.
@@ -522,28 +522,24 @@ void consoleui::changeMenu(string choice)
             return;
         }
 
-        string name = getInputString("Enter name: ", MULTI);
+        string name = getInputString("Enter name: (empty for no change)", MULTI);
         if(EXIT) return;
 
         string nationality = getValidNationality("Enter nationality: (empty for no change)", true);
         if(EXIT) return;
 
-        string info = getInputString("Enter info: ", MULTI);
+        string info = getInputString("Enter info: (empty for no change)", MULTI);
         if(EXIT) return;
 
-        bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
+        string built = getInputString("Was it built: y|n (empty for no change)", SINGLE, "|y|n", false);
         if(EXIT) return;
 
         int buildyear = -1;
 
-        if (built)
+        if (built == "y" || (built.empty() && comp.getBuilt()))
         {
-            buildyear = getInputInt("When was it built: ", AL_KHWARIZMI, utils::getCurrentYear());
+            buildyear = getInputInt("When was it built: -1 for no change", AL_KHWARIZMI, utils::getCurrentYear());
             if(EXIT) return;
-        }
-        else
-        {
-            buildyear = 0;
         }
 
         string type = getValidComputerType("Enter machine type: (empty for no change)", true);
@@ -552,14 +548,14 @@ void consoleui::changeMenu(string choice)
         if (!name.empty()) comp.setName(name);
         if (!nationality.empty()) comp.setNationality(nationality);
         if (!info.empty()) comp.setInfo(info);
-        comp.setBuilt(built);
+        if (!built.empty()) comp.setBuilt(built == "y");
         if (buildyear != -1) comp.setBuildYear(buildyear);
         if (!type.empty()) comp.setType(type);
 
         ps.updateComputer(comp);
     }
 
-    cout << Color::GREEN << choice << " changed!" << Color::PURPLE << endl;
+    cout << Color::GREEN << endl << choice << " changed!" << Color::PURPLE << endl;
 }
 
 //This function allows you to remove one or more persons/computers/connections/nationalities/computer_types from the list.
@@ -705,7 +701,7 @@ void consoleui::removeMenu(string choice)
         ps.removeComputerType(to_remove);
     }
 
-    cout << Color::GREEN << choice << " removed!" << endl;
+    cout << Color::GREEN << endl << choice << " removed!" << endl;
 }
 
 //This is the function where you can choose how you want to sort the list. After you have made your
