@@ -359,6 +359,7 @@ void consoleui::addMenu(string choice)
 
         type = getValidComputerType("Type:");
         if(type.empty()) return;
+        if(EXIT) return;
 
         cout << endl;
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
@@ -370,6 +371,7 @@ void consoleui::addMenu(string choice)
 
         nationality = getValidNationality("Nationality:");
         if (nationality.empty()) return;
+        if(EXIT) return;
 
         cout << endl;
         info = getInputString("Info: ", MULTI);
@@ -560,7 +562,7 @@ void consoleui::changeMenu(string choice)
     cout << Color::GREEN << choice << " changed!" << Color::PURPLE << endl;
 }
 
-//This function allows you to remove one or more persons/computers from the list.
+//This function allows you to remove one or more persons/computers/connections/nationalities/computer_types from the list.
 void consoleui::removeMenu(string choice)
 {
     cout << endl << Color::AQUA << "What " << choice << " would you like to remove?" << Color::PURPLE << endl;
