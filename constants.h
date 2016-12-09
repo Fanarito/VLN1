@@ -4,8 +4,9 @@
 #include <string>
 
 namespace constants {
-    const std::string VALID_TABLE_NAMES = "persons|computers|connections";
-    const std::string VALID_ADD_COMMANDS = "persons|computers|connections|nationalities|computer_types";
+    const std::string VALID_TABLE_NAMES = "persons|computers|connections|nationalities|computer_types";
+    const std::string VALID_ADD_COMMANDS = "persons|computers|connections";
+    const std::string VALID_OBJECT_NAMES = "persons|computers";
 
     const std::string VALID_PERSON_COLUMNS = "id|name|sex|birth_year|death_year|nationality";
     const std::string VALID_COMPUTER_COLUMNS = "id|name|build_year|computer_type|built|nationality";
