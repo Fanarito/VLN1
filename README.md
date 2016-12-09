@@ -2,7 +2,7 @@
 -------------------
 GENERAL USAGE NOTES
 -------------------
-It is important to move the database CompSci.sqlite into your build file. Otherwise you will not be able to acces the database. 
+It is important to move the database CompSci.sqlite into your build file. Otherwise you will not be able to acces the database. QT Creator and SQLite must be innstalled.
 
 ------------------------------------------------------------
 The program can do the following operations on the database.
@@ -12,7 +12,7 @@ This command will list one of the five tables from the database of your choice. 
 for person or computer, depending on whether you want to display all computers connected  to persons or persons connected to computers.
 
 * **add**
-This will add a new famous programmer, computer, connection, nationality or computer type to the system. If you want to add a programmer
+This will add a new famous programmer, computer and connection to the system. If you want to add a programmer
 or a computer you will be asked to fill in all their properties with instructions. 
 
 * **change** 
@@ -20,7 +20,7 @@ This will change a famous programmer or computer in the system. You will be aske
 instructions. You can keep some of their properties unchanged or all if you cancel.
 
 * **remove**
-This will remove a famous programmer or computer from the system
+This will remove a famous programmer, computer, connection, nationality or computer type from the system.
 
 * **sort**
 This will sort the list of persons or computers according to your preferences. You can sort persons by id, name, birth year, death year
@@ -39,3 +39,16 @@ This will clear the screen.
 
 * **quit**
 This will quit the program.
+
+-------------------
+AUTHORS IN GROUP 26
+-------------------
+Elín Þóra Ellertsdóttir
+
+Jökull Máni Reynisson
+
+Harpa Guðrún Hreinsdóttir
+
+Rúnar Bjarkason
+
+Viktor Sævarsson

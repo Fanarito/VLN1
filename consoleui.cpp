@@ -50,7 +50,6 @@ void consoleui::run()
             choice = getInputString("Select one of the following: " + VALID_TABLE_NAMES, SINGLE, VALID_TABLE_NAMES);
             if(EXIT) continue;
         }
-
         else if(command != "quit" && command != "clear")
         {
             cout << endl;
