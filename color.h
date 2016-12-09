@@ -22,6 +22,7 @@ namespace Color {
         FG_LRED     = 0x0c,
         FG_LPURPLE  = 0x0d,
         FG_LYELLOW  = 0x0e,
+        FG_BROWN    = 0x0e,
         FG_DEFAULT  = 0x07,
     };
 
@@ -60,6 +61,7 @@ namespace Color {
         FG_LRED     = 91,
         FG_LPURPLE  = 95,
         FG_LYELLOW  = 93,
+        FG_BROWN    = 33,
         FG_DEFAULT  = 39,
     };
 
@@ -92,6 +94,7 @@ namespace Color {
     const Color::Modifier LRED(Color::FG_RED);
     const Color::Modifier LPURPLE(Color::FG_LPURPLE);
     const Color::Modifier LYELLOW(Color::FG_YELLOW);
+    const Color::Modifier BROWN(Color::FG_BROWN);
     const Color::Modifier DEF(Color::FG_DEFAULT);
 }
 
