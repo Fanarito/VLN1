@@ -1397,25 +1397,27 @@ int consoleui::getInputInt(string message, int low_bound, int high_bound, bool a
 void consoleui::printChristmas()
 {
 
+    //Disgusting, but it works
 
     Color::Modifier r = Color::RED;
     Color::Modifier g = Color::GREEN;
     Color::Modifier b = Color::BLUE;
     Color::Modifier w = Color::GRAY;
-    Color::Modifier y = Color::YELLOW;
+    Color::Modifier y = Color::BROWN;
     Color::Modifier p = Color::PURPLE;
     Color::Modifier br = Color::RED;
     Color::Modifier l1 = Color::AQUA;
     Color::Modifier l2 = Color::LRED;
     Color::Modifier l3 = Color::YELLOW;
 
-    for(int i = 0; i < 10; i++) {
+    for(int i = 0; i < 25; i++) {
 
         Color::Modifier temp = l1;
         l1 = l2;
         l2 = l3;
         l3 = l1;
 
+        //I am so sorry
         std::this_thread::sleep_for(std::chrono::milliseconds(250));
         cout << string(100, '\n');
 
@@ -1439,10 +1441,12 @@ cout << w << "    *             "<<y<<",                    \n"
 <<g<<"       ;*,&"<<p<<"()"<<g<<"; "<<b<<"@"<<g<<" % &^;~`\"`"<<l2<<"o"<<g<<";"<<b<<"@"<<p<<"()"<<g<<";         "<<w<<"*    \n"
 <<g<<"       /"<<p<<"()"<<g<<"; "<<l3<<"o"<<g<<"^~; & "<<p<<"()"<<g<<"."<<l1<<"o"<<g<<""<<b<<"@"<<g<<"*&`;&%"<<l2<<"o"<<g<<"\\              \n"
 <<g<<"       `\"=\"==\"\"==,,,.,=\"==\"===\"`        \n"
-<<br<<"    __.--------''#####---...___...-----._" << endl;
+<<w<<"    __.--------''"<<br<<"#####"<<br<<"---...___...-----._" << endl;
 
 
 
     }
+
+    cout << "Press ENTER to continue." << endl;
 
 }
