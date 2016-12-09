@@ -240,7 +240,7 @@ string consoleui::getValidComputerType(string message, bool allow_empty)
 
         if(check == 0)
         {
-            cout << endl << "Computer type does not exist in database. Would you like to add this nationality to the database?" << endl << endl;
+            cout << endl << "Computer type does not exist in database. Would you like to add this computer type to the database?" << endl << endl;
             answer = getInputString("y|n", SINGLE, "y|n");
             if(EXIT) return "";
 
