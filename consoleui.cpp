@@ -41,7 +41,7 @@ void consoleui::run()
         if(command == "change" || command == "search" || command == "sort" || command == "info")
         {
             cout << endl;
-            choice = getInputString("Select one of the following: persons|computers", SINGLE, "persons|computers");
+            choice = getInputString("Select one of the following: persons|computers", SINGLE, VALID_OBJECT_NAMES);
             if(EXIT) continue;
         }
         else if(command == "add" || command == "remove")
@@ -120,7 +120,7 @@ void consoleui::listMenu(string choice)
             cout << "Connections to persons or computers?" << endl;
             cout << endl;
 
-            conn_choice = getInputString("persons|computers", SINGLE, "persons|computers");
+            conn_choice = getInputString(VALID_OBJECT_NAMES, SINGLE, VALID_OBJECT_NAMES);
             cout << endl;
 
             if(EXIT) return;
@@ -240,7 +240,7 @@ string consoleui::getValidComputerType(string message, bool allow_empty)
 
         if(check == 0)
         {
-            cout << endl << "Computer type does not exist in database. Would you like to add this nationality to the database?" << endl << endl;
+            cout << endl << "Computer type does not exist in database. Would you like to add this computer type to the database?" << endl << endl;
             answer = getInputString("y|n", SINGLE, "y|n");
             if(EXIT) return "";
 
@@ -607,7 +607,7 @@ void consoleui::removeMenu(string choice)
     }
     else if(choice == "connections")
     {
-        string sub_choice = getInputString("persons|computers", SINGLE, "persons|computers");
+        string sub_choice = getInputString(VALID_OBJECT_NAMES, SINGLE, VALID_OBJECT_NAMES);
         if(EXIT) return;
 
         int pid, cid;
