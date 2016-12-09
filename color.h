@@ -22,7 +22,7 @@ namespace Color {
         FG_LRED     = 0x0c,
         FG_LPURPLE  = 0x0d,
         FG_LYELLOW  = 0x0e,
-        FG_BROWN    = 0x0f,
+        FG_BROWN    = 0x0e,
         FG_DEFAULT  = 0x07,
     };
 
