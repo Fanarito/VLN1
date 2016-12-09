@@ -362,12 +362,16 @@ void consoleui::addMenu(string choice)
         int comp_id;
         int person_id;
 
+        cout << endl << "Please search for a person to connect:";
+
         searchMenu("persons");
         if(EXIT) return;
 
         cout << endl;
         person_id = getInputInt("Please enter the ID of the person you want to connect:");
         if(EXIT) return;
+
+        cout << endl << "Please search for a computer to connect:";
 
         searchMenu("computers");
         if(EXIT) return;
