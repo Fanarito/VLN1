@@ -492,7 +492,7 @@ void consoleui::changeMenu(string choice)
         string nationality = getValidNationality("Enter nationality: (empty for no change)");
         if (nationality.empty()) return;
 
-        string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
+        string sex = getInputString("Enter sex m/f(empty for no change): ", SINGLE, "m|f");
         if(EXIT) return;
 
         int deathyear = getInputInt("Enter year of death (0 for not dead, -1 for unchanged): ",AL_KHWARIZMI, utils::getCurrentYear());
@@ -834,6 +834,12 @@ int consoleui::searchMenu(string choice, bool printRes)
         search_string = to_string(getInputInt("Enter id: "));
         if(EXIT) return -1;
         column = choice + ".id";
+    }
+    else if(column == "built")
+    {
+        cout << endl;
+        search_string = getInputString("true|false: ", MULTI);
+        if(EXIT) return -1;
     }
     else
     {
