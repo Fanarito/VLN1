@@ -53,7 +53,7 @@ namespace Color {
         FG_AQUA     = 36,
         FG_RED      = 31,
         FG_PURPLE   = 35,
-        FG_YELLOW   = 33,
+        FG_YELLOW   = 226,
         FG_GRAY     = 37,
         FG_LBLUE    = 94,
         FG_LGREEN   = 92,
@@ -93,7 +93,7 @@ namespace Color {
     const Color::Modifier LAQUA(Color::FG_LAQUA);
     const Color::Modifier LRED(Color::FG_RED);
     const Color::Modifier LPURPLE(Color::FG_LPURPLE);
-    const Color::Modifier LYELLOW(Color::FG_YELLOW);
+    const Color::Modifier LYELLOW(Color::FG_LYELLOW);
     const Color::Modifier BROWN(Color::FG_BROWN);
     const Color::Modifier DEF(Color::FG_DEFAULT);
 }
