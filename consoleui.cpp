@@ -315,7 +315,7 @@ void consoleui::addMenu(string choice)
 
             if((birthyear > deathyear) && (deathyear != 0))
             {
-                cout << endl << "Year of death cannot be before year of birth!" << endl;
+                cout << endl << Color::RED << "Year of death cannot be before year of birth!" << Color::PURPLE << endl;
             }
             else
             {
