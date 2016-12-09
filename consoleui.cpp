@@ -907,6 +907,7 @@ void consoleui::infoMenu(string choice)
             cout << Color::YELLOW << "ID " << res << " automatically selected." << Color::PURPLE << endl;
         }
 
+
         if(infoId == -1) return;
 
         bool success;
@@ -1403,9 +1404,9 @@ void consoleui::printChristmas()
     Color::Modifier g = Color::GREEN;
     Color::Modifier b = Color::BLUE;
     Color::Modifier w = Color::GRAY;
-    Color::Modifier y = Color::BROWN;
+    Color::Modifier y = Color::YELLOW;
     Color::Modifier p = Color::PURPLE;
-    Color::Modifier br = Color::RED;
+    Color::Modifier br = Color::BROWN;
     Color::Modifier l1 = Color::AQUA;
     Color::Modifier l2 = Color::LRED;
     Color::Modifier l3 = Color::YELLOW;
@@ -1415,38 +1416,41 @@ void consoleui::printChristmas()
         Color::Modifier temp = l1;
         l1 = l2;
         l2 = l3;
-        l3 = l1;
+        l3 = temp;
 
         //I am so sorry
         std::this_thread::sleep_for(std::chrono::milliseconds(250));
         cout << string(100, '\n');
 
-cout << w << "    *             "<<y<<",                    \n"
-"                _/^\\_                          \n"
-"               <     >                         \n"
-<<w<<"*"<<y<<"               /.-.\\         "<<w<<"*                \n"
-"       *    "<<g<<"    `/&\\`                   "<<w<<"*      \n"
-<<g<<"               ,"<<b<<"@"<<g<<".*;"<<b<<"@"<<g<<",                         \n"
-<<g<<"              /_"<<l1<<"o"<<g<<".I %_\\    "<<w<<"*                   \n"
-<<g<<" "<<w<<"*"<<g<<"           "<<r<<"(`'--:"<<l2<<"o"<<g<<"(_"<<b<<"@"<<g<<";\n"
-<<g<<"            /`;"<<r<<"--.,__ `')             "<<w<<"*        \n"
-<<g<<"           ;"<<b<<"@"<<g<<"`"<<l3<<"o"<<g<<" % O,*"<<r<<"`'`"<<g<<"&\\                    \n"
-<<g<<"     "<<w<<"*"<<g<<"    "<<r<<"(`'--"<<g<<")_"<<b<<"@"<<g<<" ;"<<l1<<"o"<<g<<" %'"<<p<<"()"<<g<<"\\      "<<w<<"*            \n"
-<<g<<"          /"<<r<<"`;--._`''--._"<<g<<"O'@;                   \n"
-<<g<<"         /&*,"<<p<<"()"<<g<<"~"<<l2<<"o"<<g<<""<<r<<"`;-.,_ `\"\"`)                \n"
-<<w<<"*"<<g<<"        /`,"<<b<<"@ ;+& "<<p<<"()"<<g<<" "<<l3<<"o"<<g<<"*"<<r<<"`;-';\\                 \n"
-<<g<<"        "<<r<<"(`""--.,_"<<g<<"0 +% @' o~;&"<<p<<"()"<<g<<"\\                 \n"
-<<g<<"        /"<<r<<"-.,_    ``''--....-'`)  "<<w<<"*             \n"
-<<w<<"   *"<<g<<"    /"<<b<<"@"<<g<<"%;"<<l1<<"o"<<g<<""<<r<<"`:;'--,.__   __.'"<<g<<"\\               \n"
-<<g<<"       ;*,&"<<p<<"()"<<g<<"; "<<b<<"@"<<g<<" % &^;~`\"`"<<l2<<"o"<<g<<";"<<b<<"@"<<p<<"()"<<g<<";         "<<w<<"*    \n"
-<<g<<"       /"<<p<<"()"<<g<<"; "<<l3<<"o"<<g<<"^~; & "<<p<<"()"<<g<<"."<<l1<<"o"<<g<<""<<b<<"@"<<g<<"*&`;&%"<<l2<<"o"<<g<<"\\              \n"
-<<g<<"       `\"=\"==\"\"==,,,.,=\"==\"===\"`        \n"
-<<w<<"    __.--------''"<<br<<"#####"<<br<<"---...___...-----._" << endl;
+        cout << w << "    *             "<<y<<",                    \n"
+        "                _/^\\_                          \n"
+        "               <     >                         \n"
+        <<w<<"*"<<y<<"               /.-.\\         "<<w<<"*                \n"
+        "       *    "<<g<<"    `/&\\`                   "<<w<<"*      \n"
+        <<g<<"               ,"<<b<<"@"<<g<<".*;"<<b<<"@"<<g<<",                         \n"
+        <<g<<"              /_"<<l1<<"o"<<g<<".I %_\\    "<<w<<"*                   \n"
+        <<g<<" "<<w<<"*"<<g<<"           "<<r<<"(`'--:"<<l2<<"o"<<g<<"(_"<<b<<"@"<<g<<";\n"
+        <<g<<"            /`;"<<r<<"--.,__ `')             "<<w<<"*        \n"
+        <<g<<"           ;"<<b<<"@"<<g<<"`"<<l3<<"o"<<g<<" % O,*"<<r<<"`'`"<<g<<"&\\                    \n"
+        <<g<<"     "<<w<<"*"<<g<<"    "<<r<<"(`'--"<<g<<")_"<<b<<"@"<<g<<" ;"<<l1<<"o"<<g<<" %'"<<p<<"()"<<g<<"\\      "<<w<<"*            \n"
+        <<g<<"          /"<<r<<"`;--._`''--._"<<g<<"O'@;                   \n"
+        <<g<<"         /&*,"<<p<<"()"<<g<<"~"<<l2<<"o"<<g<<""<<r<<"`;-.,_ `\"\"`)                \n"
+        <<w<<"*"<<g<<"        /`,"<<b<<"@"<<g<<" ;+& "<<p<<"()"<<g<<" "<<l3<<"o"<<g<<"*"<<r<<"`;-';\\                 \n"
+        <<g<<"        "<<r<<"(`""--.,_"<<g<<"0 +% "<<b<<"@"<<g<<"' o~;&"<<p<<"()"<<g<<"\\                 \n"
+        <<g<<"        /"<<r<<"-.,_    ``''--....-'`)  "<<w<<"*             \n"
+        <<w<<"   *"<<g<<"    /"<<b<<"@"<<g<<"%;"<<l1<<"o"<<g<<""<<r<<"`:;'--,.__   __.'"<<g<<"\\               \n"
+        <<g<<"       ;*,&"<<p<<"()"<<g<<"; "<<b<<"@"<<g<<" % &^;~`\"`"<<l2<<"o"<<g<<";"<<b<<"@"<<p<<"()"<<g<<";         "<<w<<"*    \n"
+        <<g<<"       /"<<p<<"()"<<g<<"; "<<l3<<"o"<<g<<"^~; & "<<p<<"()"<<g<<"."<<l1<<"o"<<g<<""<<b<<"@"<<g<<"*&`;&%"<<l2<<"o"<<g<<"\\              \n"
+        <<g<<"       `\"=\"==\"\"==,,,.,=\"==\"===\"`        \n"
+        <<w<<"    __.--------''"<<br<<"#####"<<w<<"---...___...-----._" << endl;
 
-
+        //SOURCE: http://www.chris.com/ascii/index.php?art=holiday/christmas/trees --- by jgs
 
     }
 
+    cout << Color::YELLOW << endl;
+    cout << "SOURCE: http://www.chris.com/ascii/index.php?art=holiday/christmas/trees --- by jgs" << endl;
     cout << "Press ENTER to continue." << endl;
+    cout << Color::PURPLE << endl;
 
 }
