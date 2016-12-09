@@ -520,28 +520,24 @@ void consoleui::changeMenu(string choice)
             return;
         }
 
-        string name = getInputString("Enter name: ", MULTI);
+        string name = getInputString("Enter name: (empty for no change)", MULTI);
         if(EXIT) return;
 
         string nationality = getValidNationality("Enter nationality: (empty for no change)", true);
         if(EXIT) return;
 
-        string info = getInputString("Enter info: ", MULTI);
+        string info = getInputString("Enter info: (empty for no change)", MULTI);
         if(EXIT) return;
 
-        bool built = getInputInt("Was it built, 0 for no, 1 for yes: ");
+        string built = getInputString("Was it built: y|n (empty for no change)", SINGLE, "|y|n", false);
         if(EXIT) return;
 
         int buildyear = -1;
 
-        if (built)
+        if (built == "y" || (built.empty() && comp.getBuilt()))
         {
-            buildyear = getInputInt("When was it built: ", AL_KHWARIZMI, utils::getCurrentYear());
+            buildyear = getInputInt("When was it built: -1 for no change", AL_KHWARIZMI, utils::getCurrentYear());
             if(EXIT) return;
-        }
-        else
-        {
-            buildyear = 0;
         }
 
         string type = getValidComputerType("Enter machine type: (empty for no change)", true);
@@ -550,7 +546,7 @@ void consoleui::changeMenu(string choice)
         if (!name.empty()) comp.setName(name);
         if (!nationality.empty()) comp.setNationality(nationality);
         if (!info.empty()) comp.setInfo(info);
-        comp.setBuilt(built);
+        if (!built.empty()) comp.setBuilt(built == "y");
         if (buildyear != -1) comp.setBuildYear(buildyear);
         if (!type.empty()) comp.setType(type);
 
