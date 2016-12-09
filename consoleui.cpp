@@ -194,10 +194,27 @@ void consoleui::addMenu(string choice)
         birthyear = getInputInt("Enter year of birth: ", AL_KHWARIZMI, utils::getCurrentYear());
         if(EXIT) return;
 
-        cout << endl;
-        deathyear = getInputInt("Year of death (if alive leave field empty):", AL_KHWARIZMI, utils::getCurrentYear(), true);
-        if(EXIT) return;
+        bool fail = true;
+        do
+        {
+            cout << endl;
+            deathyear = getInputInt("Year of death (if alive leave field empty):", AL_KHWARIZMI, utils::getCurrentYear(), true);
+            if(EXIT) return;
 
+            if(deathyear == 0)
+            {
+                fail = false;
+            }
+
+            if((birthyear > deathyear) && (deathyear != 0))
+            {
+                cout << endl << "Year of death cannot be before year of birth!" << endl;
+            }
+            else
+            {
+                fail = false;
+            }
+        }while(fail);
 
         cout << endl;
 
