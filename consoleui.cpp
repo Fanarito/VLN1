@@ -165,13 +165,15 @@ void consoleui::listMenu(string choice)
         cout << endl;
 }
 
-string consoleui::getValidNationality(string message) {
+string consoleui::getValidNationality(string message, bool allow_empty) {
     bool running = true;
     string nationality;
     while (running) {
         cout << endl;
         nationality = getInputString(message, MULTI);
         if(EXIT) return "";
+
+        if (allow_empty && nationality.empty()) return "";
 
         while(nationality.empty())
         {
@@ -212,6 +214,59 @@ string consoleui::getValidNationality(string message) {
         }
     }
     return nationality;
+}
+
+string consoleui::getValidComputerType(string message, bool allow_empty)
+{
+    bool running = true;
+    string comp_type;
+
+    while (running) {
+        cout << endl;
+        comp_type = getInputString(message, MULTI);
+        if(EXIT) return " ";
+
+        if(allow_empty && comp_type.empty()) return "";
+
+        while (comp_type.empty()) {
+            cout << "The field cannot be empty" << endl;
+            comp_type = getInputString(message, MULTI);
+            if(EXIT) return " ";
+        }
+
+        string answer;
+        int check = ps.getComputerTypeById(comp_type);
+
+        if(check == 0)
+        {
+            cout << endl << "Computer type does not exist in database. Would you like to add this nationality to the database?" << endl << endl;
+            answer = getInputString("y|n", SINGLE, "y|n");
+            if(EXIT) return "";
+
+            if(answer == "y")
+            {
+                while(comp_type.empty())
+                {
+                    cout << "The field cannot be empty" << endl;
+                    comp_type = getInputString(message, MULTI);
+                    if(EXIT) return "";
+                }
+                cout << endl;
+
+                running = false;
+
+                ps.addComputerType(comp_type);
+            }
+            else
+            {
+                continue;
+            }
+        }
+        else {
+            return comp_type;
+        }
+    }
+    return comp_type;
 }
 
 //This function allows you to add a person/computer/connection/nationality/computer_type.
@@ -301,43 +356,8 @@ void consoleui::addMenu(string choice)
             if(EXIT) return;
         }
 
-        cout << endl;
-        type = getInputString("Type:", MULTI);
-        if(EXIT) return;
-
-        while(type.empty())
-        {
-            cout << "The field cannot be empty" << endl;
-            type = getInputString("Type:", MULTI);
-            if(EXIT) return;
-        }
-
-        string answer;
-        int check = ps.getComputerTypeById(type);
-
-        if(check == 0)
-        {
-            cout << endl << "Computer type does not exist in database. Would you like to add this computer type to the database (y/n)?" << endl << endl;
-            answer = getInputString(NO_MESS, SINGLE, "y|n");
-            if(EXIT) return;
-
-            if(answer == "n")
-            {
-                return;
-            }
-            else if(answer == "y")
-            {
-                while(type.empty())
-                {
-                    cout << "The field cannot be empty" << endl;
-                    type = getInputString("Type:", MULTI);
-                    if(EXIT) return;
-                }
-                cout << endl;
-
-                ps.addComputerType(type);
-            }
-        }
+        type = getValidComputerType("Type:");
+        if(type.empty()) return;
 
         cout << endl;
         built = ("y" == getInputString("Built: y|n", SINGLE, "y|n"));
@@ -443,8 +463,8 @@ void consoleui::changeMenu(string choice)
         string name = getInputString("Enter name: (empty for no change)", MULTI);
         if(EXIT) return;
 
-        string nationality = getValidNationality("Enter nationality: (empty for no change)");
-        if (nationality.empty()) return;
+        string nationality = getValidNationality("Enter nationality: (empty for no change)", true);
+        if(EXIT) return;
 
         string sex = getInputString("Enter sex m/f(empty for no change): ", SINGLE, "m|f");
         if(EXIT) return;
@@ -498,8 +518,8 @@ void consoleui::changeMenu(string choice)
         string name = getInputString("Enter name: ", MULTI);
         if(EXIT) return;
 
-        string nationality = getValidNationality("Enter nationality: (empty for no change)");
-        if (nationality.empty()) return;
+        string nationality = getValidNationality("Enter nationality: (empty for no change)", true);
+        if(EXIT) return;
 
         string info = getInputString("Enter info: ", MULTI);
         if(EXIT) return;
@@ -519,7 +539,7 @@ void consoleui::changeMenu(string choice)
             buildyear = 0;
         }
 
-        string type = getInputString("Enter machine type: ", MULTI);
+        string type = getValidComputerType("Enter machine type: (empty for no change)", true);
         if(EXIT) return;
 
         if (!name.empty()) comp.setName(name);
@@ -1217,13 +1237,13 @@ void consoleui::printPersonConnections(vector<person> persons)
 void consoleui::printComputerConnections(vector<computer> computers)
 {
     cout << Color::GRAY << endl;
-    cout << left << setw(nameWidth) << setfill(' ') << "Computer";
-    cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(nameWidth) << setfill(separator) << "Name";
-    cout << left << setw(restWidth) << setfill(separator) << "Sex";
-    cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Death Year";
-    cout << left << setw(restWidth) << setfill(separator) << "Nationality" << endl;
+    tablePrint("Computer", nameWidth);
+    tablePrint("ID", restWidth);
+    tablePrint("Name", nameWidth);
+    tablePrint("Sex", restWidth);
+    tablePrint("Birth Year", restWidth);
+    tablePrint("Death Year", restWidth);
+    tablePrint("Nationality", restWidth);
     cout << Color::PURPLE << endl;
 
     for (computer c : computers)
