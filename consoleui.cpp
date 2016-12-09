@@ -50,7 +50,6 @@ void consoleui::run()
             choice = getInputString("Select one of the following: " + VALID_ADD_COMMANDS, SINGLE);
             if(EXIT) continue;
         }
-
         else if(command != "quit" && command != "clear")
         {
             cout << endl;
