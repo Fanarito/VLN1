@@ -834,6 +834,12 @@ int consoleui::searchMenu(string choice, bool printRes)
         if(EXIT) return -1;
         column = choice + ".id";
     }
+    else if(column == "built")
+    {
+        cout << endl;
+        search_string = getInputString("true|false: ", MULTI);
+        if(EXIT) return -1;
+    }
     else
     {
         search_string = getInputString("Input searchstring: ", MULTI);
