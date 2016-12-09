@@ -425,7 +425,7 @@ void consoleui::addMenu(string choice)
         return;
     }
 
-    cout << Color::GREEN << choice << " added!" << Color::PURPLE << endl;
+    cout << Color::GREEN << endl << choice << " added!" << Color::PURPLE << endl;
 }
 
 //This function allows you to change some, or all properties of a person/computer.
@@ -557,7 +557,7 @@ void consoleui::changeMenu(string choice)
         ps.updateComputer(comp);
     }
 
-    cout << Color::GREEN << choice << " changed!" << Color::PURPLE << endl;
+    cout << Color::GREEN << endl << choice << " changed!" << Color::PURPLE << endl;
 }
 
 //This function allows you to remove one or more persons/computers from the list.
@@ -703,7 +703,7 @@ void consoleui::removeMenu(string choice)
         ps.removeComputerType(to_remove);
     }
 
-    cout << Color::GREEN << choice << " removed!" << endl;
+    cout << Color::GREEN << endl << choice << " removed!" << endl;
 }
 
 //This is the function where you can choose how you want to sort the list. After you have made your
