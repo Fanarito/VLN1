@@ -29,6 +29,8 @@ private:
 
     void tablePrint(string s, int width);
 
+    std::string getValidNationality(string message);
+
     void printDetailsPerson(person p);
     void printDetailsComputer(computer c);
 

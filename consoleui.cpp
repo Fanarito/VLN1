@@ -163,6 +163,55 @@ void consoleui::listMenu(string choice)
         cout << endl;
 }
 
+string consoleui::getValidNationality(string message) {
+    bool running = true;
+    string nationality;
+    while (running) {
+        cout << endl;
+        nationality = getInputString(message, MULTI);
+        if(EXIT) return "";
+
+        while(nationality.empty())
+        {
+            cout << "The field cannot be empty" << endl;
+            nationality = getInputString(message, MULTI);
+            if(EXIT) return "";
+        }
+
+        string answer;
+        int check = ps.getNationalityById(nationality);
+
+        if(check == 0)
+        {
+            cout << endl << "Nationality type does not exist in database. Would you like to add this nationality to the database?" << endl << endl;
+            answer = getInputString("y|n", SINGLE, "y|n");
+            if(EXIT) return "";
+
+            if(answer == "y")
+            {
+                while(nationality.empty())
+                {
+                    cout << "The field cannot be empty" << endl;
+                    nationality = getInputString(message, MULTI);
+                    if(EXIT) return "";
+                }
+                cout << endl;
+
+                running = false;
+
+                ps.addNationality(nationality);
+            }
+            else
+            {
+                continue;
+            }
+        } else {
+            return nationality;
+        }
+    }
+    return nationality;
+}
+
 //This function allows you to add a person/computer/connection/nationality/computer_type.
 void consoleui::addMenu(string choice)
 {
@@ -201,46 +250,8 @@ void consoleui::addMenu(string choice)
 
         cout << endl;
 
-        nationality = getInputString("Nationality:", MULTI);
-        if(EXIT) return;
-
-        while(nationality.empty())
-        {
-            cout << "The field cannot be empty" << endl;
-            nationality = getInputString("Nationality:", MULTI);
-            if(EXIT) return;
-        }
-
-        string answer;
-        int check = ps.getNationalityById(nationality);
-
-        bool running = true;
-
-        if(check == 0)
-        {
-            cout << endl << "Nationality type does not exist in database. Would you like to add this nationality to the database?" << endl << endl;
-            answer = getInputString("y|n", SINGLE, "y|n");
-            if(EXIT) return;
-
-            if(answer == "n")
-            {
-                return;
-            }
-            else if(answer == "y")
-            {
-                while(nationality.empty())
-                {
-                    cout << "The field cannot be empty" << endl;
-                    nationality = getInputString("Nationality:", MULTI);
-                    if(EXIT) return;
-                }
-                cout << endl;
-
-                running = false;
-
-                ps.addNationality(nationality);
-            }
-        }
+        nationality = getValidNationality("Nationality:");
+        if (nationality.empty()) return;
 
         cout << endl;
         info = getInputString("Info:", MULTI);
@@ -317,43 +328,8 @@ void consoleui::addMenu(string choice)
         if(built) build_year = getInputInt("Build year:", AL_KHWARIZMI, utils::getCurrentYear());
         if(EXIT) return;
 
-        cout << endl;
-        nationality = getInputString("Nationality: ", MULTI);
-        if(EXIT) return;
-
-        while(nationality.empty())
-        {
-            cout << "The field cannot be empty" << endl;
-            nationality = getInputString("Nationality:", MULTI);
-            if(EXIT) return;
-        }
-
-        string answer_nat;
-        int check_nat = ps.getNationalityById(nationality);
-
-        if(check_nat == 0)
-        {
-            cout << endl << "Nationality type does not exist in database. Would you like to add this nationality to the database (y/n)?" << endl << endl;
-            answer = getInputString(NO_MESS, SINGLE, "y|n");
-            if(EXIT) return;
-
-            if(answer == "n")
-            {
-                return;
-            }
-            else if(answer == "y")
-            {
-                while(nationality.empty())
-                {
-                    cout << "The field cannot be empty" << endl;
-                    nationality = getInputString("Nationality:", MULTI);
-                    if(EXIT) return;
-                }
-                cout << endl;
-
-                ps.addNationality(nationality);
-            }
-        }
+        nationality = getValidNationality("Nationality:");
+        if (nationality.empty()) return;
 
         cout << endl;
         info = getInputString("Info: ", MULTI);
@@ -496,8 +472,8 @@ void consoleui::changeMenu(string choice)
         string name = getInputString("Enter name: (empty for no change)", MULTI);
         if(EXIT) return;
 
-        string nationality = getInputString("Enter nationality: (empty for no change)", MULTI);
-        if(EXIT) return;
+        string nationality = getValidNationality("Enter nationality: (empty for no change)");
+        if (nationality.empty()) return;
 
         string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
         if(EXIT) return;
@@ -551,7 +527,9 @@ void consoleui::changeMenu(string choice)
         string name = getInputString("Enter name: ", MULTI);
         if(EXIT) return;
 
-        // string nationality = getInputString("Enter nationality; ", MULTI);
+        string nationality = getValidNationality("Enter nationality: (empty for no change)");
+        if (nationality.empty()) return;
+
         string info = getInputString("Enter info: ", MULTI);
         if(EXIT) return;
 
@@ -574,7 +552,7 @@ void consoleui::changeMenu(string choice)
         if(EXIT) return;
 
         if (!name.empty()) comp.setName(name);
-        // if (!nationality.empty()) comp.setNationality(nationality);
+        if (!nationality.empty()) comp.setNationality(nationality);
         if (!info.empty()) comp.setInfo(info);
         comp.setBuilt(built);
         if (buildyear != -1) comp.setBuildYear(buildyear);
