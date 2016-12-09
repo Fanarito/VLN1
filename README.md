@@ -20,7 +20,7 @@ This will change a famous programmer or computer in the system. You will be aske
 instructions. You can keep some of their properties unchanged or all if you cancel.
 
 * **remove**
-This will remove a famous programmer, computer, connection, nationality or computer type from the system.
+This will remove a famous programmer, computer or connection from the system.
 
 * **sort**
 This will sort the list of persons or computers according to your preferences. You can sort persons by id, name, birth year, death year
