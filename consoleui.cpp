@@ -382,12 +382,16 @@ void consoleui::addMenu(string choice)
         int comp_id;
         int person_id;
 
+        cout << endl << "Please search for a person to connect:";
+
         searchMenu("persons");
         if(EXIT) return;
 
         cout << endl;
         person_id = getInputInt("Please enter the ID of the person you want to connect:");
         if(EXIT) return;
+
+        cout << endl << "Please search for a computer to connect:";
 
         searchMenu("computers");
         if(EXIT) return;
@@ -499,7 +503,7 @@ void consoleui::changeMenu(string choice)
         string nationality = getValidNationality("Enter nationality: (empty for no change)", true);
         if(EXIT) return;
 
-        string sex = getInputString("Enter sex(empty for no change): ", SINGLE);
+        string sex = getInputString("Enter sex m/f(empty for no change): ", SINGLE, "m|f");
         if(EXIT) return;
 
         int deathyear = getInputInt("Enter year of death (0 for not dead, -1 for unchanged): ",AL_KHWARIZMI, utils::getCurrentYear());
@@ -690,6 +694,7 @@ void consoleui::removeMenu(string choice)
         if(!noerr)
         {
             cout << Color::RED << "Error, invalid selection" << Color::PURPLE << endl;
+            return;
         }
     }
     else if(choice == "nationalities")
@@ -980,7 +985,7 @@ void consoleui::printDetailsPerson(person p)
     death = (death == "0")?("Alive"):(death);
     sex = (sex == "f")?("Female"):("Male");
 
-    Color::Modifier primaryColor = Color::BLUE;
+    Color::Modifier primaryColor = Color::LPURPLE;
     Color::Modifier secondaryColor = Color::LBLUE;
 
     cout << primaryColor;
@@ -1053,7 +1058,7 @@ void consoleui::printInfoPerson(person p)
     tablePrint(name, restWidth);
     cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
-    cout << Color::BLUE;
+    cout << Color::LPURPLE;
     tablePrint("Nationality: ", restWidth);
     tablePrint(nationality, restWidth);
     cout << endl;
@@ -1075,7 +1080,7 @@ void consoleui::printInfoPerson(person p)
     tablePrint("Information ", restWidth);
     cout << endl << left << setw(pageWidth) << setfill('-') << "" << endl;
 
-    cout << Color::BLUE;
+    cout << Color::LPURPLE;
     cout << utils::wordWrap(info, pageWidth);
 
     cout << Color::LBLUE;
@@ -1093,7 +1098,7 @@ void consoleui::printInfoPerson(person p)
 
         for(computer c : computers_connected)
         {
-            cout << Color::BLUE;
+            cout << Color::LPURPLE;
             cout << c.getName() << endl;
         }
 
@@ -1271,7 +1276,7 @@ void consoleui::printComputerConnections(vector<computer> computers)
     cout << Color::GRAY << endl;
     cout << left << setw(nameWidth) << setfill(' ') << "Computer";
     cout << left << setw(restWidth) << setfill(separator) << "ID";
-    cout << left << setw(nameWidth) << setfill(separator) << "Name";
+    tablePrint("Name", nameWidth);
     cout << left << setw(restWidth) << setfill(separator) << "Sex";
     cout << left << setw(restWidth) << setfill(separator) << "Birth Year";
     cout << left << setw(restWidth) << setfill(separator) << "Death Year";
