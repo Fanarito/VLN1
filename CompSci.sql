@@ -77,3 +77,67 @@ INSERT INTO "Persons" VALUES(11,'Maurice Wilkes','m',1913,2010,1,'Computer scien
 INSERT INTO "Persons" VALUES(12,'John Vincent Atanasoff','m',1903,1995,2,'American physicist who invented the first electronic digital computer.');
 INSERT INTO "Persons" VALUES(13,'Konrad Zuse','m',1910,1995,5,'German civil engineer and pioneer often regarded as the inventor of the modern computer.');
 INSERT INTO "Persons" VALUES(14,'Testy','m',1930,0,7,'A aussie walks into a bar');
+CREATE TRIGGER trgAfterDeleteComputers AFTER DELETE ON Computers
+BEGIN
+           DELETE FROM Nationality
+           WHERE ID not IN
+                       (
+                        SELECT NationalityID
+                        FROM   Persons
+                        WHERE NationalityID is not null
+                        AND (SELECT NationalityID FROM Computers) is not null
+                       );
+END;
+CREATE TRIGGER trgAfterDeleteComputersType AFTER DELETE ON Computers
+BEGIN
+           DELETE FROM Computer_Types
+           WHERE ID not IN
+                       (
+                        SELECT Computer_TypeID
+                        FROM   Computers
+                        WHERE Computer_TypeID is not null
+                       );
+END;
+CREATE TRIGGER trgAfterDeletePersons AFTER DELETE ON Persons
+BEGIN
+           DELETE FROM Nationality
+           WHERE ID not IN
+                       (
+                        SELECT NationalityID
+                        FROM   Persons
+                        WHERE NationalityID is not null
+                        AND (SELECT NationalityID FROM Computers) is not null
+                       );
+END;
+CREATE TRIGGER trgAfterUpdateComputers AFTER UPDATE ON Computers
+BEGIN
+           DELETE FROM Nationality
+           WHERE ID not IN
+                       (
+                        SELECT NationalityID
+                        FROM   Persons
+                        WHERE NationalityID is not null
+                        AND (SELECT NationalityID FROM Computers) is not null
+                       );
+END;
+CREATE TRIGGER trgAfterUpdateComputersType AFTER UPDATE ON Computers
+BEGIN
+           DELETE FROM Computer_Types
+           WHERE ID not IN
+                       (
+                        SELECT Computer_TypeID
+                        FROM   Computers
+                        WHERE Computer_TypeID is not null
+                       );
+END;
+CREATE TRIGGER trgAfterUpdatePersons AFTER UPDATE ON Persons
+BEGIN
+           DELETE FROM Nationality
+           WHERE ID not IN
+                       (
+                        SELECT NationalityID
+                        FROM   Persons
+                        WHERE NationalityID is not null
+                        AND (SELECT NationalityID FROM Computers) is not null
+                       );
+END;
