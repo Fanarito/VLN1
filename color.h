@@ -53,7 +53,7 @@ namespace Color {
         FG_AQUA     = 36,
         FG_RED      = 31,
         FG_PURPLE   = 35,
-        FG_YELLOW   = 226,
+        FG_YELLOW   = 93,
         FG_GRAY     = 37,
         FG_LBLUE    = 94,
         FG_LGREEN   = 92,
