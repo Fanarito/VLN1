@@ -1422,6 +1422,8 @@ void consoleui::printChristmas()
         std::this_thread::sleep_for(std::chrono::milliseconds(250));
         cout << string(100, '\n');
 
+        //I am so very sorry
+
         cout << w << "    *             "<<y<<",                    \n"
         "                _/^\\_                          \n"
         "               <     >                         \n"
