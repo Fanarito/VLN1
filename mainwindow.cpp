@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QStandardItemModel>
+#include <QStandardItem>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -11,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     displayAllPersons();
     displayAllComputers();
+    displayPersonsConnections();
+    displayComputersConnections();
 }
 
 MainWindow::~MainWindow()
@@ -76,6 +81,57 @@ void MainWindow::displayComputers(std::vector<computer> computers)
 
 void MainWindow::displayPersonsConnections()
 {
+    auto model = new QStandardItemModel;
+    auto root = model->invisibleRootItem();
+
+
     vector<person> persons = s.getPersons();
+
+    for (auto p : persons) {
+        auto row = new QStandardItem(QString::fromStdString(p.getName()));
+        QList<QStandardItem *> rowItems;
+        rowItems.append(row);
+
+        vector<computer> computers = s.getComputersConnectedWithPerson(p);
+
+        for (auto c : computers) {
+            QList<QStandardItem *> computerRows;
+            auto computerRow = new QStandardItem(QString::fromStdString(c.getName()));
+            computerRows.append(computerRow);
+            rowItems.first()->appendRow(computerRow);
+        }
+        root->appendRow(rowItems);
+    }
+
+    ui->PersonConnectionView->setModel(model);
+    ui->PersonConnectionView->expandAll();
+}
+
+
+void MainWindow::displayComputersConnections()
+{
+    auto model = new QStandardItemModel;
+    auto root = model->invisibleRootItem();
+
+    vector<computer> computers = s.getComputers();
+
+    for (auto c : computers) {
+        auto row = new QStandardItem(QString::fromStdString(c.getName()));
+        QList<QStandardItem *> rowItems;
+        rowItems.append(row);
+
+        vector<person> persons = s.getPersonsConnectedWithComputer(c);
+
+        for (auto p : persons) {
+            QList<QStandardItem *> personsRows;
+            auto personRow = new QStandardItem(QString::fromStdString(p.getName()));
+            personsRows.append(personRow);
+            rowItems.first()->appendRow(personRow);
+        }
+        root->appendRow(rowItems);
+    }
+
+    ui->ComputerConnectionView->setModel(model);
+    ui->ComputerConnectionView->expandAll();
 }
 

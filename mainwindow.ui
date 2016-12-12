@@ -206,66 +206,10 @@ p, li { white-space: pre-wrap; }
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QTreeWidget" name="treeWidget">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::NoEditTriggers</set>
-          </property>
-          <property name="sortingEnabled">
-           <bool>true</bool>
-          </property>
-          <column>
-           <property name="text">
-            <string>Tölvur -&gt; vísindamenn</string>
-           </property>
-          </column>
-          <item>
-           <property name="text">
-            <string>Mac</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Kalli</string>
-            </property>
-           </item>
-          </item>
-         </widget>
+         <widget class="QTreeView" name="PersonConnectionView"/>
         </item>
         <item>
-         <widget class="QTreeWidget" name="PersonConnectionView">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::NoEditTriggers</set>
-          </property>
-          <property name="sortingEnabled">
-           <bool>true</bool>
-          </property>
-          <column>
-           <property name="text">
-            <string>Vísindamenn -&gt; tölvur</string>
-           </property>
-          </column>
-          <item>
-           <property name="text">
-            <string>Kalli</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>mac </string>
-            </property>
-           </item>
-          </item>
-         </widget>
+         <widget class="QTreeView" name="ComputerConnectionView"/>
         </item>
        </layout>
       </widget>
