@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     object.cpp \
     person.cpp \
     service.cpp \
-    utils.cpp
+    utils.cpp \
+    additem.cpp
 
 HEADERS  += mainwindow.h \
     dataaccess.h \
@@ -31,9 +32,11 @@ HEADERS  += mainwindow.h \
     service.h \
     utils.h \
     color.h \
-    consoleui.h
+    consoleui.h \
+    additem.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    additem.ui
 
 DISTFILES += \
     VLN1.pro.user
