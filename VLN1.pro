@@ -29,7 +29,9 @@ HEADERS  += mainwindow.h \
     object.h \
     person.h \
     service.h \
-    utils.h
+    utils.h \
+    color.h \
+    consoleui.h
 
 FORMS    += mainwindow.ui
 
