@@ -44,7 +44,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -84,12 +84,18 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableWidget">
+         <widget class="QTableWidget" name="personList">
           <property name="font">
            <font>
             <weight>50</weight>
             <bold>false</bold>
            </font>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
           </property>
           <column>
            <property name="text">
@@ -157,12 +163,18 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableWidget_2">
+         <widget class="QTableWidget" name="computerList">
           <property name="font">
            <font>
             <weight>50</weight>
             <bold>false</bold>
            </font>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
           </property>
           <column>
            <property name="text">
@@ -201,6 +213,12 @@ p, li { white-space: pre-wrap; }
             <bold>false</bold>
            </font>
           </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
           <column>
            <property name="text">
             <string>Tölvur -&gt; vísindamenn</string>
@@ -225,6 +243,12 @@ p, li { white-space: pre-wrap; }
             <weight>50</weight>
             <bold>false</bold>
            </font>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
           </property>
           <column>
            <property name="text">
@@ -255,7 +279,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>19</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

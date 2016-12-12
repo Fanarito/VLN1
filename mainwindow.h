@@ -2,6 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <vector>
+
+#include "person.h"
+#include "service.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +21,17 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    service s;
+
+
+    void displayAllPersons();
+    void displayPersons(std::vector<person> persons);
+
+    void displayAllComputers();
+    void displayComputers(std::vector<computer> computers);
+
+    void displayPersonsConnections();
+    void displayComputersConnections();
 };
 
 #endif // MAINWINDOW_H
