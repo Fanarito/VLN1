@@ -35,3 +35,6 @@ FORMS    += mainwindow.ui
 
 DISTFILES += \
     VLN1.pro.user
+
+RESOURCES += \
+    resource.qrc

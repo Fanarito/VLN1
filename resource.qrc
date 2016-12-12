@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/addPerson">
+        <file>images/addPerson.png</file>
+        <file>images/glyphicons-7-user-add.png</file>
+        <file>images/Add.png</file>
+    </qresource>
+    <qresource prefix="/remove">
+        <file>images/Remove.png</file>
+    </qresource>
+    <qresource prefix="/Edit">
+        <file>images/Edit.png</file>
+    </qresource>
+</RCC>
