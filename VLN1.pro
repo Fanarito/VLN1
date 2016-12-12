@@ -1,31 +1,37 @@
-QT += core sql
-QT -= gui
+#-------------------------------------------------
+#
+# Project created by QtCreator 2016-12-12T12:42:00
+#
+#-------------------------------------------------
 
-CONFIG += c++11
+QT       += core gui
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = VLN1
-CONFIG += console
-CONFIG -= app_bundle
-
 TEMPLATE = app
 
-SOURCES += main.cpp \
-    consoleui.cpp \
-    dataaccess.cpp \
-    person.cpp \
+
+SOURCES += main.cpp\
+        mainwindow.cpp \
     computer.cpp \
+    dataaccess.cpp \
+    consoleui.cpp \
     object.cpp \
-    utils.cpp \
-    service.cpp
+    person.cpp \
+    service.cpp \
+    utils.cpp
 
-HEADERS += \
-    consoleui.h \
+HEADERS  += mainwindow.h \
     dataaccess.h \
-    person.h \
     computer.h \
-    object.h \
-    utils.h \
     constants.h \
-    color.h \
-    service.h
+    object.h \
+    person.h \
+    service.h \
+    utils.h
 
+FORMS    += mainwindow.ui
+
+DISTFILES += \
+    VLN1.pro.user
