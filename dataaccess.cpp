@@ -486,7 +486,7 @@ std::vector<computer> dataaccess::filterComputers(QString search_string)
 {
     QString q_string = "SELECT * FROM computers c JOIN Nationality n ON n.id = c.nationalityid JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID WHERE "
                        "name LIKE :name OR cp.computer_type LIKE :type OR n.nationality LIKE :nationality OR "
-                       "build_year LIKE :build_year";
+                       "build_year LIKE :build_year OR built LIKE :built";
 
     QSqlQuery query(db);
 
@@ -497,6 +497,7 @@ std::vector<computer> dataaccess::filterComputers(QString search_string)
     query.bindValue(":type", search_as_string);
     query.bindValue(":nationality", search_as_string);
     query.bindValue(":build_year", search_as_string);
+    query.bindValue(":built", search_as_string);
 
     if (!noerr)
         std::cerr << "Query did not prepare successfully." << std::endl;
