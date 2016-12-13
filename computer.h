@@ -4,6 +4,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include <QString>
+
 #include "object.h"
 #include "constants.h"
 
@@ -12,16 +14,16 @@ using namespace constants;
 class computer: public Object
 {
 private:
-    std::string m_type;
+    QString m_type;
     bool m_built;
     int m_buildyear;
 
 public:
-    computer(std::string name="Undefined", int buildyear=0, std::string type="Undefined",
-             bool built=false, std::string info="", std::string nationality="Undefined", int id=0);
+    computer(QString name="Undefined", int buildyear=0, QString type="Undefined",
+             bool built=false, QString info="", QString nationality="Undefined", int id=0);
 
-    std::string getType() const;
-    void setType(std::string type);
+    QString getType() const;
+    void setType(QString type);
 
     bool getBuilt() const;
     void setBuilt(bool built);

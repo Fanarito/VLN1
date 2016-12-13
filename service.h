@@ -17,43 +17,41 @@ class service
 {
 public:
     service();
-    void addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info);
+    void addPerson(QString name, QString gender, int birthyear, int deathyear, QString nationality, QString info);
     void addPerson(person p);
-    void addComputer(std::string name, int build_year, std::string type, int built, std::string nationality, std::string info);
+    void addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info);
     void addConnection(int comp_id, int person_id);
-    void addNationality(std::string nationality);
-    void addComputerType(std::string comp_type);
+    void addNationality(QString nationality);
+    void addComputerType(QString comp_type);
 
     void removePerson(int id);
     void removeComputer(int id);
     void removeConnection(int pid, int cid, bool &success);
-    void removeNationality(std::string nationality);
-    void removeComputerType(std::string comp_type);
 
     void updatePerson(person p);
     void updateComputer(computer c);
 
     vector<person> getPersons();
     vector<computer> getComputers();
-    vector<std::string> getNationalities();
-    vector<std::string> getComputerTypes();
+    vector<QString> getNationalities();
+    vector<QString> getComputerTypes();
 
     vector<person> getPersonsConnectedWithComputer(computer c);
     vector<computer> getComputersConnectedWithPerson(person p);
 
     person getPersonById(unsigned int id, bool &success);
     computer getComputerById(unsigned int id, bool &success);
-    int getNationalityById(std::string nat);
-    int getComputerTypeById(std::string comp_type);
+    int getNationalityById(QString nat);
+    int getComputerTypeById(QString comp_type);
 
     //Functions to sort the data according to the user's preferences.
-    vector<person> sortPersons(string column, string order);
-    vector<computer> sortComputers(string column, string order);
+    vector<person> sortPersons(QString column, QString order);
+    vector<computer> sortComputers(QString column, QString order);
 
-    vector<person> searchPersons(vector<string> args);
-    vector<computer> searchComputers(vector<string> args);
+    vector<person> searchPersons(vector<QString> args);
+    vector<computer> searchComputers(vector<QString> args);
 
-    vector<person> filterWithRegex(std::string _regex);
+    vector<person> filterWithRegex(QString _regex);
 
 private:
     dataaccess data;

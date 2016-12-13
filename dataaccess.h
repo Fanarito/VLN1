@@ -27,8 +27,8 @@ public:
 
     std::vector<person> getPersons();
     std::vector<computer> getComputers();
-    std::vector<std::string> getNationalities();
-    std::vector<std::string> getComputerTypes();
+    std::vector<QString> getNationalities();
+    std::vector<QString> getComputerTypes();
 
     std::vector<person> getPersonsByQuery(QString q);
     std::vector<computer> getComputersByQuery(QString q);
@@ -39,19 +39,19 @@ public:
     std::vector<person> getPersonsByComputerId(unsigned int id, bool &success);
     std::vector<computer> getComputersByPersonId(unsigned int id, bool &success);
 
-    std::vector<person> searchPersons(std::vector<std::string> args);
-    std::vector<computer> searchComputers(std::vector<std::string> args);
+    std::vector<person> searchPersons(std::vector<QString> args);
+    std::vector<computer> searchComputers(std::vector<QString> args);
 
-    std::vector<person> sortPersons(std::string column, std::string order);
-    std::vector<computer> sortComputers(std::string column, std::string order);
+    std::vector<person> sortPersons(QString column, QString order);
+    std::vector<computer> sortComputers(QString column, QString order);
 
     std::vector<person> execQueryPerson(QSqlQuery query);
     std::vector<computer> execQueryComputer(QSqlQuery query);
-    std::vector<std::string> execQueryNat(QSqlQuery query);
-    std::vector<std::string> execQueryComp(QSqlQuery query);
+    std::vector<QString> execQueryNat(QSqlQuery query);
+    std::vector<QString> execQueryComp(QSqlQuery query);
 
-    int getNationalityID(std::string nationality);
-    int getComputer_TypeID(std::string computer_type);
+    int getNationalityID(QString nationality);
+    int getComputer_TypeID(QString computer_type);
 
     void addPerson(person p);
     void removePerson(int id);
@@ -62,11 +62,9 @@ public:
     void addConnection(int comp_id, int person_id);
     void removeConnection(int pid, int cid);
 
-    void addNationality(std::string nationality);
-    void removeNationality(std::string nationality);
+    void addNationality(QString nationality);
 
-    void addComputerType(std::string comp_type);
-    void removeComputerType(std::string comp_type);
+    void addComputerType(QString comp_type);
 
     void updatePerson(person p);
     void updateComputer(computer c);

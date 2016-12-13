@@ -2,8 +2,8 @@
 
 
 
-person::person(std::string name, std::string sex, int birthyear,
-               int deathyear, std::string nationality, std::string info, int id)
+person::person(QString name, QString sex, int birthyear,
+               int deathyear, QString nationality, QString info, int id)
 {
     m_id = id;
     m_name = name;
@@ -15,12 +15,12 @@ person::person(std::string name, std::string sex, int birthyear,
 }
 
 
-std::string person::getSex() const
+QString person::getSex() const
 {
     return m_sex;
 }
 
-void person::setSex(std::string sex)
+void person::setSex(QString sex)
 {
     m_sex = sex;
 }
@@ -43,13 +43,3 @@ void person::setDeathYear(int year)
 {
     m_deathyear = year;
 }
-
-std::string person::getDetailedInformation()
-{
-    return "";
-}
-
-/*
- * Overloaded operator for printing out to console
- *
- */

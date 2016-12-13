@@ -1,4 +1,4 @@
-#ifndef CONSOLEUI_H
+/*#ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 
 
@@ -55,3 +55,4 @@ private:
 };
 
 #endif // CONSOLEUI_H
+*/
