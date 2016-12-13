@@ -19,6 +19,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_personsFilter_textChanged(const QString &arg1);
+
+    void on_computersFilter_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     service s;

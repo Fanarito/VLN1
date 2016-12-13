@@ -459,6 +459,51 @@ std::vector<computer> dataaccess::searchComputers(std::vector<QString> args)
     return execQueryComputer(query);
 }
 
+std::vector<person> dataaccess::filterPersons(QString search_string)
+{
+    QString q_string = "SELECT * FROM persons p JOIN Nationality n ON n.id = p.nationalityid WHERE "
+                       "name LIKE :name OR sex LIKE :sex OR n.nationality LIKE :nationality OR "
+                       "birth_year LIKE :birth_year OR death_year LIKE :death_year";
+
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare(q_string);
+
+    QString search_as_string = "%" + search_string + "%";
+    query.bindValue(":name", search_as_string);
+    query.bindValue(":sex", search_as_string);
+    query.bindValue(":nationality", search_as_string);
+    query.bindValue(":birth_year", search_as_string);
+    query.bindValue(":death_year", search_as_string);
+
+    if (!noerr)
+        std::cerr << "Query did not prepare successfully." << std::endl;
+
+    return execQueryPerson(query);
+}
+
+std::vector<computer> dataaccess::filterComputers(QString search_string)
+{
+    QString q_string = "SELECT * FROM computers c JOIN Nationality n ON n.id = c.nationalityid JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID WHERE "
+                       "name LIKE :name OR cp.computer_type LIKE :type OR n.nationality LIKE :nationality OR "
+                       "build_year LIKE :build_year";
+
+    QSqlQuery query(db);
+
+    bool noerr = query.prepare(q_string);
+
+    QString search_as_string = "%" + search_string + "%";
+    query.bindValue(":name", search_as_string);
+    query.bindValue(":type", search_as_string);
+    query.bindValue(":nationality", search_as_string);
+    query.bindValue(":build_year", search_as_string);
+
+    if (!noerr)
+        std::cerr << "Query did not prepare successfully." << std::endl;
+
+    return execQueryComputer(query);
+}
+
 person dataaccess::getPersonById(unsigned int id, bool &success)
 {
     QString q_string = QString::fromStdString("SELECT * FROM persons JOIN Nationality n ON n.id = nationalityid WHERE persons.id = :id");

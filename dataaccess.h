@@ -42,6 +42,9 @@ public:
     std::vector<person> searchPersons(std::vector<QString> args);
     std::vector<computer> searchComputers(std::vector<QString> args);
 
+    std::vector<person> filterPersons(QString search_string);
+    std::vector<computer> filterComputers(QString search_string);
+
     std::vector<person> sortPersons(QString column, QString order);
     std::vector<computer> sortComputers(QString column, QString order);
 

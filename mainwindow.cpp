@@ -139,3 +139,14 @@ void MainWindow::displayComputersConnections()
     ui->ComputerConnectionView->setModel(model);
 }
 
+void MainWindow::on_personsFilter_textChanged(const QString &arg1)
+{
+    vector<person> persons = s.filterPersons(arg1);
+    displayPersons(persons);
+}
+
+void MainWindow::on_computersFilter_textChanged(const QString &arg1)
+{
+    vector<computer> computers = s.filterComputers(arg1);
+    displayComputers(computers);
+}

@@ -51,6 +51,9 @@ public:
     vector<person> searchPersons(vector<QString> args);
     vector<computer> searchComputers(vector<QString> args);
 
+    std::vector<person> filterPersons(QString search_string);
+    std::vector<computer> filterComputers(QString search_string);
+
     vector<person> filterWithRegex(QString _regex);
 
 private:

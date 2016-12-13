@@ -115,6 +115,17 @@ vector<computer> service::searchComputers(vector<QString> args)
     return data.searchComputers(args);
 }
 
+std::vector<person> service::filterPersons(QString search_string)
+{
+    return data.filterPersons(search_string);
+}
+
+std::vector<computer> service::filterComputers(QString search_string)
+{
+    return data.filterComputers(search_string);
+}
+
+
 vector<person> service::sortPersons(QString column, QString order)
 {
     if(column == "id")
