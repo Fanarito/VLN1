@@ -24,6 +24,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::refresh()
+{
+    displayAllPersons();
+    displayAllComputers();
+    displayComputersConnections();
+    displayPersonsConnections();
+}
+
 void MainWindow::displayAllPersons()
 {
     vector<person> persons = s.getPersons();
@@ -164,8 +172,5 @@ void MainWindow::on_actionAdd_Person_triggered()
 {
     int addPersonReturnValue = add.exec();
 
-    displayAllPersons();
-    displayAllComputers();
-    displayComputersConnections();
-    displayPersonsConnections();
+    refresh();
 }

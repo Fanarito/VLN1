@@ -32,6 +32,7 @@ private:
     service s;
     addItem add;
 
+    void refresh();
 
     void displayAllPersons();
     void displayPersons(std::vector<person> persons);

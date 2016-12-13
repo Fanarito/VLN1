@@ -45,3 +45,32 @@ void addItem::on_AddPersonButton_clicked(bool checked)
     ui->AddPersonNameInput->setText("");
 
 }
+
+void addItem::on_AddComputerButton_clicked()
+{
+    //TODO:LabelErrorAddComputer?
+
+    bool thereWasAnError = false;
+
+    QString name = ui->AddComputerNameInput->text();
+    QString type = ui->AddComputerTypeInput->text();
+    bool built = ui->AddComputerBuiltCheckBox->isChecked();
+    int buildyear = ui->AddComputerBuildYearInput->text().toInt();
+    QString nationality = ui->AddComputerNationalityDropdown->currentText();
+    QString info = ui->AddComputerInfoInput->toPlainText();
+
+
+    if(name.isEmpty())
+    {
+        thereWasAnError = true;
+    }
+
+    if(thereWasAnError)
+    {
+        return;
+    }
+
+    s.addComputer(name, buildyear, type, built, nationality, info);
+
+    ui->AddPersonNameInput->setText("");
+}
