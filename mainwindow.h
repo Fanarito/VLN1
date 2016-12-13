@@ -6,6 +6,7 @@
 
 #include "person.h"
 #include "service.h"
+#include "additem.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     service s;
+    addItem add;
 
 
     void displayAllPersons();
