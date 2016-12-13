@@ -96,7 +96,7 @@ std::vector<QString> dataaccess::getNationalities()
 {
     QSqlQuery query(db);
 
-    QString q =  "SELECT Nationality FROM Nationality";
+    QString q =  "SELECT Nationality FROM Nationality ORDER BY Nationality";
 
     bool noerr = query.prepare(q);
     if(!noerr) std::cerr << "Query did not prepare successfully" << std::endl;

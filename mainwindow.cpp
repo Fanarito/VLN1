@@ -31,6 +31,8 @@ void MainWindow::displayAllPersons()
 
 void MainWindow::displayPersons(vector<person> persons)
 {
+    ui->personList->setSortingEnabled(false);
+
     ui->personList->clearContents();
     ui->personList->setRowCount(persons.size());
 
@@ -50,6 +52,8 @@ void MainWindow::displayPersons(vector<person> persons)
         ui->personList->setItem(row, 3, new QTableWidgetItem(death_year));
         ui->personList->setItem(row, 4, new QTableWidgetItem(nationality));
     }
+
+    ui->personList->setSortingEnabled(true);
 }
 
 void MainWindow::displayAllComputers()
@@ -60,6 +64,8 @@ void MainWindow::displayAllComputers()
 
 void MainWindow::displayComputers(std::vector<computer> computers)
 {
+    ui->computerList->setSortingEnabled(false);
+
     ui->computerList->clearContents();
     ui->computerList->setRowCount(computers.size());
 
@@ -77,6 +83,8 @@ void MainWindow::displayComputers(std::vector<computer> computers)
         ui->computerList->setItem(row, 2, new QTableWidgetItem(built));
         ui->computerList->setItem(row, 3, new QTableWidgetItem(nationality));
     }
+
+    ui->computerList->setSortingEnabled(true);
 }
 
 void MainWindow::displayPersonsConnections()
