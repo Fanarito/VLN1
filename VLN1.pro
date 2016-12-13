@@ -46,4 +46,5 @@ DISTFILES += \
     CompSci.sqlite
 
 RESOURCES += \
-    resource.qrc
+    resource.qrc \
+    CompSci.sqlite

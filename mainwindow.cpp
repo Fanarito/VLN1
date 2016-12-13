@@ -81,7 +81,10 @@ void MainWindow::displayComputers(std::vector<computer> computers)
 
 void MainWindow::displayPersonsConnections()
 {
+    QStringList string_list;
+    string_list.append("Persons");
     auto model = new QStandardItemModel;
+    model->setHorizontalHeaderLabels(string_list);
     auto root = model->invisibleRootItem();
 
 
@@ -104,13 +107,15 @@ void MainWindow::displayPersonsConnections()
     }
 
     ui->PersonConnectionView->setModel(model);
-    ui->PersonConnectionView->expandAll();
 }
 
 
 void MainWindow::displayComputersConnections()
 {
+    QStringList string_list;
+    string_list.append("Computers");
     auto model = new QStandardItemModel;
+    model->setHorizontalHeaderLabels(string_list);
     auto root = model->invisibleRootItem();
 
     vector<computer> computers = s.getComputers();
@@ -132,6 +137,5 @@ void MainWindow::displayComputersConnections()
     }
 
     ui->ComputerConnectionView->setModel(model);
-    ui->ComputerConnectionView->expandAll();
 }
 
