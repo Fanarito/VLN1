@@ -23,6 +23,8 @@ private slots:
 private:
     Ui::addItem *ui;
     service s;
+
+    void populateComboBoxes();
 };
 
 
