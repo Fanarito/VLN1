@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>480</height>
+    <height>494</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="AddPersonNameInput">
          <property name="text">
           <string/>
          </property>
@@ -70,7 +70,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="AddPersonSexInput"/>
        </item>
        <item>
         <widget class="QLabel" name="label_3">
@@ -86,7 +86,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="BirthYearInput">
+        <widget class="QSpinBox" name="AddPersonBirthYearInput">
          <property name="font">
           <font>
            <weight>50</weight>
@@ -115,7 +115,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="DeathYearInput">
+        <widget class="QSpinBox" name="AddPersonDeathYearInput">
          <property name="font">
           <font>
            <weight>50</weight>
@@ -144,7 +144,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_5"/>
+        <widget class="QLineEdit" name="AddPersonNationalityInput"/>
        </item>
        <item>
         <widget class="QLabel" name="label_6">
@@ -160,10 +160,10 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="textEdit"/>
+        <widget class="QTextEdit" name="AddPersonInfoInput"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="AddPersonButton">
          <property name="font">
           <font>
            <family>Calibri Light</family>
@@ -190,7 +190,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_3">
+        <widget class="QLineEdit" name="AddComputerNameInput">
          <property name="text">
           <string/>
          </property>
@@ -204,14 +204,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_4">
+        <widget class="QLineEdit" name="AddComputerTypeInput">
          <property name="text">
           <string/>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox">
+        <widget class="QCheckBox" name="AddComputerBuiltCheckBox">
          <property name="font">
           <font>
            <family>Calibri Light</family>
@@ -240,7 +240,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_7">
+        <widget class="QLineEdit" name="AddComputerBuildYearInput">
          <property name="text">
           <string/>
          </property>
@@ -261,7 +261,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox"/>
+        <widget class="QComboBox" name="AddComputerNationalityDropdown"/>
        </item>
        <item>
         <widget class="QLabel" name="label_12">
@@ -278,10 +278,10 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="textEdit_2"/>
+        <widget class="QTextEdit" name="AddComputerInfoInput"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="AddComputerButton">
          <property name="text">
           <string>Add computer!</string>
          </property>
@@ -331,7 +331,7 @@
         <widget class="QListView" name="listView"/>
        </item>
        <item row="2" column="0" colspan="2">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="AddConnectionButton">
          <property name="font">
           <font>
            <family>Calibri Light</family>
