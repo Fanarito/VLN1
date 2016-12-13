@@ -41,6 +41,6 @@ void addItem::on_AddPersonButton_clicked()
         return;
     }
 
-    s.addPerson(name, sex, birthYearInt, deathYearInt, nationality, info);
+
 
 }

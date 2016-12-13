@@ -24,6 +24,8 @@ private slots:
 
     void on_computersFilter_textChanged(const QString &arg1);
 
+    void on_actionAdd_Person_triggered();
+
 private:
     Ui::MainWindow *ui;
     service s;

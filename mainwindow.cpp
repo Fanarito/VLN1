@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "additem.h"
 
 #include <QStandardItemModel>
 #include <QStandardItem>
@@ -149,4 +150,9 @@ void MainWindow::on_computersFilter_textChanged(const QString &arg1)
 {
     vector<computer> computers = s.filterComputers(arg1);
     displayComputers(computers);
+}
+
+void MainWindow::on_actionAdd_Person_triggered()
+{
+    addItem add(this);
 }

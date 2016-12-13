@@ -57,7 +57,7 @@ public:
     vector<person> filterWithRegex(QString _regex);
 
 private:
-    dataaccess data;
+    static dataaccess data;
 };
 
 #endif // SERVICE_H

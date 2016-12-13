@@ -20,7 +20,7 @@ public:
 
 private:
     Ui::addItem *ui;
-    service s;
+    service c;
 };
 
 

@@ -1,5 +1,7 @@
 #include "service.h"
 
+dataaccess service::data;
+
 service::service()
 {
 
