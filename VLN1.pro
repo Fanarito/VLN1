@@ -39,7 +39,8 @@ FORMS    += mainwindow.ui \
     additem.ui
 
 DISTFILES += \
-    VLN1.pro.user
+    VLN1.pro.user \
+    CompSci.sqlite
 
 RESOURCES += \
     resource.qrc
