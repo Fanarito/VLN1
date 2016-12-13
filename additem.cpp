@@ -13,8 +13,12 @@ addItem::~addItem()
     delete ui;
 }
 
-void addItem::on_AddPersonButton_clicked()
+void addItem::on_AddPersonButton_clicked(bool checked)
 {
+    ui->LabelErrorAddPersonName->setText("");
+
+    bool thereWasAnError = false;
+
     QString name = ui->AddPersonNameInput->text();
     QString sex = ui->AddPersonSexInput->text();
     QString birthYear = ui->AddPersonBirthYearInput->text();
@@ -27,20 +31,17 @@ void addItem::on_AddPersonButton_clicked()
 
     if(name.isEmpty())
     {
-        cout << "Name cannot be empty";
-        return;
-    }
-    if(sex.isEmpty())
-    {
-        cout << "Sex cannot be empty";
-        return;
-    }
-    if(birthYear.isEmpty())
-    {
-        cout << "Birth year cannot be empty";
-        return;
+        ui->LabelErrorAddPersonName->setText("<span style='color: red'>Name cannot be empty</span>");
+        thereWasAnError = true;
     }
 
+    if(thereWasAnError)
+    {
+        return;
+    }
     s.addPerson(name, sex, birthYearInt, deathYearInt, nationality, info);
+
+    ui->AddPersonNameInput->setText("");
+
 
 }

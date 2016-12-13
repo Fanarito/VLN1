@@ -16,7 +16,9 @@ class addItem : public QDialog
 public:
     explicit addItem(QWidget *parent = 0);
     ~addItem();
-    void on_AddPersonButton_clicked();
+
+private slots:
+    void on_AddPersonButton_clicked(bool checked);
 
 private:
     Ui::addItem *ui;

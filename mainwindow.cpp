@@ -150,3 +150,9 @@ void MainWindow::on_computersFilter_textChanged(const QString &arg1)
     vector<computer> computers = s.filterComputers(arg1);
     displayComputers(computers);
 }
+
+void MainWindow::on_actionAdd_Person_triggered()
+{
+    int addPersonReturnValue = add.exec();
+
+}

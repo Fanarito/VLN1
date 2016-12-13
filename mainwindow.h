@@ -6,6 +6,7 @@
 
 #include "person.h"
 #include "service.h"
+#include "additem.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,9 +25,12 @@ private slots:
 
     void on_computersFilter_textChanged(const QString &arg1);
 
+    void on_actionAdd_Person_triggered();
+
 private:
     Ui::MainWindow *ui;
     service s;
+    addItem add;
 
 
     void displayAllPersons();
