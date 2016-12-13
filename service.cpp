@@ -15,12 +15,12 @@ vector<computer> service::getComputers()
     return data.getComputers();
 }
 
-vector<std::string> service::getNationalities()
+vector<QString> service::getNationalities()
 {
     return data.getNationalities();
 }
 
-vector<std::string> service::getComputerTypes()
+vector<QString> service::getComputerTypes()
 {
     return data.getComputerTypes();
 }
@@ -49,18 +49,18 @@ computer service::getComputerById(unsigned int id, bool &success)
     return data.getComputerById(id, success);
 }
 
-int service::getNationalityById(std::string nat)
+int service::getNationalityById(QString nat)
 {
     return data.getNationalityID(nat);
 }
 
-int service::getComputerTypeById(std::string comp_type)
+int service::getComputerTypeById(QString comp_type)
 {
     return data.getComputer_TypeID(comp_type);
 }
 
 //Adds a person to a vector for later use
-void service::addPerson(std::string name, std::string gender, int birthyear, int deathyear, std::string nationality, std::string info)
+void service::addPerson(QString name, QString gender, int birthyear, int deathyear, QString nationality, QString info)
 {
     data.addPerson(person(name,gender,birthyear,deathyear,nationality,info));
 }
@@ -70,7 +70,7 @@ void service::addPerson(person p)
     data.addPerson(p);
 }
 
-void service::addComputer(std::string name, int build_year, std::string type, int built, std::string nationality, std::string info)
+void service::addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info)
 {
     data.addComputer(computer(name, build_year, type, built, nationality, info));
 }
@@ -95,27 +95,27 @@ void service::removeConnection(int pid, int cid, bool &success)
     data.removeConnection(pid, cid);
 }
 
-void service::removeNationality(std::string nationality)
+/*void service::removeNationality(QString nationality)
 {
     data.removeNationality(nationality);
 }
 
-void service::removeComputerType(std::string comp_type)
+void service::removeComputerType(QString comp_type)
 {
     data.removeComputerType(comp_type);
-}
+}*/
 
-vector<person> service::searchPersons(vector<string> args)
+vector<person> service::searchPersons(vector<QString> args)
 {
     return data.searchPersons(args);
 }
 
-vector<computer> service::searchComputers(vector<string> args)
+vector<computer> service::searchComputers(vector<QString> args)
 {
     return data.searchComputers(args);
 }
 
-vector<person> service::sortPersons(string column, string order)
+vector<person> service::sortPersons(QString column, QString order)
 {
     if(column == "id")
     {
@@ -125,7 +125,7 @@ vector<person> service::sortPersons(string column, string order)
     return data.sortPersons(column, order);
 }
 
-vector<computer> service::sortComputers(string column, string order)
+vector<computer> service::sortComputers(QString column, QString order)
 {
     if(column == "id")
     {
@@ -150,12 +150,12 @@ void service::addConnection(int comp_id, int person_id)
     data.addConnection(comp_id, person_id);
 }
 
-void service::addNationality(std::string nationality)
+void service::addNationality(QString nationality)
 {
     data.addNationality(nationality);
 }
 
-void service::addComputerType(std::string comp_type)
+void service::addComputerType(QString comp_type)
 {
     data.addComputerType(comp_type);
 }

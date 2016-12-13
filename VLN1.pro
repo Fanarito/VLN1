@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     service.cpp \
     utils.cpp \
     additem.cpp \
-    removeitem.cpp
+    removeitem.cpp \
+    infopage.cpp \
+    infopagecomp.cpp
 
 HEADERS  += mainwindow.h \
     dataaccess.h \
@@ -35,11 +37,15 @@ HEADERS  += mainwindow.h \
     color.h \
     consoleui.h \
     additem.h \
-    removeitem.h
+    removeitem.h \
+    infopage.h \
+    infopagecomp.h
 
 FORMS    += mainwindow.ui \
     additem.ui \
-    removeitem.ui
+    removeitem.ui \
+    infopage.ui \
+    infopagecomp.ui
 
 DISTFILES += \
     VLN1.pro.user \

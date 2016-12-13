@@ -1,6 +1,8 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include <QString>
+
 #include <string>
 #include <iostream>
 
@@ -8,22 +10,22 @@ class Object
 {
 protected:
     int m_id;
-    std::string m_name;
-    std::string m_nationality;
-    std::string m_info;
+    QString m_name;
+    QString m_nationality;
+    QString m_info;
 public:
-    Object(int id = 0, std::string name="Undefined", std::string nationality="Undefined", std::string info="");
+    Object(int id = 0, QString name="Undefined", QString nationality="Undefined", QString info="");
 
     unsigned int getId() const;
 
-    std::string getName() const;
-    void setName(std::string name);
+    QString getName() const;
+    void setName(QString name);
 
-    std::string getNationality() const;
-    void setNationality(std::string nationality);
+    QString getNationality() const;
+    void setNationality(QString nationality);
 
-    std::string getInfo() const;
-    void setInfo(std::string info);
+    QString getInfo() const;
+    void setInfo(QString info);
 };
 
 #endif // OBJECT_H

@@ -38,11 +38,11 @@ void MainWindow::displayPersons(vector<person> persons)
     {
         person p = persons.at(row);
 
-        QString name = QString::fromStdString(p.getName());
-        QString sex = QString::fromStdString(p.getSex());
+        QString name = p.getName();
+        QString sex = p.getSex();
         QString birth_year = QString::number(p.getBirthYear());
         QString death_year = QString::number(p.getDeathYear());
-        QString nationality = QString::fromStdString(p.getNationality());
+        QString nationality = p.getNationality();
 
         ui->personList->setItem(row, 0, new QTableWidgetItem(name));
         ui->personList->setItem(row, 1, new QTableWidgetItem(sex));
@@ -67,10 +67,10 @@ void MainWindow::displayComputers(std::vector<computer> computers)
     {
         computer c = computers.at(row);
 
-        QString name = QString::fromStdString(c.getName());
-        QString type = QString::fromStdString(c.getType());
+        QString name = c.getName();
+        QString type = c.getType();
         QString built = QString::number(c.getBuildYear());
-        QString nationality = QString::fromStdString(c.getNationality());
+        QString nationality = c.getNationality();
 
         ui->computerList->setItem(row, 0, new QTableWidgetItem(name));
         ui->computerList->setItem(row, 1, new QTableWidgetItem(type));
@@ -91,7 +91,7 @@ void MainWindow::displayPersonsConnections()
     vector<person> persons = s.getPersons();
 
     for (auto p : persons) {
-        auto row = new QStandardItem(QString::fromStdString(p.getName()));
+        auto row = new QStandardItem(p.getName());
         QList<QStandardItem *> rowItems;
         rowItems.append(row);
 
@@ -99,7 +99,7 @@ void MainWindow::displayPersonsConnections()
 
         for (auto c : computers) {
             QList<QStandardItem *> computerRows;
-            auto computerRow = new QStandardItem(QString::fromStdString(c.getName()));
+            auto computerRow = new QStandardItem(c.getName());
             computerRows.append(computerRow);
             rowItems.first()->appendRow(computerRow);
         }
@@ -121,7 +121,7 @@ void MainWindow::displayComputersConnections()
     vector<computer> computers = s.getComputers();
 
     for (auto c : computers) {
-        auto row = new QStandardItem(QString::fromStdString(c.getName()));
+        auto row = new QStandardItem(c.getName());
         QList<QStandardItem *> rowItems;
         rowItems.append(row);
 
@@ -129,7 +129,7 @@ void MainWindow::displayComputersConnections()
 
         for (auto p : persons) {
             QList<QStandardItem *> personsRows;
-            auto personRow = new QStandardItem(QString::fromStdString(p.getName()));
+            auto personRow = new QStandardItem(p.getName());
             personsRows.append(personRow);
             rowItems.first()->appendRow(personRow);
         }

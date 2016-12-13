@@ -1,6 +1,6 @@
 #include "object.h"
 
-Object::Object(int id, std::string name, std::string nationality, std::string info)
+Object::Object(int id, QString name, QString nationality, QString info)
 {
     m_id = id;
     m_name = name;
@@ -13,32 +13,32 @@ unsigned int Object::getId() const
     return m_id;
 }
 
-std::string Object::getName() const
+QString Object::getName() const
 {
     return m_name;
 }
 
-void Object::setName(std::string name)
+void Object::setName(QString name)
 {
     m_name = name;
 }
 
-std::string Object::getNationality() const
+QString Object::getNationality() const
 {
     return m_nationality;
 }
 
-void Object::setNationality(std::string nationality)
+void Object::setNationality(QString nationality)
 {
     m_nationality = nationality;
 }
 
-std::string Object::getInfo() const
+QString Object::getInfo() const
 {
     return m_info;
 }
 
-void Object::setInfo(std::string info)
+void Object::setInfo(QString info)
 {
     m_info = info;
 }

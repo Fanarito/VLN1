@@ -1,7 +1,7 @@
 #include "computer.h"
 
-computer::computer(std::string name, int buildyear, std::string type,
-                   bool built, std::string nationality, std::string info, int id)
+computer::computer(QString name, int buildyear, QString type,
+                   bool built, QString nationality, QString info, int id)
 {
     m_id = id;
     m_name = name;
@@ -12,11 +12,11 @@ computer::computer(std::string name, int buildyear, std::string type,
     m_built = built;
 }
 
-std::string computer::getType() const
+QString computer::getType() const
 {
     return m_type;
 }
-void computer::setType(std::string type)
+void computer::setType(QString type)
 {
     m_type = type;
 }
