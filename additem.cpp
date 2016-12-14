@@ -78,6 +78,9 @@ void addItem::on_AddPersonButton_clicked(bool checked)
     ui->AddPersonNameInput->setText("");
     ui->AddPersonInfoInput->setText("");
 
+    displayAllPersons();
+    displayAllComputers();
+
     this->done(0);
 
 }
@@ -148,6 +151,9 @@ void addItem::on_AddComputerButton_clicked()
 
     ui->AddComputerNameInput->setText("");
     ui->AddComputerInfoInput->setText("");
+
+    displayAllPersons();
+    displayAllComputers();
 
     this->done(0);
 }

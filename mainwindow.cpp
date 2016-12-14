@@ -166,7 +166,7 @@ void MainWindow::on_computersFilter_textChanged(const QString &arg1)
 
 void MainWindow::on_actionAdd_Person_triggered()
 {
-    int addPersonReturnValue = add.exec();
+    add.exec();
 
     ui->personsFilter->setText("");
     ui->computersFilter->setText("");
