@@ -6,6 +6,8 @@ addItem::addItem(QWidget *parent) :
     ui(new Ui::addItem)
 {
     ui->setupUi(this);
+    displayAllPersons();
+    displayAllComputers();
     populateComboBoxes();
 }
 
@@ -148,4 +150,42 @@ void addItem::on_AddComputerButton_clicked()
     ui->AddComputerInfoInput->setText("");
 
     this->done(0);
+}
+
+void addItem::displayPersons(vector<person> persons)
+{
+    ui->PersonConnections->clear();
+
+    for (size_t row = 0; row < persons.size(); row++)
+    {
+        person currentPerson = persons.at(row);
+
+        ui->PersonConnections->addItem(currentPerson.getName());
+
+    }
+}
+
+void addItem::displayAllPersons()
+{
+    vector<person> persons = s.getPersons();
+    displayPersons(persons);
+}
+
+void addItem::displayComputers(vector<computer> computers)
+{
+    ui->ComputerConnections->clear();
+
+    for (size_t row = 0; row < computers.size(); row++)
+    {
+        computer currentComputer = computers.at(row);
+
+        ui->ComputerConnections->addItem(currentComputer.getName());
+
+    }
+}
+
+void addItem::displayAllComputers()
+{
+    vector<computer> computers = s.getComputers();
+    displayComputers(computers);
 }

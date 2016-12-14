@@ -2,6 +2,7 @@
 #define ADDITEM_H
 
 #include <QDialog>
+#include <QAbstractListModel>
 #include "person.h"
 #include "service.h"
 
@@ -27,6 +28,10 @@ private:
     service s;
 
     void populateComboBoxes();
+    void displayPersons(vector<person> persons);
+    void displayAllPersons();
+    void displayComputers(vector<computer> computers);
+    void displayAllComputers();
 };
 
 
