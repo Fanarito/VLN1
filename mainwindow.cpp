@@ -55,6 +55,8 @@ void MainWindow::displayPersons(vector<person> persons)
     }
 
     ui->personList->setSortingEnabled(true);
+
+    currentlyDisplayedPersons = persons;
 }
 
 void MainWindow::displayAllComputers()
@@ -171,4 +173,24 @@ void MainWindow::on_actionAdd_Person_triggered()
     displayAllComputers();
     displayComputersConnections();
     displayPersonsConnections();
+}
+
+void MainWindow::on_actionRemove_Item_triggered()
+{
+    int currentlySelectedPersonIndex = ui->personList->currentIndex().row();
+
+    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+
+    int id = s.getIdOfPerson((currentlySelectedPerson));
+
+    s.removePerson(id);
+
+    ui->personsFilter->setText("");
+    ui->computersFilter->setText("");
+
+    displayAllPersons();
+    displayAllComputers();
+    displayComputersConnections();
+    displayPersonsConnections();
+
 }

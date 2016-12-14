@@ -27,10 +27,14 @@ private slots:
 
     void on_actionAdd_Person_triggered();
 
+    void on_actionRemove_Item_triggered();
+
 private:
     Ui::MainWindow *ui;
     service s;
     addItem add;
+
+    vector<person> currentlyDisplayedPersons;
 
 
     void displayAllPersons();

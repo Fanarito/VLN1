@@ -56,6 +56,8 @@ public:
 
     vector<person> filterWithRegex(QString _regex);
 
+    int getIdOfPerson(person p);
+
 private:
     static dataaccess data;
 };

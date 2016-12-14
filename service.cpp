@@ -172,3 +172,10 @@ void service::addComputerType(QString comp_type)
 {
     data.addComputerType(comp_type);
 }
+
+int service::getIdOfPerson(person p)
+{
+    int id = p.getId();
+
+    return id;
+}
