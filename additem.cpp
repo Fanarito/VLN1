@@ -17,11 +17,13 @@ addItem::~addItem()
 void addItem::on_AddPersonButton_clicked(bool checked)
 {
     ui->LabelErrorAddPersonName->setText("");
+    ui->LabelErrorAddPersonBirthYear->setText("");
+    ui->LabelErrorAddPersonDeathYear->setText("");
 
     bool thereWasAnError = false;
 
     QString name = ui->AddPersonNameInput->text();
-    QString sex = ui->AddPersonSexInput->text();
+    QString sex = ui->AddPersonSexDropdown->currentText();
     QString birthYear = ui->AddPersonBirthYearInput->text();
     QString deathYear = ui->AddPersonDeathYearInput->text();
     QString nationality = ui->AddPersonNationalityDropdown->currentText();
@@ -36,6 +38,34 @@ void addItem::on_AddPersonButton_clicked(bool checked)
         thereWasAnError = true;
     }
 
+    if(sex.isEmpty())
+    {
+        ui->LabelErrorAddPersonSex->setText("<span style='color: red'>Sex cannot be empty</span>");
+        thereWasAnError = true;
+    }
+
+    if(sex.isEmpty())
+    {
+        ui->LabelErrorAddPersonBirthYear->setText("<span style='color: red'>Birth year cannot be empty</span>");
+        thereWasAnError = true;
+    }
+
+    if((deathYearInt > 0) && (deathYearInt < 780))
+    {
+        ui->LabelErrorAddPersonDeathYear->setText("<span style='color: red'>Invalid year of death</span>");
+        thereWasAnError = true;
+    }
+    if((deathYearInt < birthYearInt) && (deathYearInt != 0))
+    {
+        ui->LabelErrorAddPersonDeathYear->setText("<span style='color: red'>Invalid year of death</span>");
+        thereWasAnError = true;
+    }
+    if(birthYearInt < 780)
+    {
+        ui->LabelErrorAddPersonBirthYear->setText("<span style='color: red'>Invalid year of birth</span>");
+        thereWasAnError = true;
+    }
+
     if(thereWasAnError)
     {
         return;
@@ -44,6 +74,9 @@ void addItem::on_AddPersonButton_clicked(bool checked)
     s.addPerson(name, sex, birthYearInt, deathYearInt, nationality, info);
 
     ui->AddPersonNameInput->setText("");
+    ui->AddPersonInfoInput->setText("");
+
+    this->done(0);
 
 }
 
@@ -56,4 +89,7 @@ void addItem::populateComboBoxes()
         ui->AddPersonNationalityDropdown->addItem(nationality);
         ui->AddComputerNationalityDropdown->addItem(nationality);
     }
+
+    ui->AddPersonSexDropdown->addItem("f");
+    ui->AddPersonSexDropdown->addItem("m");
 }
