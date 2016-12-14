@@ -11,6 +11,7 @@
 #include "infopage.h"
 #include "computer.h"
 #include "object.h"
+#include "helpscreen.h"
 
 namespace Ui {
 class MainWindow;
@@ -49,6 +50,7 @@ private:
     addItem add;
     infoPageComp infoComp;
     InfoPage infoPers;
+    helpscreen help;
 
     vector<person> currentlyDisplayedPersons;
     vector<computer> currentlyDisplayedComputers;

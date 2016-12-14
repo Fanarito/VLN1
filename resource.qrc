@@ -16,4 +16,7 @@
     <qresource prefix="/">
         <file>images/GraceHopper.jpg</file>
     </qresource>
+    <qresource prefix="/help">
+        <file>images/helpicon2.png</file>
+    </qresource>
 </RCC>

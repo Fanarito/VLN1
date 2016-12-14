@@ -269,5 +269,13 @@ void MainWindow::on_removeConnectionButton_clicked()
 
 void MainWindow::on_actionActionHelp_triggered()
 {
+    help.exec();
 
+    ui->personsFilter->setText("");
+    ui->computersFilter->setText("");
+
+    displayAllPersons();
+    displayAllComputers();
+    displayComputersConnections();
+    displayPersonsConnections();
 }

@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     utils.cpp \
     additem.cpp \
     infopage.cpp \
-    infopagecomp.cpp
+    infopagecomp.cpp \
+    helpscreen.cpp
 
 HEADERS  += mainwindow.h \
     dataaccess.h \
@@ -37,13 +38,14 @@ HEADERS  += mainwindow.h \
     consoleui.h \
     additem.h \
     infopage.h \
-    infopagecomp.h
+    infopagecomp.h \
+    helpscreen.h
 
 FORMS    += mainwindow.ui \
     additem.ui \
     infopage.ui \
     infopagecomp.ui \
-    help.ui
+    helpscreen.ui
 
 DISTFILES += \
     VLN1.pro.user \

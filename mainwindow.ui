@@ -232,7 +232,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAdd_Person">
    <property name="icon">
-    <iconset>
+    <iconset resource="resource.qrc">
      <normaloff>:/addPerson/images/Add.png</normaloff>:/addPerson/images/Add.png</iconset>
    </property>
    <property name="text">
@@ -241,7 +241,7 @@
   </action>
   <action name="actionEditItem">
    <property name="icon">
-    <iconset>
+    <iconset resource="resource.qrc">
      <normaloff>:/Edit/images/Edit.png</normaloff>:/Edit/images/Edit.png</iconset>
    </property>
    <property name="text">
@@ -250,8 +250,8 @@
   </action>
   <action name="actionActionHelp">
    <property name="icon">
-    <iconset>
-     <normaloff>../help_icon.png</normaloff>../help_icon.png</iconset>
+    <iconset resource="resource.qrc">
+     <normaloff>:/help/images/helpicon2.png</normaloff>:/help/images/helpicon2.png</iconset>
    </property>
    <property name="text">
     <string>actionHelp</string>
@@ -259,6 +259,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
