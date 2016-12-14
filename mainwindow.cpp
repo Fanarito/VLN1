@@ -1,9 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "additem.h"
+#include "computer.h"
+#include "object.h"
+#include "person.h"
 
 #include <QStandardItemModel>
 #include <QStandardItem>
+#include <QString>
 
 using namespace std;
 
@@ -51,8 +55,20 @@ void MainWindow::displayPersons(vector<person> persons)
 
         QString name = p.getName();
         QString sex = p.getSex();
+        if(p.getSex() == "m")
+        {
+            sex = "Male";
+        }
+        else
+        {
+            sex = "Female";
+        }
         QString birth_year = QString::number(p.getBirthYear());
         QString death_year = QString::number(p.getDeathYear());
+        if(p.getDeathYear() == 0)
+        {
+            death_year = "Alive";
+        }
         QString nationality = p.getNationality();
 
         ui->personList->setItem(row, 0, new QTableWidgetItem(name));
@@ -63,6 +79,8 @@ void MainWindow::displayPersons(vector<person> persons)
     }
 
     ui->personList->setSortingEnabled(true);
+
+    currentlyDisplayedPersons = persons;
 }
 
 void MainWindow::displayAllComputers()
@@ -85,6 +103,10 @@ void MainWindow::displayComputers(std::vector<computer> computers)
         QString name = c.getName();
         QString type = c.getType();
         QString built = QString::number(c.getBuildYear());
+        if(c.getBuildYear() == 0)
+        {
+            built = "Not built";
+        }
         QString nationality = c.getNationality();
 
         ui->computerList->setItem(row, 0, new QTableWidgetItem(name));
@@ -94,6 +116,8 @@ void MainWindow::displayComputers(std::vector<computer> computers)
     }
 
     ui->computerList->setSortingEnabled(true);
+
+    currentlyDisplayedComputers = computers;
 }
 
 void MainWindow::displayPersonsConnections()
@@ -170,7 +194,93 @@ void MainWindow::on_computersFilter_textChanged(const QString &arg1)
 
 void MainWindow::on_actionAdd_Person_triggered()
 {
-    int addPersonReturnValue = add.exec();
+    add.exec();
+
+    ui->personsFilter->setText("");
+    ui->computersFilter->setText("");
+
+    displayAllPersons();
+    displayAllComputers();
+    displayComputersConnections();
+    displayPersonsConnections();
+}
+
+void MainWindow::on_removeComputerButton_clicked()
+{
+    int currentlySelectedComputerIndex = ui->computerList->currentIndex().row();
+
+    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
+
+    int computerId = s.getIdOfComputer((currentlySelectedComputer));
+
+    s.removeComputer(computerId);
+
+    ui->personsFilter->setText("");
+    ui->computersFilter->setText("");
+
+    displayAllPersons();
+    displayAllComputers();
+    displayComputersConnections();
+    displayPersonsConnections();
+    add.updateAddConnectionsList();
+}
+
+void MainWindow::on_removePersonButton_clicked()
+{
+    int currentlySelectedPersonIndex = ui->personList->currentIndex().row();
+
+    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+
+    int personId = s.getIdOfPerson((currentlySelectedPerson));
+
+    s.removePerson(personId);
+
+    ui->personsFilter->setText("");
+    ui->computersFilter->setText("");
+
+    displayAllPersons();
+    displayAllComputers();
+    displayComputersConnections();
+    displayPersonsConnections();
+    add.updateAddConnectionsList();
+}
+
+void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
+{
+    int currentlySelectedComputerIndex = ui->computerList->currentIndex().row();
+
+    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
+
+    infoComp.setComputer(currentlySelectedComputer);
+    infoComp.exec();
+    }
+
+void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
+{
+    int currentlySelectedPersonIndex = ui->personList->currentIndex().row();
+
+    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+
+    infoPers.setPerson(currentlySelectedPerson);
+    infoPers.exec();
+}
+
+void MainWindow::on_removeConnectionButton_clicked()
+{
+    vector<QModelIndex> currentlySelectedConnectionIndex = ui->PersonConnectionView->selectionModel()->selectedIndexes().toVector().toStdVector();
+    cout << ui->PersonConnectionView->selectionModel()->selection().size() << endl;
+    for (int i = 0; i < currentlySelectedConnectionIndex.size(); i++)
+    {
+        cout << currentlySelectedConnectionIndex[i].row() << ',' <<  currentlySelectedConnectionIndex[i].column() << endl;
+    }
+}
+
+void MainWindow::on_actionActionHelp_triggered()
+{
+    help.exec();
+
+    ui->personsFilter->setText("");
+    ui->computersFilter->setText("");
 
     refresh();
 }

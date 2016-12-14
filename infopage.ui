@@ -140,7 +140,7 @@
     <string>Info:</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="infoPersInfo">
    <property name="geometry">
     <rect>
      <x>7</x>
@@ -150,7 +150,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="infoPersName">
    <property name="geometry">
     <rect>
      <x>73</x>
@@ -160,7 +160,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="infoPersSex">
    <property name="geometry">
     <rect>
      <x>73</x>
@@ -170,7 +170,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
+  <widget class="QLineEdit" name="infoPersNationality">
    <property name="geometry">
     <rect>
      <x>73</x>
@@ -193,7 +193,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Mynd&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="infoPersBirthYear">
    <property name="geometry">
     <rect>
      <x>73</x>
@@ -203,7 +203,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="infoPersDeathYear">
    <property name="geometry">
     <rect>
      <x>73</x>
