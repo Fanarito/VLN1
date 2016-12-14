@@ -245,7 +245,6 @@ void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
 
     infoComp.setComputer(currentlySelectedComputer);
     infoComp.exec();
-<<<<<<< HEAD
     }
 
 void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
@@ -256,14 +255,12 @@ void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
 
     infoPers.setPerson(currentlySelectedPerson);
     infoPers.exec();
-=======
 }
 
 void MainWindow::on_removeConnectionButton_clicked()
 {
     QVector<QModelIndex> currentlySelectedConnectionIndex = ui->PersonConnectionView->selectionModel()->selectedIndexes().toVector();
 
->>>>>>> 28c0308c194b49dd22ce3c454322cdc9f783418d
 }
 
 void MainWindow::on_actionActionHelp_triggered()
