@@ -29,9 +29,9 @@ private:
 
     void populateComboBoxes();
     void displayPersons(vector<person> persons);
-    void displayAllPersons();
     void displayComputers(vector<computer> computers);
     void displayAllComputers();
+    void displayAllPersons();
 };
 
 
