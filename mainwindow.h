@@ -38,6 +38,8 @@ private slots:
 
     void on_removeConnectionButton_clicked();
 
+    void on_actionActionHelp_triggered();
+
 private:
     Ui::MainWindow *ui;
     service s;

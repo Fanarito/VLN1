@@ -251,3 +251,8 @@ void MainWindow::on_removeConnectionButton_clicked()
     QVector<QModelIndex> currentlySelectedConnectionIndex = ui->PersonConnectionView->selectionModel()->selectedIndexes().toVector();
 
 }
+
+void MainWindow::on_actionActionHelp_triggered()
+{
+
+}

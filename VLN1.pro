@@ -42,7 +42,8 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     additem.ui \
     infopage.ui \
-    infopagecomp.ui
+    infopagecomp.ui \
+    help.ui
 
 DISTFILES += \
     VLN1.pro.user \
