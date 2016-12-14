@@ -44,7 +44,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -184,12 +184,23 @@
        <attribute name="title">
         <string>Connections</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QTreeView" name="PersonConnectionView"/>
+         <widget class="QPushButton" name="removeConnectionButton">
+          <property name="text">
+           <string>Remove</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QTreeView" name="ComputerConnectionView"/>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QTreeView" name="ComputerConnectionView"/>
+          </item>
+          <item>
+           <widget class="QTreeView" name="PersonConnectionView"/>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -203,7 +214,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>19</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

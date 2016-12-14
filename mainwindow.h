@@ -35,6 +35,8 @@ private slots:
 
     void on_computerList_doubleClicked(const QModelIndex &index);
 
+    void on_removeConnectionButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     service s;
