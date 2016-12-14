@@ -54,3 +54,8 @@ DISTFILES += \
 RESOURCES += \
     resource.qrc \
     CompSci.sqlite
+
+db.path = %{buildDir}
+db.files += %{sourceDir}/CompSci.sqlite
+
+INSTALLS += db
