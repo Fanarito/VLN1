@@ -213,6 +213,7 @@ void MainWindow::on_removeComputerButton_clicked()
     displayAllComputers();
     displayComputersConnections();
     displayPersonsConnections();
+    add.updateAddConnectionsList();
 }
 
 void MainWindow::on_removePersonButton_clicked()
@@ -232,6 +233,7 @@ void MainWindow::on_removePersonButton_clicked()
     displayAllComputers();
     displayComputersConnections();
     displayPersonsConnections();
+    add.updateAddConnectionsList();
 }
 
 void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)

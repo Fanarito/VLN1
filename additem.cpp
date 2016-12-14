@@ -221,3 +221,9 @@ void addItem::on_AddConnectionButton_clicked()
 
     this->done(0);
 }
+
+void addItem::updateAddConnectionsList()
+{
+    displayAllComputers();
+    displayAllPersons();
+}

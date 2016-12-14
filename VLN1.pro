@@ -43,7 +43,6 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     additem.ui \
-    removeitem.ui \
     infopage.ui \
     infopagecomp.ui
 
