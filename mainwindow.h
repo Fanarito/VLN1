@@ -8,7 +8,8 @@
 #include "service.h"
 #include "additem.h"
 #include "infopagecomp.h"
-
+#include "computer.h"
+#include "object.h"
 
 namespace Ui {
 class MainWindow;

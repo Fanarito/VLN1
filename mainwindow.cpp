@@ -1,10 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "additem.h"
+#include "computer.h"
+#include "object.h"
 
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <qmessagebox.h>
+#include <QString>
 
 using namespace std;
 
@@ -211,6 +213,7 @@ void MainWindow::on_removeComputerButton_clicked()
     displayAllComputers();
     displayComputersConnections();
     displayPersonsConnections();
+    add.updateAddConnectionsList();
 }
 
 void MainWindow::on_removePersonButton_clicked()
@@ -230,10 +233,16 @@ void MainWindow::on_removePersonButton_clicked()
     displayAllComputers();
     displayComputersConnections();
     displayPersonsConnections();
+    add.updateAddConnectionsList();
 }
 
 void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
 {
+    int currentlySelectedComputerIndex = ui->computerList->currentIndex().row();
+
+    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
+
+    infoComp.setComputer(currentlySelectedComputer);
     infoComp.exec();
 }
 

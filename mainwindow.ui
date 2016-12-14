@@ -226,7 +226,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionAdd_Person"/>
-   <addaction name="actionRemove_Item"/>
    <addaction name="actionEditItem"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -237,15 +236,6 @@
    </property>
    <property name="text">
     <string>Add Person</string>
-   </property>
-  </action>
-  <action name="actionRemove_Item">
-   <property name="icon">
-    <iconset resource="resource.qrc">
-     <normaloff>:/remove/images/Remove.png</normaloff>:/remove/images/Remove.png</iconset>
-   </property>
-   <property name="text">
-    <string>Remove Item</string>
    </property>
   </action>
   <action name="actionEditItem">
