@@ -1,6 +1,8 @@
 #ifndef INFOPAGECOMP_H
 #define INFOPAGECOMP_H
 
+#include "computer.h"
+
 #include <QDialog>
 
 namespace Ui {
@@ -15,8 +17,11 @@ public:
     explicit infoPageComp(QWidget *parent = 0);
     ~infoPageComp();
 
+    void setComputer(computer comp);
+
 private:
     Ui::infoPageComp *ui;
+    computer c;
 };
 
 #endif // INFOPAGECOMP_H
