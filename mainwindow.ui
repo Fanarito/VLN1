@@ -44,7 +44,11 @@
        </font>
       </property>
       <property name="currentIndex">
+<<<<<<< HEAD
        <number>0</number>
+=======
+       <number>2</number>
+>>>>>>> 28c0308c194b49dd22ce3c454322cdc9f783418d
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -184,12 +188,23 @@
        <attribute name="title">
         <string>Connections</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QTreeView" name="PersonConnectionView"/>
+         <widget class="QPushButton" name="removeConnectionButton">
+          <property name="text">
+           <string>Remove</string>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QTreeView" name="ComputerConnectionView"/>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QTreeView" name="ComputerConnectionView"/>
+          </item>
+          <item>
+           <widget class="QTreeView" name="PersonConnectionView"/>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -203,7 +218,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>19</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -215,7 +230,6 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionAdd_Person"/>
-   <addaction name="actionRemove_Item"/>
    <addaction name="actionEditItem"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -226,15 +240,6 @@
    </property>
    <property name="text">
     <string>Add Person</string>
-   </property>
-  </action>
-  <action name="actionRemove_Item">
-   <property name="icon">
-    <iconset resource="resource.qrc">
-     <normaloff>:/remove/images/Remove.png</normaloff>:/remove/images/Remove.png</iconset>
-   </property>
-   <property name="text">
-    <string>Remove Item</string>
    </property>
   </action>
   <action name="actionEditItem">

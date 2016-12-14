@@ -22,7 +22,6 @@ SOURCES += main.cpp\
     service.cpp \
     utils.cpp \
     additem.cpp \
-    removeitem.cpp \
     infopage.cpp \
     infopagecomp.cpp
 
@@ -37,13 +36,11 @@ HEADERS  += mainwindow.h \
     color.h \
     consoleui.h \
     additem.h \
-    removeitem.h \
     infopage.h \
     infopagecomp.h
 
 FORMS    += mainwindow.ui \
     additem.ui \
-    removeitem.ui \
     infopage.ui \
     infopagecomp.ui
 
