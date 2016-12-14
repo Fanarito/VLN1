@@ -23,6 +23,8 @@ private slots:
 
     void on_AddComputerButton_clicked();
 
+    void on_AddConnectionButton_clicked();
+
 private:
     Ui::addItem *ui;
     service s;
@@ -32,6 +34,8 @@ private:
     void displayComputers(vector<computer> computers);
     void displayAllComputers();
     void displayAllPersons();
+    vector<person> currentlyDisplayedPersons;
+    vector<computer> currentlyDisplayedComputers;
 };
 
 

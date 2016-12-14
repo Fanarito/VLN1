@@ -169,6 +169,8 @@ void addItem::displayPersons(vector<person> persons)
         ui->PersonConnections->addItem(currentPerson.getName());
 
     }
+
+    currentlyDisplayedPersons = persons;
 }
 
 void addItem::displayAllPersons()
@@ -188,10 +190,34 @@ void addItem::displayComputers(vector<computer> computers)
         ui->ComputerConnections->addItem(currentComputer.getName());
 
     }
+
+    currentlyDisplayedComputers = computers;
 }
 
 void addItem::displayAllComputers()
 {
     vector<computer> computers = s.getComputers();
     displayComputers(computers);
+}
+
+void addItem::on_AddConnectionButton_clicked()
+{
+    int currentlySelectedPersonIndex = ui->PersonConnections->currentIndex().row();
+
+    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+
+    int personId = s.getIdOfPerson(currentlySelectedPerson);
+
+    int currentlySelectedComputerIndex = ui->ComputerConnections->currentIndex().row();
+
+    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
+
+    int computerId = s.getIdOfComputer(currentlySelectedComputer);
+
+    s.addConnection(computerId, personId);
+
+    displayAllPersons();
+    displayAllComputers();
+
+    this->done(0);
 }
