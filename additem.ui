@@ -293,7 +293,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Build Year:</string>
+          <string>Build Year (write 0 if not built):</string>
          </property>
         </widget>
        </item>
