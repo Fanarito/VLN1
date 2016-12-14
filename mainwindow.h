@@ -7,6 +7,8 @@
 #include "person.h"
 #include "service.h"
 #include "additem.h"
+#include "infopagecomp.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -31,10 +33,13 @@ private slots:
 
     void on_removePersonButton_clicked();
 
+    void on_computerList_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     service s;
     addItem add;
+    infoPageComp infoComp;
 
     vector<person> currentlyDisplayedPersons;
     vector<computer> currentlyDisplayedComputers;
