@@ -10,4 +10,7 @@
     <qresource prefix="/Edit">
         <file>images/Edit.png</file>
     </qresource>
+    <qresource prefix="/DB">
+        <file>CompSci.sqlite</file>
+    </qresource>
 </RCC>
