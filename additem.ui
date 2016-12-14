@@ -349,7 +349,7 @@
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
-       <string>Connections</string>
+       <string>Connection</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="1">
