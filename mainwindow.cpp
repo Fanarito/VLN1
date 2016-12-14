@@ -214,3 +214,8 @@ void MainWindow::on_removePersonButton_clicked()
     displayComputersConnections();
     displayPersonsConnections();
 }
+
+void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
+{
+    infoComp.exec();
+}
