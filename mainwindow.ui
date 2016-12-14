@@ -44,7 +44,11 @@
        </font>
       </property>
       <property name="currentIndex">
+<<<<<<< HEAD
+       <number>0</number>
+=======
        <number>2</number>
+>>>>>>> 28c0308c194b49dd22ce3c454322cdc9f783418d
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
