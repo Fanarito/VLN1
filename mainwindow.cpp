@@ -43,8 +43,20 @@ void MainWindow::displayPersons(vector<person> persons)
 
         QString name = p.getName();
         QString sex = p.getSex();
+        if(p.getSex() == "m")
+        {
+            sex = "Male";
+        }
+        else
+        {
+            sex = "Female";
+        }
         QString birth_year = QString::number(p.getBirthYear());
         QString death_year = QString::number(p.getDeathYear());
+        if(p.getDeathYear() == 0)
+        {
+            death_year = "Alive";
+        }
         QString nationality = p.getNationality();
 
         ui->personList->setItem(row, 0, new QTableWidgetItem(name));
@@ -79,6 +91,10 @@ void MainWindow::displayComputers(std::vector<computer> computers)
         QString name = c.getName();
         QString type = c.getType();
         QString built = QString::number(c.getBuildYear());
+        if(c.getBuildYear() == 0)
+        {
+            built = "Not built";
+        }
         QString nationality = c.getNationality();
 
         ui->computerList->setItem(row, 0, new QTableWidgetItem(name));
