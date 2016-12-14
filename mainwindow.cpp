@@ -3,6 +3,7 @@
 #include "additem.h"
 #include "computer.h"
 #include "object.h"
+#include "person.h"
 
 #include <QStandardItemModel>
 #include <QStandardItem>
@@ -244,6 +245,16 @@ void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
 
     infoComp.setComputer(currentlySelectedComputer);
     infoComp.exec();
+    }
+
+void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
+{
+    int currentlySelectedPersonIndex = ui->personList->currentIndex().row();
+
+    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+
+    infoPers.setPerson(currentlySelectedPerson);
+    infoPers.exec();
 }
 
 void MainWindow::on_removeConnectionButton_clicked()
@@ -254,4 +265,9 @@ void MainWindow::on_removeConnectionButton_clicked()
     {
         cout << currentlySelectedConnectionIndex[i].row() << ',' <<  currentlySelectedConnectionIndex[i].column() << endl;
     }
+}
+
+void MainWindow::on_actionActionHelp_triggered()
+{
+
 }

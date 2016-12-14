@@ -13,4 +13,7 @@
     <qresource prefix="/DB">
         <file>CompSci.sqlite</file>
     </qresource>
+    <qresource prefix="/">
+        <file>images/GraceHopper.jpg</file>
+    </qresource>
 </RCC>

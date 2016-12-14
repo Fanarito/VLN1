@@ -8,6 +8,7 @@
 #include "service.h"
 #include "additem.h"
 #include "infopagecomp.h"
+#include "infopage.h"
 #include "computer.h"
 #include "object.h"
 
@@ -36,13 +37,18 @@ private slots:
 
     void on_computerList_doubleClicked(const QModelIndex &index);
 
+    void on_personList_doubleClicked(const QModelIndex &index);
+
     void on_removeConnectionButton_clicked();
+
+    void on_actionActionHelp_triggered();
 
 private:
     Ui::MainWindow *ui;
     service s;
     addItem add;
     infoPageComp infoComp;
+    InfoPage infoPers;
 
     vector<person> currentlyDisplayedPersons;
     vector<computer> currentlyDisplayedComputers;

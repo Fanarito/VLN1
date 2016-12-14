@@ -214,7 +214,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -227,11 +227,12 @@
    </attribute>
    <addaction name="actionAdd_Person"/>
    <addaction name="actionEditItem"/>
+   <addaction name="actionActionHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionAdd_Person">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/addPerson/images/Add.png</normaloff>:/addPerson/images/Add.png</iconset>
    </property>
    <property name="text">
@@ -240,17 +241,24 @@
   </action>
   <action name="actionEditItem">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/Edit/images/Edit.png</normaloff>:/Edit/images/Edit.png</iconset>
    </property>
    <property name="text">
     <string>editItem</string>
    </property>
   </action>
+  <action name="actionActionHelp">
+   <property name="icon">
+    <iconset>
+     <normaloff>../help_icon.png</normaloff>../help_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>actionHelp</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
