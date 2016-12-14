@@ -27,6 +27,7 @@ private:
     service s;
 
     void clearFields();
+    void populateComboBoxes();
 };
 
 

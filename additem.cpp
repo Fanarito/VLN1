@@ -6,6 +6,7 @@ addItem::addItem(QWidget *parent) :
     ui(new Ui::addItem)
 {
     ui->setupUi(this);
+    populateComboBoxes();
 }
 
 addItem::~addItem()
@@ -23,7 +24,7 @@ void addItem::on_AddPersonButton_clicked(bool checked)
     QString sex = ui->AddPersonSexInput->text();
     QString birthYear = ui->AddPersonBirthYearInput->text();
     QString deathYear = ui->AddPersonDeathYearInput->text();
-    QString nationality = ui->AddPersonNationalityInput->text();
+    QString nationality = ui->AddPersonNationalityDropdown->currentText();
     QString info = ui->AddPersonInfoInput->toPlainText();
 
     int birthYearInt = birthYear.toInt();
@@ -73,4 +74,16 @@ void addItem::on_AddComputerButton_clicked()
     s.addComputer(name, buildyear, type, built, nationality, info);
 
     ui->AddPersonNameInput->setText("");
+
+}
+
+void addItem::populateComboBoxes()
+{
+    vector<QString> nationalities = s.getNationalities();
+
+    for (auto nationality : nationalities)
+    {
+        ui->AddPersonNationalityDropdown->addItem(nationality);
+        ui->AddComputerNationalityDropdown->addItem(nationality);
+    }
 }
