@@ -249,11 +249,22 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;Name:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;Name:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LabelErrorAddComputerName">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QLineEdit" name="AddComputerNameInput">
@@ -270,11 +281,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="AddComputerTypeInput">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
+        <widget class="QComboBox" name="AddComputerTypeDropdown"/>
        </item>
        <item>
         <widget class="QCheckBox" name="AddComputerBuiltCheckBox">
@@ -306,9 +313,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="AddComputerBuildYearInput">
-         <property name="text">
-          <string/>
+        <widget class="QSpinBox" name="AddComputerBuildYearInput">
+         <property name="maximum">
+          <number>2016</number>
          </property>
         </widget>
        </item>

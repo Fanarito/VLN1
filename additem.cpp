@@ -44,7 +44,7 @@ void addItem::on_AddPersonButton_clicked(bool checked)
         thereWasAnError = true;
     }
 
-    if(sex.isEmpty())
+    if(birthYear.isEmpty())
     {
         ui->LabelErrorAddPersonBirthYear->setText("<span style='color: red'>Birth year cannot be empty</span>");
         thereWasAnError = true;
@@ -92,4 +92,53 @@ void addItem::populateComboBoxes()
 
     ui->AddPersonSexDropdown->addItem("f");
     ui->AddPersonSexDropdown->addItem("m");
+}
+
+void addItem::on_AddComputerButton_clicked()
+{
+    ui->LabelErrorAddComputerName->setText("");
+
+    bool thereWasAnError = false;
+    int built;
+
+    QString name = ui->AddComputerNameInput->text();
+    QString type = ui->AddComputerTypeDropdown->currentText();
+    QString buildYear = ui->AddComputerBuildYearInput->text();
+    QString nationality = ui->AddComputerNationalityDropdown->currentText();
+    QString info = ui->AddComputerInfoInput->toPlainText();
+
+    int buildYearInt = buildYear.toInt();
+
+    if(name.isEmpty())
+    {
+        ui->LabelErrorAddComputerName->setText("<span style='color: red'>Name cannot be empty</span>");
+        thereWasAnError = true;
+    }
+
+    if(buildYear.isEmpty())
+    {
+        ui->LabelErrorAddPersonBirthYear->setText("<span style='color: red'>Build year cannot be empty</span>");
+        thereWasAnError = true;
+    }
+
+    if(buildYearInt == 0)
+    {
+        built = 0;
+    }
+    else
+    {
+        built = 1;
+    }
+
+    if(thereWasAnError)
+    {
+        return;
+    }
+
+    s.addComputer(name, buildYearInt, type, built, nationality, info);
+
+    ui->AddComputerNameInput->setText("");
+    ui->AddComputerInfoInput->setText("");
+
+    this->done(0);
 }

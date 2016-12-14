@@ -20,6 +20,8 @@ public:
 private slots:
     void on_AddPersonButton_clicked(bool checked);
 
+    void on_AddComputerButton_clicked();
+
 private:
     Ui::addItem *ui;
     service s;
