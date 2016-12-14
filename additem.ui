@@ -284,21 +284,6 @@
         <widget class="QComboBox" name="AddComputerTypeDropdown"/>
        </item>
        <item>
-        <widget class="QCheckBox" name="AddComputerBuiltCheckBox">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Built</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLabel" name="label_9">
          <property name="font">
           <font>

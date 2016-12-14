@@ -165,6 +165,7 @@ void MainWindow::on_actionAdd_Person_triggered()
     int addPersonReturnValue = add.exec();
 
     ui->personsFilter->setText("");
+    ui->computersFilter->setText("");
 
     displayAllPersons();
     displayAllComputers();

@@ -92,6 +92,13 @@ void addItem::populateComboBoxes()
 
     ui->AddPersonSexDropdown->addItem("f");
     ui->AddPersonSexDropdown->addItem("m");
+
+    vector<QString> computerTypes = s.getComputerTypes();
+
+    for (auto computerType : computerTypes)
+    {
+        ui->AddComputerTypeDropdown->addItem(computerType);
+    }
 }
 
 void addItem::on_AddComputerButton_clicked()
