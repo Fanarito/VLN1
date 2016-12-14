@@ -259,8 +259,12 @@ void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
 
 void MainWindow::on_removeConnectionButton_clicked()
 {
-    QVector<QModelIndex> currentlySelectedConnectionIndex = ui->PersonConnectionView->selectionModel()->selectedIndexes().toVector();
-
+    vector<QModelIndex> currentlySelectedConnectionIndex = ui->PersonConnectionView->selectionModel()->selectedIndexes().toVector().toStdVector();
+    cout << ui->PersonConnectionView->selectionModel()->selection().size() << endl;
+    for (int i = 0; i < currentlySelectedConnectionIndex.size(); i++)
+    {
+        cout << currentlySelectedConnectionIndex[i].row() << ',' <<  currentlySelectedConnectionIndex[i].column() << endl;
+    }
 }
 
 void MainWindow::on_actionActionHelp_triggered()
