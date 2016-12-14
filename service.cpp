@@ -179,3 +179,10 @@ int service::getIdOfPerson(person p)
 
     return id;
 }
+
+int service::getIdOfComputer(computer c)
+{
+    int id = c.getId();
+
+    return id;
+}

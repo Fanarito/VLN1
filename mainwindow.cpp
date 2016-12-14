@@ -88,6 +88,8 @@ void MainWindow::displayComputers(std::vector<computer> computers)
     }
 
     ui->computerList->setSortingEnabled(true);
+
+    currentlyDisplayedComputers = computers;
 }
 
 void MainWindow::displayPersonsConnections()
@@ -175,15 +177,15 @@ void MainWindow::on_actionAdd_Person_triggered()
     displayPersonsConnections();
 }
 
-void MainWindow::on_actionRemove_Item_triggered()
+void MainWindow::on_removeComputerButton_clicked()
 {
-    int currentlySelectedPersonIndex = ui->personList->currentIndex().row();
+    int currentlySelectedComputerIndex = ui->computerList->currentIndex().row();
 
-    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
 
-    int id = s.getIdOfPerson((currentlySelectedPerson));
+    int computerId = s.getIdOfComputer((currentlySelectedComputer));
 
-    s.removePerson(id);
+    s.removeComputer(computerId);
 
     ui->personsFilter->setText("");
     ui->computersFilter->setText("");
@@ -192,5 +194,23 @@ void MainWindow::on_actionRemove_Item_triggered()
     displayAllComputers();
     displayComputersConnections();
     displayPersonsConnections();
+}
 
+void MainWindow::on_removePersonButton_clicked()
+{
+    int currentlySelectedPersonIndex = ui->personList->currentIndex().row();
+
+    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+
+    int personId = s.getIdOfPerson((currentlySelectedPerson));
+
+    s.removePerson(personId);
+
+    ui->personsFilter->setText("");
+    ui->computersFilter->setText("");
+
+    displayAllPersons();
+    displayAllComputers();
+    displayComputersConnections();
+    displayPersonsConnections();
 }

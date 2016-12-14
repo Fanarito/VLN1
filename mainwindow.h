@@ -27,7 +27,9 @@ private slots:
 
     void on_actionAdd_Person_triggered();
 
-    void on_actionRemove_Item_triggered();
+    void on_removeComputerButton_clicked();
+
+    void on_removePersonButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -35,6 +37,7 @@ private:
     addItem add;
 
     vector<person> currentlyDisplayedPersons;
+    vector<computer> currentlyDisplayedComputers;
 
 
     void displayAllPersons();
