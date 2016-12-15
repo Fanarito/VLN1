@@ -138,7 +138,6 @@ void MainWindow::displayPersonsConnections()
 
     for (auto p : persons) {
         auto row = new QStandardItem(p.getName());
-        row->setFlags(row->flags() & ~Qt::ItemIsEditable);
         QList<QStandardItem *> rowItems;
         rowItems.append(row);
 
@@ -147,8 +146,6 @@ void MainWindow::displayPersonsConnections()
         for (auto c : computers) {
             QList<QStandardItem *> computerRows;
             auto computerRow = new QStandardItem(c.getName());
-
-            computerRow->setFlags(computerRow->flags() & ~Qt::ItemIsEditable);
 
             computerRows.append(computerRow);
             rowItems.first()->appendRow(computerRow);
@@ -172,7 +169,6 @@ void MainWindow::displayComputersConnections()
 
     for (auto c : computers) {
         auto row = new QStandardItem(c.getName());
-        row->setFlags(row->flags() & ~Qt::ItemIsEditable);
         QList<QStandardItem *> rowItems;
         rowItems.append(row);
 
@@ -181,7 +177,7 @@ void MainWindow::displayComputersConnections()
         for (auto p : persons) {
             QList<QStandardItem *> personsRows;
             auto personRow = new QStandardItem(p.getName());
-            personRow->setFlags(personRow->flags() & ~Qt::ItemIsEditable);
+
             personRow->setData(p.getId());
             personsRows.append(personRow);
             rowItems.first()->appendRow(personRow);

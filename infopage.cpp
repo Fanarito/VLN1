@@ -25,4 +25,11 @@ void InfoPage::setPerson(person pers)
     ui->infoPersDeathYear->setText(Death_year);
     ui->infoPersNationality->setText(p.getNationality());
     ui->infoPersInfo->setText(p.getInfo());
+    ui->picture->setPixmap(QPixmap(":/images/GraceHopper.jpg").scaledToHeight(ui->picture->height()));
+}
+
+void InfoPage::resizeEvent(QResizeEvent *event)
+{
+    ui->picture->setPixmap(QPixmap(":/images/GraceHopper.jpg").scaledToHeight(ui->picture->height()));
+    QWidget::resizeEvent(event);
 }
