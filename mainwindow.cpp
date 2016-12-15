@@ -68,7 +68,7 @@ void MainWindow::displayPersons(vector<person> persons)
         QString death_year = QString::number(p.getDeathYear());
         bool alive = p.getAlive();
 
-        if(alive)
+        if((alive) || (death_year == "0"))
         {
             death_year = "Alive";
         }

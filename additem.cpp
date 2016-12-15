@@ -144,7 +144,7 @@ void addItem::on_AddPersonButton_clicked()
         thereWasAnError = true;
     }
 
-    if((deathYearInt < birthYearInt))
+    if((deathYearInt < birthYearInt) && (!alive))
     {
         ui->LabelErrorAddPersonDeathYear->setText("<span style='color: red'>Invalid year of death; cannot be before year of birth</span>");
         thereWasAnError = true;
