@@ -59,11 +59,15 @@ void addItem::resetErrorLabels()
     ui->LabelErrorAddPersonBirthYear->setText("");
     ui->LabelErrorAddPersonDeathYear->setText("");
     ui->LabelErrorAddPersonSex->setText("");
+    ui->LabelErrorAddPersonNationality->setText("");
 
     ui->LabelErrorAddComputerName->setText("");
     ui->LabelErrorAddComputerBuildYear->setText("");
     ui->LabelErrorAddComputerNationality->setText("");
     ui->LabelErrorAddComputerType->setText("");
+
+    ui->LabelErrorAddPersonConnection->setText("");
+    ui->LabelErrorAddComputerConnection->setText("");
 
     ui->ComputerResult->setText("");
     ui->ConnectionsResult->setText("");
@@ -230,24 +234,44 @@ void addItem::on_AddComputerButton_clicked()
 
 void addItem::on_AddConnectionButton_clicked()
 {
-    int currentlySelectedPersonIndex = ui->PersonConnections->currentIndex().row();
+    QList<QListWidgetItem *> personSelected = ui->PersonConnections->selectedItems();
+    QList<QListWidgetItem *> computerSelected = ui->ComputerConnections->selectedItems();
 
-    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
-
-    int personId = s.getIdOfPerson(currentlySelectedPerson);
-
-    int currentlySelectedComputerIndex = ui->ComputerConnections->currentIndex().row();
-
-    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
-
-    int computerId = s.getIdOfComputer(currentlySelectedComputer);
-
-    bool added = s.addConnection(computerId, personId);
-
-    if (!added)
-        ui->ConnectionsResult->setText("<span style='color: red'>Connection not added, it may be present already</span>");
+    if((personSelected.isEmpty()) && (computerSelected.isEmpty()))
+    {
+        ui->LabelErrorAddPersonConnection->setText("<span style='color: red'>No person selected</span>");
+        ui->LabelErrorAddComputerConnection->setText("<span style='color: red'>No computer selected</span>");
+    }
+    else if(personSelected.isEmpty())
+    {
+        ui->LabelErrorAddPersonConnection->setText("<span style='color: red'>No person selected</span>");
+    }
+    else if(computerSelected.isEmpty())
+    {
+        ui->LabelErrorAddComputerConnection->setText("<span style='color: red'>No computer selected</span>");
+    }
     else
-        ui->ConnectionsResult->setText("<span style='color: green'>Connection added successfully</span>");
+    {
+        int currentlySelectedPersonIndex = ui->PersonConnections->currentIndex().row();
+
+        person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+
+        int personId = s.getIdOfPerson(currentlySelectedPerson);
+
+        int currentlySelectedComputerIndex = ui->ComputerConnections->currentIndex().row();
+
+        computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
+
+        int computerId = s.getIdOfComputer(currentlySelectedComputer);
+
+        bool added = s.addConnection(computerId, personId);
+
+        if (!added)
+            ui->ConnectionsResult->setText("<span style='color: red'>Connection not added, it may be present already</span>");
+        else
+            ui->ConnectionsResult->setText("<span style='color: green'>Connection added successfully</span>");
+    }
+
 }
 
 void addItem::populateComboBoxes()
