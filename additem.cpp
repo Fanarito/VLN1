@@ -15,6 +15,7 @@ addItem::addItem(QWidget *parent) :
 
 addItem::~addItem()
 {
+    resetErrorLabels();
     delete ui;
 }
 
@@ -57,6 +58,10 @@ void addItem::resetErrorLabels()
     ui->LabelErrorAddComputerBuildYear->setText("");
     ui->LabelErrorAddComputerNationality->setText("");
     ui->LabelErrorAddComputerType->setText("");
+
+    ui->ComputerResult->setText("");
+    ui->ConnectionsResult->setText("");
+    ui->PersonResult->setText("");
 }
 
 void addItem::on_AddPersonButton_clicked()
@@ -140,7 +145,12 @@ void addItem::on_AddPersonButton_clicked()
         return;
     }
 
-    s.addPerson(name, sex, birthYearInt, deathYearInt, alive, nationality, info);
+    bool result = s.addPerson(name, sex, birthYearInt, deathYearInt, alive, nationality, info);
+
+    if (!result)
+        ui->PersonResult->setText("<span style='color: red'>Person was not added!</span>");
+    else
+        ui->PersonResult->setText("<span style='color: green'>Person added successfully</span>");
 
     resetFields();
 }
@@ -190,7 +200,12 @@ void addItem::on_AddComputerButton_clicked()
         return;
     }
 
-    s.addComputer(name, buildYearInt, type, built, nationality, info);
+    bool result = s.addComputer(name, buildYearInt, type, built, nationality, info);
+
+    if (!result)
+        ui->ComputerResult->setText("<span style='color: red'>Computer not added!</span>");
+    else
+        ui->ComputerResult->setText("<span style='color: green'>Computer added successfully</span>");
 
     resetFields();
 }
@@ -209,7 +224,12 @@ void addItem::on_AddConnectionButton_clicked()
 
     int computerId = s.getIdOfComputer(currentlySelectedComputer);
 
-    s.addConnection(computerId, personId);
+    bool added = s.addConnection(computerId, personId);
+
+    if (!added)
+        ui->ConnectionsResult->setText("<span style='color: red'>Connection not added, it may be present already</span>");
+    else
+        ui->ConnectionsResult->setText("<span style='color: green'>Connection added successfully</span>");
 }
 
 void addItem::populateComboBoxes()

@@ -62,9 +62,9 @@ int service::getComputerTypeById(QString comp_type)
 }
 
 //Adds a person to a vector for later use
-void service::addPerson(QString name, QString gender, int birthyear, int deathyear, bool alive, QString nationality, QString info)
+bool service::addPerson(QString name, QString gender, int birthyear, int deathyear, bool alive, QString nationality, QString info)
 {
-    data.addPerson(person(name,gender,birthyear,deathyear,alive,nationality,info));
+    return data.addPerson(person(name,gender,birthyear,deathyear,alive,nationality,info));
 }
 
 void service::addPerson(person p)
@@ -72,9 +72,9 @@ void service::addPerson(person p)
     data.addPerson(p);
 }
 
-void service::addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info)
+bool service::addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info)
 {
-    data.addComputer(computer(name, build_year, type, built, nationality, info));
+    return data.addComputer(computer(name, build_year, type, built, nationality, info));
 }
 
 void service::removePerson(int id)
@@ -158,22 +158,24 @@ void service::updateComputer(computer c)
     data.updateComputer(c);
 }
 
-void service::addConnection(int comp_id, int person_id)
+// Returns false if the connection was not added, for instance if the connections is already present
+bool service::addConnection(int comp_id, int person_id)
 {
     bool noerr;
     vector<person> persons = getPersonsConnectedWithComputer(getComputerById(comp_id,noerr));
 
-    if(!noerr) return;
+    if(!noerr) return false;
 
     for(person p : persons)
     {
         if(p.getId() == person_id)
         {
-            return;
+            return false;
         }
     }
 
     data.addConnection(comp_id, person_id);
+    return true;
 }
 
 void service::addNationality(QString nationality)

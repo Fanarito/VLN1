@@ -202,6 +202,7 @@ void MainWindow::on_computersFilter_textChanged(const QString &arg1)
 void MainWindow::on_actionAdd_Person_triggered()
 {
     add.exec();
+    add.resetErrorLabels();
 
     ui->personsFilter->setText("");
     ui->computersFilter->setText("");

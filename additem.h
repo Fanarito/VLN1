@@ -18,6 +18,7 @@ public:
     explicit addItem(QWidget *parent = 0);
     ~addItem();
     void updateAddConnectionsList();
+    void resetErrorLabels();
 
 private slots:
     void on_AddPersonButton_clicked();
@@ -42,7 +43,6 @@ private:
     void populateComboBoxes();
 
     void resetFields();
-    void resetErrorLabels();
 
     void displayPersons(vector<person> persons);
     void displayComputers(vector<computer> computers);

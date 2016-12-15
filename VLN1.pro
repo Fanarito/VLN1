@@ -16,7 +16,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     computer.cpp \
     dataaccess.cpp \
-    consoleui.cpp \
     object.cpp \
     person.cpp \
     service.cpp \
@@ -35,7 +34,6 @@ HEADERS  += mainwindow.h \
     service.h \
     utils.h \
     color.h \
-    consoleui.h \
     additem.h \
     infopage.h \
     infopagecomp.h \
