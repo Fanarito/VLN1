@@ -17,9 +17,9 @@ class service
 {
 public:
     service();
-    bool addPerson(QString name, QString gender, int birthyear, int deathyear, bool alive, QString nationality, QString info);
+    int addPerson(QString name, QString gender, int birthyear, int deathyear, bool alive, QString nationality, QString info);
     void addPerson(person p);
-    bool addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info);
+    int addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info);
     bool addConnection(int comp_id, int person_id);
     void addNationality(QString nationality);
     void addComputerType(QString comp_type);

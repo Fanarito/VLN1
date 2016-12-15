@@ -3,6 +3,7 @@
 #include "person.h"
 #include <QDialog>
 #include <QResizeEvent>
+#include <string>
 
 namespace Ui {
 class InfoPage;
@@ -21,6 +22,7 @@ private:
     Ui::InfoPage *ui;
     void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
     person p;
+    QString img_path;
 };
 
 #endif // INFOPAGE_H

@@ -2,6 +2,7 @@
 #define CONSTANTS_H
 
 #include <string>
+#include <QDir>
 
 namespace constants
 {
@@ -41,6 +42,8 @@ namespace constants
     const char separator = ' ';
 
     static std::string DATABASE = "CompSci.sqlite";
+
+    static const QString IMAGE_PATH = QDir::currentPath() + QString::fromStdString("/images/");
 }
 
 #endif // CONSTANTS_H

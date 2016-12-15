@@ -132,7 +132,10 @@ int dataaccess::addPerson(person p)
     query.bindValue(":info", p.getInfo());
 
     query.exec();
-    return query.numRowsAffected();
+    if (query.lastInsertId() > 1)
+        return query.lastInsertId().toInt();
+    else
+        return 0;
 }
 
 //Adds an instance of computer to the Computers table in the database
@@ -154,7 +157,10 @@ int dataaccess::addComputer(computer c)
     query.bindValue(":info", c.getInfo());
 
     query.exec();
-    return query.numRowsAffected();
+    if (query.lastInsertId() > 1)
+        return query.lastInsertId().toInt();
+    else
+        return 0;
 }
 
 //Adds a connection to the Connections table in the database

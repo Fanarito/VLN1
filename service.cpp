@@ -62,7 +62,7 @@ int service::getComputerTypeById(QString comp_type)
 }
 
 //Adds a person to a vector for later use
-bool service::addPerson(QString name, QString gender, int birthyear, int deathyear, bool alive, QString nationality, QString info)
+int service::addPerson(QString name, QString gender, int birthyear, int deathyear, bool alive, QString nationality, QString info)
 {
     return data.addPerson(person(name,gender,birthyear,deathyear,alive,nationality,info));
 }
@@ -72,7 +72,7 @@ void service::addPerson(person p)
     data.addPerson(p);
 }
 
-bool service::addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info)
+int service::addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info)
 {
     return data.addComputer(computer(name, build_year, type, built, nationality, info));
 }

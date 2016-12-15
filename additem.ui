@@ -25,7 +25,7 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="PersonTab">
       <attribute name="title">
@@ -510,13 +510,11 @@
          <property name="font">
           <font>
            <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
+           <pointsize>14</pointsize>
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Pick  a person you want to connect:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>Connect!</string>
          </property>
         </widget>
        </item>
