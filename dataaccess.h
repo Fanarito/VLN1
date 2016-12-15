@@ -56,10 +56,10 @@ public:
     int getNationalityID(QString nationality);
     int getComputer_TypeID(QString computer_type);
 
-    void addPerson(person p);
+    int addPerson(person p);
     void removePerson(int id);
 
-    void addComputer(computer p);
+    int addComputer(computer p);
     void removeComputer(int id);
 
     void addConnection(int comp_id, int person_id);

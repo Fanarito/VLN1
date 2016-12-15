@@ -114,7 +114,7 @@ std::vector<computer> dataaccess::getComputersByQuery(QString q)
 }
 
 //Adds an instance of person to the Persons table in the database
-void dataaccess::addPerson(person p)
+int dataaccess::addPerson(person p)
 {
     QSqlQuery query(db);
 
@@ -132,10 +132,11 @@ void dataaccess::addPerson(person p)
     query.bindValue(":info", p.getInfo());
 
     query.exec();
+    return query.numRowsAffected();
 }
 
 //Adds an instance of computer to the Computers table in the database
-void dataaccess::addComputer(computer c)
+int dataaccess::addComputer(computer c)
 {
     QSqlQuery query(db);
 
@@ -153,6 +154,7 @@ void dataaccess::addComputer(computer c)
     query.bindValue(":info", c.getInfo());
 
     query.exec();
+    return query.numRowsAffected();
 }
 
 //Adds a connection to the Connections table in the database
