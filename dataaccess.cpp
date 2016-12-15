@@ -513,7 +513,7 @@ std::vector<person> dataaccess::getPersonsByComputerId(unsigned int id, bool &su
                           "JOIN Connections con ON con.personsid = p.id "
                           "JOIN Computers c ON con.computersid = c.id "
                           "JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID "
-                          "WHERE c.id = :id";
+                          "WHERE c.id = :id ORDER BY p.name asc";
 
     success = query.prepare(q_string);
     query.bindValue(0, id);
@@ -531,7 +531,7 @@ std::vector<computer> dataaccess::getComputersByPersonId(unsigned int id, bool &
                                               "JOIN Connections con ON con.computersid = c.id "
                                               "JOIN Persons p ON con.personsid = p.id "
                                               "JOIN Computer_Types cp ON c.Computer_TypeID = cp.ID "
-                                              "WHERE p.id = :id";
+                                              "WHERE p.id = :id ORDER BY c.name asc";
 
     success = query.prepare(q_string);
     query.bindValue(0, id);

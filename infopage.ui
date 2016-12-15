@@ -10,106 +10,195 @@
     <height>480</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_2">
+  <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="bottomMargin">
-      <number>10</number>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="rightMargin">
+      <number>0</number>
      </property>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="leftMargin">
-        <number>10</number>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="label_2">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="bottomMargin">
+          <number>0</number>
          </property>
-         <property name="text">
-          <string>Name:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="infoPersName"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Sex:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="infoPersSex"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_4">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Birth year:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="infoPersBirthYear"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Death year:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="infoPersDeathYear"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_6">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Nationality:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="infoPersNationality"/>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <property name="leftMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="font">
+              <font>
+               <family>Calibri Light</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Name:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="infoPersName">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(247, 247, 247);
+color: rgb(0, 0, 0);</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="font">
+              <font>
+               <family>Calibri Light</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Sex:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="infoPersSex">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(247, 247, 247);
+color: rgb(0, 0, 0);</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="font">
+              <font>
+               <family>Calibri Light</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Birth year:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="infoPersBirthYear">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="autoFillBackground">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(247, 247, 247);
+color: rgb(0, 0, 0);</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="font">
+              <font>
+               <family>Calibri Light</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Death year:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="infoPersDeathYear">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(247, 247, 247);
+color: rgb(0, 0, 0);</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="font">
+              <font>
+               <family>Calibri Light</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Nationality:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="infoPersNationality">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(247, 247, 247);
+color: rgb(0, 0, 0);</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="picture">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>200</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Mynd&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QLabel" name="label_7">
@@ -125,28 +214,16 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="infoPersInfo"/>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QGridLayout" name="gridLayout_2" rowstretch="0" columnminimumwidth="0">
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <item row="0" column="0">
-        <widget class="QLabel" name="picture">
-         <property name="minimumSize">
-          <size>
-           <width>150</width>
-           <height>200</height>
-          </size>
+        <widget class="QTextEdit" name="infoPersInfo">
+         <property name="enabled">
+          <bool>true</bool>
          </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Mynd&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(247, 247, 247);
+color: rgb(0, 0, 0);</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -155,7 +232,21 @@
     </layout>
    </item>
   </layout>
+  <action name="actionEdit">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/Edit/images/Edit.png</normaloff>:/Edit/images/Edit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

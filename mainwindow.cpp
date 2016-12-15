@@ -130,6 +130,7 @@ void MainWindow::displayPersonsConnections(vector<person> persons)
     ui->personsConnectionView->setSortingEnabled(false);
     ui->personsConnectionView->clear();
     ui->personsConnectionView->setColumnCount(1);
+    ui->personsConnectionView->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 
     for (person p : persons)
     {
@@ -164,6 +165,7 @@ void MainWindow::displayComputersConnections(std::vector<computer> computers)
     ui->personsConnectionView->setSortingEnabled(false);
     ui->computersConnectionView->clear();
     ui->computersConnectionView->setColumnCount(1);
+    ui->computersConnectionView->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 
     for (computer c : computers)
     {
