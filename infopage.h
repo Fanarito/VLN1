@@ -2,6 +2,7 @@
 #define INFOPAGE_H
 #include "person.h"
 #include <QDialog>
+#include <QResizeEvent>
 
 namespace Ui {
 class InfoPage;
@@ -18,6 +19,7 @@ public:
 
 private:
     Ui::InfoPage *ui;
+    void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
     person p;
 };
 

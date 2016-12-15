@@ -126,7 +126,6 @@ void MainWindow::displayPersonsConnections()
     displayPersonsConnections(s.getPersons());
 }
 
-
 void MainWindow::displayPersonsConnections(vector<person> persons)
 {
     ui->personsConnectionView->setSortingEnabled(false);
