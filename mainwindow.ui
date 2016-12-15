@@ -62,13 +62,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="removePersonButton">
-          <property name="text">
-           <string>Remove</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QLabel" name="label">
           <property name="text">
            <string>Double click a person to view more information</string>
@@ -140,13 +133,6 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="removeComputerButton">
-          <property name="text">
-           <string>Remove</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
            <string>Double click a computer to view more information</string>
@@ -200,13 +186,6 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="removeConnectionButton">
-          <property name="text">
-           <string>Remove</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QTreeView" name="PersonConnectionView"/>
@@ -233,6 +212,12 @@
    </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -240,7 +225,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionAdd_Person"/>
-   <addaction name="actionEditItem"/>
+   <addaction name="actionRemove"/>
+   <addaction name="separator"/>
    <addaction name="actionActionHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -261,6 +247,9 @@
    <property name="text">
     <string>editItem</string>
    </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionActionHelp">
    <property name="icon">
@@ -269,6 +258,18 @@
    </property>
    <property name="text">
     <string>actionHelp</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="icon">
+    <iconset>
+     <normaloff>images/Remove.png</normaloff>images/Remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove an item</string>
    </property>
   </action>
  </widget>
