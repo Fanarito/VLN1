@@ -25,11 +25,16 @@ void InfoPage::setPerson(person pers)
     ui->infoPersDeathYear->setText(Death_year);
     ui->infoPersNationality->setText(p.getNationality());
     ui->infoPersInfo->setText(p.getInfo());
-    ui->picture->setPixmap(QPixmap(":/images/GraceHopper.jpg").scaledToHeight(ui->picture->height()));
+
+    img_path = constants::IMAGE_PATH + QString::fromStdString("p" + std::to_string(p.getId()));
+    if (!QFile::exists(img_path))
+        img_path = constants::IMAGE_PATH + QString::fromStdString("noimg");
+
+    ui->picture->setPixmap(QPixmap(img_path).scaledToHeight(100));
 }
 
 void InfoPage::resizeEvent(QResizeEvent *event)
 {
-    ui->picture->setPixmap(QPixmap(":/images/GraceHopper.jpg").scaledToHeight(ui->picture->height()));
+    //ui->picture->setPixmap(QPixmap(img_path).scaledToHeight(ui->picture->height()));
     QWidget::resizeEvent(event);
 }

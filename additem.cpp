@@ -145,12 +145,18 @@ void addItem::on_AddPersonButton_clicked()
         return;
     }
 
-    bool result = s.addPerson(name, sex, birthYearInt, deathYearInt, alive, nationality, info);
+    int result = s.addPerson(name, sex, birthYearInt, deathYearInt, alive, nationality, info);
 
     if (!result)
         ui->PersonResult->setText("<span style='color: red'>Person was not added!</span>");
     else
         ui->PersonResult->setText("<span style='color: green'>Person added successfully</span>");
+
+    QString path = constants::IMAGE_PATH + QString::fromStdString("p" + to_string(result));
+    if (QFile::exists(path)) {
+        QFile::remove(path);
+    }
+    QFile::copy(picture_path, path);
 
     resetFields();
 }
@@ -335,4 +341,10 @@ void addItem::on_AddPersonAliveCheckbox_stateChanged()
 void addItem::on_AddPersonBirthYearInput_valueChanged(int arg1)
 {
     ui->AddPersonDeathYearInput->setMinimum(arg1);
+}
+
+void addItem::on_BrowseImageButton_clicked()
+{
+    picture_path = QFileDialog::getOpenFileName(this, tr("Select Picture"), "/home", tr("Images (*.png *.jpg *.tiff *.jpeg)"));
+    QDir().mkpath(QDir::currentPath() + QString::fromStdString("/images"));
 }

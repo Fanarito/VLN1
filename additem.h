@@ -2,13 +2,16 @@
 #define ADDITEM_H
 
 #include <QDialog>
+#include <QFileDialog>
 #include <QAbstractListModel>
 #include "person.h"
 #include "service.h"
+#include "constants.h"
 
 namespace Ui {
 class addItem;
 }
+
 
 class addItem : public QDialog
 {
@@ -33,6 +36,8 @@ private slots:
 
     void on_AddPersonBirthYearInput_valueChanged(int arg1);
 
+    void on_BrowseImageButton_clicked();
+
 private:
     Ui::addItem *ui;
     service s;
@@ -50,7 +55,7 @@ private:
     void displayAllComputers();
     void displayAllPersons();
 
-
+    QString picture_path;
 };
 
 
