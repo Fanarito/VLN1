@@ -174,8 +174,8 @@ void dataaccess::addConnection(int comp_id, int person_id)
                           "VALUES(:comp_id,:person_id)");
     if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
 
-    query.bindValue(":comp_id", QString::number(comp_id));
-    query.bindValue(":person_id", QString::number(person_id));
+    query.bindValue(":comp_id", comp_id);
+    query.bindValue(":person_id", person_id);
 
     query.exec();
 }
