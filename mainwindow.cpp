@@ -270,6 +270,7 @@ void MainWindow::on_actionRemove_triggered()
         case constants::TabType::Persons:
         {
             int row = ui->personList->currentRow();
+            if(row == -1) return;
             int pid = ui->personList->item(row,0)->type();
             s.removePerson(pid);
         }
@@ -277,34 +278,26 @@ void MainWindow::on_actionRemove_triggered()
         case constants::TabType::Computers:
         {
             int row = ui->computerList->currentRow();
+            if(row == -1) return;
             int cid = ui->computerList->item(row,0)->type();
-            s.removePerson(cid);
+            s.removeComputer(cid);
         }
         break;
         case constants::TabType::Connections:
         {
             int pid=-1, cid=-1;
 
-            if(ui->computersConnectionView->hasFocus())
+            if(ui->computersConnectionView->hasFocus() && ui->computersConnectionView->currentItem()->parent())
             {
-                std::cout << "Entered computersconnectionview" << std::endl;
-
                 if((ui->computersConnectionView->currentIndex().column() == -1))
                 {
-                    std::cout << (ui->computersConnectionView->currentIndex().column() == -1) << std::endl;
                     return;
                 }
 
-                std::cout << (ui->computersConnectionView->currentIndex().column() == -1) << std::endl;
-
                 pid = ui->computersConnectionView->currentItem()->type();
                 cid = ui->computersConnectionView->currentItem()->parent()->type();
-
-                bool success;
-                std::cout << (s.getPersonById(pid,success).getName()).toStdString() << pid << std::endl;
-                std::cout << (s.getComputerById(cid,success).getName()).toStdString() << cid << std::endl;
             }
-            else if(ui->personsConnectionView->hasFocus())
+            else if(ui->personsConnectionView->hasFocus() && ui->personsConnectionView->currentItem()->parent())
             {
                 if(ui->personsConnectionView->currentIndex().column() == -1)
                 {
@@ -313,10 +306,6 @@ void MainWindow::on_actionRemove_triggered()
 
                 pid = ui->personsConnectionView->currentItem()->parent()->type();
                 cid = ui->personsConnectionView->currentItem()->type();
-
-                bool success;
-                std::cout << (s.getPersonById(pid,success).getName()).toStdString() << pid << std::endl;
-                std::cout << (s.getComputerById(cid,success).getName()).toStdString() <<cid<< std::endl;
             }
             else
             {
@@ -325,7 +314,6 @@ void MainWindow::on_actionRemove_triggered()
 
             bool success;
 
-            std::cout << pid <<", " << cid << std::endl;
             s.removeConnection(pid, cid, success);
             if(!success)
             {
