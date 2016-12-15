@@ -138,6 +138,8 @@ void MainWindow::displayPersonsConnections(vector<person> persons)
         QTreeWidgetItem *compItem = new QTreeWidgetItem(ui->personsConnectionView, p.getId());
 
         compItem->setText(0, p.getName());
+        compItem->setExpanded(true);
+        compItem->setFlags(compItem->flags() & ~Qt::ItemIsSelectable);
 
         std::vector<computer> computers = s.getComputersConnectedWithPerson(p);
 
@@ -171,6 +173,8 @@ void MainWindow::displayComputersConnections(std::vector<computer> computers)
         QTreeWidgetItem *compItem = new QTreeWidgetItem(ui->computersConnectionView, c.getId());
 
         compItem->setText(0, c.getName());
+        compItem->setExpanded(true);
+        compItem->setFlags(compItem->flags() & ~Qt::ItemIsSelectable);
 
         std::vector<person> persons = s.getPersonsConnectedWithComputer(c);
 
@@ -281,6 +285,54 @@ void MainWindow::on_actionRemove_triggered()
         break;
         case constants::TabType::Connections:
         {
+            int pid=-1, cid=-1;
+
+            if(ui->computersConnectionView->hasFocus())
+            {
+                std::cout << "Entered computersconnectionview" << std::endl;
+
+                if((ui->computersConnectionView->currentIndex().column() == -1))
+                {
+                    std::cout << (ui->computersConnectionView->currentIndex().column() == -1) << std::endl;
+                    return;
+                }
+
+                std::cout << (ui->computersConnectionView->currentIndex().column() == -1) << std::endl;
+
+                pid = ui->computersConnectionView->currentItem()->type();
+                cid = ui->computersConnectionView->currentItem()->parent()->type();
+
+                bool success;
+                std::cout << (s.getPersonById(pid,success).getName()).toStdString() << pid << std::endl;
+                std::cout << (s.getComputerById(cid,success).getName()).toStdString() << cid << std::endl;
+            }
+            else if(ui->personsConnectionView->hasFocus())
+            {
+                if(ui->personsConnectionView->currentIndex().column() == -1)
+                {
+                    return;
+                }
+
+                pid = ui->personsConnectionView->currentItem()->parent()->type();
+                cid = ui->personsConnectionView->currentItem()->type();
+
+                bool success;
+                std::cout << (s.getPersonById(pid,success).getName()).toStdString() << pid << std::endl;
+                std::cout << (s.getComputerById(cid,success).getName()).toStdString() <<cid<< std::endl;
+            }
+            else
+            {
+                return;
+            }
+
+            bool success;
+
+            std::cout << pid <<", " << cid << std::endl;
+            s.removeConnection(pid, cid, success);
+            if(!success)
+            {
+                std::cerr << "Removing connection failed" << endl;
+            }
         }
         break;
     }
