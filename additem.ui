@@ -25,17 +25,17 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="PersonTab">
       <attribute name="title">
        <string>Person</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <layout class="QHBoxLayout" name="NameLayout">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="LabelName">
            <property name="font">
             <font>
              <family>Calibri Light</family>
@@ -66,9 +66,9 @@
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="SexLayout">
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="LabelSex">
            <property name="font">
             <font>
              <family>Calibri Light</family>
@@ -95,9 +95,9 @@
         <widget class="QComboBox" name="AddPersonSexDropdown"/>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QHBoxLayout" name="BirthYearLayout">
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="LabelBirthYear">
            <property name="font">
             <font>
              <family>Calibri Light</family>
@@ -135,9 +135,16 @@
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <widget class="QCheckBox" name="AddPersonAliveCheckbox">
+         <property name="text">
+          <string>Alive</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="DeathYearLayout">
          <item>
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="LabelDeathYear">
            <property name="font">
             <font>
              <family>Calibri Light</family>
@@ -145,7 +152,7 @@
             </font>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Death Year (write 0 if alive):&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Death Year:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
@@ -175,23 +182,37 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_5">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="bottomMargin">
+          <number>0</number>
          </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Nationality:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
+         <item>
+          <widget class="QLabel" name="LabelNationality">
+           <property name="font">
+            <font>
+             <family>Calibri Light</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Nationality:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LabelErrorAddPersonNationality">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QComboBox" name="AddPersonNationalityDropdown"/>
        </item>
        <item>
-        <widget class="QLabel" name="label_14">
+        <widget class="QLabel" name="LabelAddPicture">
          <property name="font">
           <font>
            <family>Calibri Light</family>
@@ -206,14 +227,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="BrowseImageButton">
          <property name="text">
           <string>Browse image</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="LabelInfo">
          <property name="font">
           <font>
            <family>Calibri Light</family>
@@ -232,8 +253,8 @@
         <widget class="QPushButton" name="AddPersonButton">
          <property name="font">
           <font>
-           <family>Calibri Light</family>
-           <pointsize>14</pointsize>
+           <family>Lucida Grande</family>
+           <pointsize>13</pointsize>
           </font>
          </property>
          <property name="text">
@@ -243,7 +264,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="ComputerTab">
       <attribute name="title">
        <string>Computer</string>
       </attribute>
@@ -251,7 +272,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
-          <widget class="QLabel" name="label_7">
+          <widget class="QLabel" name="AddComputerNameLabel">
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;Name:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
@@ -274,49 +295,106 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;Type:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="bottomMargin">
+          <number>0</number>
          </property>
-        </widget>
+         <item>
+          <widget class="QLabel" name="LabelType">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Type:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LabelErrorAddComputerType">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QComboBox" name="AddComputerTypeDropdown"/>
        </item>
        <item>
-        <widget class="QLabel" name="label_9">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-         </property>
+        <widget class="QCheckBox" name="AddComputerBuiltCheckbox">
          <property name="text">
-          <string>Build Year (write 0 if not built):</string>
+          <string>Built</string>
          </property>
         </widget>
        </item>
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Build Year:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LabelErrorAddComputerBuildYear">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
         <widget class="QSpinBox" name="AddComputerBuildYearInput">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="maximum">
           <number>2016</number>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_11">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="bottomMargin">
+          <number>0</number>
          </property>
-         <property name="text">
-          <string>Nationality:</string>
-         </property>
-        </widget>
+         <item>
+          <widget class="QLabel" name="Nationality">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Nationality:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LabelErrorAddComputerNationality">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QComboBox" name="AddComputerNationalityDropdown"/>
@@ -336,7 +414,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="AddComputerInfoInput"/>
+        <widget class="QTextEdit" name="AddComputerInfoInput">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QPushButton" name="AddComputerButton">

@@ -20,27 +20,34 @@ public:
     void updateAddConnectionsList();
 
 private slots:
-    void on_AddPersonButton_clicked(bool checked);
+    void on_AddPersonButton_clicked();
 
     void on_AddComputerButton_clicked();
 
-<<<<<<< HEAD
-=======
     void on_AddConnectionButton_clicked();
 
->>>>>>> f390019b29244c6e1cfab06ce44d467c96050afb
+    void on_AddComputerBuiltCheckbox_stateChanged();
+
+    void on_AddPersonAliveCheckbox_stateChanged();
+
 private:
     Ui::addItem *ui;
     service s;
 
-    void clearFields();
-    void populateComboBoxes();
-    void displayPersons(vector<person> persons);
-    void displayComputers(vector<computer> computers);
-    void displayAllComputers();
-    void displayAllPersons();
     vector<person> currentlyDisplayedPersons;
     vector<computer> currentlyDisplayedComputers;
+
+    void populateComboBoxes();
+
+    void resetFields();
+    void resetErrorLabels();
+
+    void displayPersons(vector<person> persons);
+    void displayComputers(vector<computer> computers);
+
+    void displayAllComputers();
+    void displayAllPersons();
+
 
 };
 

@@ -44,7 +44,7 @@
        </font>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -209,10 +209,10 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QTreeView" name="ComputerConnectionView"/>
+           <widget class="QTreeView" name="PersonConnectionView"/>
           </item>
           <item>
-           <widget class="QTreeView" name="PersonConnectionView"/>
+           <widget class="QTreeView" name="ComputerConnectionView"/>
           </item>
          </layout>
         </item>

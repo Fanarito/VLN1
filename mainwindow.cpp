@@ -55,6 +55,7 @@ void MainWindow::displayPersons(vector<person> persons)
 
         QString name = p.getName();
         QString sex = p.getSex();
+
         if(p.getSex() == "m")
         {
             sex = "Male";
@@ -63,12 +64,15 @@ void MainWindow::displayPersons(vector<person> persons)
         {
             sex = "Female";
         }
+
         QString birth_year = QString::number(p.getBirthYear());
         QString death_year = QString::number(p.getDeathYear());
+
         if(p.getDeathYear() == 0)
         {
             death_year = "Alive";
         }
+
         QString nationality = p.getNationality();
 
         ui->personList->setItem(row, 0, new QTableWidgetItem(name));
@@ -133,6 +137,7 @@ void MainWindow::displayPersonsConnections()
 
     for (auto p : persons) {
         auto row = new QStandardItem(p.getName());
+        row->setFlags(row->flags() & ~Qt::ItemIsEditable);
         QList<QStandardItem *> rowItems;
         rowItems.append(row);
 
@@ -141,6 +146,9 @@ void MainWindow::displayPersonsConnections()
         for (auto c : computers) {
             QList<QStandardItem *> computerRows;
             auto computerRow = new QStandardItem(c.getName());
+
+            computerRow->setFlags(computerRow->flags() & ~Qt::ItemIsEditable);
+
             computerRows.append(computerRow);
             rowItems.first()->appendRow(computerRow);
         }
@@ -163,6 +171,7 @@ void MainWindow::displayComputersConnections()
 
     for (auto c : computers) {
         auto row = new QStandardItem(c.getName());
+        row->setFlags(row->flags() & ~Qt::ItemIsEditable);
         QList<QStandardItem *> rowItems;
         rowItems.append(row);
 
@@ -171,6 +180,8 @@ void MainWindow::displayComputersConnections()
         for (auto p : persons) {
             QList<QStandardItem *> personsRows;
             auto personRow = new QStandardItem(p.getName());
+            personRow->setFlags(personRow->flags() & ~Qt::ItemIsEditable);
+            personRow->setData(p.getId());
             personsRows.append(personRow);
             rowItems.first()->appendRow(personRow);
         }
@@ -253,7 +264,7 @@ void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
 
     infoComp.setComputer(currentlySelectedComputer);
     infoComp.exec();
-    }
+}
 
 void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
 {
@@ -267,12 +278,8 @@ void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
 
 void MainWindow::on_removeConnectionButton_clicked()
 {
-    vector<QModelIndex> currentlySelectedConnectionIndex = ui->PersonConnectionView->selectionModel()->selectedIndexes().toVector().toStdVector();
-    cout << ui->PersonConnectionView->selectionModel()->selection().size() << endl;
-    for (int i = 0; i < currentlySelectedConnectionIndex.size(); i++)
-    {
-        cout << currentlySelectedConnectionIndex[i].row() << ',' <<  currentlySelectedConnectionIndex[i].column() << endl;
-    }
+    auto index = ui->ComputerConnectionView->currentIndex();
+    std::cerr << index.data().Int << std::endl;
 }
 
 void MainWindow::on_actionActionHelp_triggered()

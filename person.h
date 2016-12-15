@@ -14,6 +14,8 @@
 
 using namespace constants;
 
+//TODO: Add alive bool
+
 class person: public Object
 {
 protected:

@@ -160,6 +160,19 @@ void service::updateComputer(computer c)
 
 void service::addConnection(int comp_id, int person_id)
 {
+    bool noerr;
+    vector<person> persons = getPersonsConnectedWithComputer(getComputerById(comp_id,noerr));
+
+    if(!noerr) return;
+
+    for(person p : persons)
+    {
+        if(p.getId() == person_id)
+        {
+            return;
+        }
+    }
+
     data.addConnection(comp_id, person_id);
 }
 

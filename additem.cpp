@@ -9,6 +9,8 @@ addItem::addItem(QWidget *parent) :
     displayAllPersons();
     displayAllComputers();
     populateComboBoxes();
+    resetFields();
+    resetErrorLabels();
 }
 
 addItem::~addItem()
@@ -16,8 +18,47 @@ addItem::~addItem()
     delete ui;
 }
 
-void addItem::on_AddPersonButton_clicked(bool checked)
+void addItem::resetFields()
 {
+    //Persons
+    ui->AddPersonNameInput->setText("");
+    ui->AddPersonSexDropdown->setCurrentIndex(0);
+    ui->AddPersonBirthYearInput->setValue(0);
+    ui->AddPersonDeathYearInput->setValue(0);
+    ui->AddPersonAliveCheckbox->setChecked(false);
+    ui->AddPersonNationalityDropdown->setCurrentIndex(0);
+    ui->AddPersonInfoInput->setText("");
+
+    //Computer
+    ui->AddComputerNameInput->setText("");
+    ui->AddComputerTypeDropdown->setCurrentIndex(0);
+    ui->AddComputerBuiltCheckbox->setChecked(false);
+    ui->AddComputerBuildYearInput->setValue(0);
+    ui->AddComputerBuildYearInput->setEnabled(false);
+    ui->AddComputerNationalityDropdown->setCurrentIndex(0);
+
+    //Connections
+    displayAllPersons();
+    displayAllComputers();
+}
+
+void addItem::resetErrorLabels()
+{
+    ui->LabelErrorAddPersonName->setText("");
+    ui->LabelErrorAddPersonBirthYear->setText("");
+    ui->LabelErrorAddPersonDeathYear->setText("");
+    ui->LabelErrorAddPersonSex->setText("");
+
+    ui->LabelErrorAddComputerName->setText("");
+    ui->LabelErrorAddComputerBuildYear->setText("");
+    ui->LabelErrorAddComputerNationality->setText("");
+    ui->LabelErrorAddComputerType->setText("");
+}
+
+void addItem::on_AddPersonButton_clicked()
+{
+    resetErrorLabels();
+
     ui->LabelErrorAddPersonName->setText("");
     ui->LabelErrorAddPersonBirthYear->setText("");
     ui->LabelErrorAddPersonDeathYear->setText("");
@@ -32,7 +73,24 @@ void addItem::on_AddPersonButton_clicked(bool checked)
     QString info = ui->AddPersonInfoInput->toPlainText();
 
     int birthYearInt = birthYear.toInt();
-    int deathYearInt = deathYear.toInt();
+    int deathYearInt = 0;
+
+    if(ui->AddPersonAliveCheckbox->isChecked())
+    {
+        deathYearInt = deathYear.toInt();
+    }
+
+    if(ui->AddPersonSexDropdown->currentIndex() == 0)
+    {
+        ui->LabelErrorAddPersonSex->setText("<span style='color: red'>Please select a sex</span>");
+        thereWasAnError = true;
+    }
+
+    if(ui->AddPersonNationalityDropdown->currentIndex() == 0)
+    {
+        ui->LabelErrorAddPersonNationality->setText("<span style='color: red'>Please select a nationality</span>");
+        thereWasAnError = true;
+    }
 
     if(name.isEmpty())
     {
@@ -52,19 +110,9 @@ void addItem::on_AddPersonButton_clicked(bool checked)
         thereWasAnError = true;
     }
 
-    if((deathYearInt > 0) && (deathYearInt < 780))
+    if((deathYearInt < birthYearInt))
     {
-        ui->LabelErrorAddPersonDeathYear->setText("<span style='color: red'>Invalid year of death</span>");
-        thereWasAnError = true;
-    }
-    if((deathYearInt < birthYearInt) && (deathYearInt != 0))
-    {
-        ui->LabelErrorAddPersonDeathYear->setText("<span style='color: red'>Invalid year of death</span>");
-        thereWasAnError = true;
-    }
-    if(birthYearInt < 780)
-    {
-        ui->LabelErrorAddPersonBirthYear->setText("<span style='color: red'>Invalid year of birth</span>");
+        ui->LabelErrorAddPersonDeathYear->setText("<span style='color: red'>Invalid year of death; cannot be before year of birth</span>");
         thereWasAnError = true;
     }
 
@@ -75,49 +123,82 @@ void addItem::on_AddPersonButton_clicked(bool checked)
 
     s.addPerson(name, sex, birthYearInt, deathYearInt, nationality, info);
 
-    ui->AddPersonNameInput->setText("");
-    ui->AddPersonInfoInput->setText("");
-
-    displayAllPersons();
-    displayAllComputers();
-
-    this->done(0);
-
+    resetFields();
 }
 
 void addItem::on_AddComputerButton_clicked()
 {
-    //TODO:LabelErrorAddComputer?
+    resetErrorLabels();
 
-    bool thereWasAnError = false;
+    bool err = false;
 
     QString name = ui->AddComputerNameInput->text();
-    QString type = ui->AddComputerTypeInput->text();
-    bool built = ui->AddComputerBuiltCheckBox->isChecked();
-    int buildyear = ui->AddComputerBuildYearInput->text().toInt();
+    QString type = ui->AddComputerTypeDropdown->currentText();
     QString nationality = ui->AddComputerNationalityDropdown->currentText();
     QString info = ui->AddComputerInfoInput->toPlainText();
 
+    bool built = ui->AddComputerBuiltCheckbox->isChecked();
+
+    QString buildYear = ui->AddComputerBuildYearInput->text();
+    int buildYearInt = buildYear.toInt();
+
+    if(ui->AddComputerTypeDropdown->currentIndex() == 0)
+    {
+        ui->LabelErrorAddComputerType->setText("<span style='color: red'>Please select computer type</span>");
+        err = true;
+    }
+
+    if(ui->AddComputerTypeDropdown->currentIndex() == 0)
+    {
+        ui->LabelErrorAddComputerNationality->setText("<span style='color: red'>Please select computer nationality</span>");
+        err = true;
+    }
+
+    if(buildYear.isEmpty())
+    {
+        ui->LabelErrorAddPersonBirthYear->setText("<span style='color: red'>Build year cannot be empty</span>");
+        err = true;
+    }
 
     if(name.isEmpty())
     {
-        thereWasAnError = true;
+        ui->LabelErrorAddComputerName->setText("<span style='color: red'>Name cannot be empty</span>");
+        err = true;
     }
 
-    if(thereWasAnError)
+    if(err)
     {
         return;
     }
 
-    s.addComputer(name, buildyear, type, built, nationality, info);
+    s.addComputer(name, buildYearInt, type, built, nationality, info);
 
-    ui->AddPersonNameInput->setText("");
+    resetFields();
+}
 
+void addItem::on_AddConnectionButton_clicked()
+{
+    int currentlySelectedPersonIndex = ui->PersonConnections->currentIndex().row();
+
+    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+
+    int personId = s.getIdOfPerson(currentlySelectedPerson);
+
+    int currentlySelectedComputerIndex = ui->ComputerConnections->currentIndex().row();
+
+    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
+
+    int computerId = s.getIdOfComputer(currentlySelectedComputer);
+
+    s.addConnection(computerId, personId);
 }
 
 void addItem::populateComboBoxes()
 {
     vector<QString> nationalities = s.getNationalities();
+
+    ui->AddPersonNationalityDropdown->addItem("-");
+    ui->AddComputerNationalityDropdown->addItem("-");
 
     for (auto nationality : nationalities)
     {
@@ -125,67 +206,18 @@ void addItem::populateComboBoxes()
         ui->AddComputerNationalityDropdown->addItem(nationality);
     }
 
-    ui->AddPersonSexDropdown->addItem("f");
-    ui->AddPersonSexDropdown->addItem("m");
+    ui->AddPersonSexDropdown->addItem("-");
+    ui->AddPersonSexDropdown->addItem("Male");
+    ui->AddPersonSexDropdown->addItem("Female");
 
     vector<QString> computerTypes = s.getComputerTypes();
+
+    ui->AddComputerTypeDropdown->addItem("-");
 
     for (auto computerType : computerTypes)
     {
         ui->AddComputerTypeDropdown->addItem(computerType);
     }
-}
-
-void addItem::on_AddComputerButton_clicked()
-{
-    ui->LabelErrorAddComputerName->setText("");
-
-    bool thereWasAnError = false;
-    int built;
-
-    QString name = ui->AddComputerNameInput->text();
-    QString type = ui->AddComputerTypeDropdown->currentText();
-    QString buildYear = ui->AddComputerBuildYearInput->text();
-    QString nationality = ui->AddComputerNationalityDropdown->currentText();
-    QString info = ui->AddComputerInfoInput->toPlainText();
-
-    int buildYearInt = buildYear.toInt();
-
-    if(name.isEmpty())
-    {
-        ui->LabelErrorAddComputerName->setText("<span style='color: red'>Name cannot be empty</span>");
-        thereWasAnError = true;
-    }
-
-    if(buildYear.isEmpty())
-    {
-        ui->LabelErrorAddPersonBirthYear->setText("<span style='color: red'>Build year cannot be empty</span>");
-        thereWasAnError = true;
-    }
-
-    if(buildYearInt == 0)
-    {
-        built = 0;
-    }
-    else
-    {
-        built = 1;
-    }
-
-    if(thereWasAnError)
-    {
-        return;
-    }
-
-    s.addComputer(name, buildYearInt, type, built, nationality, info);
-
-    ui->AddComputerNameInput->setText("");
-    ui->AddComputerInfoInput->setText("");
-
-    displayAllPersons();
-    displayAllComputers();
-
-    this->done(0);
 }
 
 void addItem::displayPersons(vector<person> persons)
@@ -230,30 +262,33 @@ void addItem::displayAllComputers()
     displayComputers(computers);
 }
 
-void addItem::on_AddConnectionButton_clicked()
-{
-    int currentlySelectedPersonIndex = ui->PersonConnections->currentIndex().row();
-
-    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
-
-    int personId = s.getIdOfPerson(currentlySelectedPerson);
-
-    int currentlySelectedComputerIndex = ui->ComputerConnections->currentIndex().row();
-
-    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
-
-    int computerId = s.getIdOfComputer(currentlySelectedComputer);
-
-    s.addConnection(computerId, personId);
-
-    displayAllPersons();
-    displayAllComputers();
-
-    this->done(0);
-}
-
 void addItem::updateAddConnectionsList()
 {
     displayAllComputers();
     displayAllPersons();
+}
+
+void addItem::on_AddComputerBuiltCheckbox_stateChanged()
+{
+    if(ui->AddComputerBuiltCheckbox->isChecked())
+    {
+        ui->AddComputerBuildYearInput->setEnabled(true);
+    }
+    else
+    {
+        ui->AddComputerBuildYearInput->setValue(0);
+        ui->AddComputerBuildYearInput->setEnabled(false);
+    }
+}
+
+void addItem::on_AddPersonAliveCheckbox_stateChanged()
+{
+    if(ui->AddPersonAliveCheckbox->isChecked())
+    {
+        ui->AddPersonDeathYearInput->setEnabled(false);
+    }
+    else
+    {
+        ui->AddPersonDeathYearInput->setEnabled(true);
+    }
 }

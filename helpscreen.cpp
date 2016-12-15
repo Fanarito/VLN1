@@ -6,6 +6,7 @@ helpscreen::helpscreen(QWidget *parent) :
     ui(new Ui::helpscreen)
 {
     ui->setupUi(this);
+    this->setFixedSize(size());
 }
 
 helpscreen::~helpscreen()
