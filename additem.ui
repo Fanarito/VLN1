@@ -25,7 +25,7 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="PersonTab">
       <attribute name="title">
@@ -447,25 +447,11 @@
       <attribute name="title">
        <string>Connection</string>
       </attribute>
-<<<<<<< HEAD
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="2" column="0" colspan="2">
-        <widget class="QPushButton" name="AddConnectionButton">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>14</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Connect!</string>
-=======
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <property name="bottomMargin">
           <number>10</number>
->>>>>>> dec5ddfbdfb20f021222dc42deb41d765c25ad06
          </property>
          <item>
           <widget class="QLabel" name="label_10">
@@ -499,22 +485,10 @@
          </item>
         </layout>
        </item>
-<<<<<<< HEAD
-       <item row="0" column="1">
-        <widget class="QLabel" name="label_13">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-          </font>
-=======
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <property name="bottomMargin">
           <number>10</number>
->>>>>>> dec5ddfbdfb20f021222dc42deb41d765c25ad06
          </property>
          <item>
           <widget class="QListWidget" name="PersonConnections"/>
@@ -527,31 +501,20 @@
        <item>
         <widget class="QLabel" name="ConnectionsResult">
          <property name="text">
-<<<<<<< HEAD
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Pick a computer you want to connect:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_10">
-=======
           <string/>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="AddConnectionButton">
->>>>>>> dec5ddfbdfb20f021222dc42deb41d765c25ad06
          <property name="font">
           <font>
            <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
+           <pointsize>14</pointsize>
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Pick  a person you want to connect:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>Connect!</string>
          </property>
         </widget>
        </item>
