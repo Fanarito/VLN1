@@ -281,7 +281,8 @@
   <action name="actionRemove">
    <property name="icon">
     <iconset>
-     <normaloff>images/Remove.png</normaloff>images/Remove.png</iconset>
+     <normaloff>images/Remove.png</normaloff>
+     <normalon>:/remove/images/Remove.png</normalon>images/Remove.png</iconset>
    </property>
    <property name="text">
     <string>Remove</string>

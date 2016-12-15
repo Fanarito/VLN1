@@ -18,10 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    displayAllPersons();
-    displayAllComputers();
-    displayPersonsConnections();
-    displayComputersConnections();
+    // firstfresh.exe
+    refresh();
 }
 
 MainWindow::~MainWindow()
