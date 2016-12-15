@@ -188,18 +188,10 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QTreeView" name="PersonConnectionView">
-            <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-           </widget>
+           <widget class="QTableWidget" name="personsConnectionView"/>
           </item>
           <item>
-           <widget class="QTreeView" name="ComputerConnectionView">
-            <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-           </widget>
+           <widget class="QTableWidget" name="computersConnectionView"/>
           </item>
          </layout>
         </item>

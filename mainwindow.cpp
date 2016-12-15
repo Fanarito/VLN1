@@ -123,65 +123,46 @@ void MainWindow::displayComputers(std::vector<computer> computers)
 
 void MainWindow::displayPersonsConnections()
 {
-    QStringList string_list;
-    string_list.append("Persons");
-    auto model = new QStandardItemModel;
-    model->setHorizontalHeaderLabels(string_list);
-    auto root = model->invisibleRootItem();
-
-
-    vector<person> persons = s.getPersons();
-
-    for (auto p : persons) {
-        auto row = new QStandardItem(p.getName());
-        QList<QStandardItem *> rowItems;
-        rowItems.append(row);
-
-        vector<computer> computers = s.getComputersConnectedWithPerson(p);
-
-        for (auto c : computers) {
-            QList<QStandardItem *> computerRows;
-            auto computerRow = new QStandardItem(c.getName());
-
-            computerRows.append(computerRow);
-            rowItems.first()->appendRow(computerRow);
-        }
-        root->appendRow(rowItems);
-    }
-
-    ui->PersonConnectionView->setModel(model);
+    displayPersonsConnections(s.getPersons());
 }
 
+void MainWindow::displayPersonsConnections(vector<person> persons)
+{
+    ui->personsConnectionView->setSortingEnabled(false);
+
+    ui->personsConnectionView->clearContents();
+    ui->personsConnectionView->setRowCount(persons.size());
+
+    for (size_t row = 0; row < persons.size(); row++)
+    {
+        person p = persons.at(row);
+
+        ui->personsConnectionView->setItem(row, 0, new QTableWidgetItem(p.getName(), p.getId())); //Origin of hack
+    }
+
+    ui->personsConnectionView->setSortingEnabled(true);
+}
 
 void MainWindow::displayComputersConnections()
 {
-    QStringList string_list;
-    string_list.append("Computers");
-    auto model = new QStandardItemModel;
-    model->setHorizontalHeaderLabels(string_list);
-    auto root = model->invisibleRootItem();
+    displayComputersConnections(s.getComputers());
+}
 
-    vector<computer> computers = s.getComputers();
+void MainWindow::displayComputersConnections(std::vector<computer> computers)
+{
+    ui->computersConnectionView->setSortingEnabled(false);
 
-    for (auto c : computers) {
-        auto row = new QStandardItem(c.getName());
-        QList<QStandardItem *> rowItems;
-        rowItems.append(row);
+    ui->computersConnectionView->clearContents();
+    ui->computersConnectionView->setRowCount(computers.size());
 
-        vector<person> persons = s.getPersonsConnectedWithComputer(c);
+    for (size_t row = 0; row < computers.size(); row++)
+    {
+        computer c = computers.at(row);
 
-        for (auto p : persons) {
-            QList<QStandardItem *> personsRows;
-            auto personRow = new QStandardItem(p.getName());
-
-            personRow->setData(p.getId());
-            personsRows.append(personRow);
-            rowItems.first()->appendRow(personRow);
-        }
-        root->appendRow(rowItems);
+        ui->computersConnectionView->setItem(row, 0, new QTableWidgetItem(c.getName(), c.getId())); //Origin of hack
     }
 
-    ui->ComputerConnectionView->setModel(model);
+    ui->computersConnectionView->setSortingEnabled(true);
 }
 
 void MainWindow::on_personsFilter_textChanged(const QString &arg1)
@@ -277,7 +258,8 @@ void MainWindow::on_actionRemove_triggered()
         }
         break;
         case constants::TabType::Connections:
-            std::cerr << "Not implemented" << std::endl;
+        {
+        }
         break;
     }
 
