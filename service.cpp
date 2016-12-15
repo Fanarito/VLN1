@@ -90,7 +90,7 @@ void service::removeComputer(int id)
 void service::removeConnection(int pid, int cid, bool &success)
 {
     data.getPersonById(pid, success);
-    data.getComputerById(pid, success);
+    data.getComputerById(cid, success);
 
     if(!success) return;
 
