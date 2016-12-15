@@ -70,7 +70,7 @@
 color: rgb(0, 0, 0);</string>
            </property>
            <property name="readOnly">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -97,7 +97,7 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
            </property>
            <property name="readOnly">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -127,7 +127,7 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
            </property>
            <property name="readOnly">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -154,7 +154,7 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
            </property>
            <property name="readOnly">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -181,7 +181,7 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
            </property>
            <property name="readOnly">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -225,7 +225,7 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
        </property>
        <property name="readOnly">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -235,14 +235,14 @@ color: rgb(0, 0, 0);</string>
         <number>10</number>
        </property>
        <item>
-        <widget class="QPushButton" name="closePersonButton">
+        <widget class="QPushButton" name="applyPersonButton">
          <property name="text">
           <string>Apply</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="applyPersonButton">
+        <widget class="QPushButton" name="closePersonButton">
          <property name="text">
           <string>Close</string>
          </property>

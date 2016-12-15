@@ -38,3 +38,41 @@ void InfoPage::resizeEvent(QResizeEvent *event)
     //ui->picture->setPixmap(QPixmap(img_path).scaledToHeight(ui->picture->height()));
     QWidget::resizeEvent(event);
 }
+
+void InfoPage::enableFields()
+{
+    ui->infoPersName->setEnabled(true);
+    ui->infoPersSex->setEnabled(true);
+    ui->infoPersBirthYear->setEnabled(true);
+    ui->infoPersDeathYear->setEnabled(true);
+    ui->infoPersNationality->setEnabled(true);
+    ui->infoPersInfo->setEnabled(true);
+}
+
+void InfoPage::disableFields()
+{
+    ui->infoPersName->setEnabled(false);
+    ui->infoPersSex->setEnabled(false);
+    ui->infoPersBirthYear->setEnabled(false);
+    ui->infoPersDeathYear->setEnabled(false);
+    ui->infoPersNationality->setEnabled(false);
+    ui->infoPersInfo->setEnabled(false);
+}
+
+void InfoPage::on_editPersonCheckbox_stateChanged()
+{
+    if(ui->editPersonCheckbox->isChecked())
+    {
+        enableFields();
+    }
+    else
+    {
+        disableFields();
+    }
+}
+
+void InfoPage::on_applyPersonButton_clicked()
+{
+    ui->editPersonCheckbox->setChecked(false);
+    //s.removePerson(p.getId());
+}

@@ -18,10 +18,20 @@ public:
     ~InfoPage();
     void setPerson(person pers);
 
+private slots:
+    void on_editPersonCheckbox_stateChanged();
+
+    void on_applyPersonButton_clicked();
+
 private:
+
+    void enableFields();
+    void disableFields();
+
     Ui::InfoPage *ui;
     void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
     person p;
+    service s;
     QString img_path;
 };
 
