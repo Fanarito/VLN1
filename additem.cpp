@@ -20,6 +20,10 @@ addItem::~addItem()
 
 void addItem::resetFields()
 {
+    ui->AddPersonBirthYearInput->setMaximum(utils::getCurrentYear());
+    ui->AddPersonBirthYearInput->setMinimum(0);
+    ui->AddPersonDeathYearInput->setMaximum(utils::getCurrentYear());
+
     //Persons
     ui->AddPersonNameInput->setText("");
     ui->AddPersonSexDropdown->setCurrentIndex(0);
@@ -65,17 +69,32 @@ void addItem::on_AddPersonButton_clicked()
 
     bool thereWasAnError = false;
 
-    QString name = ui->AddPersonNameInput->text();
-    QString sex = ui->AddPersonSexDropdown->currentText();
-    QString birthYear = ui->AddPersonBirthYearInput->text();
-    QString deathYear = ui->AddPersonDeathYearInput->text();
-    QString nationality = ui->AddPersonNationalityDropdown->currentText();
-    QString info = ui->AddPersonInfoInput->toPlainText();
+    QString name, sex, birthYear, deathYear, nationality, info;
+    bool alive;
+    int birthYearInt;
+    int deathYearInt;
 
-    int birthYearInt = birthYear.toInt();
-    int deathYearInt = 0;
+    name = ui->AddPersonNameInput->text();
 
-    if(ui->AddPersonAliveCheckbox->isChecked())
+    if(ui->AddPersonSexDropdown->currentText() == "Male")
+    {
+        sex = "m";
+    }
+    else
+    {
+        sex = "f";
+    }
+
+    birthYear = ui->AddPersonBirthYearInput->text();
+    deathYear = ui->AddPersonDeathYearInput->text();
+    alive = ui->AddPersonAliveCheckbox->isChecked();
+    nationality = ui->AddPersonNationalityDropdown->currentText();
+    info = ui->AddPersonInfoInput->toPlainText();
+
+    birthYearInt = birthYear.toInt();
+    deathYearInt = 0;
+
+    if(!alive)
     {
         deathYearInt = deathYear.toInt();
     }
@@ -121,7 +140,7 @@ void addItem::on_AddPersonButton_clicked()
         return;
     }
 
-    s.addPerson(name, sex, birthYearInt, deathYearInt, nationality, info);
+    s.addPerson(name, sex, birthYearInt, deathYearInt, alive, nationality, info);
 
     resetFields();
 }
@@ -291,4 +310,9 @@ void addItem::on_AddPersonAliveCheckbox_stateChanged()
     {
         ui->AddPersonDeathYearInput->setEnabled(true);
     }
+}
+
+void addItem::on_AddPersonBirthYearInput_valueChanged(int arg1)
+{
+    ui->AddPersonDeathYearInput->setMinimum(arg1);
 }

@@ -127,7 +127,7 @@
           </font>
          </property>
          <property name="minimum">
-          <number>780</number>
+          <number>0</number>
          </property>
          <property name="maximum">
           <number>2016</number>

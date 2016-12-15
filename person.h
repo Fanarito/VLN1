@@ -22,9 +22,10 @@ protected:
     QString m_sex;
     int m_birthyear;
     int m_deathyear;
+    bool m_alive;
 public:
     person(QString name="Undefined", QString sex="Undefined", int birthyear=0,
-           int deathyear=0, QString nationality="Undefined", QString info="", int id = 0);
+           int deathyear=0, bool alive=false, QString nationality="Undefined", QString info="", int id = 0);
 
     QString getSex() const;
     void setSex(QString sex);
@@ -34,6 +35,9 @@ public:
 
     int getDeathYear() const;
     void setDeathYear(int year);
+
+    bool getAlive() const;
+    void setAlive(bool alive);
 };
 
 #endif // PERSON_H

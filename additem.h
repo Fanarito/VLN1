@@ -30,6 +30,8 @@ private slots:
 
     void on_AddPersonAliveCheckbox_stateChanged();
 
+    void on_AddPersonBirthYearInput_valueChanged(int arg1);
+
 private:
     Ui::addItem *ui;
     service s;

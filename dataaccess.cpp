@@ -26,18 +26,7 @@ int dataaccess::getNationalityID(QString nationality)
 
     //If country is found, return first match
     if(query.next()) return query.value("ID").toUInt();
-    /*else
-    {
-        QSqlQuery insert_query(db);
-        insert_query.prepare(QString::fromStdString("INSERT INTO nationality (Nationality) VALUES (:nat)"));
-        insert_query.bindValue(":nat", QString::fromStdString(nationality));
-        insert_query.exec();
 
-        // Find the nationality and return the id
-        return getNationalityID(nationality);
-    }*/
-
-    //If no match, return id for nationality "UNKNOWN"
     return 0;
 }
 
@@ -53,16 +42,6 @@ int dataaccess::getComputer_TypeID(QString computer_type)
 
     //If computer type is found, return first match
     if(query.next()) return query.value("ID").toUInt();
-    /*else
-    {
-        QSqlQuery insert_query(db);
-        insert_query.prepare(QString::fromStdString("INSERT INTO Computer_Types (Computer_Type) VALUES (:comp_type)"));
-        insert_query.bindValue(":comp_type", QString::fromStdString(computer_type));
-        insert_query.exec();
-
-        // Find the computer type and return the id
-        return getComputer_TypeID(computer_type);
-    }*/
 
     //If no match, return id for computer type "UNKNOWN"
     return 0;
@@ -122,22 +101,7 @@ std::vector<person> dataaccess::getPersonsByQuery(QString q)
 
    query.exec(q);
 
-   std::vector<person> persons;
-
-   while(query.next())
-   {
-       int id = query.value("ID").toUInt();
-       QString name = query.value("Name").toString();
-       QString sex = query.value("Sex").toString();
-       int birthyear = query.value("Birth_Year").toUInt();
-       int deathyear = query.value("Death_Year").toUInt();
-       QString nationality = query.value("Nationality").toString();
-       QString info = query.value("Info").toString();
-
-       persons.push_back(person(name, sex, birthyear, deathyear, nationality, info, id));
-   }
-
-   return persons;
+   return execQueryPerson(query);
 }
 
 std::vector<computer> dataaccess::getComputersByQuery(QString q)
@@ -146,22 +110,7 @@ std::vector<computer> dataaccess::getComputersByQuery(QString q)
 
    query.exec(q);
 
-   std::vector<computer> computers;
-
-   while(query.next())
-   {
-       int id = query.value("ID").toUInt();
-       QString name = query.value("Name").toString();
-       int build_year = query.value("Build_Year").toUInt();
-       QString computer_type = query.value("Computer_Type").toString();
-       bool built = query.value("Built").toBool();
-       QString nationality = query.value("Nationality").toString();
-       QString info = query.value("Info").toString();
-
-       computers.push_back(computer(name, build_year, computer_type, built, nationality, info, id));
-   }
-
-   return computers;
+   return execQueryComputer(query);
 }
 
 //Adds an instance of person to the Persons table in the database
@@ -336,10 +285,11 @@ std::vector<person> dataaccess::execQueryPerson(QSqlQuery query)
         QString sex = query.value("Sex").toString();
         int birthyear = query.value("Birth_Year").toUInt();
         int deathyear = query.value("Death_Year").toUInt();
+        bool alive = query.value("alive").toBool();
         QString nationality = query.value("Nationality").toString();
         QString info = query.value("Info").toString();
 
-        persons.push_back(person(name, sex, birthyear, deathyear, nationality, info, id));
+        persons.push_back(person(name, sex, birthyear, deathyear, alive, nationality, info, id));
     }
 
     return persons;
@@ -597,6 +547,7 @@ void dataaccess::updatePerson(person p)
                           "nationalityid=:nationalityid, "
                           "birth_year=:birth_year, "
                           "death_year=:death_year, "
+                          "alive=:alive, "
                           "info=:info "
                           "WHERE id = :id");
     if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
@@ -606,6 +557,7 @@ void dataaccess::updatePerson(person p)
     query.bindValue(":nationalityid", getNationalityID(p.getNationality()));
     query.bindValue(":birth_year", QString::number(p.getBirthYear()));
     query.bindValue(":death_year", QString::number(p.getDeathYear()));
+    query.bindValue(":alive", (p.getAlive())?("TRUE"):("FALSE"));
     query.bindValue(":info", p.getInfo());
     query.bindValue(":id", p.getId());
 

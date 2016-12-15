@@ -3,13 +3,14 @@
 
 
 person::person(QString name, QString sex, int birthyear,
-               int deathyear, QString nationality, QString info, int id)
+               int deathyear, bool alive, QString nationality, QString info, int id)
 {
     m_id = id;
     m_name = name;
     m_sex = sex;
     m_birthyear = birthyear;
     m_deathyear = deathyear;
+    m_alive = alive;
     m_nationality = nationality;
     m_info = info;
 }
@@ -42,4 +43,14 @@ int person::getDeathYear() const
 void person::setDeathYear(int year)
 {
     m_deathyear = year;
+}
+
+bool person::getAlive() const
+{
+    return m_alive;
+}
+
+void person::setAlive(bool alive)
+{
+    m_alive = alive;
 }
