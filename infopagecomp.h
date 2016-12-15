@@ -22,6 +22,7 @@ public:
 private:
     Ui::infoPageComp *ui;
     computer c;
+    QString img_path;
 };
 
 #endif // INFOPAGECOMP_H

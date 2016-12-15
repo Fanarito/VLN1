@@ -36,7 +36,9 @@ private slots:
 
     void on_AddPersonBirthYearInput_valueChanged(int arg1);
 
-    void on_BrowseImageButton_clicked();
+    void on_BrowseImageComputerButton_clicked();
+
+    void on_BrowseImagePersonButton_clicked();
 
 private:
     Ui::addItem *ui;
@@ -55,7 +57,8 @@ private:
     void displayAllComputers();
     void displayAllPersons();
 
-    QString picture_path;
+    QString person_picture_path;
+    QString computer_picture_path;
 };
 
 
