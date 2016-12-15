@@ -23,5 +23,11 @@ void infoPageComp::setComputer(computer comp)
     ui->infoCompBuiltYear->setText(build_year);
     ui->infoCompNationality->setText(c.getNationality());
     ui->infoCompInfo->setText(c.getInfo());
+
+    img_path = constants::IMAGE_PATH + QString::fromStdString("c" + std::to_string(c.getId()));
+    if (!QFile::exists(img_path))
+        img_path = constants::IMAGE_PATH + QString::fromStdString("noimg");
+
+    ui->infoCompPic->setPixmap(QPixmap(img_path).scaledToHeight(100));
 }
 

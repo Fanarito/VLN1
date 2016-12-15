@@ -45,6 +45,12 @@ void addItem::resetFields()
     //Connections
     displayAllPersons();
     displayAllComputers();
+
+    ui->BrowseImageComputerButton->setText("Browse Image");
+    ui->BrowseImagePersonButton->setText("Browse Image");
+
+    person_picture_path = "";
+    computer_picture_path = "";
 }
 
 void addItem::resetErrorLabels()
@@ -156,7 +162,7 @@ void addItem::on_AddPersonButton_clicked()
     if (QFile::exists(path)) {
         QFile::remove(path);
     }
-    QFile::copy(picture_path, path);
+    QFile::copy(person_picture_path, path);
 
     resetFields();
 }
@@ -212,6 +218,12 @@ void addItem::on_AddComputerButton_clicked()
         ui->ComputerResult->setText("<span style='color: red'>Computer not added!</span>");
     else
         ui->ComputerResult->setText("<span style='color: green'>Computer added successfully</span>");
+
+    QString path = constants::IMAGE_PATH + QString::fromStdString("c" + to_string(result));
+    if (QFile::exists(path)) {
+        QFile::remove(path);
+    }
+    QFile::copy(computer_picture_path, path);
 
     resetFields();
 }
@@ -343,8 +355,16 @@ void addItem::on_AddPersonBirthYearInput_valueChanged(int arg1)
     ui->AddPersonDeathYearInput->setMinimum(arg1);
 }
 
-void addItem::on_BrowseImageButton_clicked()
+void addItem::on_BrowseImagePersonButton_clicked()
 {
-    picture_path = QFileDialog::getOpenFileName(this, tr("Select Picture"), "/home", tr("Images (*.png *.jpg *.tiff *.jpeg)"));
+    person_picture_path = QFileDialog::getOpenFileName(this, tr("Select Picture"), "/home", tr("Images (*.png *.jpg *.tiff *.jpeg)"));
     QDir().mkpath(QDir::currentPath() + QString::fromStdString("/images"));
+    ui->BrowseImagePersonButton->setText(person_picture_path);
+}
+
+void addItem::on_BrowseImageComputerButton_clicked()
+{
+    computer_picture_path = QFileDialog::getOpenFileName(this, tr("Select Picture"), "/home", tr("Images (*.png *.jpg *.tiff *.jpeg)"));
+    QDir().mkpath(QDir::currentPath() + QString::fromStdString("/images"));
+    ui->BrowseImageComputerButton->setText(computer_picture_path);
 }
