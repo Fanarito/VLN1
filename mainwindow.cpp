@@ -76,7 +76,7 @@ void MainWindow::displayPersons(vector<person> persons)
 
         QString nationality = p.getNationality();
 
-        ui->personList->setItem(row, 0, new QTableWidgetItem(name));
+        ui->personList->setItem(row, 0, new QTableWidgetItem(name, p.getId())); //Origin of hack
         ui->personList->setItem(row, 1, new QTableWidgetItem(sex));
         ui->personList->setItem(row, 2, new QTableWidgetItem(birth_year));
         ui->personList->setItem(row, 3, new QTableWidgetItem(death_year));
@@ -114,7 +114,7 @@ void MainWindow::displayComputers(std::vector<computer> computers)
         }
         QString nationality = c.getNationality();
 
-        ui->computerList->setItem(row, 0, new QTableWidgetItem(name));
+        ui->computerList->setItem(row, 0, new QTableWidgetItem(name, c.getId())); //Origin of hack
         ui->computerList->setItem(row, 1, new QTableWidgetItem(type));
         ui->computerList->setItem(row, 2, new QTableWidgetItem(built));
         ui->computerList->setItem(row, 3, new QTableWidgetItem(nationality));
@@ -259,9 +259,19 @@ void MainWindow::on_removePersonButton_clicked()
 
 void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
 {
-    int currentlySelectedComputerIndex = ui->computerList->currentIndex().row();
+    //Begin dirty hack mk.2
 
-    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
+    int currentlySelectedComputerRow = ui->computerList->currentRow();
+    int cid = ui->computerList->item(currentlySelectedComputerRow,0)->type(); //Not how this is supposed to be used.
+
+    bool success = true;
+    computer currentlySelectedComputer = s.getComputerById(cid,success);
+    if(!success)
+    {
+        std::cerr << "Error: Invalid Computer Selection" << std::endl;
+    }
+
+    //End dirty hack
 
     infoComp.setComputer(currentlySelectedComputer);
     infoComp.exec();
@@ -269,9 +279,17 @@ void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
 
 void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
 {
-    int currentlySelectedPersonIndex = ui->personList->currentIndex().row();
+    //Dirty hack volume ... IV?
 
-    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
+    int currentlySelectedPersonRow = ui->personList->currentRow();
+    int pid = ui->personList->item(currentlySelectedPersonRow,0)->type(); //Not how this is supposed to be used.
+
+    bool success = true;
+    person currentlySelectedPerson = s.getPersonById(pid,success);
+    if(!success)
+    {
+        std::cerr << "Error: Invalid Person Selection" << std::endl;
+    }
 
     infoPers.setPerson(currentlySelectedPerson);
     infoPers.exec();
