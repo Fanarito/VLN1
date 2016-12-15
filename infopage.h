@@ -1,6 +1,7 @@
 #ifndef INFOPAGE_H
 #define INFOPAGE_H
 #include "person.h"
+#include "service.h"
 #include <QDialog>
 #include <QResizeEvent>
 #include <string>
