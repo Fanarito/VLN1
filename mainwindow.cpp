@@ -8,6 +8,7 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include <QString>
+#include <QTreeWidget>
 
 using namespace std;
 
@@ -129,15 +130,25 @@ void MainWindow::displayPersonsConnections()
 void MainWindow::displayPersonsConnections(vector<person> persons)
 {
     ui->personsConnectionView->setSortingEnabled(false);
+    ui->personsConnectionView->clear();
+    ui->personsConnectionView->setColumnCount(1);
 
-    ui->personsConnectionView->clearContents();
-    ui->personsConnectionView->setRowCount(persons.size());
-
-    for (size_t row = 0; row < persons.size(); row++)
+    for (person p : persons)
     {
-        person p = persons.at(row);
+        QTreeWidgetItem *compItem = new QTreeWidgetItem(ui->personsConnectionView, p.getId());
 
-        ui->personsConnectionView->setItem(row, 0, new QTableWidgetItem(p.getName(), p.getId())); //Origin of hack
+        compItem->setText(0, p.getName());
+
+        std::vector<computer> computers = s.getComputersConnectedWithPerson(p);
+
+        for(computer c : computers)
+        {
+            QTreeWidgetItem *persItem = new QTreeWidgetItem(compItem, c.getId());
+
+            persItem->setText(0, c.getName());
+
+            compItem->addChild(persItem);
+        }
     }
 
     ui->personsConnectionView->setSortingEnabled(true);
@@ -150,16 +161,27 @@ void MainWindow::displayComputersConnections()
 
 void MainWindow::displayComputersConnections(std::vector<computer> computers)
 {
-    ui->computersConnectionView->setSortingEnabled(false);
+    ui->personsConnectionView->setSortingEnabled(false);
+    ui->computersConnectionView->clear();
+    ui->computersConnectionView->setColumnCount(1);
 
-    ui->computersConnectionView->clearContents();
-    ui->computersConnectionView->setRowCount(computers.size());
-
-    for (size_t row = 0; row < computers.size(); row++)
+    for (computer c : computers)
     {
-        computer c = computers.at(row);
 
-        ui->computersConnectionView->setItem(row, 0, new QTableWidgetItem(c.getName(), c.getId())); //Origin of hack
+        QTreeWidgetItem *compItem = new QTreeWidgetItem(ui->computersConnectionView, c.getId());
+
+        compItem->setText(0, c.getName());
+
+        std::vector<person> persons = s.getPersonsConnectedWithComputer(c);
+
+        for(person p : persons)
+        {
+            QTreeWidgetItem *persItem = new QTreeWidgetItem(compItem, p.getId());
+
+            persItem->setText(0, p.getName());
+
+            compItem->addChild(persItem);
+        }
     }
 
     ui->computersConnectionView->setSortingEnabled(true);
