@@ -57,7 +57,9 @@ private:
     void displayComputers(std::vector<computer> computers);
 
     void displayPersonsConnections();
+    void displayPersonsConnections(vector<person> persons);
     void displayComputersConnections();
+    void displayComputersConnections(vector<computer> computers);
 };
 
 #endif // MAINWINDOW_H
