@@ -84,8 +84,6 @@ void MainWindow::displayPersons(vector<person> persons)
     }
 
     ui->personList->setSortingEnabled(true);
-
-    currentlyDisplayedPersons = persons;
 }
 
 void MainWindow::displayAllComputers()
@@ -121,8 +119,6 @@ void MainWindow::displayComputers(std::vector<computer> computers)
     }
 
     ui->computerList->setSortingEnabled(true);
-
-    currentlyDisplayedComputers = computers;
 }
 
 void MainWindow::displayPersonsConnections()
@@ -213,46 +209,6 @@ void MainWindow::on_actionAdd_Person_triggered()
     displayPersonsConnections();
 }
 
-void MainWindow::on_removeComputerButton_clicked()
-{
-    int currentlySelectedComputerIndex = ui->computerList->currentIndex().row();
-
-    computer currentlySelectedComputer = currentlyDisplayedComputers.at(currentlySelectedComputerIndex);
-
-    int computerId = s.getIdOfComputer((currentlySelectedComputer));
-
-    s.removeComputer(computerId);
-
-    ui->personsFilter->setText("");
-    ui->computersFilter->setText("");
-
-    displayAllPersons();
-    displayAllComputers();
-    displayComputersConnections();
-    displayPersonsConnections();
-    add.updateAddConnectionsList();
-}
-
-void MainWindow::on_removePersonButton_clicked()
-{
-    int currentlySelectedPersonIndex = ui->personList->currentIndex().row();
-
-    person currentlySelectedPerson = currentlyDisplayedPersons.at(currentlySelectedPersonIndex);
-
-    int personId = s.getIdOfPerson((currentlySelectedPerson));
-
-    s.removePerson(personId);
-
-    ui->personsFilter->setText("");
-    ui->computersFilter->setText("");
-
-    displayAllPersons();
-    displayAllComputers();
-    displayComputersConnections();
-    displayPersonsConnections();
-    add.updateAddConnectionsList();
-}
-
 void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
 {
     //Begin dirty hack mk.2
@@ -291,18 +247,38 @@ void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
     infoPers.exec();
 }
 
-void MainWindow::on_removeConnectionButton_clicked()
-{
-    auto index = ui->ComputerConnectionView->currentIndex();
-    std::cerr << index.data().Int << std::endl;
-}
-
 void MainWindow::on_actionActionHelp_triggered()
 {
     help.exec();
 
     ui->personsFilter->setText("");
     ui->computersFilter->setText("");
+
+    refresh();
+}
+
+void MainWindow::on_actionRemove_triggered()
+{
+    switch(ui->tabMenuBar->currentIndex())
+    {
+        case constants::TabType::Persons:
+        {
+            int row = ui->personList->currentRow();
+            int pid = ui->personList->item(row,0)->type();
+            s.removePerson(pid);
+        }
+        break;
+        case constants::TabType::Computers:
+        {
+            int row = ui->computerList->currentRow();
+            int cid = ui->computerList->item(row,0)->type();
+            s.removePerson(cid);
+        }
+        break;
+        case constants::TabType::Connections:
+            std::cerr << "Not implemented" << std::endl;
+        break;
+    }
 
     refresh();
 }

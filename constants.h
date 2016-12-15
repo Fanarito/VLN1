@@ -3,7 +3,13 @@
 
 #include <string>
 
-namespace constants {
+namespace constants
+{
+    enum TabType
+    {
+        Persons=0,Computers=1,Connections=2
+    };
+
     const std::string VALID_TABLE_NAMES = "persons|computers|connections|nationalities|computer_types";
     const std::string VALID_ADD_COMMANDS = "persons|computers|connections";
     const std::string VALID_OBJECT_NAMES = "persons|computers";

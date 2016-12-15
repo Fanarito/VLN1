@@ -32,17 +32,13 @@ private slots:
 
     void on_actionAdd_Person_triggered();
 
-    void on_removeComputerButton_clicked();
-
-    void on_removePersonButton_clicked();
-
     void on_computerList_doubleClicked(const QModelIndex &index);
 
     void on_personList_doubleClicked(const QModelIndex &index);
 
-    void on_removeConnectionButton_clicked();
-
     void on_actionActionHelp_triggered();
+
+    void on_actionRemove_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -51,9 +47,6 @@ private:
     infoPageComp infoComp;
     InfoPage infoPers;
     helpscreen help;
-
-    vector<person> currentlyDisplayedPersons;
-    vector<computer> currentlyDisplayedComputers;
 
     void refresh();
 
