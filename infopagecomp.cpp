@@ -126,7 +126,7 @@ void infoPageComp::on_applyComputerButton_clicked()
 
     built = ui->InfoCompBuilt->isChecked();
 
-    c = computer(name, build_year, type, built, info, nationality, c.getId());
+    c = computer(name, build_year, type, built, nationality, info, c.getId());
 
     s.changeComputer(c);
 
