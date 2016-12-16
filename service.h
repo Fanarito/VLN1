@@ -24,6 +24,9 @@ public:
     void addNationality(QString nationality);
     void addComputerType(QString comp_type);
 
+    void changePerson(person p);
+    void changeComputer(computer c);
+
     void removePerson(int id);
     void removeComputer(int id);
     void removeConnection(int pid, int cid, bool &success);

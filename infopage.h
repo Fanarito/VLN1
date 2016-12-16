@@ -2,6 +2,7 @@
 #define INFOPAGE_H
 #include "person.h"
 #include "service.h"
+
 #include <QDialog>
 #include <QResizeEvent>
 #include <string>
@@ -23,6 +24,12 @@ private slots:
     void on_editPersonCheckbox_stateChanged();
 
     void on_applyPersonButton_clicked();
+
+    void on_closePersonButton_clicked();
+
+    void on_picture_linkActivated(const QString &link);
+
+    void on_infoPersAlive_stateChanged(int arg1);
 
 private:
 

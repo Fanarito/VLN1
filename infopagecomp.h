@@ -2,6 +2,7 @@
 #define INFOPAGECOMP_H
 
 #include "computer.h"
+#include "service.h"
 
 #include <QDialog>
 
@@ -19,10 +20,21 @@ public:
 
     void setComputer(computer comp);
 
+private slots:
+    void on_EditComputerCheckbox_stateChanged(int arg1);
+
+    void on_applyComputerButton_clicked();
+
+    void on_closeComputerButton_clicked();
+
 private:
     Ui::infoPageComp *ui;
     computer c;
+    service s;
     QString img_path;
+
+    void enableFields();
+    void disableFields();
 };
 
 #endif // INFOPAGECOMP_H

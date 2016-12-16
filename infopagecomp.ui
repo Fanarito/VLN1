@@ -37,52 +37,101 @@
         <number>10</number>
        </property>
        <item>
-        <widget class="QLabel" name="label_6">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="bottomMargin">
+          <number>0</number>
          </property>
-         <property name="text">
-          <string>Name:</string>
-         </property>
-        </widget>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="font">
+            <font>
+             <family>Calibri Light</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="InfoCompErrName">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <widget class="QLineEdit" name="infoCompName"/>
        </item>
        <item>
-        <widget class="QLabel" name="label_8">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="topMargin">
+          <number>0</number>
          </property>
-         <property name="text">
-          <string>Type:</string>
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="font">
+            <font>
+             <family>Calibri Light</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Type:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="InfoCompErrType">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QComboBox" name="infoCompType"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="font">
+            <font>
+             <family>Calibri Light</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Build Year:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="InfoCompBuilt">
+           <property name="text">
+            <string>Built</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="infoCompBuiltYear">
+         <property name="minimum">
+          <number>-2016</number>
+         </property>
+         <property name="maximum">
+          <number>2016</number>
          </property>
         </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="infoCompType"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_9">
-         <property name="font">
-          <font>
-           <family>Calibri Light</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Build Year:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="infoCompBuiltYear"/>
        </item>
        <item>
         <widget class="QLabel" name="label_11">
@@ -98,7 +147,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="infoCompNationality"/>
+        <widget class="QComboBox" name="infoCompNationality"/>
        </item>
       </layout>
      </item>

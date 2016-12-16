@@ -139,6 +139,30 @@ int dataaccess::addPerson(person p)
         return 0;
 }
 
+void dataaccess::changePerson(person p)
+{
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    noerr = query.prepare("UPDATE persons "
+                          "SET  name = :name, sex = :sex, birth_year = :birth_year, death_year = :death_year, alive = :alive, "
+                          "nationalityID = :nationalityID, info = :info "
+                          "WHERE id = :id");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
+
+    query.bindValue(":name", p.getName());
+    query.bindValue(":sex", p.getSex());
+    query.bindValue(":birth_year", p.getBirthYear());
+    query.bindValue(":death_year", p.getDeathYear());
+    query.bindValue(":alive", p.getAlive());
+    query.bindValue(":nationalityID", getNationalityID(p.getNationality()));
+    query.bindValue(":info", p.getInfo());
+    query.bindValue(":id", p.getId());
+
+    query.exec();
+}
+
 //Adds an instance of computer to the Computers table in the database
 int dataaccess::addComputer(computer c)
 {
@@ -162,6 +186,29 @@ int dataaccess::addComputer(computer c)
         return query.lastInsertId().toInt();
     else
         return 0;
+}
+
+void dataaccess::changeComputer(computer c)
+{
+    QSqlQuery query(db);
+
+    bool noerr;
+
+    noerr = query.prepare("UPDATE computers "
+                          "SET  name = :name, build_year = :build_year, computer_typeID = :type, built = :built, "
+                          "nationalityID = :nationalityID, info = :info "
+                          "WHERE id = :id");
+    if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
+
+    query.bindValue(":name", c.getName());
+    query.bindValue(":type", getComputer_TypeID(c.getType()));
+    query.bindValue(":build_year", c.getBuildYear());
+    query.bindValue(":built", c.getBuilt());
+    query.bindValue(":nationalityID", getNationalityID(c.getNationality()));
+    query.bindValue(":info", c.getInfo());
+    query.bindValue(":id", c.getId());
+
+    query.exec();
 }
 
 //Adds a connection to the Connections table in the database

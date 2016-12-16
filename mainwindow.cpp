@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // firstfresh.exe
     refresh();
+
+    ui->personsConnectionView->sortByColumn(0, Qt::SortOrder::AscendingOrder);
+    ui->computersConnectionView->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 }
 
 MainWindow::~MainWindow()
@@ -94,6 +97,7 @@ void MainWindow::displayAllComputers()
 void MainWindow::displayComputers(std::vector<computer> computers)
 {
     ui->computerList->setSortingEnabled(false);
+    ui->personsConnectionView->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 
     ui->computerList->clearContents();
     ui->computerList->setRowCount(computers.size());
@@ -105,7 +109,7 @@ void MainWindow::displayComputers(std::vector<computer> computers)
         QString name = c.getName();
         QString type = c.getType();
         QString built = QString::number(c.getBuildYear());
-        if(c.getBuildYear() == 0)
+        if(!c.getBuilt())
         {
             built = "Not built";
         }
@@ -165,7 +169,6 @@ void MainWindow::displayComputersConnections(std::vector<computer> computers)
     ui->personsConnectionView->setSortingEnabled(false);
     ui->computersConnectionView->clear();
     ui->computersConnectionView->setColumnCount(1);
-    ui->computersConnectionView->sortByColumn(0, Qt::SortOrder::AscendingOrder);
 
     for (computer c : computers)
     {
@@ -211,10 +214,7 @@ void MainWindow::on_actionAdd_Person_triggered()
     ui->personsFilter->setText("");
     ui->computersFilter->setText("");
 
-    displayAllPersons();
-    displayAllComputers();
-    displayComputersConnections();
-    displayPersonsConnections();
+    refresh();
 }
 
 void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
@@ -235,6 +235,8 @@ void MainWindow::on_computerList_doubleClicked(const QModelIndex &index)
 
     infoComp.setComputer(currentlySelectedComputer);
     infoComp.exec();
+
+    refresh();
 }
 
 void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
@@ -242,7 +244,7 @@ void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
     //Dirty hack volume ... IV?
 
     int currentlySelectedPersonRow = ui->personList->currentRow();
-    int pid = ui->personList->item(currentlySelectedPersonRow,0)->type(); //Not how this is supposed to be used.
+    int pid = ui->personList->item(currentlySelectedPersonRow,0)->type(); //Not how this is supposed to be used.. I think?
 
     bool success = true;
     person currentlySelectedPerson = s.getPersonById(pid,success);
@@ -253,6 +255,8 @@ void MainWindow::on_personList_doubleClicked(const QModelIndex &index)
 
     infoPers.setPerson(currentlySelectedPerson);
     infoPers.exec();
+
+    refresh();
 }
 
 void MainWindow::on_actionActionHelp_triggered()

@@ -72,6 +72,16 @@ void service::addPerson(person p)
     data.addPerson(p);
 }
 
+void service::changePerson(person p)
+{
+    data.changePerson(p);
+}
+
+void service::changeComputer(computer c)
+{
+    data.changeComputer(c);
+}
+
 int service::addComputer(QString name, int build_year, QString type, int built, QString nationality, QString info)
 {
     return data.addComputer(computer(name, build_year, type, built, nationality, info));

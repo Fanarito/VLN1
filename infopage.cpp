@@ -6,6 +6,21 @@ InfoPage::InfoPage(QWidget *parent) :
     ui(new Ui::InfoPage)
 {
     ui->setupUi(this);
+
+    vector<QString> nationalities = s.getNationalities();
+
+    for (auto nationality : nationalities)
+    {
+        ui->infoPersNationality->addItem(nationality);
+    }
+
+    ui->infoPersSex->addItem("Male");
+    ui->infoPersSex->addItem("Female");
+
+    ui->infoPersBirthYear->setMaximum(utils::getCurrentYear());
+    ui->infoPersDeathYear->setMaximum(utils::getCurrentYear());
+
+    disableFields();
 }
 
 InfoPage::~InfoPage()
@@ -18,12 +33,23 @@ void InfoPage::setPerson(person pers)
     p = pers;
 
     ui->infoPersName->setText(p.getName());
-    ui->infoPersSex->setText(p.getSex());
+    ui->infoPersSex->setCurrentText(p.getSex());
     QString birth_year = QString::number(p.getBirthYear());
-    ui->infoPersBirthYear->setText(birth_year);
-    QString Death_year = QString::number(p.getDeathYear());
-    ui->infoPersDeathYear->setText(Death_year);
-    ui->infoPersNationality->setText(p.getNationality());
+    ui->infoPersBirthYear->setValue(p.getBirthYear());
+    ui->infoPersDeathYear->setValue(p.getDeathYear());
+
+    if(p.getAlive())
+    {
+        ui->infoPersAlive->setChecked(true);
+        ui->infoPersDeathYear->setVisible(false);
+    }
+    else
+    {
+        ui->infoPersAlive->setVisible(false);
+        ui->infoPersDeathYear->setVisible(true);
+    }
+
+    ui->infoPersNationality->setCurrentText(p.getNationality());
     ui->infoPersInfo->setText(p.getInfo());
 
     img_path = constants::IMAGE_PATH + QString::fromStdString("p" + std::to_string(p.getId()));
@@ -41,22 +67,46 @@ void InfoPage::resizeEvent(QResizeEvent *event)
 
 void InfoPage::enableFields()
 {
+    ui->applyPersonButton->setEnabled(true);
+
     ui->infoPersName->setEnabled(true);
     ui->infoPersSex->setEnabled(true);
     ui->infoPersBirthYear->setEnabled(true);
     ui->infoPersDeathYear->setEnabled(true);
     ui->infoPersNationality->setEnabled(true);
     ui->infoPersInfo->setEnabled(true);
+    ui->infoPersAlive->setEnabled(true);
+
+    ui->infoPersAlive->setVisible(true);
+    ui->infoPersDeathYear->setVisible(true);
 }
 
 void InfoPage::disableFields()
 {
+    ui->applyPersonButton->setEnabled(false);
+
     ui->infoPersName->setEnabled(false);
     ui->infoPersSex->setEnabled(false);
     ui->infoPersBirthYear->setEnabled(false);
     ui->infoPersDeathYear->setEnabled(false);
     ui->infoPersNationality->setEnabled(false);
     ui->infoPersInfo->setEnabled(false);
+    ui->infoPersAlive->setEnabled(false);
+
+    if(p.getAlive())
+    {
+        ui->infoPersAlive->setVisible(true);
+        ui->infoPersDeathYear->setVisible(false);
+    }
+    else
+    {
+        ui->infoPersAlive->setVisible(false);
+        ui->infoPersDeathYear->setVisible(true);
+    }
+
+    ui->infoPersErrName->setText("");
+    ui->infoPersErrBirthYear->setText("");
+    ui->infoPersErrDeathYear->setText("");
 }
 
 void InfoPage::on_editPersonCheckbox_stateChanged()
@@ -68,11 +118,72 @@ void InfoPage::on_editPersonCheckbox_stateChanged()
     else
     {
         disableFields();
+        setPerson(p);
     }
 }
 
 void InfoPage::on_applyPersonButton_clicked()
 {
+    QString name, sex, nationality, info;
+    int birthyear, deathyear;
+    bool alive;
+
+    name = ui->infoPersName->text();
+
+    if(name.isEmpty())
+    {
+        ui->infoPersErrName->setText("<span style='color: red'>Name cannot be empty.</span>");
+        return;
+    }
+
+    if(ui->infoPersSex->currentText() == "Male")
+    {
+        sex = "m";
+    }
+    else
+    {
+        sex = "f";
+    }
+
+    nationality = ui->infoPersNationality->currentText();
+
+    info = ui->infoPersInfo->toPlainText();
+
+    birthyear = ui->infoPersBirthYear->value();
+    deathyear = ui->infoPersDeathYear->value();
+
+    if(birthyear < deathyear)
+    {
+        ui->infoPersErrDeathYear->setText("<span style='color: red'>Death year cannot be before birth year.</span>");
+    }
+
+    alive = ui->infoPersAlive->isChecked();
+
+    p = person(name, sex, birthyear, deathyear, alive, nationality, info, p.getId());
+
+    s.changePerson(p);
+
     ui->editPersonCheckbox->setChecked(false);
-    //s.removePerson(p.getId());
+}
+
+void InfoPage::on_closePersonButton_clicked()
+{
+    this->done(0);
+}
+
+void InfoPage::on_picture_linkActivated(const QString &link)
+{
+    std::cerr << "Picture clicked!" << std::endl;
+}
+
+void InfoPage::on_infoPersAlive_stateChanged(int arg1)
+{
+    if(ui->infoPersAlive->isChecked())
+    {
+        ui->infoPersDeathYear->setEnabled(false);
+    }
+    else
+    {
+        ui->infoPersDeathYear->setEnabled(true);
+    }
 }

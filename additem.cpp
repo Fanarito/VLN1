@@ -324,7 +324,7 @@ void addItem::displayPersons(vector<person> persons)
 
 void addItem::displayAllPersons()
 {
-    vector<person> persons = s.getPersons();
+    vector<person> persons = s.sortPersons("name","asc");
     displayPersons(persons);
 }
 
@@ -335,9 +335,7 @@ void addItem::displayComputers(vector<computer> computers)
     for (size_t row = 0; row < computers.size(); row++)
     {
         computer currentComputer = computers.at(row);
-
         ui->ComputerConnections->addItem(currentComputer.getName());
-
     }
 
     currentlyDisplayedComputers = computers;
@@ -345,7 +343,7 @@ void addItem::displayComputers(vector<computer> computers)
 
 void addItem::displayAllComputers()
 {
-    vector<computer> computers = s.getComputers();
+    vector<computer> computers = s.sortComputers("name","asc");
     displayComputers(computers);
 }
 

@@ -25,6 +25,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void refresh();
+
 private slots:
     void on_personsFilter_textChanged(const QString &arg1);
 
@@ -47,8 +49,6 @@ private:
     infoPageComp infoComp;
     InfoPage infoPers;
     helpscreen help;
-
-    void refresh();
 
     void displayAllPersons();
     void displayPersons(std::vector<person> persons);

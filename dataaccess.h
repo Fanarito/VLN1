@@ -59,6 +59,9 @@ public:
     int addPerson(person p);
     void removePerson(int id);
 
+    void changePerson(person p);
+    void changeComputer(computer c);
+
     int addComputer(computer p);
     void removeComputer(int id);
 
