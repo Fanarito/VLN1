@@ -57,6 +57,9 @@ private:
     void displayAllComputers();
     void displayAllPersons();
 
+    bool p_picture_added;
+    bool c_picture_added;
+
     QString person_picture_path;
     QString computer_picture_path;
 };

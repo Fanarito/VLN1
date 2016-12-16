@@ -144,7 +144,7 @@ void addItem::on_AddPersonButton_clicked()
         thereWasAnError = true;
     }
 
-    if((deathYearInt < birthYearInt) && (!alive))
+    if(!alive && (deathYearInt < birthYearInt))
     {
         ui->LabelErrorAddPersonDeathYear->setText("<span style='color: red'>Invalid year of death; cannot be before year of birth</span>");
         thereWasAnError = true;
@@ -162,11 +162,14 @@ void addItem::on_AddPersonButton_clicked()
     else
         ui->PersonResult->setText("<span style='color: green'>Person added successfully</span>");
 
-    QString path = constants::IMAGE_PATH + QString::fromStdString("p" + to_string(result));
-    if (QFile::exists(path)) {
-        QFile::remove(path);
+    if(p_picture_added)
+    {
+        QString path = constants::IMAGE_PATH + QString::fromStdString("p" + to_string(result));
+        if (QFile::exists(path)) {
+            QFile::remove(path);
+        }
+        QFile::copy(person_picture_path, path);
     }
-    QFile::copy(person_picture_path, path);
 
     resetFields();
 }
@@ -223,11 +226,14 @@ void addItem::on_AddComputerButton_clicked()
     else
         ui->ComputerResult->setText("<span style='color: green'>Computer added successfully</span>");
 
-    QString path = constants::IMAGE_PATH + QString::fromStdString("c" + to_string(result));
-    if (QFile::exists(path)) {
-        QFile::remove(path);
+    if(c_picture_added)
+    {
+        QString path = constants::IMAGE_PATH + QString::fromStdString("c" + to_string(result));
+        if (QFile::exists(path)) {
+            QFile::remove(path);
+        }
+        QFile::copy(computer_picture_path, path);
     }
-    QFile::copy(computer_picture_path, path);
 
     resetFields();
 }
@@ -381,6 +387,7 @@ void addItem::on_AddPersonBirthYearInput_valueChanged(int arg1)
 
 void addItem::on_BrowseImagePersonButton_clicked()
 {
+    p_picture_added = true;
     person_picture_path = QFileDialog::getOpenFileName(this, tr("Select Picture"), "/home", tr("Images (*.png *.jpg *.tiff *.jpeg)"));
     QDir().mkpath(QDir::currentPath() + QString::fromStdString("/images"));
     ui->BrowseImagePersonButton->setText(person_picture_path);
@@ -388,6 +395,7 @@ void addItem::on_BrowseImagePersonButton_clicked()
 
 void addItem::on_BrowseImageComputerButton_clicked()
 {
+    c_picture_added;
     computer_picture_path = QFileDialog::getOpenFileName(this, tr("Select Picture"), "/home", tr("Images (*.png *.jpg *.tiff *.jpeg)"));
     QDir().mkpath(QDir::currentPath() + QString::fromStdString("/images"));
     ui->BrowseImageComputerButton->setText(computer_picture_path);

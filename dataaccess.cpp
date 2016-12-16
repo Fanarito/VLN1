@@ -120,15 +120,16 @@ int dataaccess::addPerson(person p)
 
     bool noerr;
 
-    noerr = query.prepare("INSERT INTO Persons (name, sex, birth_year, death_year, nationalityID, info) "
-                          "VALUES (:name, :sex, :birth_year, :death_year, :nationalityID, :info)");
+    noerr = query.prepare("INSERT INTO Persons (name, sex, birth_year, death_year, alive, nationalityID, info) "
+                          "VALUES (:name, :sex, :birth_year, :death_year, :alive, :nationalityID, :info)");
     if(!noerr) std::cerr << "Query did not prepare successfully." << std::endl;
 
     query.bindValue(":name", p.getName());
     query.bindValue(":sex", p.getSex());
-    query.bindValue(":birth_year", QString::number(p.getBirthYear()));
-    query.bindValue(":death_year", QString::number(p.getDeathYear()));
-    query.bindValue(":nationalityID", QString::number(getNationalityID(p.getNationality())));
+    query.bindValue(":birth_year", p.getBirthYear());
+    query.bindValue(":death_year", p.getDeathYear());
+    query.bindValue(":alive", p.getAlive());
+    query.bindValue(":nationalityID", getNationalityID(p.getNationality()));
     query.bindValue(":info", p.getInfo());
 
     query.exec();
